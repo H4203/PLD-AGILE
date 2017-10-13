@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-package modeles;
-import java.util.List;
-import java.util.ArrayList;
-
-public class Itineraire {
-	List<Troncon> listeTroncons;
-	Intersection depart;
-	Intersection arrivee;
-}
-=======
 package modeles;
 
 import java.util.List;
@@ -77,4 +66,4 @@ public class Itineraire {
 	
 	
 }
->>>>>>> 419e022b30e451a39b5bbd5d75896f7defacf846
+

@@ -29,8 +29,7 @@ public class Plan {
 		this.listeIntersection.put(aAjouter.getId(), aAjouter);
 	}
 	
-<<<<<<< HEAD
-=======
+
 	public void ajouterIntersection(Long id, int x, int y)
 	{
 		this.listeIntersection.put( id, new Intersection(id,  x,  y) );
@@ -39,6 +38,6 @@ public class Plan {
 	public void ajouterTroncons() {
 		
 	}
->>>>>>> 419e022b30e451a39b5bbd5d75896f7defacf846
+
 	
 }

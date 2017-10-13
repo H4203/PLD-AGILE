@@ -1,45 +1,3 @@
-<<<<<<< HEAD
-package modeles;
-
-public class Livraison {
-	PlageHoraire plageHoraire;
-	Intersection pointDeLivraison;
-	Integer dureeDechargement;
-	
-	public Livraison(PlageHoraire plageHoraire, Intersection pointDeLivraison, Integer dureeDechargement) {
-		this.plageHoraire = plageHoraire;
-		this.pointDeLivraison = pointDeLivraison;
-		this.dureeDechargement = dureeDechargement;
-	}
-
-	public PlageHoraire getPlageHoraire() {
-		return plageHoraire;
-	}
-
-	public void setPlageHoraire(PlageHoraire plageHoraire) {
-		this.plageHoraire = plageHoraire;
-	}
-
-	public Intersection getPointDeLivraison() {
-		return pointDeLivraison;
-	}
-
-	public void setPointDeLivraison(Intersection pointDeLivraison) {
-		this.pointDeLivraison = pointDeLivraison;
-	}
-
-	public Integer getDureeDechargement() {
-		return dureeDechargement;
-	}
-
-	public void setDureeDechargement(Integer dureeDechargement) {
-		this.dureeDechargement = dureeDechargement;
-	}
-	
-	
-	
-}
-=======
 package modeles;
 
 public class Livraison {
@@ -106,4 +64,4 @@ public class Livraison {
 	
 
 }
->>>>>>> 419e022b30e451a39b5bbd5d75896f7defacf846
+
