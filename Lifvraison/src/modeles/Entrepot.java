@@ -1,5 +1,5 @@
 package modeles;
 
-public class Entrepot {
+public class Entrepot extends PointDeLivraison {
 
 }
