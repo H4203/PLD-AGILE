@@ -24,8 +24,5 @@ public class Plan {
 		this.listeIntersection.put(aAjouter.getId(), aAjouter);
 	}
 	
-	public void ajouterTroncons() {
-		
-	}
 	
 }

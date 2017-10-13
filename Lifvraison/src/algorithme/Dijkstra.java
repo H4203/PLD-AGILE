@@ -1,7 +1,9 @@
 package algorithme;
 import modeles.Intersection;
 import modeles.Plan; 
+import modeles.Troncon;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Collection;
 
 public class Dijkstra {
@@ -33,6 +35,20 @@ public class Dijkstra {
 	
 	public void relacher(Intersection si, Intersection sj)
 	{
-		//TODO : Gerer le relachement des axes
+		
+		
+		List<Troncon> lesTroncons = si.getTronconsSortants();
+		Troncon leTroncon = null;
+		
+		for(Troncon t : lesTroncons) {
+			if(t.getIntersectionArrive().getId() == sj.getId()) {
+				leTroncon = t;
+			}
+		}
+		
+		
+		if(  (cout.get(sj.getId()) > (cout.get(si.getId()) + leTroncon.getLongeur() )) && (leTroncon != null)  ) {
+		
+		}
 	}
 }
