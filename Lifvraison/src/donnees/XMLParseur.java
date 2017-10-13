@@ -75,7 +75,7 @@ public class XMLParseur
 					System.out.print("id : " + monElement.getAttribute("id"));
 					System.out.print(" x : " + monElement.getAttribute("x"));
 					System.out.println(" y : " + monElement.getAttribute("y"));
-					
+					// pas oublier les tronçons sortants et entrants ?
 					id = Long.parseLong(monElement.getAttribute("id"), 10);
 					x = Integer.parseInt(monElement.getAttribute("x"));
 					y = Integer.parseInt(monElement.getAttribute("y"));
