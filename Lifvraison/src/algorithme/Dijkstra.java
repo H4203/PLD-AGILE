@@ -1,27 +1,36 @@
 package algorithme;
-import modeles.Noeud;
+import modeles.Intersection;
 import modeles.Plan; 
+import java.util.HashMap;
+import java.util.Collection;
 
 public class Dijkstra {
-	private Noeud[] pi;
-	private int[] cout;
+	private HashMap<Integer, Intersection> pi;
+	private HashMap<Integer, Integer> cout;
 	
 	Plan lePlan;
-	Noeud ptDepart;
+	Intersection ptDepart;
 	
-	Dijkstra(Plan lePlan, Noeud pointDepart)
+	Dijkstra(Plan lePlan, Intersection pointDepart)
 	{
 		this.lePlan = lePlan;
 		this.ptDepart = pointDepart;
+		
+		Collection<Intersection> c = lePlan.getIntersection().values();
+		
+		for(Intersection intersection : c )
+		{
+			//TODO : Ajouter les noeuds à pi et cout et initialiser les valeurs
+		}
 	}
 	
 	public void run()
 	{
-		
+		//TODO : Methode de Dijkstra
 	}
 	
-	public void relacher(Noeud si, Noeud sj)
+	public void relacher(Intersection si, Intersection sj)
 	{
-		
+		//TODO : Gerer le relachement des axes
 	}
 }
