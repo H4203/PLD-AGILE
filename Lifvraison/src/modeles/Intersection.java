@@ -2,24 +2,24 @@ package modeles;
 import java.util.List;
 
 public class Intersection {
-	private Integer id;
+	private Long id;
 	private Integer x;
 	private Integer y;
 	private List<Troncon> tronconsSortants;
 	private List<Troncon> tronconsEntrants; // Surement a enlever
 	
-	Intersection(Integer id, Integer x, Integer y)
+	Intersection(Long id, Integer x, Integer y)
 	{
 		this.id = id;
 		this.x = x;
 		this.y = y;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -21,8 +21,8 @@ public class Dijkstra {
 		for(Intersection intersection : c )
 		{
 			//TODO : Ajouter les noeuds à pi et cout et initialiser les valeurs
-			pi.put(intersection.getId(),intersection);
-			cout.put(intersection.getId(), Integer.MAX_VALUE);
+			//pi.put(intersection.getId(),intersection);
+			//cout.put(intersection.getId(), Integer.MAX_VALUE);
 		}
 	}
 	
