@@ -16,11 +16,13 @@ public class Dijkstra {
 		this.lePlan = lePlan;
 		this.ptDepart = pointDepart;
 		
-		Collection<Intersection> c = lePlan.getIntersection().values();
+		Collection<Intersection> c = lePlan.getListeIntersection().values();
 		
 		for(Intersection intersection : c )
 		{
 			//TODO : Ajouter les noeuds à pi et cout et initialiser les valeurs
+			pi.put(intersection.getId(),intersection);
+			cout.put(intersection.getId(), Integer.MAX_VALUE);
 		}
 	}
 	

@@ -42,6 +42,13 @@ public class Intersection {
 	public List<Troncon> getTronconsSortants() {
 		return tronconsSortants;
 	}
+	
+	public Troncon getTronconsSortantsi(int i) {
+		if((i > 0) && (i < tronconsSortants.size()) ) {
+			return tronconsSortants.get(i);
+		}
+		return null;
+	}
 
 	public void setTronconsSortants(List<Troncon> tronconsSortants) {
 		this.tronconsSortants = tronconsSortants;
