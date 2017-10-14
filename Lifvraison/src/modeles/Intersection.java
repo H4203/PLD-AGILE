@@ -8,7 +8,11 @@ public class Intersection {
 	private List<Troncon> tronconsSortants;
 	private List<Troncon> tronconsEntrants; // Surement a enlever
 	
-	Intersection(Long id, Integer x, Integer y)
+	public Intersection()
+	{
+	}
+	
+	public Intersection(Long id, Integer x, Integer y)
 	{
 		this.id = id;
 		this.x = x;

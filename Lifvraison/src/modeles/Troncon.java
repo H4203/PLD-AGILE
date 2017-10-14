@@ -64,6 +64,11 @@ public class Troncon {
 		Longeur = longeur;
 	}
 	
+	public Troncon(String nomDeRue2, Long idDepart, Long idArrivee, double longeur2)
+	{
+		// TODO Auto-generated constructor stub
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

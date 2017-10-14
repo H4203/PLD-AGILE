@@ -2,33 +2,48 @@ package modeles;
 
 public class Livraison {
 	
-	private PlageHoraire plagehoraire ;
-	private PointDeLivraison pointdelivraison ;
+	private PointDeLivraison pointDeLivraison ;
 	private int dureeDechargement ;
+	private PlageHoraire plageHoraire ;
+	
+	public Livraison()
+	{
+	}
+	
+	public Livraison(PointDeLivraison pointdelivraison, int dureeDechargement) {
+		this.pointDeLivraison = pointdelivraison;
+		this.dureeDechargement = dureeDechargement;
+	}
+	
+	public Livraison(PointDeLivraison pointdelivraison, int dureeDechargement, PlageHoraire plagehoraire) {
+		this.plageHoraire = plagehoraire;
+		this.pointDeLivraison = pointdelivraison;
+		this.dureeDechargement = dureeDechargement;
+	}
 	
 	/**
 	 * @return the plagehoraire
 	 */
 	public PlageHoraire getPlagehoraire() {
-		return plagehoraire;
+		return plageHoraire;
 	}
 	/**
 	 * @param plagehoraire the plagehoraire to set
 	 */
 	public void setPlagehoraire(PlageHoraire plagehoraire) {
-		this.plagehoraire = plagehoraire;
+		this.plageHoraire = plagehoraire;
 	}
 	/**
 	 * @return the pointdelivraison
 	 */
 	public PointDeLivraison getPointdelivraison() {
-		return pointdelivraison;
+		return pointDeLivraison;
 	}
 	/**
 	 * @param pointdelivraison the pointdelivraison to set
 	 */
 	public void setPointdelivraison(PointDeLivraison pointdelivraison) {
-		this.pointdelivraison = pointdelivraison;
+		this.pointDeLivraison = pointdelivraison;
 	}
 	/**
 	 * @return the dureeDechargement
@@ -43,25 +58,15 @@ public class Livraison {
 		this.dureeDechargement = dureeDechargement;
 	}
 	
-	public Livraison(PlageHoraire plagehoraire, PointDeLivraison pointdelivraison, int dureeDechargement) {
-		super();
-		this.plagehoraire = plagehoraire;
-		this.pointdelivraison = pointdelivraison;
-		this.dureeDechargement = dureeDechargement;
-	}
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "Livraison [plagehoraire=" + plagehoraire + ", pointdelivraison=" + pointdelivraison
+		return "Livraison [plagehoraire=" + plageHoraire + ", pointdelivraison=" + pointDeLivraison
 				+ ", dureeDechargement=" + dureeDechargement + "]";
 	}
-	
-	
-	
-	
 
 }
 
