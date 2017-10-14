@@ -7,8 +7,8 @@ public class Plan {
 	private HashMap<Integer, Troncon> listeTroncons;
 
 	public Plan() {
-		this.listeIntersection = null;
-		this.listeTroncons = null;
+		this.listeIntersection = new HashMap<Long, Intersection>();
+		this.listeTroncons =new HashMap<Integer, Troncon>();
 	}
 	
 	public Plan(HashMap<Long, Intersection> listeIntersection, HashMap<Integer, Troncon> listeTroncons) {
@@ -35,8 +35,9 @@ public class Plan {
 		this.listeIntersection.put( id, new Intersection(id,  x,  y) );
 	}
 	
-	public void ajouterTroncons() {
-		
+	public void ajouterTroncons(String nomDeRue, Long idDepart, Long idArrivee, double longeur)
+	{
+		this.listeTroncons.put((int) (idDepart/2+idArrivee/2), new Troncon(nomDeRue, idDepart, idArrivee, longeur));
 	}
 
 	

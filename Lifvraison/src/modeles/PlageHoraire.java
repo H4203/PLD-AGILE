@@ -7,6 +7,17 @@ public class PlageHoraire {
 	private Date heureDebut ;
 	private Date heureFin ;
 	
+	public PlageHoraire()
+	{
+		heureDebut = null;
+		heureFin = null;
+	}
+	
+	public PlageHoraire(Date heureDebut, Date heureFin) {
+		this.heureDebut = heureDebut;
+		this.heureFin = heureFin;
+	}
+	
 	/**
 	 * @return the heureDebut
 	 */
@@ -29,12 +40,6 @@ public class PlageHoraire {
 	 * @param heureFin the heureFin to set
 	 */
 	public void setHeureFin(Date heureFin) {
-		this.heureFin = heureFin;
-	}
-	
-	public PlageHoraire(Date heureDebut, Date heureFin) {
-		super();
-		this.heureDebut = heureDebut;
 		this.heureFin = heureFin;
 	}
 	

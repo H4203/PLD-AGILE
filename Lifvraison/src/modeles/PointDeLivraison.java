@@ -2,6 +2,19 @@ package modeles;
 
 public class PointDeLivraison {
 	private Intersection noeud ;
+	private Long idAdresse;
+
+	public PointDeLivraison() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public PointDeLivraison(Long id) {
+		idAdresse = id;
+	}
+	
+	public PointDeLivraison(Intersection noeud) {
+		this.noeud = noeud;
+	}
 
 	/**
 	 * @return the noeud
@@ -17,18 +30,15 @@ public class PointDeLivraison {
 		this.noeud = noeud;
 	}
 
-	public PointDeLivraison(Intersection noeud) {
-		super();
-		this.noeud = noeud;
-	}
-	
-	
 
-	public PointDeLivraison() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Long getIdAdresse() {
+		return idAdresse;
 	}
 
+	public void setIdAdresse(Long idAdresse) {
+		this.idAdresse = idAdresse;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
