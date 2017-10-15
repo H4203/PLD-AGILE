@@ -35,9 +35,14 @@ public class Plan {
 		this.listeIntersection.put( id, new Intersection(id,  x,  y) );
 	}
 	
-	public void ajouterTroncons(String nomDeRue, Long idDepart, Long idArrivee, double longeur)
+	public void ajouterTroncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrivee, double longeur)
 	{
-		this.listeTroncons.put((int) (idDepart/2+idArrivee/2), new Troncon(nomDeRue, idDepart, idArrivee, longeur));
+		this.listeTroncons.put(nomDeRue.hashCode(), new Troncon(nomDeRue, intersectionDepart, intersectionArrivee, longeur));
+	}
+
+	@Override
+	public String toString() {
+		return "Plan [listeIntersection=" + listeIntersection + ", listeTroncons=" + listeTroncons + "]";
 	}
 
 	

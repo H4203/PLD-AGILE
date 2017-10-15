@@ -1,5 +1,6 @@
 package modeles;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 public class DemandeLivraison {
 
 	private List<Livraison> livraisons;
-	private Date heureDepart;
+	private LocalTime heureDepart;
 	private Intersection entrepot;
 
 	public DemandeLivraison() {
@@ -16,24 +17,15 @@ public class DemandeLivraison {
 		
 	}
 
-	public DemandeLivraison(List<Livraison> livraisons, Date heureDepart, Intersection entrepot) {
+	public DemandeLivraison(List<Livraison> livraisons, LocalTime heureDepart, Intersection entrepot) {
 		this.livraisons = livraisons;
 		this.heureDepart = heureDepart;
 		this.entrepot = entrepot;
 	}
 
-	public void ajouterLivraison(Livraison livraison) {
-		livraisons.add(livraison);
-	}
-
-	public void ajouterLivraison (Long adresse, int dureeDechargement)
+	public void ajouterLivraison (Intersection intersection, int dureeDechargement, LocalTime arrivee, LocalTime depart)
 	{
-		livraisons.add( new Livraison( new PointDeLivraison( adresse ), dureeDechargement ) );
-	}
-	
-	public void ajouterLivraison (Long adresse, int dureeDechargement, Date arrivee, Date depart)
-	{
-		livraisons.add( new Livraison( new PointDeLivraison( adresse ), dureeDechargement, new PlageHoraire(arrivee, depart) ) );
+		livraisons.add( new Livraison(intersection, dureeDechargement, new PlageHoraire(arrivee, depart) ) );
 	}
 
 	/**
@@ -54,7 +46,7 @@ public class DemandeLivraison {
 	/**
 	 * @return the heureDepart
 	 */
-	public Date getHeureDepart() {
+	public LocalTime getHeureDepart() {
 		return heureDepart;
 	}
 
@@ -62,7 +54,7 @@ public class DemandeLivraison {
 	 * @param heureDepart
 	 *            the heureDepart to set
 	 */
-	public void setHeureDepart(Date heureDepart) {
+	public void setHeureDepart(LocalTime heureDepart) {
 		this.heureDepart = heureDepart;
 	}
 

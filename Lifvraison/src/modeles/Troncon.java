@@ -57,16 +57,10 @@ public class Troncon {
 	}
 	
 	public Troncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrive, double longeur) {
-		super();
 		this.nomDeRue = nomDeRue;
 		this.intersectionDepart = intersectionDepart;
 		this.intersectionArrive = intersectionArrive;
 		Longeur = longeur;
-	}
-	
-	public Troncon(String nomDeRue2, Long idDepart, Long idArrivee, double longeur2)
-	{
-		// TODO Auto-generated constructor stub
 	}
 	
 	/* (non-Javadoc)

@@ -2,6 +2,7 @@ package modeles;
 import java.util.List;
 
 public class Intersection {
+
 	private Long id;
 	private Integer x;
 	private Integer y;
@@ -66,6 +67,10 @@ public class Intersection {
 		this.tronconsEntrants = tronconsEntrants;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Intersection [id=" + id + ", x=" + x + ", y=" + y + ", tronconsSortants=" + tronconsSortants
+				+ ", tronconsEntrants=" + tronconsEntrants + "]";
+	}
 	
 }

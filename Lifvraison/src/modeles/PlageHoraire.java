@@ -1,11 +1,11 @@
 package modeles;
 
-import java.util.Date;
+import java.time.LocalTime;
 
 public class PlageHoraire {
 	
-	private Date heureDebut ;
-	private Date heureFin ;
+	private LocalTime heureDebut ;
+	private LocalTime heureFin ;
 	
 	public PlageHoraire()
 	{
@@ -13,7 +13,7 @@ public class PlageHoraire {
 		heureFin = null;
 	}
 	
-	public PlageHoraire(Date heureDebut, Date heureFin) {
+	public PlageHoraire(LocalTime heureDebut, LocalTime heureFin) {
 		this.heureDebut = heureDebut;
 		this.heureFin = heureFin;
 	}
@@ -21,25 +21,25 @@ public class PlageHoraire {
 	/**
 	 * @return the heureDebut
 	 */
-	public Date getHeureDebut() {
+	public LocalTime getHeureDebut() {
 		return heureDebut;
 	}
 	/**
 	 * @param heureDebut the heureDebut to set
 	 */
-	public void setHeureDebut(Date heureDebut) {
+	public void setHeureDebut(LocalTime heureDebut) {
 		this.heureDebut = heureDebut;
 	}
 	/**
 	 * @return the heureFin
 	 */
-	public Date getHeureFin() {
+	public LocalTime getHeureFin() {
 		return heureFin;
 	}
 	/**
 	 * @param heureFin the heureFin to set
 	 */
-	public void setHeureFin(Date heureFin) {
+	public void setHeureFin(LocalTime heureFin) {
 		this.heureFin = heureFin;
 	}
 	

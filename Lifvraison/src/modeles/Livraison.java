@@ -2,7 +2,7 @@ package modeles;
 
 public class Livraison {
 	
-	private PointDeLivraison pointDeLivraison ;
+	private Intersection intersection ;
 	private int dureeDechargement ;
 	private PlageHoraire plageHoraire ;
 	
@@ -10,14 +10,14 @@ public class Livraison {
 	{
 	}
 	
-	public Livraison(PointDeLivraison pointdelivraison, int dureeDechargement) {
-		this.pointDeLivraison = pointdelivraison;
+	public Livraison(Intersection intersection, int dureeDechargement) {
+		this.intersection = intersection;
 		this.dureeDechargement = dureeDechargement;
 	}
 	
-	public Livraison(PointDeLivraison pointdelivraison, int dureeDechargement, PlageHoraire plagehoraire) {
+	public Livraison(Intersection Intersection, int dureeDechargement, PlageHoraire plagehoraire) {
 		this.plageHoraire = plagehoraire;
-		this.pointDeLivraison = pointdelivraison;
+		this.intersection = Intersection;
 		this.dureeDechargement = dureeDechargement;
 	}
 	
@@ -34,16 +34,16 @@ public class Livraison {
 		this.plageHoraire = plagehoraire;
 	}
 	/**
-	 * @return the pointdelivraison
+	 * @return the Intersection
 	 */
-	public PointDeLivraison getPointdelivraison() {
-		return pointDeLivraison;
+	public Intersection getIntersection() {
+		return intersection;
 	}
 	/**
-	 * @param pointdelivraison the pointdelivraison to set
+	 * @param Intersection the Intersection to set
 	 */
-	public void setPointdelivraison(PointDeLivraison pointdelivraison) {
-		this.pointDeLivraison = pointdelivraison;
+	public void setIntersection(Intersection Intersection) {
+		this.intersection = Intersection;
 	}
 	/**
 	 * @return the dureeDechargement
@@ -64,7 +64,7 @@ public class Livraison {
 	 */
 	@Override
 	public String toString() {
-		return "Livraison [plagehoraire=" + plageHoraire + ", pointdelivraison=" + pointDeLivraison
+		return "Livraison [plagehoraire=" + plageHoraire + ", Intersection=" + intersection
 				+ ", dureeDechargement=" + dureeDechargement + "]";
 	}
 

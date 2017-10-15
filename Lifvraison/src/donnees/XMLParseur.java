@@ -4,7 +4,8 @@ import modeles.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalTime;
+import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,12 +31,18 @@ public class XMLParseur
 		}
 	}
 
-
-	public DemandeLivraison chargerLivraison (String cheminDuFichier)
+	/**
+	 * charge la livraison
+	 * @param cheminDuFichier chemin d'acces sur le disque du fichier XML contenant la demande de livraison
+	 * @param listeIntersection les intersections du plan - la map associe les id des intersections avec leur objet Intersection
+	 * @return la demande de livraisons
+	 */
+	public DemandeLivraison chargerLivraison (String cheminDuFichier, HashMap<Long, Intersection> listeIntersection)
 	{
 		Document document = null;
 		try
 		{
+			/* on parse le fichier */
 			document= builder.parse(new File(cheminDuFichier));
 		}
 		catch (SAXException e)
@@ -50,54 +57,88 @@ public class XMLParseur
 		}
 
 		final Element racine = document.getDocumentElement();
-		System.out.println(racine.getNodeName());
 
+		/* on s'assure que l'objet à la racine est bien la demande de livraison */
 		assert (racine.getNodeName().equals("demandeDeLivraisons"));
 
+		/* objet DemandeLivraison qui sera retourné */
 		DemandeLivraison maDemandeDeLivraison = new DemandeLivraison();
 
 		NodeList racineNoeuds = racine.getChildNodes();
 		int nbRacineNoeuds = racineNoeuds.getLength();
 
+		/*on boucle sur tous les enfants de la racine */
 		for (int i = 0; i<nbRacineNoeuds; i++) {
-			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE)
+			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) // l'element i est un noeud
 			{
 				Element monElement = (Element) racineNoeuds.item(i);
 
-				/* on trouve les infos de l'entrepot*/
-				String heureDepartDecoupee[]; Long adresse;
-				if (monElement.getNodeName().equals("entrepot"))
+				/* l'element contient les infos sur l'entrepot 
+				 * on set ses valeurs
+				 */
+				LocalTime heureDepart; Long adresse;
+				int heure, minute, seconde;
+				if ( monElement.getNodeName().equals("entrepot")) 
 				{
-			//		System.out.println(monElement.getNodeName());
-				//	System.out.print("adresse : " + monElement.getAttribute("adresse"));
-			//		System.out.print(" heure de depart : " + monElement.getAttribute("heureDepart"));
-					
-					heureDepartDecoupee = monElement.getAttribute("heureDepart").split(":");
-					adresse = Long.parseLong(monElement.getAttribute("adresse"), 10); // voir format pour l'heure....
-					
-					//maDemandeDeLivraison.setHeureDepart(new Date(2095, 09, 15);
-					maDemandeDeLivraison.setEntrepot(new Intersection());
+					/* on recupere l'heure de depart */
+					/* on parse nous meme comme leur heure ne sont pas ISO (00:00:00) */
+					heure = Integer.parseInt(monElement.getAttribute("heureDepart").split(":")[0]);
+					minute = Integer.parseInt(monElement.getAttribute("heureDepart").split(":")[1]);
+					seconde = Integer.parseInt(monElement.getAttribute("heureDepart").split(":")[2]);
+					heureDepart = LocalTime.of(heure,minute,seconde);
+
+					//heureDepart = LocalTime.parse(monElement.getAttribute("heureDepart"));
+
+					/* on recupere l'id de l'intersection de depart */
+					adresse = Long.parseLong(monElement.getAttribute("adresse"), 10);
+
+					/* on remplit les parametres */
+					maDemandeDeLivraison.setHeureDepart(heureDepart);
+					maDemandeDeLivraison.setEntrepot(listeIntersection.get(adresse));
 				}
-				/* on ajoute les adresses de livraison au plan*/
-				Long idAdresse; int duree; //+plage horaire
+
+				/* le noeud est celui contenant les informations sur une livraison */
+				Long idAdresse; int duree; LocalTime debutPlage, finPlage; Intersection adresseLivraison;
 				if (monElement.getNodeName().equals("livraison"))
 				{
-		//			System.out.println(monElement.getNodeName());
-			//		System.out.print("adresse : " + monElement.getAttribute("adresse"));
-				//	System.out.print(" duree : " + monElement.getAttribute("duree"));
-					
-					duree =  Integer.parseInt(monElement.getAttribute("duree"));
+					/* on recupere l'id de la livraison */
 					idAdresse = Long.parseLong(monElement.getAttribute("adresse"), 10);
+					adresseLivraison = listeIntersection.get(idAdresse);
+					/* on recupere la duree de dechargement */
+					duree =  Integer.parseInt(monElement.getAttribute("duree"));
+					/* on recupere l'heure de debut si elle existe */
+					if (!monElement.getAttribute("debutPlage").equals(""))
+					{
+						heure = Integer.parseInt(monElement.getAttribute("debutPlage").split(":")[0]);
+						minute = Integer.parseInt(monElement.getAttribute("debutPlage").split(":")[1]);
+						seconde = Integer.parseInt(monElement.getAttribute("debutPlage").split(":")[2]);
+						debutPlage = LocalTime.of(heure,minute,seconde);
+						//debutPlage = LocalTime.parse(monElement.getAttribute("debutPlage"));
+					} else debutPlage = null;
+					/* on recupere l'heure de fin */
+					if (!monElement.getAttribute("finPlage").equals(""))
+					{
+						heure = Integer.parseInt(monElement.getAttribute("finPlage").split(":")[0]);
+						minute = Integer.parseInt(monElement.getAttribute("finPlage").split(":")[1]);
+						seconde = Integer.parseInt(monElement.getAttribute("finPlage").split(":")[2]);
+						finPlage = LocalTime.of(heure,minute,seconde);
+						//finPlage = LocalTime.parse(monElement.getAttribute("finPlage"));
+					} else finPlage = null;
 					
-					maDemandeDeLivraison.ajouterLivraison(idAdresse, duree);
+					/* on ajoute la livraison a la demande */
+					maDemandeDeLivraison.ajouterLivraison(adresseLivraison, duree, debutPlage, finPlage);
 				}
 			}				
 		}
-
 		return maDemandeDeLivraison;
 	}
 
-	
+
+	/**
+	 * Charge le plan de la ville
+	 * @param cheminDuFichier chemin d'acces sur le disque du fichier XML contenant le plan de livraison
+	 * @return
+	 */
 	public Plan chargerPlan (String cheminDuFichier)
 	{
 		Document document = null;
@@ -117,8 +158,8 @@ public class XMLParseur
 		}
 
 		final Element racine = document.getDocumentElement();
-		System.out.println(racine.getNodeName());
 
+		/* on s'assure que l'objet à la racine est bien le plan*/
 		assert (racine.getNodeName().equals("reseau"));
 
 		Plan monPlan = new Plan();
@@ -126,8 +167,9 @@ public class XMLParseur
 		NodeList racineNoeuds = racine.getChildNodes();
 		int nbRacineNoeuds = racineNoeuds.getLength();
 
+		/*on boucle sur tous les enfants de la racine */
 		for (int i = 0; i<nbRacineNoeuds; i++) {
-			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE)
+			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) // l'element i est un noeud
 			{
 				Element monElement = (Element) racineNoeuds.item(i);
 
@@ -135,31 +177,26 @@ public class XMLParseur
 				Long id; int x, y;
 				if (monElement.getNodeName().equals("noeud"))
 				{
-					System.out.println(monElement.getNodeName());
-					System.out.print("id : " + monElement.getAttribute("id"));
-					System.out.print(" x : " + monElement.getAttribute("x"));
-					System.out.println(" y : " + monElement.getAttribute("y"));
-					
 					id = Long.parseLong(monElement.getAttribute("id"), 10);
 					x = Integer.parseInt(monElement.getAttribute("x"));
 					y = Integer.parseInt(monElement.getAttribute("y"));
-					
+
 					monPlan.ajouterIntersection(id, x, y);
 				}
+
 				/* on ajoute les troncons au plan*/
-				String nomRue; Long idDepart, idArrivee; double longueur;
+				String nomRue; Long idDepart, idArrivee; double longueur; Intersection origine, destination;
 				if (monElement.getNodeName().equals("troncon"))
-				{
-					System.out.println(monElement.getNodeName());
-					System.out.print("destination : " + monElement.getAttribute("destination"));
-					System.out.print(" nomRue : " + monElement.getAttribute("nomRue"));
-					
+				{					
 					nomRue = monElement.getAttribute("nomRue");
 					idDepart = Long.parseLong(monElement.getAttribute("origine"), 10);
 					idArrivee = Long.parseLong(monElement.getAttribute("destination"), 10);
 					longueur = Double.parseDouble(monElement.getAttribute("longueur"));
+
+					origine = monPlan.getListeIntersection().get(idDepart);
+					destination = monPlan.getListeIntersection().get(idArrivee);
 					
-					monPlan.ajouterTroncons(nomRue, idDepart, idArrivee, longueur);
+					monPlan.ajouterTroncon(nomRue, origine, destination, longueur);
 				}
 			}				
 		}
@@ -170,13 +207,14 @@ public class XMLParseur
 	public static void main (String[] args)
 	{
 		XMLParseur monparseur = new XMLParseur();
-		
+
+		/* charge le plan puis la demande de livraison */
 		Plan monPlan = monparseur.chargerPlan("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\planLyonPetit.xml");
 		System.out.println(monPlan.toString());
-		
-		DemandeLivraison maDemande = monparseur.chargerLivraison("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\DLpetit3.xml");
+
+		DemandeLivraison maDemande = monparseur.chargerLivraison("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\DLpetit3.xml", 
+																	monPlan.getListeIntersection());
 		System.out.print(maDemande.toString() );
-	
 	}
 
 }
