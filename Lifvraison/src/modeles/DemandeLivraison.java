@@ -12,9 +12,9 @@ public class DemandeLivraison {
 	private Intersection entrepot;
 
 	public DemandeLivraison() {
-		entrepot = new Intersection(); 
+		entrepot = new Intersection();
 		livraisons = new ArrayList<Livraison>();
-		
+
 	}
 
 	public DemandeLivraison(List<Livraison> livraisons, LocalTime heureDepart, Intersection entrepot) {
@@ -23,9 +23,9 @@ public class DemandeLivraison {
 		this.entrepot = entrepot;
 	}
 
-	public void ajouterLivraison (Intersection intersection, int dureeDechargement, LocalTime arrivee, LocalTime depart)
-	{
-		livraisons.add( new Livraison(intersection, dureeDechargement, new PlageHoraire(arrivee, depart) ) );
+	public void ajouterLivraison(Intersection intersection, int dureeDechargement, LocalTime arrivee,
+			LocalTime depart) {
+		livraisons.add(new Livraison(intersection, dureeDechargement, new PlageHoraire(arrivee, depart)));
 	}
 
 	/**

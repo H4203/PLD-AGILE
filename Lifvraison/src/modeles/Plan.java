@@ -39,10 +39,18 @@ public class Plan {
 	{
 		this.listeTroncons.put(nomDeRue.hashCode(), new Troncon(nomDeRue, intersectionDepart, intersectionArrivee, longeur));
 	}
+	
+	public HashMap<Integer, Troncon> getListeTroncons() {
+		return listeTroncons;
+	}
+
+	public void setListeTroncons(HashMap<Integer, Troncon> listeTroncons) {
+		this.listeTroncons = listeTroncons;
+	}
 
 	@Override
 	public String toString() {
-		return "Plan [listeIntersection=" + listeIntersection + ", listeTroncons=" + listeTroncons + "]";
+		return "Plan [listeIntersection=" + listeIntersection + ", \nlisteTroncons=" + listeTroncons + "]";
 	}
 
 	

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -212,6 +213,13 @@ public class XMLParseur
 		Plan monPlan = monparseur.chargerPlan("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\planLyonPetit.xml");
 		System.out.println(monPlan.toString());
 
+		System.out.println(monPlan.getListeTroncons());
+		
+		for (Map.Entry mapentry : monPlan.getListeTroncons().entrySet()) {
+	           System.out.println("clé: "+mapentry.getKey() 
+	                              + " | valeur: " + mapentry.getValue());
+		}
+		
 		DemandeLivraison maDemande = monparseur.chargerLivraison("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\DLpetit3.xml", 
 																	monPlan.getListeIntersection());
 		System.out.print(maDemande.toString() );
