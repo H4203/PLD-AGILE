@@ -59,10 +59,10 @@ public class XMLParseur
 
 		final Element racine = document.getDocumentElement();
 
-		/* on s'assure que l'objet à la racine est bien la demande de livraison */
+		/* on s'assure que l'objet ï¿½ la racine est bien la demande de livraison */
 		assert (racine.getNodeName().equals("demandeDeLivraisons"));
 
-		/* objet DemandeLivraison qui sera retourné */
+		/* objet DemandeLivraison qui sera retournï¿½ */
 		DemandeLivraison maDemandeDeLivraison = new DemandeLivraison();
 
 		NodeList racineNoeuds = racine.getChildNodes();
@@ -160,7 +160,7 @@ public class XMLParseur
 
 		final Element racine = document.getDocumentElement();
 
-		/* on s'assure que l'objet à la racine est bien le plan*/
+		/* on s'assure que l'objet ï¿½ la racine est bien le plan*/
 		assert (racine.getNodeName().equals("reseau"));
 
 		Plan monPlan = new Plan();
@@ -210,13 +210,14 @@ public class XMLParseur
 		XMLParseur monparseur = new XMLParseur();
 
 		/* charge le plan puis la demande de livraison */
-		Plan monPlan = monparseur.chargerPlan("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\planLyonPetit.xml");
+		//Plan monPlan = monparseur.chargerPlan("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\planLyonPetit.xml");
+		Plan monPlan = monparseur.chargerPlan("/Users/regisgoubin/Documents/agile/fichiersXML/planLyonPetit.xml");
 		System.out.println(monPlan.toString());
 
 		System.out.println(monPlan.getListeTroncons());
 		
 		for (Map.Entry mapentry : monPlan.getListeTroncons().entrySet()) {
-	           System.out.println("clé: "+mapentry.getKey() 
+	           System.out.println("clï¿½: "+mapentry.getKey() 
 	                              + " | valeur: " + mapentry.getValue());
 		}
 		

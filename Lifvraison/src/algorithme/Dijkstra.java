@@ -10,6 +10,8 @@ import java.util.Collection;
 import java.util.Collections;
 import modeles.Itineraire;
 
+import donnees.XMLParseur;
+
 public class Dijkstra {
 
 	// Contient les intersection associees a leur antecedent
@@ -40,9 +42,10 @@ public class Dijkstra {
 		this.ptDepart = pointDepart;
 
 		Collection<Intersection> c = lePlan.getListeIntersection().values();
-
+		int i = 0;
 		// On ajoute les intersections dans les differentes Hashmap
 		for (Intersection intersection : c) {
+			System.out.println(c.size());
 			pi.put(intersection.getId(), null);
 			cout.put(intersection.getId(), Double.MAX_VALUE);
 			intersectionsBlanches.put(intersection.getId(), Double.MAX_VALUE);
@@ -236,5 +239,24 @@ public class Dijkstra {
 	public void setPtDepart(Intersection ptDepart) {
 		this.ptDepart = ptDepart;
 	}
+	
+	public static void main (String[] args)
+	{
+		XMLParseur xml = new XMLParseur();
+		Plan lePlan = xml.chargerPlan("/Users/regisgoubin/Documents/agile/fichiersXML/planLyonPetit.xml");
+		Long id = new Long(1029591870);
+		Dijkstra d = new Dijkstra(lePlan, lePlan.getListeIntersection().get( id ));
+		
+		Long arrivee = new Long(21702438);
+		Itineraire chemin = d.getItineraire(arrivee);
+		
+		List<Troncon> t = chemin.getTroncons();
+		
+		for(Troncon troncon : t) {
+			System.out.println(troncon.getNomDeRue());
+		}
+	}
 
 }
+
+
