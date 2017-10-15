@@ -1,4 +1,5 @@
 package modeles;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Intersection {
@@ -18,6 +19,8 @@ public class Intersection {
 		this.id = id;
 		this.x = x;
 		this.y = y;
+		tronconsEntrants = new ArrayList<Troncon>();
+		tronconsSortants = new ArrayList<Troncon>();
 	}
 
 	public Long getId() {
@@ -67,10 +70,20 @@ public class Intersection {
 		this.tronconsEntrants = tronconsEntrants;
 	}
 	
+	public void addTronconEntrant (Troncon troncon)
+	{
+		tronconsEntrants.add(troncon);
+	}
+	
+	public void addTronconSortant (Troncon troncon)
+	{
+		tronconsSortants.add(troncon);
+	}
+	
 	@Override
 	public String toString() {
-		return "Intersection [id=" + id + ", x=" + x + ", y=" + y + ", tronconsSortants=" + tronconsSortants
-				+ ", tronconsEntrants=" + tronconsEntrants + "]";
+		return "Intersection [id=" + id + ", x=" + x + ", y=" + y + ", nombre de tronconsSortants=" + tronconsSortants.size()
+				+ ", nombre de tronconsEntrants=" + tronconsEntrants.size() + "]";
 	}
 	
 }
