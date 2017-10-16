@@ -1,6 +1,7 @@
 package donnees;
 
 import modeles.*;
+import vue.Fenetre;
 
 import java.io.File;
 import java.io.IOException;
@@ -211,25 +212,23 @@ public class XMLParseur
 		XMLParseur monparseur = new XMLParseur();
 
 		/* charge le plan puis la demande de livraison */
+
 		Plan monPlan = monparseur.chargerPlan("data\\planLyonPetit.xml");
 		//Plan monPlan = monparseur.chargerPlan("/Users/regisgoubin/Documents/agile/fichiersXML/planLyonPetit.xml");
 		System.out.println(monPlan.toString());
 
 		System.out.println(monPlan.getListeTroncons());
 		
-		for (Map.Entry<Integer, Troncon> mapentry : monPlan.getListeTroncons().entrySet()) {
-	           System.out.println("cle: "+mapentry.getKey() 
-	                              + " | valeur: " + mapentry.getValue());
-		}
+		//Plan monPlan = monparseur.chargerPlan("D:\\planTest.xml");
+		Plan monPlan = monparseur.chargerPlan("D:\\planLyonMoyen.xml");
 		
-		for (Map.Entry<Long, Intersection> mapentry : monPlan.getListeIntersection().entrySet()) {
-	           System.out.println("tronconentrant: "+mapentry.getValue().getTronconsEntrants().toString() 
-	                              + "\n | troncon sortant: " + mapentry.getValue().getTronconsSortants().toString());
-		}
+		DemandeLivraison maDemande = monparseur.chargerLivraison("D:\\DLmoyen5.xml", monPlan.getListeIntersection());
 		
+
 		DemandeLivraison maDemande = monparseur.chargerLivraison("data\\DLpetit3.xml", 
 																	monPlan.getListeIntersection());
 		System.out.print(maDemande.toString() );
+    		Fenetre fenetre = new Fenetre ("Hello", monPlan, maDemande);
 	}
 
 }

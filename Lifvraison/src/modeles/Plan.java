@@ -1,11 +1,14 @@
 package modeles;
 import java.util.HashMap;
+import java.util.Observable;
 
-public class Plan {
-
+public class Plan extends Observable
+{
 	private HashMap<Long, Intersection> listeIntersection;
 	private HashMap<Integer, Troncon> listeTroncons;
 
+	private int idTroncon = 1;
+	
 	public Plan() {
 		this.listeIntersection = new HashMap<Long, Intersection>();
 		this.listeTroncons =new HashMap<Integer, Troncon>();
@@ -38,7 +41,8 @@ public class Plan {
 	public void  ajouterTroncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrivee, double longeur)
 	{
 		Troncon troncon = new Troncon(nomDeRue, intersectionDepart, intersectionArrivee, longeur);
-		this.listeTroncons.put(nomDeRue.hashCode(), troncon);
+		this.listeTroncons.put(idTroncon, troncon);
+		idTroncon = idTroncon + 1;
 		/* on met a jour les valeurs des listes de troncons */
 		intersectionDepart.addTronconEntrant(troncon);
 		intersectionArrivee.addTronconSortant(troncon);
