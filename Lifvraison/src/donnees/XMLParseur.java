@@ -216,11 +216,11 @@ public class XMLParseur
 		//Plan monPlan = monparseur.chargerPlan("D:\\planTest.xml");
 		Plan monPlan = monparseur.chargerPlan("D:\\planLyonMoyen.xml");
 		
-		Fenetre fenetre = new Fenetre ("Hello", monPlan);
+		DemandeLivraison maDemande = monparseur.chargerLivraison("D:\\DLmoyen5.xml", monPlan.getListeIntersection());
 		
-		/*DemandeLivraison maDemande = monparseur.chargerLivraison("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\DLpetit3.xml", 
-																	monPlan.getListeIntersection());*/
-		//System.out.print(maDemande.toString() );
+		System.out.print(maDemande.toString());
+	
+		Fenetre fenetre = new Fenetre ("Hello", monPlan, maDemande);
 	}
 
 }

@@ -1,22 +1,20 @@
 package vue;
 
-import java.awt.FlowLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-
+import modeles.DemandeLivraison;
 import modeles.Plan;
 
 public class Fenetre extends JFrame
 {
 	private VueGraphique vueGraphique;
 	
-	public Fenetre(String titre, Plan plan)
+	public Fenetre(String titre, Plan plan, DemandeLivraison demandeLivraison)
 	{
 		super(titre);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		MapPanel mapPanel = new MapPanel(plan);
+		MapPanel mapPanel = new MapPanel(plan, demandeLivraison);
 		add(mapPanel);
 		
 		setSize(800, 600);
