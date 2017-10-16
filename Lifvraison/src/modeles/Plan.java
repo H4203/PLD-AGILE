@@ -44,8 +44,8 @@ public class Plan extends Observable
 		this.listeTroncons.put(idTroncon, troncon);
 		idTroncon = idTroncon + 1;
 		/* on met a jour les valeurs des listes de troncons */
-		intersectionDepart.addTronconEntrant(troncon);
-		intersectionArrivee.addTronconSortant(troncon);
+		intersectionDepart.addTronconSortant(troncon);
+		intersectionArrivee.addTronconEntrant(troncon);
 	}
 	
 	public HashMap<Integer, Troncon> getListeTroncons() {
