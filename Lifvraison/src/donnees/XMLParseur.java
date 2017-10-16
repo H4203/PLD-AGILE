@@ -206,18 +206,4 @@ public class XMLParseur
 
 		return monPlan;
 	}
-
-	public static void main (String[] args)
-	{
-		XMLParseur monparseur = new XMLParseur();
-
-		/* charge le plan puis la demande de livraison */
-
-		Plan monPlan = monparseur.chargerPlan("data\\planLyonGrand.xml");
-
-		DemandeLivraison maDemande = monparseur.chargerLivraison("data\\DLGrand20.xml", monPlan.getListeIntersection());
-		
-    	Fenetre fenetre = new Fenetre ("Hello", monPlan, maDemande);
-	}
-
 }
