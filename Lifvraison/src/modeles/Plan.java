@@ -38,9 +38,9 @@ public class Plan extends Observable
 		this.listeIntersection.put( id, new Intersection(id,  x,  y) );
 	}
 	
-	public void  ajouterTroncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrivee, double longeur)
+	public void  ajouterTroncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrivee, double longueur)
 	{
-		Troncon troncon = new Troncon(nomDeRue, intersectionDepart, intersectionArrivee, longeur);
+		Troncon troncon = new Troncon(nomDeRue, intersectionDepart, intersectionArrivee, longueur);
 		this.listeTroncons.put(idTroncon, troncon);
 		idTroncon = idTroncon + 1;
 		/* on met a jour les valeurs des listes de troncons */
