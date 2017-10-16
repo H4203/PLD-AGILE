@@ -76,7 +76,7 @@ public class Dijkstra {
 		while (intersectionsGrises.values().size() != 0) {
 			double min = Collections.min(intersectionsGrises.values());
 			Long idMin = intersectionsGrisesInversees.get(min).get(0);
-			System.out.println(idMin);
+			
 			Intersection lIntersection = lePlan.getListeIntersection().get(idMin);
 
 			// On visite tous les successeurs du point courant
@@ -264,20 +264,21 @@ public class Dijkstra {
 	{
 		XMLParseur xml = new XMLParseur();
 
+
 		Plan lePlan = xml.chargerPlan("data\\planLyonPetit.xml");
 		Long id = new Long(1029591870);
 
 		Dijkstra d = new Dijkstra(lePlan, lePlan.getListeIntersection().get( id ));
 		d.run();
 		
-		Long arrivee = new Long(2);
+		Long arrivee = new Long(1025933218);
 		Itineraire chemin = d.getItineraire(arrivee);
 		
 		List<Troncon> t = chemin.getTroncons();
 		
-		/*for(Troncon troncon : t) {
+		for(Troncon troncon : t) {
 			System.out.println("depart :" + troncon.getIntersectionDepart().getId()+ "; arrivee :" + troncon.getIntersectionArrive().getId() + "; nom de rue :" + troncon.getNomDeRue() + "; Longueur : " + troncon.getLongeur());
-		}*/
+		}
 	}
 
 }
