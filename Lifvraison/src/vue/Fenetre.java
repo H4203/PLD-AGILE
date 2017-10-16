@@ -21,19 +21,21 @@ public class Fenetre extends JFrame
 		XMLParseur parseur = new XMLParseur();
 		
 		PanelChargementPlan panelChargementPlan = new PanelChargementPlan();
-		add(panelChargementPlan);
-		
+		getContentPane().add(panelChargementPlan);
 		Plan plan = parseur.chargerPlan(panelChargementPlan.promptForFolder(this));
 		
-		//Plan plan = parseur.chargerPlan("data\\planLyonGrand.xml");
-
+		getContentPane().removeAll();
 		
+		PanelChargementDemandeLivraison panelChargementDemandeLivraison = new PanelChargementDemandeLivraison();
+		getContentPane().add(panelChargementDemandeLivraison);
+		DemandeLivraison demandeLivraisons = parseur.chargerLivraison(panelChargementDemandeLivraison.promptForFolder(this), plan.getListeIntersection());
 		
-		DemandeLivraison demandeLivraisons = parseur.chargerLivraison("data\\DLGrand20.xml", plan.getListeIntersection());
+		getContentPane().removeAll();
 		
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons);
-		add(mapPanel);
+		getContentPane().add(mapPanel);
+		getContentPane().repaint();
 		
-		this.vueGraphique = new VueGraphique(plan, this);
+		//this.vueGraphique = new VueGraphique(plan, this);
 	}
 }
