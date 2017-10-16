@@ -1,5 +1,6 @@
 package modeles;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Intersection {
 
@@ -18,6 +19,8 @@ public class Intersection {
 		this.id = id;
 		this.x = x;
 		this.y = y;
+		tronconsEntrants = new ArrayList<Troncon>();
+		tronconsSortants = new ArrayList<Troncon>();
 	}
 
 	public Long getId() {

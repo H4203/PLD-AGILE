@@ -40,12 +40,17 @@ public class Dijkstra {
 	Dijkstra(Plan lePlan, Intersection pointDepart) {
 		this.lePlan = lePlan;
 		this.ptDepart = pointDepart;
-
+		
+		pi = new HashMap<Long,Intersection>();
+		cout = new HashMap<Long,Double>();
+		intersectionsBlanches = new HashMap<Long, Double>();
+		intersectionsGrises = new HashMap<Long, Double>();
+		intersectionsGrisesInversees = new HashMap<Double, List<Long>>();
+		
 		Collection<Intersection> c = lePlan.getListeIntersection().values();
 		int i = 0;
 		// On ajoute les intersections dans les differentes Hashmap
 		for (Intersection intersection : c) {
-			System.out.println(c.size());
 			pi.put(intersection.getId(), null);
 			cout.put(intersection.getId(), Double.MAX_VALUE);
 			intersectionsBlanches.put(intersection.getId(), Double.MAX_VALUE);
@@ -146,27 +151,31 @@ public class Dijkstra {
 			Intersection intersectionCourante = lePlan.getListeIntersection().get(idArrivee);
 			List<Troncon> cheminInverse = new ArrayList<Troncon>();
 
-			while (intersectionCourante != null) {
+			while (pi.get(intersectionCourante.getId()) != null) {
 				Intersection intersectionPrecedente = intersectionCourante;
 				intersectionCourante = pi.get(intersectionCourante.getId());
 
 				int tailleChemin = cheminInverse.size();
 
 				List<Troncon> listeTroncon = intersectionCourante.getTronconsSortants();
-				for (Troncon t : listeTroncon) {
-					if (t.getIntersectionArrive().getId() == intersectionPrecedente.getId()) {
-						cheminInverse.add(t);
-						break;
+				if(listeTroncon != null) {
+					for (Troncon t : listeTroncon) {
+						if (t.getIntersectionArrive().getId() == intersectionPrecedente.getId()) {
+							cheminInverse.add(t);
+							break;
+						}
 					}
 				}
-
 				// On verifie qu'il n'y a pas eu de probleme et que l'on a bien un nouveau
 				// troncon
 				if (tailleChemin == cheminInverse.size()) {
 					return null;
 				}
 			}
-
+			
+			if(cheminInverse.size() == 0)
+				return null;
+			
 			List<Troncon> chemin = new ArrayList<Troncon>();
 			for (int i = cheminInverse.size() - 1; i != 0; i--) {
 				chemin.add(cheminInverse.get(i));
