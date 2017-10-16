@@ -263,8 +263,10 @@ public class Dijkstra {
 	public static void main (String[] args)
 	{
 		XMLParseur xml = new XMLParseur();
-		Plan lePlan = xml.chargerPlan("/Users/regisgoubin/Documents/agile/fichiersXML/testPlan1.xml");
-		Long id = new Long(3);
+
+		Plan lePlan = xml.chargerPlan("data\\planLyonPetit.xml");
+		Long id = new Long(1029591870);
+
 		Dijkstra d = new Dijkstra(lePlan, lePlan.getListeIntersection().get( id ));
 		d.run();
 		
