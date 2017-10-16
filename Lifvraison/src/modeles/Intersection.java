@@ -1,4 +1,5 @@
 package modeles;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -70,10 +71,20 @@ public class Intersection {
 		this.tronconsEntrants = tronconsEntrants;
 	}
 	
+	public void addTronconEntrant (Troncon troncon)
+	{
+		tronconsEntrants.add(troncon);
+	}
+	
+	public void addTronconSortant (Troncon troncon)
+	{
+		tronconsSortants.add(troncon);
+	}
+	
 	@Override
 	public String toString() {
-		return "Intersection [id=" + id + ", x=" + x + ", y=" + y + ", tronconsSortants=" + tronconsSortants
-				+ ", tronconsEntrants=" + tronconsEntrants + "]";
+		return "Intersection [id=" + id + ", x=" + x + ", y=" + y + ", nombre de tronconsSortants=" + tronconsSortants.size()
+				+ ", nombre de tronconsEntrants=" + tronconsEntrants.size() + "]";
 	}
 	
 }

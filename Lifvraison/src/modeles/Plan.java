@@ -35,9 +35,13 @@ public class Plan {
 		this.listeIntersection.put( id, new Intersection(id,  x,  y) );
 	}
 	
-	public void ajouterTroncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrivee, double longeur)
+	public void  ajouterTroncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrivee, double longeur)
 	{
-		this.listeTroncons.put(nomDeRue.hashCode(), new Troncon(nomDeRue, intersectionDepart, intersectionArrivee, longeur));
+		Troncon troncon = new Troncon(nomDeRue, intersectionDepart, intersectionArrivee, longeur);
+		this.listeTroncons.put(nomDeRue.hashCode(), troncon);
+		/* on met a jour les valeurs des listes de troncons */
+		intersectionDepart.addTronconEntrant(troncon);
+		intersectionArrivee.addTronconSortant(troncon);
 	}
 	
 	public HashMap<Integer, Troncon> getListeTroncons() {

@@ -160,7 +160,7 @@ public class XMLParseur
 
 		final Element racine = document.getDocumentElement();
 
-		/* on s'assure que l'objet � la racine est bien le plan*/
+		/* on s'assure que l'objet a la racine est bien le plan*/
 		assert (racine.getNodeName().equals("reseau"));
 
 		Plan monPlan = new Plan();
@@ -198,6 +198,7 @@ public class XMLParseur
 					destination = monPlan.getListeIntersection().get(idArrivee);
 					
 					monPlan.ajouterTroncon(nomRue, origine, destination, longueur);
+					
 				}
 			}				
 		}
@@ -210,15 +211,20 @@ public class XMLParseur
 		XMLParseur monparseur = new XMLParseur();
 
 		/* charge le plan puis la demande de livraison */
-		//Plan monPlan = monparseur.chargerPlan("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\planLyonPetit.xml");
-		Plan monPlan = monparseur.chargerPlan("/Users/regisgoubin/Documents/agile/fichiersXML/planLyonPetit.xml");
+		Plan monPlan = monparseur.chargerPlan("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\planLyonPetit.xml");
+		//Plan monPlan = monparseur.chargerPlan("/Users/regisgoubin/Documents/agile/fichiersXML/planLyonPetit.xml");
 		System.out.println(monPlan.toString());
 
 		System.out.println(monPlan.getListeTroncons());
 		
-		for (Map.Entry mapentry : monPlan.getListeTroncons().entrySet()) {
-	           System.out.println("cl�: "+mapentry.getKey() 
+		for (Map.Entry<Integer, Troncon> mapentry : monPlan.getListeTroncons().entrySet()) {
+	           System.out.println("cle: "+mapentry.getKey() 
 	                              + " | valeur: " + mapentry.getValue());
+		}
+		
+		for (Map.Entry<Long, Intersection> mapentry : monPlan.getListeIntersection().entrySet()) {
+	           System.out.println("tronconentrant: "+mapentry.getValue().getTronconsEntrants().toString() 
+	                              + "\n | troncon sortant: " + mapentry.getValue().getTronconsSortants().toString());
 		}
 		
 		DemandeLivraison maDemande = monparseur.chargerLivraison("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\DLpetit3.xml", 
