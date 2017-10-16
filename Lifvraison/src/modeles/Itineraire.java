@@ -4,21 +4,26 @@ import java.util.List;
 
 public class Itineraire {
 	
-	private List<Troncon> troncons ;
-	private Intersection depart ;
-	private Intersection arrivee ;
+	private List<Troncon> troncons;
+	private Intersection depart;
+	private Intersection arrivee;
+	private double longueur;
 	
 	/**
 	 * @return the troncons
 	 */
-	public List<Troncon> getTroncons() {
+	public List<Troncon> getTroncons() 
+	{
 		return troncons;
 	}
 	/**
 	 * @param troncons the troncons to set
 	 */
-	public void setTroncons(List<Troncon> troncons) {
+	public void setTroncons(List<Troncon> troncons) 
+	{
 		this.troncons = troncons;
+		
+		updateLongueur();
 	}
 	/**
 	 * @return the depart
@@ -45,11 +50,30 @@ public class Itineraire {
 		this.arrivee = arrivee;
 	}
 	
-	public Itineraire(List<Troncon> troncons, Intersection depart, Intersection arrivee) {
+	public double getLongueur()
+	{
+		return longueur;
+	}
+	
+	public Itineraire(List<Troncon> troncons, Intersection depart, Intersection arrivee) 
+	{
 		super();
+		
 		this.troncons = troncons;
 		this.depart = depart;
 		this.arrivee = arrivee;
+		
+		updateLongueur();
+	}
+	
+	private void updateLongueur()
+	{
+		longueur = 0;
+		
+		for (Troncon troncon : troncons)
+		{
+			longueur = longueur + troncon.getLongeur();
+		}
 	}
 	
 	/* (non-Javadoc)

@@ -17,7 +17,7 @@ public class Fenetre extends JFrame
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraison);
 		add(mapPanel);
 		
-		setSize(800, 600);
+		setSize(1800, 1000);
 		setVisible(true);
 		
 		this.vueGraphique = new VueGraphique(plan, this);

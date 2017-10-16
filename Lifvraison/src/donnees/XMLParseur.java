@@ -213,9 +213,9 @@ public class XMLParseur
 
 		/* charge le plan puis la demande de livraison */
 
-		Plan monPlan = monparseur.chargerPlan("data\\planLyonPetit.xml");
+		Plan monPlan = monparseur.chargerPlan("data\\planLyonGrand.xml");
 
-		DemandeLivraison maDemande = monparseur.chargerLivraison("data\\DLpetit3.xml", monPlan.getListeIntersection());
+		DemandeLivraison maDemande = monparseur.chargerLivraison("data\\DLGrand20.xml", monPlan.getListeIntersection());
 		
     	Fenetre fenetre = new Fenetre ("Hello", monPlan, maDemande);
 	}
