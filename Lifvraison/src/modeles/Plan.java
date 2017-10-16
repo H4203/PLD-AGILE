@@ -40,8 +40,8 @@ public class Plan {
 		Troncon troncon = new Troncon(nomDeRue, intersectionDepart, intersectionArrivee, longeur);
 		this.listeTroncons.put(nomDeRue.hashCode(), troncon);
 		/* on met a jour les valeurs des listes de troncons */
-		intersectionDepart.addTronconEntrant(troncon);
-		intersectionArrivee.addTronconSortant(troncon);
+		intersectionDepart.addTronconSortant(troncon);
+		intersectionArrivee.addTronconEntrant(troncon);
 	}
 	
 	public HashMap<Integer, Troncon> getListeTroncons() {

@@ -61,6 +61,7 @@ public class Dijkstra {
 		cout.put(pointDepart.getId(), 0.0);
 		intersectionsBlanches.remove(pointDepart.getId());
 		intersectionsGrises.put(pointDepart.getId(), 0.0);
+		System.out.println(intersectionsGrises.values().size());
 		List<Long> aAjouter = new ArrayList<Long>();
 		aAjouter.add(pointDepart.getId());
 		intersectionsGrisesInversees.put(0.0, aAjouter);
@@ -72,7 +73,10 @@ public class Dijkstra {
 	 */
 	public void run() {
 		// On continue tant que l'on a des intersections grises
-		while (!intersectionsGrises.isEmpty()) {
+		int i = 0;
+		while (intersectionsGrises.values().size() != 0) {
+			System.out.println(i);
+			i++;
 			double min = Collections.min(intersectionsGrises.values());
 			Long idMin = intersectionsGrisesInversees.get(min).get(0);
 
@@ -88,16 +92,14 @@ public class Dijkstra {
 					// On relache l'arc en le point courant et le successeur que l'on est en train
 					// de visiter
 					relacher(t.getIntersectionDepart(), t.getIntersectionArrive());
-
 					// On colorie le nouveau sommet visite en gris
 					if (intersectionsBlanches.containsKey(t.getIntersectionArrive().getId())) {
 						// On l'ajoute dans la map "a l'endroit"
-						intersectionsGrises.put(t.getIntersectionArrive().getId(),
-								cout.get(t.getIntersectionArrive().getId()));
+						intersectionsGrises.put(t.getIntersectionArrive().getId(),cout.get(t.getIntersectionArrive().getId()));
 
 						// On l'ajoute à la map inverse, en verifiant si la valeur de cout existe
-						if (intersectionsGrisesInversees.containsKey(min)) {
-							intersectionsGrisesInversees.get(min).add(t.getIntersectionArrive().getId());
+						if (intersectionsGrisesInversees.containsKey(cout.get(t.getIntersectionArrive().getId()))) {
+							intersectionsGrisesInversees.get(cout.get(t.getIntersectionArrive().getId())).add(t.getIntersectionArrive().getId());
 						} else {
 							List<Long> aAjouter = new ArrayList<Long>();
 							aAjouter.add(t.getIntersectionArrive().getId());
@@ -126,7 +128,7 @@ public class Dijkstra {
 
 	}
 
-	public void relacher(Intersection si, Intersection sj) {
+	private void relacher(Intersection si, Intersection sj) {
 
 		List<Troncon> lesTroncons = si.getTronconsSortants();
 		Troncon leTroncon = null;
@@ -136,8 +138,11 @@ public class Dijkstra {
 				leTroncon = t;
 			}
 		}
-
-		if ((cout.get(sj.getId()) > (cout.get(si.getId()) + leTroncon.getLongeur())) && (leTroncon != null)) {
+		if(cout.get(sj.getId()) == Double.MAX_VALUE) {
+			cout.put(sj.getId(), cout.get(si.getId()) + leTroncon.getLongeur());
+			pi.put(sj.getId(), si);
+		}
+		else if ((cout.get(sj.getId()) > (cout.get(si.getId()) + leTroncon.getLongeur())) && (leTroncon != null)) {
 			cout.put(sj.getId(), cout.get(si.getId()) + leTroncon.getLongeur());
 			pi.put(sj.getId(), si);
 		}
@@ -173,11 +178,11 @@ public class Dijkstra {
 				}
 			}
 			
-			if(cheminInverse.size() == 0)
+			if(cheminInverse.size() == 0) {
 				return null;
-			
+			}
 			List<Troncon> chemin = new ArrayList<Troncon>();
-			for (int i = cheminInverse.size() - 1; i != 0; i--) {
+			for (int i = cheminInverse.size() - 1; i != -1; i--) {
 				chemin.add(cheminInverse.get(i));
 			}
 			itineraire = new Itineraire(chemin, ptDepart, intersectionArrivee);
@@ -255,14 +260,15 @@ public class Dijkstra {
 		Plan lePlan = xml.chargerPlan("/Users/regisgoubin/Documents/agile/fichiersXML/planLyonPetit.xml");
 		Long id = new Long(1029591870);
 		Dijkstra d = new Dijkstra(lePlan, lePlan.getListeIntersection().get( id ));
+		d.run();
 		
-		Long arrivee = new Long(21702438);
+		Long arrivee = new Long(21702430);
 		Itineraire chemin = d.getItineraire(arrivee);
 		
 		List<Troncon> t = chemin.getTroncons();
 		
 		for(Troncon troncon : t) {
-			System.out.println(troncon.getNomDeRue());
+			System.out.println("depart :" + troncon.getIntersectionDepart().getId()+ "; arrivee :" + troncon.getIntersectionArrive().getId() + "; nom de rue :" + troncon.getNomDeRue() + "; Longueur : " + troncon.getLongeur());
 		}
 	}
 
