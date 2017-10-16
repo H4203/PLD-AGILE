@@ -211,7 +211,7 @@ public class XMLParseur
 		XMLParseur monparseur = new XMLParseur();
 
 		/* charge le plan puis la demande de livraison */
-		Plan monPlan = monparseur.chargerPlan("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\planLyonPetit.xml");
+		Plan monPlan = monparseur.chargerPlan("data\\planLyonPetit.xml");
 		//Plan monPlan = monparseur.chargerPlan("/Users/regisgoubin/Documents/agile/fichiersXML/planLyonPetit.xml");
 		System.out.println(monPlan.toString());
 
@@ -227,7 +227,7 @@ public class XMLParseur
 	                              + "\n | troncon sortant: " + mapentry.getValue().getTronconsSortants().toString());
 		}
 		
-		DemandeLivraison maDemande = monparseur.chargerLivraison("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\fichiersXML\\DLpetit3.xml", 
+		DemandeLivraison maDemande = monparseur.chargerLivraison("data\\DLpetit3.xml", 
 																	monPlan.getListeIntersection());
 		System.out.print(maDemande.toString() );
 	}
