@@ -212,13 +212,23 @@ public class XMLParseur
 		XMLParseur monparseur = new XMLParseur();
 
 		/* charge le plan puis la demande de livraison */
+
+		Plan monPlan = monparseur.chargerPlan("data\\planLyonPetit.xml");
+		//Plan monPlan = monparseur.chargerPlan("/Users/regisgoubin/Documents/agile/fichiersXML/planLyonPetit.xml");
+		System.out.println(monPlan.toString());
+
+		System.out.println(monPlan.getListeTroncons());
 		
 		//Plan monPlan = monparseur.chargerPlan("D:\\planTest.xml");
 		Plan monPlan = monparseur.chargerPlan("D:\\planLyonMoyen.xml");
 		
 		DemandeLivraison maDemande = monparseur.chargerLivraison("D:\\DLmoyen5.xml", monPlan.getListeIntersection());
 		
-		Fenetre fenetre = new Fenetre ("Hello", monPlan, maDemande);
+
+		DemandeLivraison maDemande = monparseur.chargerLivraison("data\\DLpetit3.xml", 
+																	monPlan.getListeIntersection());
+		System.out.print(maDemande.toString() );
+    		Fenetre fenetre = new Fenetre ("Hello", monPlan, maDemande);
 	}
 
 }
