@@ -253,15 +253,22 @@ public class Dijkstra {
 	{
 		XMLParseur xml = new XMLParseur();
 		Plan lePlan = xml.chargerPlan("/Users/regisgoubin/Documents/agile/fichiersXML/planLyonPetit.xml");
-		Long id = new Long(1029591870);
+		
+		
+	
+		
+		
+		
+		
+		Long id = new Long(21702438);
 		Dijkstra d = new Dijkstra(lePlan, lePlan.getListeIntersection().get( id ));
 		
-		Long arrivee = new Long(21702438);
-		Itineraire chemin = d.getItineraire(arrivee);
-		
+		Long arrivee = new Long(1029591870);
+		Itineraire chemin = d.getItineraire(arrivee);		
 		List<Troncon> t = chemin.getTroncons();
 		
 		for(Troncon troncon : t) {
+			
 			System.out.println(troncon.getNomDeRue());
 		}
 	}
