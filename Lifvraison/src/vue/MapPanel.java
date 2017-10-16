@@ -81,8 +81,6 @@ public class MapPanel extends JPanel
         	g.fillRect(25 + (int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 2, 
         			25 + 500 - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 2, 
         			5, 5);
-        	
-        	System.out.println("ok");
         }
         
         g.setColor(Color.BLACK);

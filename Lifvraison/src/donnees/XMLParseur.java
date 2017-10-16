@@ -218,8 +218,6 @@ public class XMLParseur
 		
 		DemandeLivraison maDemande = monparseur.chargerLivraison("D:\\DLmoyen5.xml", monPlan.getListeIntersection());
 		
-		System.out.print(maDemande.toString());
-	
 		Fenetre fenetre = new Fenetre ("Hello", monPlan, maDemande);
 	}
 
