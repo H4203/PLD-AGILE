@@ -10,7 +10,7 @@ public class PanelChargementPlan extends JPanel
 	public String promptForFolder( Component parent )
 	{
 	    JFileChooser fc = new JFileChooser();
-	    fc.setFileSelectionMode( JFileChooser.DIRECTORIES_ONLY );
+	    fc.setFileSelectionMode( JFileChooser.FILES_AND_DIRECTORIES );
 
 	    if( fc.showOpenDialog( parent ) == JFileChooser.APPROVE_OPTION )
 	    {

@@ -23,9 +23,9 @@ public class Fenetre extends JFrame
 		PanelChargementPlan panelChargementPlan = new PanelChargementPlan();
 		add(panelChargementPlan);
 		
-		//Plan plan = parseur.chargerPlan(panelChargementPlan.promptForFolder(this));
+		Plan plan = parseur.chargerPlan(panelChargementPlan.promptForFolder(this));
 		
-		Plan plan = parseur.chargerPlan("data\\planLyonGrand.xml");
+		//Plan plan = parseur.chargerPlan("data\\planLyonGrand.xml");
 
 		
 		
