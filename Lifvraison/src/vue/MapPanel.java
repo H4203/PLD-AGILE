@@ -1,12 +1,9 @@
 package vue;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
-import java.util.Iterator;
 import java.util.Map;
 
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import modeles.Plan;
@@ -30,8 +27,6 @@ public class MapPanel extends JPanel
 		
 		for (Map.Entry mapentry : plan.getListeIntersection().entrySet()) 
         {
-			//System.out.println(mapentry.getKey());
-			
 			if (((Intersection) mapentry.getValue()).getX() > xMax)
 			{
 				xMax = ((Intersection) mapentry.getValue()).getX();
@@ -53,8 +48,6 @@ public class MapPanel extends JPanel
 		
 		coefX = 500.0 / (xMax - xMin);
 		coefY = 750.0 / (yMax - yMin);
-		
-		//System.out.println(coefY);
 	}
 	
 	public void paintComponent(Graphics g)
@@ -63,22 +56,6 @@ public class MapPanel extends JPanel
 		
         for (Map.Entry mapentry : plan.getListeTroncons().entrySet()) 
         {
-        	/*System.out.println((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX);
-        	System.out.println((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY);
-        	System.out.println((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX);
-        	System.out.println((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY);*/
-        	
-        	if ((((Troncon) mapentry.getValue()).getNomDeRue()).equals("Cours Émile Zola"))
-        	{
-        		g.setColor(Color.RED);
-        		
-        		System.out.println("ok");
-        	}
-        	else
-        	{
-        		g.setColor(Color.BLUE);
-        	}
-        	
         	g.drawLine(25 + (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
         			25 + 500 - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
         			25 + (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY),

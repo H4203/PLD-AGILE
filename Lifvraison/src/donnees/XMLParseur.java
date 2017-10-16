@@ -212,21 +212,9 @@ public class XMLParseur
 		XMLParseur monparseur = new XMLParseur();
 
 		/* charge le plan puis la demande de livraison */
+		
 		//Plan monPlan = monparseur.chargerPlan("D:\\planTest.xml");
 		Plan monPlan = monparseur.chargerPlan("D:\\planLyonMoyen.xml");
-		//System.out.println(monPlan.toString());
-
-		//System.out.println(monPlan.getListeTroncons());
-		
-		/*for (Map.Entry<Integer, Troncon> mapentry : monPlan.getListeTroncons().entrySet()) {
-	           System.out.println("cle: "+mapentry.getKey() 
-	                              + " | valeur: " + mapentry.getValue());
-		}*/
-		
-		/*for (Map.Entry<Long, Intersection> mapentry : monPlan.getListeIntersection().entrySet()) {
-	           System.out.println("tronconentrant: "+mapentry.getValue().getTronconsEntrants().toString() 
-	                              + "\n | troncon sortant: " + mapentry.getValue().getTronconsSortants().toString());
-		}*/
 		
 		Fenetre fenetre = new Fenetre ("Hello", monPlan);
 		
