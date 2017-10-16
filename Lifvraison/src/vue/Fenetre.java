@@ -34,7 +34,6 @@ public class Fenetre extends JFrame
 		
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons);
 		getContentPane().add(mapPanel);
-		getContentPane().repaint();
 		
 		//this.vueGraphique = new VueGraphique(plan, this);
 	}
