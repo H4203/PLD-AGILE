@@ -1,0 +1,7 @@
+tourner 90 degré (détail)
+Origine en bas à gauche sur les données
+x et y correspondent à des lat long
+echelle x et y donc différentes
+Mis plans ont toujours meme long et larg
+Dimension ffichge grphique tout le teps la meme
+Créer petit plan en xml (9 neouds) puis classe de test
