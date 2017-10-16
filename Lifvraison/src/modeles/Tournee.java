@@ -37,4 +37,14 @@ public class Tournee
 			longueur = longueur + itineraire.getLongueur();
 		}
 	}
+
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public DemandeLivraison getDemandeLivraison() {
+		return demandeLivraison;
+	}
+	
+	
 }
