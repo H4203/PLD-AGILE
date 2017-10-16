@@ -73,10 +73,7 @@ public class Dijkstra {
 	 */
 	public void run() {
 		// On continue tant que l'on a des intersections grises
-		int i = 0;
 		while (intersectionsGrises.values().size() != 0) {
-			
-			i++;
 			double min = Collections.min(intersectionsGrises.values());
 			Long idMin = intersectionsGrisesInversees.get(min).get(0);
 			System.out.println(idMin);
@@ -131,8 +128,6 @@ public class Dijkstra {
 
 		List<Troncon> lesTroncons = si.getTronconsSortants();
 		Troncon leTroncon = null;
-		Long idsi = si.getId();
-		Long idsj = sj.getId();
 		for (Troncon t : lesTroncons) {
 			if (t.getIntersectionArrive().getId() == sj.getId()) {
 				if(leTroncon == null) {
@@ -152,14 +147,11 @@ public class Dijkstra {
 		if(cout.get(sj.getId()) == Double.MAX_VALUE) {
 			cout.put(sj.getId(), valeurATester);
 			pi.put(sj.getId(), si);
-			System.out.println("Nouvelle valeur de " + sj.getId() + " : " + cout.get(sj.getId()));
 		}
 		else if (cout.get(sj.getId()) > valeurATester) {
 			cout.put(sj.getId(), valeurATester);
 			pi.put(sj.getId(), si);
-			System.out.println("Nouvelle valeur de " + sj.getId() + " : " + cout.get(sj.getId()));
 		}
-		//System.out.println(cout.get(sj.getId()));
 	}
 
 	public Itineraire getItineraire(Long idArrivee) {
@@ -281,9 +273,9 @@ public class Dijkstra {
 		
 		List<Troncon> t = chemin.getTroncons();
 		
-		for(Troncon troncon : t) {
+		/*for(Troncon troncon : t) {
 			System.out.println("depart :" + troncon.getIntersectionDepart().getId()+ "; arrivee :" + troncon.getIntersectionArrive().getId() + "; nom de rue :" + troncon.getNomDeRue() + "; Longueur : " + troncon.getLongeur());
-		}
+		}*/
 	}
 
 }
