@@ -29,6 +29,8 @@ public class MapPanel extends JPanel
 	
 	public MapPanel(Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
+		this.setBounds(0, 0, 1750, 950);
+		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
 		this.tournee = tournee;
@@ -87,32 +89,39 @@ public class MapPanel extends JPanel
         g2.setColor(Color.BLUE);
         g2.setStroke(new BasicStroke(3));
         
-        for (Itineraire itineraire : tournee.getListeItineraires())
+        
+        // affichage itineraire 
+        // gestion immonde mais temporaire
+        if ( demandeLivraison != null)
         {
-        	for (Troncon troncon : itineraire.getTroncons())
-        	{
-        		g2.drawLine(25 + (int)Math.round((troncon.getIntersectionDepart().getY() - yMin) * coefY),
-            			25 + 950 - (int)Math.round((troncon.getIntersectionDepart().getX() - xMin) * coefX),
-            			25 + (int)Math.round((troncon.getIntersectionArrive().getY() - yMin) * coefY),
-        				25 + 950 - (int)Math.round((troncon.getIntersectionArrive().getX() - xMin) * coefX));
-        	}
+	        for (Itineraire itineraire : tournee.getListeItineraires())
+	        {
+	        	for (Troncon troncon : itineraire.getTroncons())
+	        	{
+	        		g2.drawLine(25 + (int)Math.round((troncon.getIntersectionDepart().getY() - yMin) * coefY),
+	            			25 + 950 - (int)Math.round((troncon.getIntersectionDepart().getX() - xMin) * coefX),
+	            			25 + (int)Math.round((troncon.getIntersectionArrive().getY() - yMin) * coefY),
+	        				25 + 950 - (int)Math.round((troncon.getIntersectionArrive().getX() - xMin) * coefX));
+	        	}
+	        }
+	        
+	        g2.setColor(new Color(0, 150, 0));
+	        
+			g2.fillRect(25 + (int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
+	    			25 + 950 - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
+	    			10, 10);
+			
+	        g2.setColor(Color.RED);
+	        
+	        for (Livraison livraison : demandeLivraison.getLivraisons()) 
+	        {
+	        	g2.fillRect(25 + (int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
+	        			25 + 950 - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
+	        			8, 8);
+	        }
+	        
+	        
         }
-        
-        g2.setColor(new Color(0, 150, 0));
-        
-		g2.fillRect(25 + (int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
-    			25 + 950 - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
-    			10, 10);
-		
-        g2.setColor(Color.RED);
-        
-        for (Livraison livraison : demandeLivraison.getLivraisons()) 
-        {
-        	g2.fillRect(25 + (int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
-        			25 + 950 - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
-        			8, 8);
-        }
-        
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(1));
 	}
