@@ -32,9 +32,7 @@ public class Fenetre extends JFrame
 		super();
 		ecouteurDeBoutons = new EcouteurDeBoutons ( controleur );
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-<<<<<<< HEAD
-		setSize(1800, 900);
-=======
+
 		
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
@@ -53,7 +51,7 @@ public class Fenetre extends JFrame
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(screenSize.width, screenSize.height);
 		
->>>>>>> fdba6a5e412ddfeb529af6ccdbf20dbc1f920e35
+
 		setVisible(true);
 		this.setLayout(null);
 		setModeAccueil();
@@ -65,14 +63,11 @@ public class Fenetre extends JFrame
 		getContentPane().removeAll();
 		//getContentPane().setLayout((LayoutManager) new FlowLayout(FlowLayout.RIGHT));
 		jButtonChargement = new JButton ( "Chargement Plan" );
-<<<<<<< HEAD
-		jButtonChargement.setBounds(10, 10, 100, 50);
-		getContentPane().add( jButtonChargement );
-=======
+
 		jButtonChargement.setBounds(0,0,100,100);
 		//getContentPane().add( jButtonChargement, BorderLayout.SOUTH );
 		getContentPane().add( jButtonChargement);
->>>>>>> fdba6a5e412ddfeb529af6ccdbf20dbc1f920e35
+
 		
 		jButtonChargement.addActionListener( ecouteurDeBoutons );
 		
@@ -87,11 +82,9 @@ public class Fenetre extends JFrame
 		MapPanel mapPanel = new MapPanel(plan, null, null);
 		getContentPane().add(mapPanel);
 		jButtonChargement = new JButton ( "Chargement Livraison" );
-<<<<<<< HEAD
-		jButtonChargement.setBounds(10, 10, 100, 50);
-=======
+
 		jButtonChargement.setBounds(0,0,100,100);
->>>>>>> fdba6a5e412ddfeb529af6ccdbf20dbc1f920e35
+
 		this.add( jButtonChargement );
 		
 		jButtonChargement.addActionListener( ecouteurDeBoutons );
