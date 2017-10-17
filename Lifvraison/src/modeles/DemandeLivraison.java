@@ -57,6 +57,8 @@ public class DemandeLivraison {
 	public void setHeureDepart(LocalTime heureDepart) {
 		this.heureDepart = heureDepart;
 	}
+	
+	
 
 	/**
 	 * @return the entrepot
