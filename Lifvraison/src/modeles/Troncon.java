@@ -5,14 +5,14 @@ public class Troncon {
 	private String nomDeRue;
 	private Intersection intersectionDepart;
 	private Intersection intersectionArrive;
-	private double Longeur;
+	private double Longueur;
 	
 	
-	public Troncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrive, double longeur) {
+	public Troncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrive, double longueur) {
 		this.nomDeRue = nomDeRue;
 		this.intersectionDepart = intersectionDepart;
 		this.intersectionArrive = intersectionArrive;
-		Longeur = longeur;
+		Longueur = longueur;
 	}
 	
 	/**
@@ -54,14 +54,14 @@ public class Troncon {
 	/**
 	 * @return the longeur
 	 */
-	public double getLongeur() {
-		return Longeur;
+	public double getLongueur() {
+		return Longueur;
 	}
 	/**
 	 * @param longeur the longeur to set
 	 */
-	public void setLongeur(double longeur) {
-		Longeur = longeur;
+	public void setLongueur(double longueur) {
+		Longueur = longueur;
 	}
 	
 	/* (non-Javadoc)
@@ -70,7 +70,7 @@ public class Troncon {
 	@Override
 	public String toString() {
 		return "Troncon [nomDeRue=" + nomDeRue + ", intersectionDepart=" + intersectionDepart + ", intersectionArrive="
-				+ intersectionArrive + ", Longeur=" + Longeur + "]";
+				+ intersectionArrive + ", Longueur=" + Longueur + "]";
 	}
 }
 

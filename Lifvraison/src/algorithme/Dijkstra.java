@@ -159,7 +159,7 @@ public class Dijkstra {
 				if(leTroncon == null) {
 					leTroncon = t;					
 				}
-				else if(t.getLongeur() < leTroncon.getLongeur()) {
+				else if(t.getLongueur() < leTroncon.getLongueur()) {
 					leTroncon = t;
 				}
 
@@ -168,7 +168,7 @@ public class Dijkstra {
 		//System.out.println("relachement : " + si.getId() + " -> " + sj.getId());
 		//System.out.println(cout.get(sj.getId()));
 		
-		Double valeurATester = cout.get(si.getId()) + leTroncon.getLongeur();
+		Double valeurATester = cout.get(si.getId()) + leTroncon.getLongueur();
 		
 		if((si.getId() == 1) ) {
 			System.out.print("");
@@ -308,7 +308,7 @@ public class Dijkstra {
 		List<Troncon> t = chemin.getTroncons();
 		
 		for(Troncon troncon : t) {
-			System.out.println("depart :" + troncon.getIntersectionDepart().getId()+ "; arrivee :" + troncon.getIntersectionArrive().getId() + "; nom de rue :" + troncon.getNomDeRue() + "; Longueur : " + troncon.getLongeur());
+			System.out.println("depart :" + troncon.getIntersectionDepart().getId()+ "; arrivee :" + troncon.getIntersectionArrive().getId() + "; nom de rue :" + troncon.getNomDeRue() + "; Longueur : " + troncon.getLongueur());
 		}
 	}*/
 
