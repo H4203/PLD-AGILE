@@ -24,6 +24,7 @@ public class MapPanel extends JPanel
 	private DemandeLivraison demandeLivraison;
 	private Tournee tournee;
 	
+	private int bord = 10;
 	private int xMin = 999999;
 	private int yMin = 999999;
 	private double coefX;
@@ -32,7 +33,7 @@ public class MapPanel extends JPanel
 	public MapPanel(Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setBounds(0,0,screenSize.width, screenSize.height);
+		this.setBounds(0,0,screenSize.width-bord, screenSize.height-bord);
 		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
@@ -88,9 +89,9 @@ public class MapPanel extends JPanel
 		for (Map.Entry<Integer, Troncon> mapentry : plan.getListeTroncons().entrySet()) 
         {
         	g2.drawLine( (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
-        			(int)(screenSize.height) - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
+        			(int)(screenSize.height-bord) - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
         			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY),
-        			(int)(screenSize.height) - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX));
+        			(int)(screenSize.height-bord) - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX));
         }
         
         g2.setColor(Color.BLUE);
@@ -106,16 +107,16 @@ public class MapPanel extends JPanel
 	        	for (Troncon troncon : itineraire.getTroncons())
 	        	{
 	        		g2.drawLine((int)Math.round((troncon.getIntersectionDepart().getY() - yMin) * coefY),
-	        				(int)(screenSize.height) - (int)Math.round((troncon.getIntersectionDepart().getX() - xMin) * coefX),
+	        				(int)(screenSize.height-bord) - (int)Math.round((troncon.getIntersectionDepart().getX() - xMin) * coefX),
 	            			(int)Math.round((troncon.getIntersectionArrive().getY() - yMin) * coefY),
-	            			(int)(screenSize.height) - (int)Math.round((troncon.getIntersectionArrive().getX() - xMin) * coefX));
+	            			(int)(screenSize.height-bord) - (int)Math.round((troncon.getIntersectionArrive().getX() - xMin) * coefX));
 	        	}
 	        }
 	        
 	        g2.setColor(new Color(0, 150, 0));
 	        
 			g2.fillRect((int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
-					(int)(screenSize.height) - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
+					(int)(screenSize.height-bord) - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
 	    			10, 10);
 			
 	        g2.setColor(Color.RED);
@@ -123,7 +124,7 @@ public class MapPanel extends JPanel
 	        for (Livraison livraison : demandeLivraison.getLivraisons()) 
 	        {
 	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
-	        			(int)(screenSize.height) - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
+	        			(int)(screenSize.height-bord) - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
 	        			8, 8);
 	        }
 	        
