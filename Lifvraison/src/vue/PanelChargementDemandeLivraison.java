@@ -13,7 +13,7 @@ public class PanelChargementDemandeLivraison extends JPanel
 	    JFileChooser fc = new JFileChooser();
 	    fc.setFileSelectionMode( JFileChooser.FILES_AND_DIRECTORIES );
 
-	    fc.setCurrentDirectory(new File("./"));
+	    fc.setCurrentDirectory(new File("./data"));
 	    
 	    if( fc.showOpenDialog( parent ) == JFileChooser.APPROVE_OPTION )
 	    {

@@ -1,8 +1,9 @@
 package vue;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
-
+import java.awt.Graphics2D;
 import java.util.Map;
 
 import javax.swing.JPanel;
@@ -26,12 +27,11 @@ public class MapPanel extends JPanel
 	private double coefX;
 	private double coefY;
 	
-	//public MapPanel(Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
-	public MapPanel(Plan plan, DemandeLivraison demandeLivraison)
+	public MapPanel(Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
-		//this.tournee = tournee;
+		this.tournee = tournee;
 		
 		int xMax = 0;
 		int yMax = 0;
@@ -61,48 +61,59 @@ public class MapPanel extends JPanel
 		coefY = 1750.0 / (yMax - yMin);
 	}
 	
+	public void repaint(Graphics g)
+	{
+		super.repaint();
+		
+		paintComponent(g);
+	}
+	
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
+		
+		Graphics2D g2 = (Graphics2D) g;
 		
 		// Affihage des Troncons du Plan
 		
 		for (Map.Entry mapentry : plan.getListeTroncons().entrySet()) 
         {
-        	g.drawLine(25 + (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
+        	g2.drawLine(25 + (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
         			25 + 950 - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
         			25 + (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY),
     				25 + 950 - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX));
         }
         
-		g.setColor(new Color(0, 200, 0));
+        g2.setColor(Color.BLUE);
+        g2.setStroke(new BasicStroke(3));
         
-		g.fillRect(25 + (int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 2, 
-    			25 + 950 - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 2, 
-    			5, 5);
-		
-        g.setColor(Color.RED);
-        
-        for (Livraison livraison : demandeLivraison.getLivraisons()) 
-        {
-        	g.fillRect(25 + (int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 2, 
-        			25 + 950 - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 2, 
-        			5, 5);
-        }
-        
-        g.setColor(Color.BLUE);
-        
-        /*for (Itineraire itineraire : tournee.getItineraires())
+        for (Itineraire itineraire : tournee.getListeItineraires())
         {
         	for (Troncon troncon : itineraire.getTroncons())
         	{
-        		g.drawLine(25 + (int)Math.round((troncon.getIntersectionDepart().getY() - yMin) * coefY),
-            			25 + 500 - (int)Math.round((troncon.getIntersectionDepart().getX() - xMin) * coefX),
+        		g2.drawLine(25 + (int)Math.round((troncon.getIntersectionDepart().getY() - yMin) * coefY),
+            			25 + 950 - (int)Math.round((troncon.getIntersectionDepart().getX() - xMin) * coefX),
             			25 + (int)Math.round((troncon.getIntersectionArrive().getY() - yMin) * coefY),
-        				25 + 500 - (int)Math.round((troncon.getIntersectionArrive().getX() - xMin) * coefX));
+        				25 + 950 - (int)Math.round((troncon.getIntersectionArrive().getX() - xMin) * coefX));
         	}
-        }*/
+        }
         
-        g.setColor(Color.BLACK);
+        g2.setColor(new Color(0, 150, 0));
+        
+		g2.fillRect(25 + (int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
+    			25 + 950 - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
+    			10, 10);
+		
+        g2.setColor(Color.RED);
+        
+        for (Livraison livraison : demandeLivraison.getLivraisons()) 
+        {
+        	g2.fillRect(25 + (int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
+        			25 + 950 - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
+        			8, 8);
+        }
+        
+        g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(1));
 	}
 }

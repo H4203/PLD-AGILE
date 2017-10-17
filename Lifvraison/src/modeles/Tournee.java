@@ -9,18 +9,24 @@ public class Tournee
 	private List <Itineraire> listeItineraires;
 	private double longueur;
 	
-	public Tournee(Plan plan, DemandeLivraison demandeLivraison, List <Itineraire> listeItineraires)
+	public Tournee(Plan plan, DemandeLivraison demandeLivraison)
 	{
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
-		this.listeItineraires = listeItineraires;
 
-		updateLongueur();
+		longueur = 0;
 	}
 	
 	public double getLongueur()
 	{
 		return longueur;
+	}
+	
+	public void setListeItineraires(List <Itineraire> listeItineraires)
+	{
+		this.listeItineraires = listeItineraires;
+		
+		updateLongueur();
 	}
 	
 	public List <Itineraire> getListeItineraires()
