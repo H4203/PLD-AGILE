@@ -61,6 +61,7 @@ public class MapPanel extends JPanel
 		
 		coefX = 950.0 / (xMax - xMin);
 		coefY = 1750.0 / (yMax - yMin);
+
 	}
 	
 	public void repaint(Graphics g)
