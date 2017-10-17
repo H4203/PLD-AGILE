@@ -1,5 +1,12 @@
 package vue;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.LayoutManager;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,7 +31,24 @@ public class Fenetre extends JFrame
 		super();
 		ecouteurDeBoutons = new EcouteurDeBoutons ( controleur );
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1800, 1000);
+		
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+
+        if (gd.isFullScreenSupported()) {
+            try {
+                gd.setFullScreenWindow(this);
+            }
+            finally {
+                gd.setFullScreenWindow(null);
+            }
+        }
+        
+		/*this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		this.setUndecorated(true);
+		this.setVisible(true);*/
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setSize(screenSize.width, screenSize.height);
+		
 		setVisible(true);
 		this.setLayout(null);
 		setModeAccueil();
@@ -34,9 +58,11 @@ public class Fenetre extends JFrame
 	public void setModeAccueil ()
 	{
 		getContentPane().removeAll();
+		//getContentPane().setLayout((LayoutManager) new FlowLayout(FlowLayout.RIGHT));
 		jButtonChargement = new JButton ( "Chargement Plan" );
-		jButtonChargement.setBounds(1700, 900, 100, 50);
-		getContentPane().add( jButtonChargement );
+		jButtonChargement.setBounds(0,0,100,100);
+		//getContentPane().add( jButtonChargement, BorderLayout.SOUTH );
+		getContentPane().add( jButtonChargement);
 		
 		jButtonChargement.addActionListener( ecouteurDeBoutons );
 		
@@ -51,7 +77,7 @@ public class Fenetre extends JFrame
 		MapPanel mapPanel = new MapPanel(plan, null, null);
 		getContentPane().add(mapPanel);
 		jButtonChargement = new JButton ( "Chargement Livraison" );
-		jButtonChargement.setBounds(1700, 900, 100, 50);
+		jButtonChargement.setBounds(0,0,100,100);
 		this.add( jButtonChargement );
 		
 		jButtonChargement.addActionListener( ecouteurDeBoutons );
@@ -68,6 +94,7 @@ public class Fenetre extends JFrame
 		setVisible(true);
 		
 	}
+	
 	/*@Override
 	public void actionPerformed(ActionEvent e) {
 		
