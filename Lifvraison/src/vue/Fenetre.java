@@ -7,6 +7,7 @@ import donnees.XMLParseur;
 import modeles.DemandeLivraison;
 import modeles.Plan;
 import modeles.Tournee;
+import javax.swing.JScrollPane;
 
 public class Fenetre extends JFrame
 {
@@ -39,7 +40,8 @@ public class Fenetre extends JFrame
 		calculateurTournee.run();
 		
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, tournee);
-		getContentPane().add(mapPanel);
+		JScrollPane jsp = new JScrollPane(mapPanel);
+		getContentPane().add(jsp);
 		setVisible(true);
 		
 		//this.vueGraphique = new VueGraphique(plan, this);
