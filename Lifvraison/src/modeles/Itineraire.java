@@ -72,7 +72,7 @@ public class Itineraire {
 		
 		for (Troncon troncon : troncons)
 		{
-			longueur = longueur + troncon.getLongeur();
+			longueur = longueur + troncon.getLongueur();
 		}
 	}
 	
