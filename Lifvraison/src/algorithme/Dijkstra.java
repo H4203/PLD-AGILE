@@ -76,7 +76,7 @@ public class Dijkstra {
 		while (intersectionsGrises.values().size() != 0) {
 			double min = Collections.min(intersectionsGrises.values());
 			Long idMin = intersectionsGrisesInversees.get(min).get(0);
-			System.out.println("id =" + idMin + "; cout =" + min);
+			//System.out.println("id =" + idMin + "; cout =" + min);
 			
 			Intersection lIntersection = lePlan.getListeIntersection().get(idMin);
 
@@ -165,8 +165,8 @@ public class Dijkstra {
 
 			}
 		}
-		System.out.println("relachement : " + si.getId() + " -> " + sj.getId());
-		System.out.println(cout.get(sj.getId()));
+		//System.out.println("relachement : " + si.getId() + " -> " + sj.getId());
+		//System.out.println(cout.get(sj.getId()));
 		
 		Double valeurATester = cout.get(si.getId()) + leTroncon.getLongeur();
 		
@@ -182,7 +182,7 @@ public class Dijkstra {
 			cout.put(sj.getId(), valeurATester);
 			pi.put(sj.getId(), si);
 		}
-		System.out.println(cout.get(sj.getId()));
+		//System.out.println(cout.get(sj.getId()));
 	}
 
 	public Itineraire getItineraire(Long idArrivee) {
@@ -291,7 +291,7 @@ public class Dijkstra {
 		this.ptDepart = ptDepart;
 	}
 	
-	public static void main (String[] args)
+	/*public static void main (String[] args)
 	{
 		XMLParseur xml = new XMLParseur();
 
@@ -310,7 +310,7 @@ public class Dijkstra {
 		for(Troncon troncon : t) {
 			System.out.println("depart :" + troncon.getIntersectionDepart().getId()+ "; arrivee :" + troncon.getIntersectionArrive().getId() + "; nom de rue :" + troncon.getNomDeRue() + "; Longueur : " + troncon.getLongeur());
 		}
-	}
+	}*/
 
 }
 

@@ -12,12 +12,13 @@ public class CalculateurTournee {
 	private Tournee laTournee;
 	private List<Itineraire> lesItineraires;
 	
-	CalculateurTournee(Tournee laTournee){
+	public CalculateurTournee(Tournee laTournee){
 		this.laTournee = laTournee;
 		lesItineraires = new ArrayList<Itineraire>();
 	}
 	
-	public void run() {
+	public void run() 
+	{
 		Plan lePlan = laTournee.getPlan();
 		
 		DemandeLivraison dl = laTournee.getDemandeLivraison();
@@ -67,16 +68,15 @@ public class CalculateurTournee {
 			sommetCourant = prochainSommet;
 		}
 		lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(0).getId()));
-		
+	
+		laTournee.setListeItineraires(lesItineraires);
 	}
-	
-	
 	
 	public List<Itineraire> getLesItineraires() {
 		return lesItineraires;
 	}
 
-	public static void main (String[] args)
+	/*public static void main (String[] args)
 	{
 		XMLParseur xml = new XMLParseur();
 		Plan lePlan = xml.chargerPlan("data/testPlan1.xml");
@@ -96,6 +96,6 @@ public class CalculateurTournee {
 			}
 			
 		}
-	}
+	}*/
 
 }
