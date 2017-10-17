@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import algorithme.CalculateurTournee;
 import controlleur.Controleur;
@@ -25,6 +27,8 @@ public class Fenetre extends JFrame
 {
 	private VueGraphique vueGraphique;
 	private JButton jButtonChargement;
+	private JButton jButtonValider;
+	private JPanel jPanelBienvenue;
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	
 	public Fenetre (Controleur controleur)
@@ -33,6 +37,9 @@ public class Fenetre extends JFrame
 		ecouteurDeBoutons = new EcouteurDeBoutons ( controleur );
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		jPanelBienvenue = new JPanel();
+		JLabel labelBienvenue = new JLabel("bienvenue");
+		jPanelBienvenue.add(labelBienvenue);
 /*
 		setUndecorated(true);
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -68,10 +75,11 @@ public class Fenetre extends JFrame
 		getContentPane().removeAll();
 		//getContentPane().setLayout((LayoutManager) new FlowLayout(FlowLayout.RIGHT));
 		jButtonChargement = new JButton ( "Chargement Plan" );
-		jButtonChargement.setBounds(0,0,100,100);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		jButtonChargement.setBounds(screenSize.width-200,screenSize.height-200,150,50);
 		//getContentPane().add( jButtonChargement, BorderLayout.SOUTH );
-		getContentPane().add( jButtonChargement);
-		
+		getContentPane().add( jButtonChargement );
+		getContentPane().add( jPanelBienvenue );
 		jButtonChargement.addActionListener( ecouteurDeBoutons );
 		
 		setVisible(true);
@@ -85,11 +93,12 @@ public class Fenetre extends JFrame
 		MapPanel mapPanel = new MapPanel(plan, null, null);
 		getContentPane().add(mapPanel);
 		jButtonChargement = new JButton ( "Chargement Livraison" );
-		jButtonChargement.setBounds(0,0,100,100);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		jButtonChargement.setBounds(screenSize.width-200,screenSize.height-200,150,50);
 		this.add( jButtonChargement );
 		
 		jButtonChargement.addActionListener( ecouteurDeBoutons );
-		
+		getContentPane().add( jPanelBienvenue );
 		setVisible(true);
 	}
 
@@ -97,10 +106,19 @@ public class Fenetre extends JFrame
 	{
 		setVisible(false);
 		getContentPane().removeAll();
+
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, tournee);
 		getContentPane().add(mapPanel);
-		setVisible(true);
 		
+		jButtonValider = new JButton ( "Valider Tournee" );
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		jButtonValider.setBounds(screenSize.width-200,screenSize.height-200,150,50);
+
+		getContentPane().add( jButtonValider);
+		getContentPane().add( jPanelBienvenue );
+		jButtonValider.addActionListener( ecouteurDeBoutons );
+		
+		setVisible(true);
 	}
 	
 	/*@Override
