@@ -33,7 +33,9 @@ public class Fenetre extends JFrame
 		ecouteurDeBoutons = new EcouteurDeBoutons ( controleur );
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+/*
+		setUndecorated(true);
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
         if (gd.isFullScreenSupported()) {
             try {
@@ -43,8 +45,13 @@ public class Fenetre extends JFrame
                 gd.setFullScreenWindow(null);
             }
         }
+        else {
+            System.err.println("Full screen not supported");
+        }
+
+        setVisible(true);
         
-		/*this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		this.setUndecorated(true);
 		this.setVisible(true);*/
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
