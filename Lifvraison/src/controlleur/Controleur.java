@@ -28,7 +28,8 @@ public class Controleur {
 	public void ImporterDemande ( String cheminDemandeLivraisons)
 	{
 		demandeLivraisons = parseur.chargerLivraison( cheminDemandeLivraisons, plan.getListeIntersection() );
-		DemanderCalculTournee();
+		fenetre.setModeDemandeLivraison(plan, demandeLivraisons);
+		//DemanderCalculTournee();
 		
 		
 	}
@@ -42,6 +43,13 @@ public class Controleur {
 		// pas necessaire
 		//tournee.setListeItineraires( calculateurTournee.getLesItineraires() );
 		fenetre.setModeTournee(plan, demandeLivraisons, tournee);
+		
+	}
+	
+	public void ValiderTournee ()
+	{
+		
+		fenetre.setModeValiderTournee(plan, demandeLivraisons, tournee);
 		
 	}
 
