@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import algorithme.CalculateurTournee;
 import controlleur.Controleur;
@@ -75,7 +76,6 @@ public class Fenetre extends JFrame
 		//getContentPane().add( jButtonChargement, BorderLayout.SOUTH );
 		getContentPane().add( jButtonChargement);
 
-		
 		jButtonChargement.addActionListener( ecouteurDeBoutons );
 		
 		setVisible(true);
@@ -86,15 +86,23 @@ public class Fenetre extends JFrame
 		
 		setVisible(false);
 		getContentPane().removeAll();
+		
+		setLayout(new BorderLayout());
+		
 		MapPanel mapPanel = new MapPanel(plan, null, null);
-		getContentPane().add(mapPanel);
+		
+		getContentPane().add(mapPanel, BorderLayout.CENTER);
+		
+		JPanel leftPanel = new JPanel();
+		leftPanel.setLayout(new BorderLayout());
+		
 		jButtonChargement = new JButton ( "Chargement Livraison" );
-
-		jButtonChargement.setBounds(0,0,100,100);
-
-		this.add( jButtonChargement );
 		
 		jButtonChargement.addActionListener( ecouteurDeBoutons );
+		
+		leftPanel.add(jButtonChargement, BorderLayout.NORTH);
+		//jButtonChargement.setBounds(0,0,100,100);
+		getContentPane().add(leftPanel, BorderLayout.WEST);
 		
 		setVisible(true);
 	}

@@ -24,7 +24,7 @@ public class MapPanel extends JPanel
 	private DemandeLivraison demandeLivraison;
 	private Tournee tournee;
 	
-	private int bord = 10;
+	private int bord = 50;
 	private int xMin = 999999;
 	private int yMin = 999999;
 	private double coefX;
@@ -64,8 +64,8 @@ public class MapPanel extends JPanel
         }
 		
 
-		coefX = (double)(screenSize.height) / (xMax - xMin);
-		coefY = (double)(screenSize.width) / (yMax - yMin);
+		coefX = (double)(screenSize.height-bord) / (xMax - xMin);
+		coefY = (double)(screenSize.height-bord) / (yMax - yMin);
 
 	}
 	
@@ -100,6 +100,7 @@ public class MapPanel extends JPanel
         
         // affichage itineraire 
         // gestion immonde mais temporaire
+        // Merci c'est sympa
         if ( demandeLivraison != null)
         {
 	        for (Itineraire itineraire : tournee.getListeItineraires())
