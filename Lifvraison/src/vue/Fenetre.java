@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -39,8 +40,12 @@ public class Fenetre extends JFrame
 	
 	private JPanel mainPanel;
 	private JPanel leftPanel;
+	private JPanel overMapPanel;
 	private JPanel titlePanel;
 	private JPanel rightPanel;
+	private JPanel buttonsPanel;
+	private JPanel topButtonsPanel;
+	private JPanel bottomButtonsPanel;
 	
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -59,8 +64,20 @@ public class Fenetre extends JFrame
 		leftPanel.setLayout(new BorderLayout());
 		
 		rightPanel = new JPanel();
-		rightPanel.setLayout(new GridLayout(5, 0, 20, 20));
-		rightPanel.setPreferredSize(new Dimension(200, screenSize.height));
+		rightPanel.setLayout(new CardLayout(50, 50));
+		rightPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height));
+		
+		overMapPanel = new JPanel();
+		overMapPanel.setLayout(new CardLayout(50, 50));
+		
+		buttonsPanel = new JPanel();
+		buttonsPanel.setLayout(new GridLayout(2, 0, 20, 20));
+		
+		topButtonsPanel = new JPanel();
+		topButtonsPanel.setLayout(new GridLayout(4, 0, 20, 20));
+		
+		bottomButtonsPanel = new JPanel();
+		bottomButtonsPanel.setLayout(new GridLayout(4, 0, 20, 20));
 		
 		titlePanel = new JPanel();
 		titlePanel.setLayout(new BorderLayout());
@@ -69,7 +86,12 @@ public class Fenetre extends JFrame
 		JLabel labelBienvenue = new JLabel("~LIfvraison~", SwingConstants.CENTER);
 		labelBienvenue.setFont(new Font("Serif", Font.PLAIN, 30));
 		
+		buttonsPanel.add(topButtonsPanel);
+		buttonsPanel.add(bottomButtonsPanel);
+		
 		titlePanel.add(labelBienvenue, BorderLayout.CENTER);
+		
+		rightPanel.add(buttonsPanel);
 		
 		getContentPane().add(mainPanel);
 		
@@ -113,7 +135,10 @@ public class Fenetre extends JFrame
 
 		JLabel imageLabel = new JLabel(new ImageIcon("ihm\\image_livreur.jpg"));
 		
-		rightPanel.add(buttonChargement);
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(buttonChargement);
 		
 		leftPanel.add(imageLabel, BorderLayout.CENTER);
 		leftPanel.add(titlePanel, BorderLayout.SOUTH);
@@ -129,16 +154,22 @@ public class Fenetre extends JFrame
 		setVisible(false);
 		
 		leftPanel.removeAll();
-		rightPanel.removeAll();
+		overMapPanel.removeAll();
+		bottomButtonsPanel.removeAll();
 		
 		MapPanel mapPanel = new MapPanel(plan, null, null);
 		
 		JButton buttonChargement = new JButton ( "Charger Livraison" );
 		buttonChargement.addActionListener( ecouteurDeBoutons );
 
-		rightPanel.add(buttonChargement);
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(buttonChargement);
 		
-		leftPanel.add(mapPanel, BorderLayout.CENTER);
+		overMapPanel.add(mapPanel);
+		
+		leftPanel.add(overMapPanel, BorderLayout.CENTER);
 		leftPanel.add(titlePanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
@@ -149,16 +180,22 @@ public class Fenetre extends JFrame
 		setVisible(false);
 		
 		leftPanel.removeAll();
-		rightPanel.removeAll();
+		overMapPanel.removeAll();
+		bottomButtonsPanel.removeAll();
 
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons);
 		
 		JButton buttonCalculTournee = new JButton ( "Calculer Tournee" );
 		buttonCalculTournee.addActionListener( ecouteurDeBoutons );
 
-		rightPanel.add(buttonCalculTournee);
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(buttonCalculTournee);
 		
-		leftPanel.add(mapPanel, BorderLayout.CENTER);
+		overMapPanel.add(mapPanel);
+		
+		leftPanel.add(overMapPanel, BorderLayout.CENTER);
 		leftPanel.add(titlePanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
@@ -169,16 +206,22 @@ public class Fenetre extends JFrame
 		setVisible(false);
 		
 		leftPanel.removeAll();
-		rightPanel.removeAll();
+		overMapPanel.removeAll();
+		bottomButtonsPanel.removeAll();
 
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, tournee);
 		
 		JButton buttonValider = new JButton ( "Valider Tournee" );
 		buttonValider.addActionListener( ecouteurDeBoutons );
 
-		rightPanel.add(buttonValider);
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(buttonValider);
 		
-		leftPanel.add(mapPanel, BorderLayout.CENTER);
+		overMapPanel.add(mapPanel);
+		
+		leftPanel.add(overMapPanel, BorderLayout.CENTER);
 		leftPanel.add(titlePanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
@@ -189,7 +232,8 @@ public class Fenetre extends JFrame
 		setVisible(false);
 		
 		leftPanel.removeAll();
-		rightPanel.removeAll();
+		overMapPanel.removeAll();
+		bottomButtonsPanel.removeAll();
 
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, tournee);
 		getContentPane().add(mapPanel);
@@ -198,10 +242,15 @@ public class Fenetre extends JFrame
 		JLabel labelBonneTournee = new JLabel("Bonne Tournee !");
 		//labelBonneTournee.add(jLabelBonneChance);
 		//jPanelDeLaFin.setBounds(screenSize.width-200,screenSize.height-200,150,50);
+
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(labelBonneTournee);
 		
-		rightPanel.add(labelBonneTournee);
+		overMapPanel.add(mapPanel);
 		
-		leftPanel.add(mapPanel, BorderLayout.CENTER);
+		leftPanel.add(overMapPanel, BorderLayout.CENTER);
 		leftPanel.add(titlePanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
