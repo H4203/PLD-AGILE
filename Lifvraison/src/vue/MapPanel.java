@@ -160,16 +160,22 @@ public class MapPanel extends JPanel
     	        	}
     	        	
     	        	g2.setFont(new Font("default", Font.BOLD, 16));
+    	        	g2.setColor(Color.DARK_GRAY);
     	        	i++;
     	        	if ( i < tournee.getListeItineraires().size())
     	        	{
 		        		/* horaires */
-						g2.drawString(tournee.getListeHoraire().get(i).getHeureDebut().toString()
+						/*g2.drawString(tournee.getListeHoraire().get(i).getHeureDebut().toString()
 								+ " - " +
 								tournee.getListeHoraire().get(i).getHeureFin().toString(),
 								(int)Math.round((itineraire.getArrivee().getY() - yMin) * coefY),
 		            			(int)(screenSize.height-bord) - (int)Math.round((itineraire.getArrivee().getX() - xMin) * coefX));
+		            			*/
+    	        		g2.drawString(" "+i,
+    	        				(int)Math.round((itineraire.getArrivee().getY() - yMin) * coefY),
+		            			(int)(screenSize.height-bord) - (int)Math.round((itineraire.getArrivee().getX() - xMin) * coefX));
     	        	}
+    	        	g2.setColor(Color.BLUE);
     	        }
         	}
         	
