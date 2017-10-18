@@ -145,7 +145,7 @@ public class MapPanel extends JPanel
         // gestion immonde mais temporaire
         if ( demandeLivraison != null)
         {
-        	/* affiche la tournée */
+        	/* affiche la tournee */
         	if ( tournee != null ) {
         		int i = 0;
         		for (Itineraire itineraire : tournee.getListeItineraires())
