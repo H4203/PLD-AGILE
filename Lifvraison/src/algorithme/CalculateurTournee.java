@@ -11,6 +11,7 @@ public class CalculateurTournee {
 
 	private Tournee laTournee;
 	private List<Itineraire> lesItineraires;
+
 	
 	public CalculateurTournee(Tournee laTournee){
 		this.laTournee = laTournee;
@@ -22,7 +23,7 @@ public class CalculateurTournee {
 		Plan lePlan = laTournee.getPlan();
 		
 		DemandeLivraison dl = laTournee.getDemandeLivraison();
-		
+		List<Livraison> livraisonsOrdonnees = new ArrayList<Livraison>();
 		List<Livraison> livraisons = dl.getLivraisons();
 		
 		List<Intersection> intersections = new ArrayList<Intersection>();
@@ -62,13 +63,15 @@ public class CalculateurTournee {
 		TSP1 tsp = new TSP1();
 		tsp.chercheSolution(Integer.MAX_VALUE, intersections.size(), coutTsp, duree);
 		int sommetCourant = 0;
+		livraisonsOrdonnees.add(livraisons.get(sommetCourant));
 		for(int i = 1; i < intersections.size(); i++) {
 			int prochainSommet = tsp.getMeilleureSolution(i);
+			livraisonsOrdonnees.add(livraisons.get(prochainSommet-1));
 			lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(prochainSommet).getId()));
 			sommetCourant = prochainSommet;
 		}
 		lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(0).getId()));
-	
+		laTournee.setLivraisonsOrdonnees(livraisonsOrdonnees);
 		laTournee.setListeItineraires(lesItineraires);
 	}
 	

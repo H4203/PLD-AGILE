@@ -11,6 +11,7 @@ public class Tournee
 	private List <Itineraire> listeItineraires;
 	private List <PlageHoraire> listeHoraire; /* commence avec l'heure de depart a l'entrepot et finit avec l'heure de retour a l'entrepot */
 	private double longueur;
+	private List<Livraison> livraisonsOrdonnees;
 
 	public Tournee(Plan plan, DemandeLivraison demandeLivraison)
 	{
@@ -18,6 +19,7 @@ public class Tournee
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
 		this.listeHoraire = new ArrayList<PlageHoraire>();
+		this.livraisonsOrdonnees = new ArrayList<Livraison>();
 		longueur = 0;
 	}
 
@@ -121,5 +123,15 @@ public class Tournee
 	public void setListeHoraire(List<PlageHoraire> listeHoraire) {
 		this.listeHoraire = listeHoraire;
 	}
+
+	public List<Livraison> getLivraisonsOrdonnees() {
+		return livraisonsOrdonnees;
+	}
+
+	public void setLivraisonsOrdonnees(List<Livraison> livraisonsOrdonnees) {
+		this.livraisonsOrdonnees = livraisonsOrdonnees;
+	}
+	
+	
 	
 }

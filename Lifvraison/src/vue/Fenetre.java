@@ -26,18 +26,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import algorithme.CalculateurTournee;
-import controlleur.Controleur;
+import controleur.Controleur;
 import donnees.XMLParseur;
 import modeles.DemandeLivraison;
+import modeles.Livraison;
 import modeles.Plan;
 import modeles.Tournee;
 import javax.swing.JScrollPane;
+
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 import javax.swing.SwingConstants;
 
 public class Fenetre extends JFrame
 {
 	private VueGraphique vueGraphique;
-	
+
 	private JPanel mainPanel;
 	private JPanel leftPanel;
 	private JPanel overMapPanel;
@@ -95,7 +100,7 @@ public class Fenetre extends JFrame
 		
 		getContentPane().add(mainPanel);
 		
-		/*
+    /*
 		setUndecorated(true);
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
@@ -128,6 +133,7 @@ public class Fenetre extends JFrame
 	public void setModeAccueil ()
 	{
 		setVisible(false);
+
 		mainPanel.removeAll();
 		
 		JButton buttonChargement = new JButton ( "Charger Plan" );
@@ -158,7 +164,7 @@ public class Fenetre extends JFrame
 		bottomButtonsPanel.removeAll();
 		
 		MapPanel mapPanel = new MapPanel(plan, null, null);
-		
+
 		JButton buttonChargement = new JButton ( "Charger Livraison" );
 		buttonChargement.addActionListener( ecouteurDeBoutons );
 
@@ -210,7 +216,7 @@ public class Fenetre extends JFrame
 		bottomButtonsPanel.removeAll();
 
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, tournee);
-		
+	
 		JButton buttonValider = new JButton ( "Valider Tournee" );
 		buttonValider.addActionListener( ecouteurDeBoutons );
 
