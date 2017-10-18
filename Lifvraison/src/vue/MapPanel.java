@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.BasicStroke;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -41,7 +42,7 @@ public class MapPanel extends JPanel
 	public MapPanel(Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setBounds(10, 10, screenSize.width-bord, screenSize.height-bord);
+		//this.setBounds(10, 10, screenSize.width-bord, screenSize.height-bord);
 		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
@@ -73,14 +74,14 @@ public class MapPanel extends JPanel
 		
 
 		coefX = (double)(screenSize.height-bord) / (xMax - xMin);
-		coefY = (double)(screenSize.width-bord) / (yMax - yMin);
+		coefY = (double)(screenSize.height-bord) / (yMax - yMin);
 
 	}
 	
 	public MapPanel(Plan plan, DemandeLivraison demandeLivraison)
 	{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setBounds(10, 10, screenSize.width-bord, screenSize.height-bord);
+		//this.setBounds(10, 10, screenSize.width-bord, screenSize.height-bord);
 		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
@@ -110,7 +111,7 @@ public class MapPanel extends JPanel
         }
 		
 		coefX = (double)(screenSize.height-bord) / (xMax - xMin);
-		coefY = (double)(screenSize.width-bord) / (yMax - yMin);
+		coefY = (double)(screenSize.height-bord) / (yMax - yMin);
 	}
 	
 	public void repaint(Graphics g)
