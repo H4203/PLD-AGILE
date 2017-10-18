@@ -72,6 +72,11 @@ public class Fenetre extends JFrame
 		titleLabel.setFont(new Font("Serif", Font.PLAIN, 30));
 		titlePanel.add(titleLabel, BorderLayout.CENTER);
 		
+		// 1.1.2.2 mainPanel/leftPanel/titlePanel/buttonAccueil
+		JButton buttonAccueil = new JButton("Accueil");
+		buttonAccueil.addActionListener(ecouteurDeBoutons);
+		titlePanel.add(buttonAccueil, BorderLayout.WEST);
+		
 		// 1.2 mainPanel/overRightPanel
 		JPanel overRightPanel = new JPanel();
 		overRightPanel.setLayout(new CardLayout(50, 50));
@@ -153,7 +158,7 @@ public class Fenetre extends JFrame
 		bottomButtonsPanel.add(new JLabel());
 		
 		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementPlan		
-		JButton buttonChargementPlan = new JButton ( "Charger Plan" );
+		JButton buttonChargementPlan = new JButton("Charger Plan");
 		buttonChargementPlan.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonChargementPlan);
 		
@@ -177,11 +182,15 @@ public class Fenetre extends JFrame
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/Buttons
 		bottomButtonsPanel.add(new JLabel());
 		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(new JLabel());
 
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementTournee
-		JButton buttonChargementTournee = new JButton ( "Charger Livraison" );
-		buttonChargementTournee.addActionListener( ecouteurDeBoutons );
+		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementPlan		
+		JButton buttonChargementPlan = new JButton("Charger Plan");
+		buttonChargementPlan.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonChargementPlan);
+		
+		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementTournee
+		JButton buttonChargementTournee = new JButton ("Charger Livraison");
+		buttonChargementTournee.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonChargementTournee);
 		
 		setVisible(true);
@@ -203,12 +212,20 @@ public class Fenetre extends JFrame
 		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/Buttons
 		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(new JLabel());
 
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculTournee
-		JButton buttonCalculTournee = new JButton ( "Calculer Tournee" );
-		buttonCalculTournee.addActionListener( ecouteurDeBoutons );
+		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementPlan		
+		JButton buttonChargementPlan = new JButton("Charger Plan");
+		buttonChargementPlan.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonChargementPlan);
+		
+		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementTournee
+		JButton buttonChargementTournee = new JButton ("Charger Livraison");
+		buttonChargementTournee.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonChargementTournee);
+		
+		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculTournee
+		JButton buttonCalculTournee = new JButton("Calculer Tournee");
+		buttonCalculTournee.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonCalculTournee);
 		
 		setVisible(true);
@@ -230,12 +247,20 @@ public class Fenetre extends JFrame
 
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/Buttons
 		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(new JLabel());
 		
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
-		JButton buttonValider = new JButton ( "Valider Tournee" );
-		buttonValider.addActionListener( ecouteurDeBoutons );
+		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementPlan		
+		JButton buttonChargementPlan = new JButton("Charger Plan");
+		buttonChargementPlan.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonChargementPlan);
+		
+		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementTournee
+		JButton buttonChargementTournee = new JButton ("Charger Livraison");
+		buttonChargementTournee.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonChargementTournee);
+		
+		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
+		JButton buttonValider = new JButton("Valider Tournee");
+		buttonValider.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonValider);
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
