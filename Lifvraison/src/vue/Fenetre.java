@@ -36,6 +36,7 @@ public class Fenetre extends JFrame
 		super();
 		ecouteurDeBoutons = new EcouteurDeBoutons ( controleur );
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		
 		jPanelBienvenue = new JPanel();
 		JLabel labelBienvenue = new JLabel("bienvenue");
@@ -64,6 +65,7 @@ public class Fenetre extends JFrame
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(screenSize.width, screenSize.height);
 		
+
 		setVisible(true);
 		this.setLayout(null);
 		setModeAccueil();
@@ -75,11 +77,13 @@ public class Fenetre extends JFrame
 		getContentPane().removeAll();
 		//getContentPane().setLayout((LayoutManager) new FlowLayout(FlowLayout.RIGHT));
 		jButtonChargement = new JButton ( "Chargement Plan" );
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		jButtonChargement.setBounds(screenSize.width-200,screenSize.height-200,150,50);
 		//getContentPane().add( jButtonChargement, BorderLayout.SOUTH );
 		getContentPane().add( jButtonChargement );
 		getContentPane().add( jPanelBienvenue );
+
 		jButtonChargement.addActionListener( ecouteurDeBoutons );
 		
 		setVisible(true);
@@ -93,8 +97,10 @@ public class Fenetre extends JFrame
 		MapPanel mapPanel = new MapPanel(plan, null, null);
 		getContentPane().add(mapPanel);
 		jButtonChargement = new JButton ( "Chargement Livraison" );
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		jButtonChargement.setBounds(screenSize.width-200,screenSize.height-200,150,50);
+
 		this.add( jButtonChargement );
 		
 		jButtonChargement.addActionListener( ecouteurDeBoutons );
