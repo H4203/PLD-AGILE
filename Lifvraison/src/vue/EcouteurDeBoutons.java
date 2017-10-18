@@ -6,7 +6,7 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
-import controlleur.Controleur;
+import controleur.Controleur;
 import donnees.XMLParseur;
 import modeles.DemandeLivraison;
 import modeles.Plan;
