@@ -9,7 +9,7 @@ public class Tournee
 	private Plan plan;
 	private DemandeLivraison demandeLivraison; //on en a vraiment besoin ????
 	private List <Itineraire> listeItineraires;
-	private List <PlageHoraire> listeHoraire; /* commence avec l'heure de depart a l'entrepot */
+	private List <PlageHoraire> listeHoraire; /* commence avec l'heure de depart a l'entrepot et finit avec l'heure de retour a l'entrepot */
 	private double longueur;
 
 	public Tournee(Plan plan, DemandeLivraison demandeLivraison)
@@ -76,7 +76,6 @@ public class Tournee
 			horaire = new PlageHoraire(debut,fin);
 			listeHoraire.add(horaire);
 		}
-		System.out.println(listeHoraire);
 	}
 
 	public double getLongueur()
@@ -114,6 +113,13 @@ public class Tournee
 	public DemandeLivraison getDemandeLivraison() {
 		return demandeLivraison;
 	}
+	
+	public List<PlageHoraire> getListeHoraire() {
+		return listeHoraire;
+	}
 
-
+	public void setListeHoraire(List<PlageHoraire> listeHoraire) {
+		this.listeHoraire = listeHoraire;
+	}
+	
 }

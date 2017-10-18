@@ -33,7 +33,7 @@ public class EcouteurDeBoutons implements ActionListener{
 		
 		switch ( e.getActionCommand() )
 		{
-			case "Chargement Plan" :
+			case "Charger Plan" :
 				fc = new JFileChooser();
 				chemin ="";
 				
@@ -46,10 +46,9 @@ public class EcouteurDeBoutons implements ActionListener{
 			       chemin = fc.getSelectedFile().getAbsolutePath();
 			    }
 				controleur.importerPlan(chemin);
-				System.out.println(chemin);
 				
 				break;
-			case "Chargement Livraison" :
+			case "Charger Livraison" :
 				
 				fc = new JFileChooser();
 				chemin ="";
@@ -64,6 +63,12 @@ public class EcouteurDeBoutons implements ActionListener{
 			    }
 				controleur.ImporterDemande( chemin );
 				
+				break;
+			case "Calculer Tournee" :
+				controleur.DemanderCalculTournee();
+				break;
+			case "Valider Tournee" :
+				controleur.ValiderTournee();
 				break;
 		}
 		
