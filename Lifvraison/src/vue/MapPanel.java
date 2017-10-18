@@ -24,7 +24,7 @@ public class MapPanel extends JPanel
 	private DemandeLivraison demandeLivraison;
 	private Tournee tournee;
 	
-	private int bord = 10;
+	private int bord = 50;
 	private int xMin = 999999;
 	private int yMin = 999999;
 	private double coefX;
