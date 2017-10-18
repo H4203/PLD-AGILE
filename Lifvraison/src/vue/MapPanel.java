@@ -5,9 +5,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import modeles.Plan;
@@ -24,7 +29,7 @@ public class MapPanel extends JPanel
 	private DemandeLivraison demandeLivraison;
 	private Tournee tournee;
 	
-	private int bord = 10;
+	private int bord = 200;
 	private int xMin = 999999;
 	private int yMin = 999999;
 	private double coefX;
@@ -33,7 +38,7 @@ public class MapPanel extends JPanel
 	public MapPanel(Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setBounds(0,0,screenSize.width-bord, screenSize.height-bord);
+		this.setBounds(10, 10, screenSize.width-bord, screenSize.height-bord);
 		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
@@ -64,8 +69,8 @@ public class MapPanel extends JPanel
         }
 		
 
-		coefX = (double)(screenSize.height) / (xMax - xMin);
-		coefY = (double)(screenSize.width) / (yMax - yMin);
+		coefX = (double)(screenSize.height-bord) / (xMax - xMin);
+		coefY = (double)(screenSize.width-bord) / (yMax - yMin);
 
 	}
 	
@@ -126,6 +131,15 @@ public class MapPanel extends JPanel
 	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
 	        			(int)(screenSize.height-bord) - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
 	        			8, 8);
+	        	
+	        	/*BufferedImage img = null;
+				try {
+					img = ImageIO.read(new File("C:\\Users\\heyhey\\Desktop\\4IF\\AGILE\\IHM\\map-marker-icon2335464.png"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}*/
+	        	//g.drawImage(img, 10, 10, this);
 	        }
 	        
 	        
