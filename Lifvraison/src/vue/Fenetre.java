@@ -1,11 +1,14 @@
 package vue;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,39 +33,74 @@ import modeles.Livraison;
 import modeles.Plan;
 import modeles.Tournee;
 import javax.swing.JScrollPane;
+
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import javax.swing.SwingConstants;
 
 public class Fenetre extends JFrame
 {
 	private VueGraphique vueGraphique;
-	private JButton jButtonChargementPlan;
-	private JButton jButtonChargementLivraison;
-	private JButton jButtonValider;
-	private JButton jButtonAjouterLivraison;
-	private JButton jButtonSupprimerLivraison;
-	private JButton jButtonEchangerLivraisons;
-	private JButton jButtonUndo;
-	private JButton jButtonRedo;
-	private JButton jButtonRetourAccueil;
-	private JButton jButtonCalculTournee;
-	private JPanel jPanelBienvenue;
+
+	private JPanel mainPanel;
+	private JPanel leftPanel;
+	private JPanel overMapPanel;
+	private JPanel titlePanel;
+	private JPanel rightPanel;
+	private JPanel buttonsPanel;
+	private JPanel topButtonsPanel;
+	private JPanel bottomButtonsPanel;
+	
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	public Fenetre (Controleur controleur)
 	{
-		super();
+		super();	
+		
 		ecouteurDeBoutons = new EcouteurDeBoutons ( controleur );
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		
-		jPanelBienvenue = new JPanel();
-		jPanelBienvenue.setBounds(screenSize.height/2, screenSize.height-200, 500, 500);
-		JLabel jLabelBienvenue = new JLabel("~ LIFvraison ~");
-		jLabelBienvenue.setFont(new Font("Serif", Font.PLAIN, 30));
-		jPanelBienvenue.add(jLabelBienvenue);
-/*
+		mainPanel = new JPanel();
+		mainPanel.setLayout(new BorderLayout());
+		
+		leftPanel = new JPanel();
+		leftPanel.setLayout(new BorderLayout());
+		
+		rightPanel = new JPanel();
+		rightPanel.setLayout(new CardLayout(50, 50));
+		rightPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height));
+		
+		overMapPanel = new JPanel();
+		overMapPanel.setLayout(new CardLayout(50, 50));
+		
+		buttonsPanel = new JPanel();
+		buttonsPanel.setLayout(new GridLayout(2, 0, 20, 20));
+		
+		topButtonsPanel = new JPanel();
+		topButtonsPanel.setLayout(new GridLayout(4, 0, 20, 20));
+		
+		bottomButtonsPanel = new JPanel();
+		bottomButtonsPanel.setLayout(new GridLayout(4, 0, 20, 20));
+		
+		titlePanel = new JPanel();
+		titlePanel.setLayout(new BorderLayout());
+		titlePanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 10));
+		
+		JLabel labelBienvenue = new JLabel("~LIfvraison~", SwingConstants.CENTER);
+		labelBienvenue.setFont(new Font("Serif", Font.PLAIN, 30));
+		
+		buttonsPanel.add(topButtonsPanel);
+		buttonsPanel.add(bottomButtonsPanel);
+		
+		titlePanel.add(labelBienvenue, BorderLayout.CENTER);
+		
+		rightPanel.add(buttonsPanel);
+		
+		getContentPane().add(mainPanel);
+		
+    /*
 		setUndecorated(true);
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
@@ -82,77 +121,88 @@ public class Fenetre extends JFrame
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		this.setUndecorated(true);
 		this.setVisible(true);*/
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setSize(screenSize.width, screenSize.height);
 		
-		jButtonRetourAccueil = new JButton("Accueil");
-		jButtonRetourAccueil.setBounds(50,screenSize.height-150,150,50);
-		jButtonRetourAccueil.addActionListener( ecouteurDeBoutons );
-		
+		this.setSize(screenSize.width, screenSize.height - 50);
+
 		setVisible(true);
-		this.setLayout(null);
 		setModeAccueil();
 
 		//this.vueGraphique = new VueGraphique(plan, this);
 	}
+	
 	public void setModeAccueil ()
 	{
 		setVisible(false);
-		getContentPane().removeAll();
-		//getContentPane().setLayout((LayoutManager) new FlowLayout(FlowLayout.RIGHT));
-		jButtonChargementPlan = new JButton ( "Charger Plan" );
 
-		jButtonChargementPlan.setBounds(screenSize.width-180,screenSize.height-150,150,50);
-		//getContentPane().add( jButtonChargement, BorderLayout.SOUTH );
-		getContentPane().add( jButtonChargementPlan );
-		getContentPane().add( jPanelBienvenue );
+		mainPanel.removeAll();
 		
-		JPanel imagePanel = new JPanel();
+		JButton buttonChargement = new JButton ( "Charger Plan" );
+		buttonChargement.addActionListener(ecouteurDeBoutons);
+
 		JLabel imageLabel = new JLabel(new ImageIcon("ihm\\image_livreur.jpg"));
-		imagePanel.setBounds(0,0,screenSize.width,screenSize.height);
-		imagePanel.add(imageLabel);
-		getContentPane().add(imagePanel);
 		
-		jButtonChargementPlan.addActionListener( ecouteurDeBoutons );
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(buttonChargement);
+		
+		leftPanel.add(imageLabel, BorderLayout.CENTER);
+		leftPanel.add(titlePanel, BorderLayout.SOUTH);
+		
+		mainPanel.add(leftPanel, BorderLayout.CENTER);
+		mainPanel.add(rightPanel, BorderLayout.EAST);
 		
 		setVisible(true);
 	}
 	
 	public void setModePlan ( Plan plan )
 	{
-		
 		setVisible(false);
-		getContentPane().removeAll();
-		MapPanel mapPanel = new MapPanel(plan, null, null);
-		getContentPane().add(mapPanel);
-		jButtonChargementLivraison = new JButton ( "Charger Livraison" );
-
-		jButtonChargementLivraison.setBounds(screenSize.width-180,screenSize.height-220,150,50);
-
-		this.add( jButtonChargementLivraison );
 		
-		jButtonChargementLivraison.addActionListener( ecouteurDeBoutons );
-		getContentPane().add( jButtonChargementPlan );
-		getContentPane().add( jButtonRetourAccueil );
+		leftPanel.removeAll();
+		overMapPanel.removeAll();
+		bottomButtonsPanel.removeAll();
+		
+		MapPanel mapPanel = new MapPanel(plan, null, null);
+
+		JButton buttonChargement = new JButton ( "Charger Livraison" );
+		buttonChargement.addActionListener( ecouteurDeBoutons );
+
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(buttonChargement);
+		
+		overMapPanel.add(mapPanel);
+		
+		leftPanel.add(overMapPanel, BorderLayout.CENTER);
+		leftPanel.add(titlePanel, BorderLayout.SOUTH);
+		
 		setVisible(true);
 	}
 
 	public void setModeDemandeLivraison (Plan plan, DemandeLivraison demandeLivraisons)
 	{
 		setVisible(false);
-		getContentPane().removeAll();
+		
+		leftPanel.removeAll();
+		overMapPanel.removeAll();
+		bottomButtonsPanel.removeAll();
 
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons);
-		getContentPane().add(mapPanel);
 		
-		jButtonCalculTournee = new JButton ( "Calculer Tournee" );
-		jButtonCalculTournee.setBounds(screenSize.width-180,screenSize.height-300,150,50);
+		JButton buttonCalculTournee = new JButton ( "Calculer Tournee" );
+		buttonCalculTournee.addActionListener( ecouteurDeBoutons );
 
-		getContentPane().add( jButtonCalculTournee);
-		getContentPane().add( jButtonChargementLivraison );
-		getContentPane().add( jButtonChargementPlan );
-		getContentPane().add( jButtonRetourAccueil );
-		jButtonCalculTournee.addActionListener( ecouteurDeBoutons );
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(buttonCalculTournee);
+		
+		overMapPanel.add(mapPanel);
+		
+		leftPanel.add(overMapPanel, BorderLayout.CENTER);
+		leftPanel.add(titlePanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
 	}
@@ -160,61 +210,25 @@ public class Fenetre extends JFrame
 	public void setModeTournee (Plan plan, DemandeLivraison demandeLivraisons, Tournee tournee)
 	{
 		setVisible(false);
-		getContentPane().removeAll();
+		
+		leftPanel.removeAll();
+		overMapPanel.removeAll();
+		bottomButtonsPanel.removeAll();
 
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, tournee);
-		getContentPane().add(mapPanel);
-		
-		/* liste */
-		JPanel jPanelListe = new JPanel ();
-		JTextArea jLabelListeLivraison = new JTextArea();
-		String texteListe = "Liste des livraisons\n";
-		
-		int i = 0;
-		texteListe += "Depart - " + tournee.getListeHoraire().get(i).getHeureDebut().toString() + "\n";
-		for (Livraison livraison : tournee.getLivraisonsOrdonnees() )
-		{
-			if (i < tournee.getLivraisonsOrdonnees().size()-1 )
-			{
-			i++;
-			texteListe += i + " - de " + tournee.getListeHoraire().get(i).getHeureDebut().toString() 
-					+ " a " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
-			}
-		}
-		texteListe += "Retour à l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
-		
-		jLabelListeLivraison.setText(texteListe);
-		System.out.println(texteListe);
-		jPanelListe.add(jLabelListeLivraison);
-		jPanelListe.setBounds(screenSize.width-250,300,300,200);
-		jLabelListeLivraison.setEditable(false);
-		getContentPane().add( jPanelListe);
-		
-		/* bouton */
-		jButtonAjouterLivraison = new JButton("+");
-		jButtonSupprimerLivraison = new JButton("-");
-		jButtonEchangerLivraisons = new JButton("<-/->");
-		jButtonUndo = new JButton("undo");
-		jButtonRedo = new JButton("redo");
-		
-		jButtonAjouterLivraison.setBounds(screenSize.width-180,0,100,50);
-		jButtonSupprimerLivraison.setBounds(screenSize.width-180,60,100,50);
-		jButtonEchangerLivraisons.setBounds(screenSize.width-180,120,100,50);
-		jButtonUndo.setBounds(screenSize.width-180,180,100,50);
-		jButtonRedo.setBounds(screenSize.width-180,240,100,50);
-		
-		getContentPane().add( jButtonAjouterLivraison);
-		getContentPane().add( jButtonSupprimerLivraison);
-		getContentPane().add( jButtonEchangerLivraisons);
-		getContentPane().add( jButtonUndo);
-		getContentPane().add( jButtonRedo);
-		
-		jButtonValider = new JButton ( "Valider Tournee" );
-		jButtonValider.setBounds(screenSize.width-180,screenSize.height-200,150,50);
+	
+		JButton buttonValider = new JButton ( "Valider Tournee" );
+		buttonValider.addActionListener( ecouteurDeBoutons );
 
-		getContentPane().add( jButtonValider);
-		getContentPane().add( jButtonRetourAccueil );
-		jButtonValider.addActionListener( ecouteurDeBoutons );
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(buttonValider);
+		
+		overMapPanel.add(mapPanel);
+		
+		leftPanel.add(overMapPanel, BorderLayout.CENTER);
+		leftPanel.add(titlePanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
 	}
@@ -222,19 +236,28 @@ public class Fenetre extends JFrame
 	public void setModeValiderTournee (Plan plan, DemandeLivraison demandeLivraisons, Tournee tournee)
 	{
 		setVisible(false);
-		getContentPane().removeAll();
+		
+		leftPanel.removeAll();
+		overMapPanel.removeAll();
+		bottomButtonsPanel.removeAll();
 
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, tournee);
 		getContentPane().add(mapPanel);
 		
-		JPanel jPanelDeLaFin = new JPanel ();
-		JLabel jLabelBonneChance = new JLabel("Bonne Tournee :)");
-		jPanelDeLaFin.add(jLabelBonneChance);
-		jPanelDeLaFin.setBounds(screenSize.width-200,screenSize.height-200,150,50);
+		//JPanel jPanelDeLaFin = new JPanel ();
+		JLabel labelBonneTournee = new JLabel("Bonne Tournee !");
+		//labelBonneTournee.add(jLabelBonneChance);
+		//jPanelDeLaFin.setBounds(screenSize.width-200,screenSize.height-200,150,50);
 
-		getContentPane().add( jPanelDeLaFin);
-		getContentPane().add( jButtonRetourAccueil );
-		jButtonValider.addActionListener( ecouteurDeBoutons );
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(new JLabel());
+		bottomButtonsPanel.add(labelBonneTournee);
+		
+		overMapPanel.add(mapPanel);
+		
+		leftPanel.add(overMapPanel, BorderLayout.CENTER);
+		leftPanel.add(titlePanel, BorderLayout.SOUTH);
 		
 		setVisible(true);
 	}
