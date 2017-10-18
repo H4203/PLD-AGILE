@@ -72,7 +72,7 @@ public class MapPanel extends JPanel
 		
 
 		coefX = (double)(screenSize.height-bord) / (xMax - xMin);
-		coefY = (double)(screenSize.width-bord) / (yMax - yMin);
+		coefY = (double)(screenSize.height-bord) / (yMax - yMin);
 
 	}
 	
@@ -109,7 +109,7 @@ public class MapPanel extends JPanel
         }
 		
 		coefX = (double)(screenSize.height-bord) / (xMax - xMin);
-		coefY = (double)(screenSize.width-bord) / (yMax - yMin);
+		coefY = (double)(screenSize.height-bord) / (yMax - yMin);
 	}
 	
 	public void repaint(Graphics g)
