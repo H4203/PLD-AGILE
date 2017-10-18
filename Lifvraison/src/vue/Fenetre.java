@@ -2,46 +2,27 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import algorithme.CalculateurTournee;
 import controleur.Controleur;
-import donnees.XMLParseur;
 import modeles.DemandeLivraison;
-import modeles.Livraison;
 import modeles.Plan;
 import modeles.Tournee;
-import javax.swing.JScrollPane;
-
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import javax.swing.SwingConstants;
 
 public class Fenetre extends JFrame
 {
-	private VueGraphique vueGraphique;
+	//private VueGraphique vueGraphique;
 
 	private JPanel mainPanel;
 	private JPanel leftPanel;
@@ -100,8 +81,7 @@ public class Fenetre extends JFrame
 		
 		getContentPane().add(mainPanel);
 		
-    /*
-		setUndecorated(true);
+		/*setUndecorated(true);
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
         if (gd.isFullScreenSupported()) {
