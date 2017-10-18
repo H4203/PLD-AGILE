@@ -70,6 +70,9 @@ public class EcouteurDeBoutons implements ActionListener{
 			case "Valider Tournee" :
 				controleur.ValiderTournee();
 				break;
+			case "Accueil" :
+				controleur.RetourALAccueil();
+				break;
 		}
 		
 		

@@ -17,6 +17,16 @@ public class Controleur {
 	private Tournee tournee;
 	DemandeLivraison demandeLivraisons;
 	
+	/**
+	 * 
+	 */
+	public Controleur() {
+		
+		parseur = new XMLParseur ();
+		fenetre = new Fenetre ( this );
+	
+	}
+	
 	public void importerPlan ( String cheminPlan)
 	{
 		plan = parseur.chargerPlan( cheminPlan );
@@ -52,15 +62,10 @@ public class Controleur {
 		fenetre.setModeValiderTournee(plan, demandeLivraisons, tournee);
 		
 	}
-
-	/**
-	 * 
-	 */
-	public Controleur() {
-		
-		parseur = new XMLParseur ();
-		fenetre = new Fenetre ( this );
 	
+	public void RetourALAccueil()
+	{
+		fenetre.setModeAccueil();
 	}
 	
 	

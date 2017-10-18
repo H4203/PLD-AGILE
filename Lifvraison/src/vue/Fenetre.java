@@ -32,8 +32,15 @@ import javax.swing.JScrollPane;
 public class Fenetre extends JFrame
 {
 	private VueGraphique vueGraphique;
-	private JButton jButtonChargement;
+	private JButton jButtonChargementPlan;
+	private JButton jButtonChargementLivraison;
 	private JButton jButtonValider;
+	private JButton jButtonAjouterLivraison;
+	private JButton jButtonSupprimerLivraison;
+	private JButton jButtonEchangerLivraisons;
+	private JButton jButtonUndo;
+	private JButton jButtonRedo;
+	private JButton jButtonRetourAccueil;
 	private JButton jButtonCalculTournee;
 	private JPanel jPanelBienvenue;
 	private EcouteurDeBoutons ecouteurDeBoutons;
@@ -47,8 +54,8 @@ public class Fenetre extends JFrame
 
 		
 		jPanelBienvenue = new JPanel();
-		jPanelBienvenue.setBounds(400, screenSize.height-190, 500, 500);
-		JLabel jLabelBienvenue = new JLabel("~LIfvraison~");
+		jPanelBienvenue.setBounds(screenSize.height/2, screenSize.height-200, 500, 500);
+		JLabel jLabelBienvenue = new JLabel("~ LIFvraison ~");
 		jLabelBienvenue.setFont(new Font("Serif", Font.PLAIN, 30));
 		jPanelBienvenue.add(jLabelBienvenue);
 /*
@@ -75,7 +82,10 @@ public class Fenetre extends JFrame
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(screenSize.width, screenSize.height);
 		
-
+		jButtonRetourAccueil = new JButton("Accueil");
+		jButtonRetourAccueil.setBounds(50,screenSize.height-150,150,50);
+		jButtonRetourAccueil.addActionListener( ecouteurDeBoutons );
+		
 		setVisible(true);
 		this.setLayout(null);
 		setModeAccueil();
@@ -84,13 +94,14 @@ public class Fenetre extends JFrame
 	}
 	public void setModeAccueil ()
 	{
+		setVisible(false);
 		getContentPane().removeAll();
 		//getContentPane().setLayout((LayoutManager) new FlowLayout(FlowLayout.RIGHT));
-		jButtonChargement = new JButton ( "Charger Plan" );
+		jButtonChargementPlan = new JButton ( "Charger Plan" );
 
-		jButtonChargement.setBounds(screenSize.width-200,screenSize.height-200,150,50);
+		jButtonChargementPlan.setBounds(screenSize.width-180,screenSize.height-150,150,50);
 		//getContentPane().add( jButtonChargement, BorderLayout.SOUTH );
-		getContentPane().add( jButtonChargement );
+		getContentPane().add( jButtonChargementPlan );
 		getContentPane().add( jPanelBienvenue );
 		
 		JPanel imagePanel = new JPanel();
@@ -99,7 +110,7 @@ public class Fenetre extends JFrame
 		imagePanel.add(imageLabel);
 		getContentPane().add(imagePanel);
 		
-		jButtonChargement.addActionListener( ecouteurDeBoutons );
+		jButtonChargementPlan.addActionListener( ecouteurDeBoutons );
 		
 		setVisible(true);
 	}
@@ -111,14 +122,16 @@ public class Fenetre extends JFrame
 		getContentPane().removeAll();
 		MapPanel mapPanel = new MapPanel(plan, null, null);
 		getContentPane().add(mapPanel);
-		jButtonChargement = new JButton ( "Charger Livraison" );
+		jButtonChargementLivraison = new JButton ( "Charger Livraison" );
 
-		jButtonChargement.setBounds(screenSize.width-200,screenSize.height-200,150,50);
+		jButtonChargementLivraison.setBounds(screenSize.width-180,screenSize.height-220,150,50);
 
-		this.add( jButtonChargement );
+		this.add( jButtonChargementLivraison );
 		
-		jButtonChargement.addActionListener( ecouteurDeBoutons );
+		jButtonChargementLivraison.addActionListener( ecouteurDeBoutons );
+		getContentPane().add( jButtonChargementPlan );
 		getContentPane().add( jPanelBienvenue );
+		getContentPane().add( jButtonRetourAccueil );
 		setVisible(true);
 	}
 
@@ -131,10 +144,13 @@ public class Fenetre extends JFrame
 		getContentPane().add(mapPanel);
 		
 		jButtonCalculTournee = new JButton ( "Calculer Tournee" );
-		jButtonCalculTournee.setBounds(screenSize.width-200,screenSize.height-200,150,50);
+		jButtonCalculTournee.setBounds(screenSize.width-180,screenSize.height-300,150,50);
 
 		getContentPane().add( jButtonCalculTournee);
+		getContentPane().add( jButtonChargementLivraison );
+		getContentPane().add( jButtonChargementPlan );
 		getContentPane().add( jPanelBienvenue );
+		getContentPane().add( jButtonRetourAccueil );
 		jButtonCalculTournee.addActionListener( ecouteurDeBoutons );
 		
 		setVisible(true);
@@ -148,11 +164,30 @@ public class Fenetre extends JFrame
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, tournee);
 		getContentPane().add(mapPanel);
 		
+		jButtonAjouterLivraison = new JButton("+");
+		jButtonSupprimerLivraison = new JButton("-");
+		jButtonEchangerLivraisons = new JButton("<-/->");
+		jButtonUndo = new JButton("undo");
+		jButtonRedo = new JButton("redo");
+		
+		jButtonAjouterLivraison.setBounds(screenSize.width-180,0,100,50);
+		jButtonSupprimerLivraison.setBounds(screenSize.width-180,60,100,50);
+		jButtonEchangerLivraisons.setBounds(screenSize.width-180,120,100,50);
+		jButtonUndo.setBounds(screenSize.width-180,180,100,50);
+		jButtonRedo.setBounds(screenSize.width-180,240,100,50);
+		
+		getContentPane().add( jButtonAjouterLivraison);
+		getContentPane().add( jButtonSupprimerLivraison);
+		getContentPane().add( jButtonEchangerLivraisons);
+		getContentPane().add( jButtonUndo);
+		getContentPane().add( jButtonRedo);
+		
 		jButtonValider = new JButton ( "Valider Tournee" );
 		jButtonValider.setBounds(screenSize.width-200,screenSize.height-200,150,50);
 
 		getContentPane().add( jButtonValider);
 		getContentPane().add( jPanelBienvenue );
+		getContentPane().add( jButtonRetourAccueil );
 		jButtonValider.addActionListener( ecouteurDeBoutons );
 		
 		setVisible(true);
@@ -173,6 +208,7 @@ public class Fenetre extends JFrame
 
 		getContentPane().add( jPanelDeLaFin);
 		getContentPane().add( jPanelBienvenue );
+		getContentPane().add( jButtonRetourAccueil );
 		jButtonValider.addActionListener( ecouteurDeBoutons );
 		
 		setVisible(true);
