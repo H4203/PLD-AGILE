@@ -11,11 +11,13 @@ public class CalculateurTournee {
 
 	private Tournee laTournee;
 	private List<Itineraire> lesItineraires;
+	private List<Dijkstra> lesDijkstra;
 
 	
 	public CalculateurTournee(Tournee laTournee){
 		this.laTournee = laTournee;
 		lesItineraires = new ArrayList<Itineraire>();
+		lesDijkstra = new ArrayList<Dijkstra>();
 	}
 	
 	public void run() 
@@ -41,6 +43,7 @@ public class CalculateurTournee {
 		for(int i = 0; i< intersections.size(); i++) {
 			Intersection lIntersection = intersections.get(i);
 			Dijkstra d = new Dijkstra(lePlan, lIntersection);
+			this.lesDijkstra.add(d);
 			d.run();
 			if(i == 0)
 			{
@@ -77,6 +80,75 @@ public class CalculateurTournee {
 	
 	public List<Itineraire> getLesItineraires() {
 		return lesItineraires;
+	}
+	
+	public Tournee supprimerLivraison(Livraison livraison) {
+		int index = -1;
+		for(int i = 0; i < lesItineraires.size(); i++) {
+			if(lesItineraires.get(i).getDepart().getId() == livraison.getIntersection().getId())
+			{
+				index = i;
+			}
+		}
+		List<Itineraire> nouvelleTournee = new ArrayList<Itineraire>();
+		if(index != -1) {
+			for(int i = 0; i < index; i++) {
+				nouvelleTournee.add(this.lesItineraires.get(i));
+			}
+			if(index != (this.lesItineraires.size()-1)) {
+				nouvelleTournee.add(lesDijkstra.get(index-1).getItineraire(lesItineraires.get(index+1).getDepart().getId()));
+				for(int i = index+1; i < lesItineraires.size()-1; i++) {
+					nouvelleTournee.add(this.lesItineraires.get(i));
+				}
+			}
+			this.lesItineraires = nouvelleTournee;
+			this.lesDijkstra.remove(index);
+			laTournee.setListeItineraires(lesItineraires);
+			laTournee.getDemandeLivraison().getLivraisons().remove(index);
+		}
+		
+		return this.laTournee;
+	}
+	
+	public Tournee ajouterLivraison(Livraison livraison) {
+		int index = -1;
+		for(int i = 0; i < lesItineraires.size(); i++) {
+			if(lesItineraires.get(i).getDepart().getId() == livraison.getIntersection().getId())
+			{
+				index = i;
+			}
+		}
+		List<Itineraire> nouvelleTournee = new ArrayList<Itineraire>();
+		List<Livraison> nouvellesLivraisons = new ArrayList<Livraison>();
+		List<Dijkstra> nouveauxDijkstra = new ArrayList<Dijkstra>();
+		if(index != -1) {
+			for(int i = 0; i < index; i++) {
+				nouveauxDijkstra.add(this.lesDijkstra.get(i));
+				nouvelleTournee.add(this.lesItineraires.get(i));
+				nouvellesLivraisons.add(laTournee.getLivraisonsOrdonnees().get(i));
+			}
+			
+			nouvellesLivraisons.add(livraison);
+			Dijkstra d = new Dijkstra(this.laTournee.getPlan(), livraison.getIntersection());
+			d.run();
+			nouveauxDijkstra.add(d);
+			nouvelleTournee.add(this.lesDijkstra.get(index).getItineraire(livraison.getIntersection().getId()));
+			nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(index+1).getDepart().getId()));
+			
+			for(int i = index + 1; i < lesItineraires.size(); i++) {
+				nouveauxDijkstra.add(this.lesDijkstra.get(i));
+				nouvelleTournee.add(this.lesItineraires.get(i));
+				nouvellesLivraisons.add(laTournee.getLivraisonsOrdonnees().get(i));
+			}
+			
+			this.lesDijkstra = nouveauxDijkstra;
+			this.lesItineraires = nouvelleTournee;
+			this.laTournee.setListeItineraires(nouvelleTournee);
+		}
+		
+		
+		
+		return this.laTournee;
 	}
 
 	/*public static void main (String[] args)
