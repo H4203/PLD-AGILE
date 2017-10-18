@@ -66,7 +66,7 @@ public class CalculateurTournee {
 		livraisonsOrdonnees.add(livraisons.get(sommetCourant));
 		for(int i = 1; i < intersections.size(); i++) {
 			int prochainSommet = tsp.getMeilleureSolution(i);
-			livraisonsOrdonnees.add(livraisons.get(prochainSommet));
+			livraisonsOrdonnees.add(livraisons.get(prochainSommet-1));
 			lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(prochainSommet).getId()));
 			sommetCourant = prochainSommet;
 		}
