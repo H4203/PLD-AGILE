@@ -22,12 +22,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import algorithme.CalculateurTournee;
-import controlleur.Controleur;
+import controleur.Controleur;
 import donnees.XMLParseur;
 import modeles.DemandeLivraison;
+import modeles.Livraison;
 import modeles.Plan;
 import modeles.Tournee;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class Fenetre extends JFrame
 {
@@ -130,7 +133,6 @@ public class Fenetre extends JFrame
 		
 		jButtonChargementLivraison.addActionListener( ecouteurDeBoutons );
 		getContentPane().add( jButtonChargementPlan );
-		getContentPane().add( jPanelBienvenue );
 		getContentPane().add( jButtonRetourAccueil );
 		setVisible(true);
 	}
@@ -149,7 +151,6 @@ public class Fenetre extends JFrame
 		getContentPane().add( jButtonCalculTournee);
 		getContentPane().add( jButtonChargementLivraison );
 		getContentPane().add( jButtonChargementPlan );
-		getContentPane().add( jPanelBienvenue );
 		getContentPane().add( jButtonRetourAccueil );
 		jButtonCalculTournee.addActionListener( ecouteurDeBoutons );
 		
@@ -164,6 +165,32 @@ public class Fenetre extends JFrame
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, tournee);
 		getContentPane().add(mapPanel);
 		
+		/* liste */
+		JPanel jPanelListe = new JPanel ();
+		JTextArea jLabelListeLivraison = new JTextArea();
+		String texteListe = "Liste des livraisons\n";
+		
+		int i = 0;
+		texteListe += "Depart - " + tournee.getListeHoraire().get(i).getHeureDebut().toString() + "\n";
+		for (Livraison livraison : tournee.getLivraisonsOrdonnees() )
+		{
+			if (i < tournee.getLivraisonsOrdonnees().size()-1 )
+			{
+			i++;
+			texteListe += i + " - de " + tournee.getListeHoraire().get(i).getHeureDebut().toString() 
+					+ " a " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
+			}
+		}
+		texteListe += "Retour à l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
+		
+		jLabelListeLivraison.setText(texteListe);
+		System.out.println(texteListe);
+		jPanelListe.add(jLabelListeLivraison);
+		jPanelListe.setBounds(screenSize.width-250,300,300,200);
+		jLabelListeLivraison.setEditable(false);
+		getContentPane().add( jPanelListe);
+		
+		/* bouton */
 		jButtonAjouterLivraison = new JButton("+");
 		jButtonSupprimerLivraison = new JButton("-");
 		jButtonEchangerLivraisons = new JButton("<-/->");
@@ -183,10 +210,9 @@ public class Fenetre extends JFrame
 		getContentPane().add( jButtonRedo);
 		
 		jButtonValider = new JButton ( "Valider Tournee" );
-		jButtonValider.setBounds(screenSize.width-200,screenSize.height-200,150,50);
+		jButtonValider.setBounds(screenSize.width-180,screenSize.height-200,150,50);
 
 		getContentPane().add( jButtonValider);
-		getContentPane().add( jPanelBienvenue );
 		getContentPane().add( jButtonRetourAccueil );
 		jButtonValider.addActionListener( ecouteurDeBoutons );
 		
@@ -207,7 +233,6 @@ public class Fenetre extends JFrame
 		jPanelDeLaFin.setBounds(screenSize.width-200,screenSize.height-200,150,50);
 
 		getContentPane().add( jPanelDeLaFin);
-		getContentPane().add( jPanelBienvenue );
 		getContentPane().add( jButtonRetourAccueil );
 		jButtonValider.addActionListener( ecouteurDeBoutons );
 		

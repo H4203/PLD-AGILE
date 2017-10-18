@@ -1,6 +1,6 @@
 package vue;
 
-import controlleur.Controleur;
+import controleur.Controleur;
 
 public class Launcher 
 {
