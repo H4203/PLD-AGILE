@@ -167,7 +167,7 @@ public class Fenetre extends JFrame
 		getContentPane().add(mapPanel);
 		
 		JPanel jPanelDeLaFin = new JPanel ();
-		JLabel jLabelBonneChance = new JLabel("Bonne Tournee ( ･ω･)ﾉ!!");
+		JLabel jLabelBonneChance = new JLabel("Bonne Tournee :)");
 		jPanelDeLaFin.add(jLabelBonneChance);
 		jPanelDeLaFin.setBounds(screenSize.width-200,screenSize.height-200,150,50);
 
