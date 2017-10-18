@@ -2,63 +2,35 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import algorithme.CalculateurTournee;
 import controleur.Controleur;
-import donnees.XMLParseur;
 import modeles.DemandeLivraison;
 import modeles.Livraison;
 import modeles.Plan;
 import modeles.Tournee;
-import javax.swing.JScrollPane;
 
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import javax.swing.SwingConstants;
 
 public class Fenetre extends JFrame
 {
-	private VueGraphique vueGraphique;
+	//private VueGraphique vueGraphique;
 
-	// 1 mainPanel
-	private JPanel mainPanel;
-	// 1.1 mainPanel/leftPanel
-	private JPanel leftPanel;
 	// 1.1.1 mainPanel/leftPanel/overMapPanel
 	private JPanel overMapPanel;
-	// 1.1.2 mainPanel/leftPanel/titlePanel
-	private JPanel titlePanel;
-	// 1.2 mainPanel/overRightPanel
-	private JPanel overRightPanel;
-	// 1.2.1 mainPanel/overRightPanel/rightPanel
-	private JPanel rightPanel;
 	// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 	private JPanel listeLivraisonsPanel;
-	// 1.2.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel
-	private JPanel buttonsPanel;
 	// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 	private JPanel topButtonsPanel;	
 	// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
@@ -75,14 +47,14 @@ public class Fenetre extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 1 mainPanel
-		mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
+		JPanel mainPanel = new JPanel();
+		mainPanel.setLayout(new GridLayout(0,2));
 		getContentPane().add(mainPanel);
 		
 		// 1.1 mainPanel/leftPanel
-		leftPanel = new JPanel();
+		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BorderLayout());
-		mainPanel.add(leftPanel, BorderLayout.CENTER);
+		mainPanel.add(leftPanel);
 		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel
 		overMapPanel = new JPanel();
@@ -90,7 +62,7 @@ public class Fenetre extends JFrame
 		leftPanel.add(overMapPanel, BorderLayout.CENTER);
 		
 		// 1.1.2 mainPanel/leftPanel/titlePanel
-		titlePanel = new JPanel();
+		JPanel titlePanel = new JPanel();
 		titlePanel.setLayout(new BorderLayout());
 		titlePanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 10));
 		leftPanel.add(titlePanel, BorderLayout.SOUTH);
@@ -101,13 +73,13 @@ public class Fenetre extends JFrame
 		titlePanel.add(titleLabel, BorderLayout.CENTER);
 		
 		// 1.2 mainPanel/overRightPanel
-		overRightPanel = new JPanel();
+		JPanel overRightPanel = new JPanel();
 		overRightPanel.setLayout(new CardLayout(50, 50));
 		overRightPanel.setPreferredSize(new Dimension(screenSize.width / 3, screenSize.height));
-		mainPanel.add(overRightPanel, BorderLayout.EAST);
+		mainPanel.add(overRightPanel);
 		
 		// 1.2.1 mainPanel/overRightPanel/rightPanel
-		rightPanel = new JPanel();
+		JPanel rightPanel = new JPanel();
 		rightPanel.setLayout(new GridLayout(0,2));
 		overRightPanel.add(rightPanel);
 		
@@ -117,7 +89,7 @@ public class Fenetre extends JFrame
 		rightPanel.add(listeLivraisonsPanel);
 		
 		// 1.2.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel
-		buttonsPanel = new JPanel();
+		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(2, 0, 20, 20));
 		rightPanel.add(buttonsPanel);
 		
