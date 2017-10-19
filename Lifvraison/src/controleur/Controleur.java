@@ -14,57 +14,103 @@ public class Controleur
 	private Fenetre fenetre;
 	private Plan plan;
 	private Tournee tournee;
-	DemandeLivraison demandeLivraisons;
+	DemandeLivraison demandeLivraison;
+	
+	private String etat;
 	
 	public Controleur() 
 	{
 		parseur = new XMLParseur();
 		fenetre = new Fenetre(this);
+		
+		setModeAccueil();
 	}
 	
-	public void importerPlan(String cheminPlan)
-	{
-		plan = parseur.chargerPlan(cheminPlan);
-		afficherPlan();
-	}
-	
-	public void afficherPlan()
-	{
-		fenetre.setModePlan(plan);
-	}
-	
-	public void importerDemandeLivraison(String cheminDemandeLivraisons)
-	{
-		demandeLivraisons = parseur.chargerLivraison(cheminDemandeLivraisons, plan.getListeIntersection());
-		afficherDemandeLivraison();
-	}
-	
-	public void afficherDemandeLivraison()
-	{
-		fenetre.setModeDemandeLivraison(plan, demandeLivraisons);
-	}
-	
-	public void calculerTournee()
-	{
-		tournee = new Tournee(plan, demandeLivraisons);
-		calculateurTournee = new CalculateurTournee(tournee);
-		calculateurTournee.run();
-		afficherTournee();
-	}
-	
-	public void afficherTournee()
-	{
-		fenetre.setModeModifierTournee(plan, demandeLivraisons, tournee);
-	}
-	
-	public void validerTournee()
-	{
-		fenetre.setModeValiderTournee(plan, demandeLivraisons, tournee);
-	}
-	
-	public void retourAccueil()
+	public void setModeAccueil()
 	{
 		fenetre.setModeAccueil();
+		etat = "Accueil";
 	}
 	
+	public void setModeChargementPlan(String cheminPlan)
+	{
+		if (cheminPlan != null)
+		{
+			plan = parseur.chargerPlan(cheminPlan);
+			demandeLivraison = null;
+			tournee = null;
+		}
+		
+		fenetre.setModeChargementPlan(plan);
+		etat = "ChargementPlan";
+	}
+	
+	public void setModeChargementDemandeLivraison(String cheminDemandeLivraisons)
+	{
+		if (cheminDemandeLivraisons != null && plan != null)
+		{
+			demandeLivraison = parseur.chargerLivraison(cheminDemandeLivraisons, plan.getListeIntersection());
+			tournee = null;
+		}
+		
+		fenetre.setModeChargementDemandeLivraison(demandeLivraison);
+		etat = "ChargementDemandeLivraison";
+	}
+	
+	public void setModeCalculTournee(String calcul)
+	{
+		if (calcul != null)
+		{
+			tournee = new Tournee(plan, demandeLivraison);
+			calculateurTournee = new CalculateurTournee(tournee);
+			calculateurTournee.run();
+		}
+		
+		fenetre.setModeCalculTournee(tournee);
+		etat = "CalculTournee";
+	}
+	
+	public void setModeModificationTournee()
+	{
+		fenetre.setModeModificationTournee(tournee);
+		etat = "ModificationTournee";
+	}
+	
+	public void setModeValidationTournee()
+	{
+		fenetre.setModeValidationTournee();
+		etat = "ValidationTournee";
+	}	
+	
+	public void setModeSuivant()
+	{
+		switch (etat)
+		{
+			case "Accueil" :
+			{
+				setModeChargementPlan(null);
+				break;
+			}
+			case "ChargementPlan" :
+			{
+				setModeChargementDemandeLivraison(null);
+				break;
+			}
+			case "ChargementDemandeLivraison" :
+			{
+				setModeCalculTournee(null);
+				break;
+			}
+			case "CalculTournee" :
+			{
+				setModeModificationTournee();
+				break;
+			}
+			case "ModificationTournee" :
+			{
+				setModeValidationTournee();
+				break;
+			}
+		}
+	}
 }

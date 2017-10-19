@@ -29,51 +29,21 @@ public class MapPanel extends JPanel
 	private int bord = 200;
 	private int realHeight;
 
-	private int xMin = 999999;
-	private int yMin = 999999;
+	private int xMin;
+	private int yMin;
 	private double coefX;
 	private double coefY;
 	
 	public MapPanel(Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		//this.setBounds(10, 10, screenSize.width-bord, screenSize.height-bord);
-		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
 		this.tournee = tournee;
 		
-		int xMax = 0;
-		int yMax = 0;
-		
-		for (Map.Entry<Long, Intersection> mapentry : plan.getListeIntersection().entrySet()) 
-        {
-			if (((Intersection) mapentry.getValue()).getX() > xMax)
-			{
-				xMax = ((Intersection) mapentry.getValue()).getX();
-			}
-			else if (((Intersection) mapentry.getValue()).getX() < xMin)
-			{
-				xMin = ((Intersection) mapentry.getValue()).getX();
-			}
-			
-			if (((Intersection) mapentry.getValue()).getY() > yMax)
-			{
-				yMax = ((Intersection) mapentry.getValue()).getY();
-			}
-			else if (((Intersection) mapentry.getValue()).getY() < yMin)
-			{
-				yMin = ((Intersection) mapentry.getValue()).getY();
-			}
-        }
-		
-		realHeight = (int)Math.round(screenSize.height * 0.9 - bord);
-		
-		System.out.println(realHeight);
-		
-		coefX = (double)(realHeight) / (xMax - xMin);
-		coefY = (double)(realHeight) / (yMax - yMin);
-
+		if (plan != null)
+		{
+			init();
+		}
 	}
 	
 	public void repaint(Graphics g)
@@ -89,16 +59,19 @@ public class MapPanel extends JPanel
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
-		// Affihage des Troncons du Plan
+		if (plan != null)
+		{
+			// Affihage des Troncons du Plan
+			
+			for (Map.Entry<Integer, Troncon> mapentry : plan.getListeTroncons().entrySet()) 
+	        {
+	        	g2.drawLine( (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
+	        			realHeight - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
+	        			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY),
+	        			realHeight - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX));
+	        }
+		}
 		
-		for (Map.Entry<Integer, Troncon> mapentry : plan.getListeTroncons().entrySet()) 
-        {
-        	g2.drawLine( (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
-        			realHeight - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
-        			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY),
-        			realHeight - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX));
-        }
-        
         g2.setColor(Color.BLUE);
         g2.setStroke(new BasicStroke(3));
         
@@ -218,4 +191,61 @@ public class MapPanel extends JPanel
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(1));
 	}
+	
+	public void setPlan(Plan plan)
+	{
+		this.plan = plan;
+		
+		if (plan != null)
+		{
+			init();
+		}
+	}
+	
+	public void setDemandeLivraison(DemandeLivraison demandeLivraison)
+	{
+		this.demandeLivraison = demandeLivraison;
+	}
+	
+	public void setTournee(Tournee tournee) 
+	{
+		this.tournee = tournee;
+	}
+	
+	public void init()
+	{
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		int xMax = 0;
+		int yMax = 0;
+		xMin = 999999;
+		yMin = 999999;
+		
+		for (Map.Entry<Long, Intersection> mapentry : plan.getListeIntersection().entrySet()) 
+        {
+			if (((Intersection) mapentry.getValue()).getX() > xMax)
+			{
+				xMax = ((Intersection) mapentry.getValue()).getX();
+			}
+			else if (((Intersection) mapentry.getValue()).getX() < xMin)
+			{
+				xMin = ((Intersection) mapentry.getValue()).getX();
+			}
+			
+			if (((Intersection) mapentry.getValue()).getY() > yMax)
+			{
+				yMax = ((Intersection) mapentry.getValue()).getY();
+			}
+			else if (((Intersection) mapentry.getValue()).getY() < yMin)
+			{
+				yMin = ((Intersection) mapentry.getValue()).getY();
+			}
+        }
+		
+		realHeight = (int)Math.round(screenSize.height * 0.9 - bord);
+		
+		coefX = (double)(realHeight) / (xMax - xMin);
+		coefY = (double)(realHeight) / (yMax - yMin);
+	}
 }
+
