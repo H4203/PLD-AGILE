@@ -3,6 +3,7 @@ package vue;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -35,6 +36,18 @@ public class Fenetre extends JFrame
 	private JPanel topButtonsPanel;	
 	// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
 	private JPanel bottomButtonsPanel;
+	// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
+	private JButton buttonSuivant;
+	// 1.3.1 mainPanel/ongletsPanel/buttonAccueil
+	private JButton buttonAccueil;
+	// 1.3.2 mainPanel/ongletsPanel/buttonChargementPlan
+	private JButton buttonChargementPlan;
+	// 1.3.3 mainPanel/ongletsPanel/buttonChargementDemandeLivraison
+	private JButton buttonChargementDemandeLivraison;
+	// 1.3.4 mainPanel/ongletsPanel/buttonModificationTournee
+	private JButton buttonModificationTournee;
+	// 1.3.5 mainPanel/ongletsPanel/buttonValidationTournee
+	private JButton buttonValidationTournee;
 	
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -48,13 +61,13 @@ public class Fenetre extends JFrame
 		
 		// 1 mainPanel
 		JPanel mainPanel = new JPanel();
-		mainPanel.setLayout(new GridLayout(0,2));
+		mainPanel.setLayout(new BorderLayout());
 		getContentPane().add(mainPanel);
 		
 		// 1.1 mainPanel/leftPanel
 		JPanel leftPanel = new JPanel();
 		leftPanel.setLayout(new BorderLayout());
-		mainPanel.add(leftPanel);
+		mainPanel.add(leftPanel, BorderLayout.CENTER);
 		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel
 		overMapPanel = new JPanel();
@@ -72,16 +85,11 @@ public class Fenetre extends JFrame
 		titleLabel.setFont(new Font("Serif", Font.PLAIN, 30));
 		titlePanel.add(titleLabel, BorderLayout.CENTER);
 		
-		// 1.1.2.2 mainPanel/leftPanel/titlePanel/buttonAccueil
-		JButton buttonAccueil = new JButton("Accueil");
-		buttonAccueil.addActionListener(ecouteurDeBoutons);
-		titlePanel.add(buttonAccueil, BorderLayout.WEST);
-		
 		// 1.2 mainPanel/overRightPanel
 		JPanel overRightPanel = new JPanel();
 		overRightPanel.setLayout(new CardLayout(50, 50));
 		overRightPanel.setPreferredSize(new Dimension(screenSize.width / 3, screenSize.height));
-		mainPanel.add(overRightPanel);
+		mainPanel.add(overRightPanel, BorderLayout.EAST);
 		
 		// 1.2.1 mainPanel/overRightPanel/rightPanel
 		JPanel rightPanel = new JPanel();
@@ -105,8 +113,48 @@ public class Fenetre extends JFrame
 		
 		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel		
 		bottomButtonsPanel = new JPanel();
-		bottomButtonsPanel.setLayout(new GridLayout(4, 0, 20, 20));
+		bottomButtonsPanel.setLayout(new GridLayout(2, 0, 20, 20));
 		buttonsPanel.add(bottomButtonsPanel);
+		
+		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
+		buttonSuivant = new JButton("Suivant");
+		buttonSuivant.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonSuivant);
+		
+		// 1.3 mainPanel/ongletsPanel
+		JPanel ongletsPanel = new JPanel();
+		ongletsPanel.setLayout(new FlowLayout());
+		mainPanel.add(ongletsPanel, BorderLayout.NORTH);
+		
+		// 1.3.1 mainPanel/ongletsPanel/buttonAccueil
+		buttonAccueil = new JButton("Accueil");
+		buttonAccueil.addActionListener(ecouteurDeBoutons);
+		buttonAccueil.setEnabled(false);
+		ongletsPanel.add(buttonAccueil);
+		
+		// 1.3.2 mainPanel/ongletsPanel/buttonChargementPlan		
+		buttonChargementPlan = new JButton("Chargement Plan");
+		buttonChargementPlan.addActionListener(ecouteurDeBoutons);
+		buttonChargementPlan.setEnabled(false);
+		ongletsPanel.add(buttonChargementPlan);
+		
+		// 1.3.3 mainPanel/ongletsPanel/buttonChargementTournee
+		buttonChargementDemandeLivraison = new JButton ("Chargement Demande Livraison");
+		buttonChargementDemandeLivraison.addActionListener(ecouteurDeBoutons);
+		buttonChargementDemandeLivraison.setEnabled(false);
+		ongletsPanel.add(buttonChargementDemandeLivraison);
+		
+		// 1.3.3 mainPanel/ongletsPanel/buttonModificationTournee
+		buttonModificationTournee = new JButton ("Modification Tournee");
+		buttonModificationTournee.addActionListener(ecouteurDeBoutons);
+		buttonModificationTournee.setEnabled(false);
+		ongletsPanel.add(buttonModificationTournee);
+		
+		// 1.3.5 mainPanel/ongletsPanel/buttonValidationTournee
+		buttonValidationTournee = new JButton("Validation Tournee");
+		buttonValidationTournee.addActionListener(ecouteurDeBoutons);
+		buttonValidationTournee.setEnabled(false);
+		ongletsPanel.add(buttonValidationTournee);
 		
 		/*
 		setUndecorated(true);
@@ -142,6 +190,12 @@ public class Fenetre extends JFrame
 	{
 		setVisible(false);
 		
+		buttonAccueil.setEnabled(false);
+		buttonChargementPlan.setEnabled(false);
+		buttonChargementDemandeLivraison.setEnabled(false);
+		buttonModificationTournee.setEnabled(false);
+		buttonValidationTournee.setEnabled(false);
+		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel		
 		overMapPanel.removeAll();
 		
@@ -149,18 +203,10 @@ public class Fenetre extends JFrame
 		JLabel imageLabel = new JLabel(new ImageIcon("ihm\\image_livreur.jpg"));
 		overMapPanel.add(imageLabel, BorderLayout.CENTER);
 		
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
 		bottomButtonsPanel.removeAll();
 		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/Buttons		
 		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(new JLabel());
-		
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementPlan		
-		JButton buttonChargementPlan = new JButton("Charger Plan");
-		buttonChargementPlan.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargementPlan);
+		bottomButtonsPanel.add(buttonSuivant);
 		
 		setVisible(true);
 	}
@@ -169,6 +215,12 @@ public class Fenetre extends JFrame
 	{
 		setVisible(false);
 		
+		buttonAccueil.setEnabled(true);
+		buttonChargementPlan.setEnabled(false);
+		buttonChargementDemandeLivraison.setEnabled(false);
+		buttonModificationTournee.setEnabled(false);
+		buttonValidationTournee.setEnabled(false);
+		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel
 		overMapPanel.removeAll();
 		
@@ -176,22 +228,13 @@ public class Fenetre extends JFrame
 		MapPanel mapPanel = new MapPanel(plan, null, null);
 		overMapPanel.add(mapPanel);
 		
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
 		bottomButtonsPanel.removeAll();
 		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/Buttons
-		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(new JLabel());
-
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementPlan		
-		JButton buttonChargementPlan = new JButton("Charger Plan");
-		buttonChargementPlan.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargementPlan);
+		JButton buttonChargerPlan = new JButton("Charger Plan");
+		buttonChargerPlan.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonChargerPlan);
 		
-		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementTournee
-		JButton buttonChargementTournee = new JButton ("Charger Livraison");
-		buttonChargementTournee.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargementTournee);
+		bottomButtonsPanel.add(buttonSuivant);
 		
 		setVisible(true);
 	}
@@ -200,6 +243,12 @@ public class Fenetre extends JFrame
 	{
 		setVisible(false);
 		
+		buttonAccueil.setEnabled(true);
+		buttonChargementPlan.setEnabled(true);
+		buttonChargementDemandeLivraison.setEnabled(false);
+		buttonModificationTournee.setEnabled(false);
+		buttonValidationTournee.setEnabled(false);
+		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel
 		overMapPanel.removeAll();
 		
@@ -207,26 +256,13 @@ public class Fenetre extends JFrame
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, null);
 		overMapPanel.add(mapPanel);
 		
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
 		bottomButtonsPanel.removeAll();
 		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/Buttons
-		bottomButtonsPanel.add(new JLabel());
-
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementPlan		
-		JButton buttonChargementPlan = new JButton("Charger Plan");
-		buttonChargementPlan.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargementPlan);
+		JButton buttonChargerDemandeLivraison = new JButton("Charger Demande Livraison");
+		buttonChargerDemandeLivraison.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonChargerDemandeLivraison);
 		
-		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementTournee
-		JButton buttonChargementTournee = new JButton ("Charger Livraison");
-		buttonChargementTournee.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargementTournee);
-		
-		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculTournee
-		JButton buttonCalculTournee = new JButton("Calculer Tournee");
-		buttonCalculTournee.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonCalculTournee);
+		bottomButtonsPanel.add(buttonSuivant);
 		
 		setVisible(true);
 	}
@@ -235,33 +271,18 @@ public class Fenetre extends JFrame
 	{
 		setVisible(false);
 
+		buttonAccueil.setEnabled(true);
+		buttonChargementPlan.setEnabled(true);
+		buttonChargementDemandeLivraison.setEnabled(true);
+		buttonModificationTournee.setEnabled(true);
+		buttonValidationTournee.setEnabled(false);
+		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel
 		overMapPanel.removeAll();
 		
 		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
 		MapPanel mapPanel = new MapPanel(plan, demandeLivraisons, tournee);
 		overMapPanel.add(mapPanel);
-		
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
-		bottomButtonsPanel.removeAll();
-
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/Buttons
-		bottomButtonsPanel.add(new JLabel());
-		
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementPlan		
-		JButton buttonChargementPlan = new JButton("Charger Plan");
-		buttonChargementPlan.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargementPlan);
-		
-		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargementTournee
-		JButton buttonChargementTournee = new JButton ("Charger Livraison");
-		buttonChargementTournee.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargementTournee);
-		
-		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
-		JButton buttonValider = new JButton("Valider Tournee");
-		buttonValider.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonValider);
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
@@ -306,6 +327,14 @@ public class Fenetre extends JFrame
 		texteListe = texteListe + "Retour à l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
 		labelListeLivraison.setText(texteListe);
 		
+		bottomButtonsPanel.removeAll();
+		
+		JButton buttonValiderTournee = new JButton("Valider Tournee");
+		buttonValiderTournee.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonValiderTournee);
+		
+		bottomButtonsPanel.add(buttonSuivant);
+		
 		setVisible(true);
 	}
 	
@@ -313,16 +342,12 @@ public class Fenetre extends JFrame
 	{
 		setVisible(false);
 
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
+		buttonAccueil.setEnabled(true);
+		buttonChargementPlan.setEnabled(true);
+		buttonChargementDemandeLivraison.setEnabled(true);
+		buttonValidationTournee.setEnabled(true);
+		
 		bottomButtonsPanel.removeAll();
-		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/Buttons
-		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(new JLabel());
-		
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/labelBonneTournee		
-		bottomButtonsPanel.add(new JLabel("Bonne Tournee !"));
 		
 		setVisible(true);
 	}

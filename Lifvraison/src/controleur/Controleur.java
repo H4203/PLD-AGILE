@@ -20,53 +20,55 @@ public class Controleur {
 	/**
 	 * 
 	 */
-	public Controleur() {
-		
+	public Controleur() 
+	{
 		parseur = new XMLParseur ();
 		fenetre = new Fenetre ( this );
-	
 	}
 	
 	public void importerPlan ( String cheminPlan)
 	{
 		plan = parseur.chargerPlan( cheminPlan );
-		fenetre.setModePlan( plan );
-		
-
+		afficherPlan();
 	}
 	
-	public void ImporterDemande ( String cheminDemandeLivraisons)
+	public void afficherPlan()
+	{
+		fenetre.setModePlan( plan );
+	}
+	
+	public void importerDemandeLivraison ( String cheminDemandeLivraisons)
 	{
 		demandeLivraisons = parseur.chargerLivraison( cheminDemandeLivraisons, plan.getListeIntersection() );
-		fenetre.setModeDemandeLivraison(plan, demandeLivraisons);
-		//DemanderCalculTournee();
-		
-		
+		afficherDemandeLivraison();
 	}
 	
-	public void DemanderCalculTournee ()
+	public void afficherDemandeLivraison()
 	{
-		
+		fenetre.setModeDemandeLivraison(plan, demandeLivraisons);
+	}
+	
+	public void calculerTournee ()
+	{
 		tournee = new Tournee ( plan, demandeLivraisons );
 		calculateurTournee = new CalculateurTournee ( tournee);
 		calculateurTournee.run();
-		// pas necessaire
-		//tournee.setListeItineraires( calculateurTournee.getLesItineraires() );
-		fenetre.setModeTournee(plan, demandeLivraisons, tournee);
-		
+		afficherTournee();
 	}
 	
-	public void ValiderTournee ()
+	public void afficherTournee()
 	{
-		
-		fenetre.setModeValiderTournee(plan, demandeLivraisons, tournee);
-		
+		fenetre.setModeTournee(plan, demandeLivraisons, tournee);
 	}
 	
-	public void RetourALAccueil()
+	public void validerTournee ()
+	{
+		fenetre.setModeValiderTournee(plan, demandeLivraisons, tournee);
+	}
+	
+	public void retourAccueil()
 	{
 		fenetre.setModeAccueil();
 	}
-	
 	
 }
