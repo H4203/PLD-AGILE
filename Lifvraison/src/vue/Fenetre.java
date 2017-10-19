@@ -52,11 +52,11 @@ public class Fenetre extends JFrame
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	public Fenetre (Controleur controleur)
+	public Fenetre(Controleur controleur)
 	{
 		super();	
 		
-		ecouteurDeBoutons = new EcouteurDeBoutons ( controleur );
+		ecouteurDeBoutons = new EcouteurDeBoutons(controleur);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 1 mainPanel
@@ -139,13 +139,13 @@ public class Fenetre extends JFrame
 		ongletsPanel.add(buttonChargementPlan);
 		
 		// 1.3.3 mainPanel/ongletsPanel/buttonChargementTournee
-		buttonChargementDemandeLivraison = new JButton ("Chargement Demande Livraison");
+		buttonChargementDemandeLivraison = new JButton("Chargement Demande Livraison");
 		buttonChargementDemandeLivraison.addActionListener(ecouteurDeBoutons);
 		buttonChargementDemandeLivraison.setEnabled(false);
 		ongletsPanel.add(buttonChargementDemandeLivraison);
 		
 		// 1.3.3 mainPanel/ongletsPanel/buttonModificationTournee
-		buttonModificationTournee = new JButton ("Modification Tournee");
+		buttonModificationTournee = new JButton("Modification Tournee");
 		buttonModificationTournee.addActionListener(ecouteurDeBoutons);
 		buttonModificationTournee.setEnabled(false);
 		ongletsPanel.add(buttonModificationTournee);
@@ -160,7 +160,7 @@ public class Fenetre extends JFrame
 		setUndecorated(true);
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-        if (gd.isFullScreenSupported()) {
+        if(gd.isFullScreenSupported()) {
             try {
                 gd.setFullScreenWindow(this);
             }
@@ -186,7 +186,7 @@ public class Fenetre extends JFrame
 		//this.vueGraphique = new VueGraphique(plan, this);
 	}
 	
-	public void setModeAccueil ()
+	public void setModeAccueil()
 	{
 		setVisible(false);
 		
@@ -211,7 +211,7 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
-	public void setModePlan ( Plan plan )
+	public void setModePlan(Plan plan)
 	{
 		setVisible(false);
 		
@@ -239,7 +239,7 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 
-	public void setModeDemandeLivraison (Plan plan, DemandeLivraison demandeLivraisons)
+	public void setModeDemandeLivraison(Plan plan, DemandeLivraison demandeLivraisons)
 	{
 		setVisible(false);
 		
@@ -267,14 +267,14 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
-	public void setModeTournee (Plan plan, DemandeLivraison demandeLivraisons, Tournee tournee)
+	public void setModeModifierTournee(Plan plan, DemandeLivraison demandeLivraisons, Tournee tournee)
 	{
 		setVisible(false);
 
 		buttonAccueil.setEnabled(true);
 		buttonChargementPlan.setEnabled(true);
 		buttonChargementDemandeLivraison.setEnabled(true);
-		buttonModificationTournee.setEnabled(true);
+		buttonModificationTournee.setEnabled(false);
 		buttonValidationTournee.setEnabled(false);
 		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel
@@ -315,9 +315,9 @@ public class Fenetre extends JFrame
 		// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
 		int i = 0;
 		String texteListe = "Liste des livraisons\nDepart - " + tournee.getListeHoraire().get(i).getHeureDebut().toString() + "\n";
-		for (Livraison livraison : tournee.getLivraisonsOrdonnees())
+		for(Livraison livraison : tournee.getLivraisonsOrdonnees())
 		{
-			if (i < tournee.getLivraisonsOrdonnees().size()-1 )
+			if(i < tournee.getLivraisonsOrdonnees().size()-1)
 			{
 				i = i + 1;
 				texteListe = texteListe + i + " - de " + tournee.getListeHoraire().get(i).getHeureDebut().toString() 
@@ -338,7 +338,7 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
-	public void setModeValiderTournee (Plan plan, DemandeLivraison demandeLivraisons, Tournee tournee)
+	public void setModeValiderTournee(Plan plan, DemandeLivraison demandeLivraisons, Tournee tournee)
 	{
 		setVisible(false);
 
@@ -346,6 +346,7 @@ public class Fenetre extends JFrame
 		buttonChargementPlan.setEnabled(true);
 		buttonChargementDemandeLivraison.setEnabled(true);
 		buttonValidationTournee.setEnabled(true);
+		buttonValidationTournee.setEnabled(false);
 		
 		bottomButtonsPanel.removeAll();
 		

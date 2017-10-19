@@ -7,9 +7,8 @@ import modeles.Tournee;
 import vue.Fenetre;
 import modeles.DemandeLivraison;
 
-public class Controleur {
-
-	
+public class Controleur 
+{	
 	private XMLParseur parseur;
 	private CalculateurTournee calculateurTournee;
 	private Fenetre fenetre;
@@ -17,29 +16,26 @@ public class Controleur {
 	private Tournee tournee;
 	DemandeLivraison demandeLivraisons;
 	
-	/**
-	 * 
-	 */
 	public Controleur() 
 	{
-		parseur = new XMLParseur ();
-		fenetre = new Fenetre ( this );
+		parseur = new XMLParseur();
+		fenetre = new Fenetre(this);
 	}
 	
-	public void importerPlan ( String cheminPlan)
+	public void importerPlan(String cheminPlan)
 	{
-		plan = parseur.chargerPlan( cheminPlan );
+		plan = parseur.chargerPlan(cheminPlan);
 		afficherPlan();
 	}
 	
 	public void afficherPlan()
 	{
-		fenetre.setModePlan( plan );
+		fenetre.setModePlan(plan);
 	}
 	
-	public void importerDemandeLivraison ( String cheminDemandeLivraisons)
+	public void importerDemandeLivraison(String cheminDemandeLivraisons)
 	{
-		demandeLivraisons = parseur.chargerLivraison( cheminDemandeLivraisons, plan.getListeIntersection() );
+		demandeLivraisons = parseur.chargerLivraison(cheminDemandeLivraisons, plan.getListeIntersection());
 		afficherDemandeLivraison();
 	}
 	
@@ -48,20 +44,20 @@ public class Controleur {
 		fenetre.setModeDemandeLivraison(plan, demandeLivraisons);
 	}
 	
-	public void calculerTournee ()
+	public void calculerTournee()
 	{
-		tournee = new Tournee ( plan, demandeLivraisons );
-		calculateurTournee = new CalculateurTournee ( tournee);
+		tournee = new Tournee(plan, demandeLivraisons);
+		calculateurTournee = new CalculateurTournee(tournee);
 		calculateurTournee.run();
 		afficherTournee();
 	}
 	
 	public void afficherTournee()
 	{
-		fenetre.setModeTournee(plan, demandeLivraisons, tournee);
+		fenetre.setModeModifierTournee(plan, demandeLivraisons, tournee);
 	}
 	
-	public void validerTournee ()
+	public void validerTournee()
 	{
 		fenetre.setModeValiderTournee(plan, demandeLivraisons, tournee);
 	}
