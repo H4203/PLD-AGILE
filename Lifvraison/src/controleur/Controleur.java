@@ -22,7 +22,10 @@ public class Controleur
 	{
 		parseur = new XMLParseur();
 		fenetre = new Fenetre(this);
-		
+	}
+	
+	public void run()
+	{
 		setModeAccueil();
 	}
 	

@@ -7,9 +7,6 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import controleur.Controleur;
-import donnees.XMLParseur;
-import modeles.DemandeLivraison;
-import modeles.Plan;
 
 public class EcouteurDeBoutons implements ActionListener
 {
