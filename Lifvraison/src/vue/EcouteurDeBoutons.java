@@ -49,7 +49,7 @@ public class EcouteurDeBoutons implements ActionListener
 			}
 			case "Chargement Plan" :
 			{
-				controleur.setModeChargementPlan(null);
+				controleur.setModeChargementPlan();
 				break;
 			}
 			case "Charger Demande Livraison" :
@@ -66,7 +66,7 @@ public class EcouteurDeBoutons implements ActionListener
 			}
 			case "Chargement Demande Livraison" :
 			{
-				controleur.setModeChargementDemandeLivraison(null);
+				controleur.setModeChargementDemandeLivraison();
 				break;
 			}
 			case "Calculer Tournee" :
@@ -76,7 +76,7 @@ public class EcouteurDeBoutons implements ActionListener
 			}
 			case "Calcul Tournee" :
 			{
-				controleur.setModeCalculTournee(null);
+				controleur.setModeCalculTournee();
 				break;
 			}
 			case "Modifier Tournee" :

@@ -35,39 +35,72 @@ public class Controleur
 		etat = "Accueil";
 	}
 	
+	public void setModeChargementPlan()
+	{
+		if (plan == null)
+		{
+			fenetre.setModeChargementPlan();
+		}
+		
+		else
+		{
+			fenetre.setModeChargementPlan(plan);	
+		}
+		
+		etat = "ChargementPlan";
+	}
+	
 	public void setModeChargementPlan(String cheminPlan)
 	{
-		if (cheminPlan != null)
-		{
-			plan = parseur.chargerPlan(cheminPlan);
-			demandeLivraison = null;
-			tournee = null;
-		}
+		plan = parseur.chargerPlan(cheminPlan);
 		
 		fenetre.setModeChargementPlan(plan);
 		etat = "ChargementPlan";
 	}
 	
-	public void setModeChargementDemandeLivraison(String cheminDemandeLivraisons)
+	public void setModeChargementDemandeLivraison()
 	{
-		if (cheminDemandeLivraisons != null && plan != null)
+		if (demandeLivraison == null)
 		{
-			demandeLivraison = parseur.chargerLivraison(cheminDemandeLivraisons, plan.getListeIntersection());
-			tournee = null;
+			fenetre.setModeChargementDemandeLivraison();
 		}
+		
+		else
+		{
+			fenetre.setModeChargementDemandeLivraison(demandeLivraison);	
+		}
+		
+		etat = "ChargementDemandeLivraison";
+	}
+	
+	public void setModeChargementDemandeLivraison(String cheminDemandeLivraisons)
+	{	
+		demandeLivraison = parseur.chargerLivraison(cheminDemandeLivraisons, plan.getListeIntersection());	
 		
 		fenetre.setModeChargementDemandeLivraison(demandeLivraison);
 		etat = "ChargementDemandeLivraison";
 	}
 	
-	public void setModeCalculTournee(String calcul)
+	public void setModeCalculTournee()
 	{
-		if (calcul != null)
+		if (tournee == null)
 		{
-			tournee = new Tournee(plan, demandeLivraison);
-			calculateurTournee = new CalculateurTournee(tournee);
-			calculateurTournee.run();
+			fenetre.setModeCalculTournee();
 		}
+		
+		else
+		{
+			fenetre.setModeCalculTournee(tournee);	
+		}
+		
+		etat = "CalculTournee";
+	}
+	
+	public void setModeCalculTournee(String calcul)
+	{		
+		tournee = new Tournee(plan, demandeLivraison);
+		calculateurTournee = new CalculateurTournee(tournee);
+		calculateurTournee.run();
 		
 		fenetre.setModeCalculTournee(tournee);
 		etat = "CalculTournee";
@@ -91,17 +124,17 @@ public class Controleur
 		{
 			case "Accueil" :
 			{
-				setModeChargementPlan(null);
+				setModeChargementPlan();
 				break;
 			}
 			case "ChargementPlan" :
 			{
-				setModeChargementDemandeLivraison(null);
+				setModeChargementDemandeLivraison();
 				break;
 			}
 			case "ChargementDemandeLivraison" :
 			{
-				setModeCalculTournee(null);
+				setModeCalculTournee();
 				break;
 			}
 			case "CalculTournee" :

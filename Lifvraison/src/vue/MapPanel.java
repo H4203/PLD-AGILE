@@ -36,11 +36,19 @@ public class MapPanel extends JPanel
 	private double coefX;
 	private double coefY;
 	
+	private boolean affichagePlan;
+	private boolean affichageDemandeLivraison;
+	private boolean affichageTournee;
+	
 	public MapPanel(Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
 		this.tournee = tournee;
+		
+		affichagePlan = false;
+		affichageDemandeLivraison = false;
+		affichageTournee = false;
 		
 		if (plan != null)
 		{
@@ -61,7 +69,7 @@ public class MapPanel extends JPanel
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
-		if (plan != null)
+		if (plan != null && affichagePlan == true)
 		{
 			// Affihage des Troncons du Plan
 			
@@ -80,10 +88,11 @@ public class MapPanel extends JPanel
         
         // affichage itineraire 
         // gestion immonde mais temporaire
-        if ( demandeLivraison != null)
+        if ( demandeLivraison != null && affichageDemandeLivraison == true)
         {
         	/* affiche la tournee */
-        	if ( tournee != null ) {
+        	if ( tournee != null && affichageTournee == true) 
+        	{
         		int i = 0;
         		for (Itineraire itineraire : tournee.getListeItineraires())
     	        {
@@ -212,6 +221,21 @@ public class MapPanel extends JPanel
 	public void setTournee(Tournee tournee) 
 	{
 		this.tournee = tournee;
+	}
+	
+	public void setAffichagePlan(boolean etat)
+	{
+		affichagePlan = etat;
+	}
+	
+	public void setAffichageDemandeLivraison(boolean etat)
+	{
+		affichageDemandeLivraison = etat;
+	}
+	
+	public void setAffichageTournee(boolean etat)
+	{
+		affichageTournee = etat;
 	}
 	
 	public void init()

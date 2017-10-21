@@ -233,18 +233,15 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
-	public void setModeChargementPlan(Plan plan)
+	private JButton affichageChargementPlan()
 	{
 		// 1.1.1 mainPanel/leftPanel/overMapPanel
 		overMapPanel.removeAll();
 		
 		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
-		if (plan != null)
-		{
-			mapPanel.setDemandeLivraison(null);
-			mapPanel.setTournee(null);
-		}
-		mapPanel.setPlan(plan);
+		mapPanel.setAffichagePlan(true);
+		mapPanel.setAffichageDemandeLivraison(false);
+		mapPanel.setAffichageTournee(false);
 		overMapPanel.add(mapPanel);
 		mapPanel.repaint();
 		
@@ -261,7 +258,7 @@ public class Fenetre extends JFrame
 		JButton buttonChargerPlan = new JButton("Charger Plan");
 		buttonChargerPlan.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonChargerPlan);
-		
+
 		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
 		bottomButtonsPanel.add(buttonSuivant);
 		
@@ -275,20 +272,29 @@ public class Fenetre extends JFrame
 		repaint();
 		setVisible(true);
 		
-		if (plan == null)
-		{
-			ecouteurDeBoutons.actionPerformed(new ActionEvent(buttonChargerPlan, ActionEvent.ACTION_PERFORMED, "Charger Plan", System.currentTimeMillis(), 0));
-		}
+		return buttonChargerPlan;
+	}
+	
+	public void setModeChargementPlan()
+	{
+		JButton buttonChargerPlan = affichageChargementPlan();
+		
+		ecouteurDeBoutons.actionPerformed(new ActionEvent(buttonChargerPlan, ActionEvent.ACTION_PERFORMED, "Charger Plan", System.currentTimeMillis(), 0));
+	}
+	
+	public void setModeChargementPlan(Plan plan)
+	{
+		mapPanel.setPlan(plan);
+				
+		affichageChargementPlan();
 	}
 
-	public void setModeChargementDemandeLivraison(DemandeLivraison demandeLivraison)
+	private JButton affichageChargementDemandeLivraison()
 	{
 		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
-		if (demandeLivraison != null)
-		{
-			mapPanel.setTournee(null);
-		}
-		mapPanel.setDemandeLivraison(demandeLivraison);
+		mapPanel.setAffichagePlan(true);
+		mapPanel.setAffichageDemandeLivraison(true);
+		mapPanel.setAffichageTournee(false);
 		mapPanel.repaint();
 
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
@@ -319,17 +325,30 @@ public class Fenetre extends JFrame
 		
 		repaint();
 		setVisible(true);
-		
-		if (demandeLivraison == null)
-		{
-			ecouteurDeBoutons.actionPerformed(new ActionEvent(buttonChargerDemandeLivraison, ActionEvent.ACTION_PERFORMED, "Charger Demande Livraison", System.currentTimeMillis(), 0));
-		}
+				
+		return buttonChargerDemandeLivraison;
 	}
 	
-	public void setModeCalculTournee(Tournee tournee)
+	public void setModeChargementDemandeLivraison()
+	{
+		JButton buttonChargerDemandeLivraison = affichageChargementDemandeLivraison();
+		
+		ecouteurDeBoutons.actionPerformed(new ActionEvent(buttonChargerDemandeLivraison, ActionEvent.ACTION_PERFORMED, "Charger Demande Livraison", System.currentTimeMillis(), 0));
+	}
+	
+	public void setModeChargementDemandeLivraison(DemandeLivraison demandeLivraison)
+	{
+		mapPanel.setDemandeLivraison(demandeLivraison);
+		
+		affichageChargementDemandeLivraison();
+	}
+	
+	private JButton affichageCalculTournee()
 	{
 		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
-		mapPanel.setTournee(tournee);
+		mapPanel.setAffichagePlan(true);
+		mapPanel.setAffichageDemandeLivraison(true);
+		mapPanel.setAffichageTournee(true);
 		mapPanel.repaint();
 		
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
@@ -360,13 +379,24 @@ public class Fenetre extends JFrame
 		// 1.3.4 mainPanel/ongletsPanel/buttonCalculTournee
 		buttonCalculTournee.setBackground(new Color(200, 200, 255));
 		
-		if (tournee == null)
-		{
-			ecouteurDeBoutons.actionPerformed(new ActionEvent(buttonCalculerTournee, ActionEvent.ACTION_PERFORMED, "Calculer Tournee", System.currentTimeMillis(), 0));
-		}
-		
 		repaint();
 		setVisible(true);
+		
+		return buttonCalculerTournee;
+	}
+	
+	public void setModeCalculTournee()
+	{
+		JButton buttonCalculerTournee = affichageCalculTournee();
+		
+		ecouteurDeBoutons.actionPerformed(new ActionEvent(buttonCalculerTournee, ActionEvent.ACTION_PERFORMED, "Calculer Tournee", System.currentTimeMillis(), 0));
+	}
+	
+	public void setModeCalculTournee(Tournee tournee)
+	{
+		mapPanel.setTournee(tournee);
+		
+		affichageCalculTournee();
 	}
 	
 	public void setModeModificationTournee(Tournee tournee)
