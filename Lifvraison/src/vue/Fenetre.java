@@ -28,6 +28,8 @@ import javax.swing.SwingConstants;
 
 public class Fenetre extends JFrame
 {
+	private static final long serialVersionUID = 1L;
+	
 	//private VueGraphique vueGraphique;
 	
 	// 1.1.1 mainPanel/leftPanel/overMapPanel

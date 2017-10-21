@@ -22,6 +22,8 @@ import modeles.PlageHoraire;
 
 public class MapPanel extends JPanel 
 {
+	private static final long serialVersionUID = 1L;
+	
 	private Plan plan;
 	private DemandeLivraison demandeLivraison;
 	private Tournee tournee;
