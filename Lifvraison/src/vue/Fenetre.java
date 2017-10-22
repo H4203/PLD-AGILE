@@ -181,7 +181,7 @@ public class Fenetre extends JFrame
 					+ " a " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
 			}
 		}
-		texteListe += "Retour à l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
+		texteListe += "Retour à l'entrepot - " + tournee.getListeHoraire().get(++i).getHeureFin().toString() + "\n";
 		
 		jLabelListeLivraison.setText(texteListe);
 		System.out.println(texteListe);
