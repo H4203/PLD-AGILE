@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controleur.Controleur;
@@ -303,7 +304,7 @@ public class Fenetre extends JFrame
 						+ " a " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
 			}
 		}
-		texteListe = texteListe + "Retour à l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
+		texteListe = texteListe + "Retour ï¿½ l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
 		labelListeLivraison.setText(texteListe);
 		
 		setVisible(true);
