@@ -71,23 +71,28 @@ public abstract class TemplateTSP implements TSP {
 			 tempsLimiteAtteint = true;
 			 return;
 		 }
+		
 	    if (nonVus.size() == 0){ // tous les sommets ont ete visites
-	    	coutVus += cout[sommetCrt][0];
-	    	if (coutVus < coutMeilleureSolution){ // on a trouve une solution meilleure que meilleureSolution
-	    		vus.toArray(meilleureSolution);
-	    		coutMeilleureSolution = coutVus;
-	    	}
+		    	coutVus += cout[sommetCrt][0];
+		    	if (coutVus < coutMeilleureSolution){ // on a trouve une solution meilleure que meilleureSolution
+		    		vus.toArray(meilleureSolution);
+		    		coutMeilleureSolution = coutVus;
+		    		//System.out.println(coutMeilleureSolution);
+		    	}
 	    } else if (coutVus + bound(sommetCrt, nonVus, cout, duree) < coutMeilleureSolution){
 	        Iterator<Integer> it = iterator(sommetCrt, nonVus, cout, duree);
 	        while (it.hasNext()){
-	        	Integer prochainSommet = it.next();
-	        	vus.add(prochainSommet);
-	        	nonVus.remove(prochainSommet);
-	        	branchAndBound(prochainSommet, nonVus, vus, coutVus + cout[sommetCrt][prochainSommet] + duree[prochainSommet], cout, duree, tpsDebut, tpsLimite);
-	        	vus.remove(prochainSommet);
-	        	nonVus.add(prochainSommet);
-	        }	    
-	    }
+		        	Integer prochainSommet = it.next();
+		        	vus.add(prochainSommet);
+		        	nonVus.remove(prochainSommet);
+		        	branchAndBound(prochainSommet, nonVus, vus, coutVus + cout[sommetCrt][prochainSommet] + duree[prochainSommet], cout, duree, tpsDebut, tpsLimite);
+		        	vus.remove(prochainSommet);
+		        	nonVus.add(prochainSommet);
+	        }	
+	        
+	    }/* else {
+	    		System.out.println(nonVus.size());
+	    }*/
 	}
 }
 
