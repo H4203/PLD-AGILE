@@ -53,6 +53,8 @@ public class Controleur
 	public void setModeChargementPlan(String cheminPlan)
 	{
 		plan = parseur.chargerPlan(cheminPlan);
+		demandeLivraison = null;
+		tournee = null;
 		
 		fenetre.setModeChargementPlan(plan);
 		etat = "ChargementPlan";
@@ -76,6 +78,7 @@ public class Controleur
 	public void setModeChargementDemandeLivraison(String cheminDemandeLivraisons)
 	{	
 		demandeLivraison = parseur.chargerLivraison(cheminDemandeLivraisons, plan.getListeIntersection());	
+		tournee = null;
 		
 		fenetre.setModeChargementDemandeLivraison(demandeLivraison);
 		etat = "ChargementDemandeLivraison";
