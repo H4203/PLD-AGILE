@@ -8,9 +8,17 @@ import tsp.*;
 import donnees.XMLParseur;
 
 public class CalculateurTournee {
-
+	/**
+	 * La tournee calculee par le tsp
+	 */
 	private Tournee laTournee;
+	/**
+	 * la liste des itineraires ranges (contenu aussi dans la tournee)
+	 */
 	private List<Itineraire> lesItineraires;
+	/**
+	 * la liste des plus court chemin par point
+	 */
 	private List<Dijkstra> lesDijkstra;
 
 	
@@ -22,24 +30,29 @@ public class CalculateurTournee {
 	
 	public void run() 
 	{
+		
 		Plan lePlan = laTournee.getPlan();
 		
 		DemandeLivraison dl = laTournee.getDemandeLivraison();
 		List<Livraison> livraisonsOrdonnees = new ArrayList<Livraison>();
 		List<Livraison> livraisons = dl.getLivraisons();
 		
+		//On stocke toutes les intersections par lesquels on souhaite passer
 		List<Intersection> intersections = new ArrayList<Intersection>();
+		//On commence par ajouter l'entrepot
 		intersections.add(laTournee.getDemandeLivraison().getEntrepot());
+		//On ajoute tous les endroits de livraison
 		for(Livraison l : livraisons) {
 			intersections.add(l.getIntersection());
 		}
 		
+		//On initialise les tableaux cout et duree qui vont etre remplis par le tsp
 		int[][] coutTsp = new int[intersections.size()][intersections.size()];
 		int[] duree = new int[intersections.size()];
 		
 		List<Dijkstra> dijkstra = new ArrayList<Dijkstra>();
 		
-		
+		//On remplit, point par point, la matrice duree et la matrice cout
 		for(int i = 0; i< intersections.size(); i++) {
 			Intersection lIntersection = intersections.get(i);
 			Dijkstra d = new Dijkstra(lePlan, lIntersection);
@@ -47,32 +60,53 @@ public class CalculateurTournee {
 			d.run();
 			if(i == 0)
 			{
+				//La duree passee a l'entrepot est initialisee a 0
 				duree[0] = 0;
 			}
 			else {
-			duree[i] = livraisons.get(i-1).getDureeDechargement();}
+				//get(i-1) car l'entrepot a decale toutes les livraisons dans la matrice intersections
+				duree[i] = livraisons.get(i-1).getDureeDechargement();
+			}
+			
+			//Grace au dijkstra, on remplit la matrice de cout, car on peut obtenir le plus court chemin du point courant vers tous les autres points
 			for(int j = 0; j < intersections.size(); j++) {
 				if(j == i) {
-					coutTsp[i][j] = 0;
+					//Pour simplifier l'optimisation de bound, nous initialisons la diagonale de cout a l'infini
+					coutTsp[i][j] = Integer.MAX_VALUE;
 				}
 				else
 				{
-					coutTsp[i][j] = (int)  d.getItineraire(intersections.get(j).getId()).getLongueur();
+					//On remplit la matrice cout avec le dijkstra. On fait la conversion en seconde
+					coutTsp[i][j] = (int)  (d.getItineraire(intersections.get(j).getId()).getLongueur()*3.6/(15*10));
 				}
 			}
 			dijkstra.add(d);
 		}
 		
-		TSP1 tsp = new TSP1();
+		//On cree un objet tsp de l'ordre que l'on veut
+		TSP2 tsp = new TSP2();
+		
+		//On prend une valeur de temps pour des calculs de temps si on le souhaite
+		long temps = System.currentTimeMillis();
+		
+		//On run le tsp
 		tsp.chercheSolution(Integer.MAX_VALUE, intersections.size(), coutTsp, duree);
+		
+		//Affichage du temps mis
+		System.out.println(System.currentTimeMillis() - temps);
+		
+		//On ajoute l'entrepot en premier dans la liste de livraisons ordonnees
 		int sommetCourant = 0;
 		livraisonsOrdonnees.add(livraisons.get(sommetCourant));
+		
+		//On demande au tsp les sommets dans l'ordre pour ajouter les livraisons
 		for(int i = 1; i < intersections.size(); i++) {
 			int prochainSommet = tsp.getMeilleureSolution(i);
 			livraisonsOrdonnees.add(livraisons.get(prochainSommet-1));
 			lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(prochainSommet).getId()));
 			sommetCourant = prochainSommet;
 		}
+		//On abtient les chemins à partir des dijkstras
 		lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(0).getId()));
 		laTournee.setLivraisonsOrdonnees(livraisonsOrdonnees);
 		laTournee.setListeItineraires(lesItineraires);
