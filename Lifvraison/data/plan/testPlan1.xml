@@ -1,0 +1,30 @@
+﻿<reseau>
+<noeud id="1" x="1" y="1"/>
+<noeud id="2" x="1" y="2"/>
+<noeud id="3" x="2" y="0"/>
+<noeud id="4" x="2" y="3"/>
+<noeud id="5" x="3" y="1"/>
+<noeud id="6" x="3" y="2"/>
+<noeud id="7" x="4" y="4"/>
+<noeud id="8" x="2" y="2"/>
+<noeud id="9" x="5" y="0"/>
+<troncon destination="1" longueur="1" nomRue="1" origine="8"/>
+<troncon destination="3" longueur="1" nomRue="2" origine="1"/>
+<troncon destination="5" longueur="1" nomRue="3" origine="3"/>
+<troncon destination="8" longueur="1" nomRue="4" origine="5"/>
+<troncon destination="2" longueur="1" nomRue="5" origine="1"/>
+<troncon destination="4" longueur="1" nomRue="6" origine="2"/>
+<troncon destination="7" longueur="1" nomRue="7" origine="4"/>
+<troncon destination="6" longueur="1" nomRue="8" origine="7"/>
+<troncon destination="8" longueur="1" nomRue="9" origine="6"/>
+
+<troncon destination="2" longueur="5" nomRue="11" origine="3"/>
+<troncon destination="3" longueur="5" nomRue="12" origine="9"/>
+<troncon destination="4" longueur="5" nomRue="13" origine="1"/>
+<troncon destination="8" longueur="5" nomRue="14" origine="3"/>
+<troncon destination="5" longueur="5" nomRue="15" origine="2"/>
+<troncon destination="2" longueur="5" nomRue="16" origine="9"/>
+<troncon destination="1" longueur="5" nomRue="17" origine="5"/>
+<troncon destination="9" longueur="5" nomRue="18" origine="1"/>
+<troncon destination="4" longueur="5" nomRue="19" origine="3"/>
+</reseau>
