@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controleur.Controleur;
 import donnees.XMLParseur;
@@ -28,9 +29,11 @@ public class EcouteurDeBoutons implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		JFileChooser fc;
+		JFileChooser fc = null;
 		String chemin ="";
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers xml.", "xml");
 		
+        
 		switch ( e.getActionCommand() )
 		{
 			case "Charger Plan" :
@@ -40,7 +43,9 @@ public class EcouteurDeBoutons implements ActionListener{
 				fc.setFileSelectionMode( JFileChooser.FILES_AND_DIRECTORIES );
 			    
 			    fc.setCurrentDirectory(new File("./data"));
-	
+			    fc.addChoosableFileFilter(filter);
+				fc.setAcceptAllFileFilterUsed(false);
+				
 			    if( fc.showOpenDialog( null ) == JFileChooser.APPROVE_OPTION )
 			    {
 			       chemin = fc.getSelectedFile().getAbsolutePath();
@@ -54,7 +59,9 @@ public class EcouteurDeBoutons implements ActionListener{
 				chemin ="";
 				
 				fc.setFileSelectionMode( JFileChooser.FILES_AND_DIRECTORIES );
-			    
+				fc.addChoosableFileFilter(filter);
+				fc.setAcceptAllFileFilterUsed(false);
+				
 			    fc.setCurrentDirectory(new File("./data"));
 	
 			    if( fc.showOpenDialog( null ) == JFileChooser.APPROVE_OPTION )
