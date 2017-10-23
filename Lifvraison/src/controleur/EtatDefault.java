@@ -1,6 +1,7 @@
 package controleur;
 
 import modeles.Livraison;
+import vue.Fenetre;
 
 public class EtatDefault implements Etat{
 
@@ -17,19 +18,41 @@ public class EtatDefault implements Etat{
 	}
 
 	@Override
-	public void ajouterLivraison(int positonPrecedente, Livraison livraison) {
+	public void ajouterLivraison(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void suprimerLivraison(int positon) {
+	public void suprimerLivraison(Controleur controleur, Fenetre fenetre, int positon) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void intervertirLivraison(Livraison livraison1, Livraison livraison2) {
+	public void intervertirLivraison(Controleur controleur, Fenetre fenetre, Livraison livraison1, Livraison livraison2) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void suivant (Controleur controleur, Fenetre fenetre) {
+		
+	}
+	
+	@Override
+	public void precedent (Controleur controleur, Fenetre fenetre) {
+		
+	}
+
+	@Override
+	public void accueil(Controleur controleur, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clicgauche(Controleur controleur, Fenetre fenetre, int positonPrecedente, Livraison livraison) {
 		// TODO Auto-generated method stub
 		
 	}

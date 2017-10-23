@@ -19,11 +19,26 @@ public class Controleur
 	private Tournee tournee;
 	DemandeLivraison demandeLivraison;
 	private String etat;
+	private Etat etatCourant;
+	
+	// differents etats possible
+	protected EtatAccueil etatAccueil = new EtatAccueil();
+	protected EtatChargementPlan etatChargementPlan  = new EtatChargementPlan();
+	protected EtatChargementLivraison etatChargementLivraison  = new EtatChargementLivraison();
+	protected EtatCalculTournee etatCalculTournee  = new EtatCalculTournee();
+	protected EtatModificationTournee etatModificationTournee  = new EtatModificationTournee();
+	protected EtatAjoutLivraison1 etatAjoutLivraison1 = new EtatAjoutLivraison1();
+	protected EtatAjoutLivraison2 etatAjoutLivraison2 = new EtatAjoutLivraison2();
+	protected EtatSupprimerLivraison1 etatSupprimerLivraison1 = new EtatSupprimerLivraison1();
+	protected EtatSupprimerLivraison2 etatSupprimerLivraison2 = new EtatSupprimerLivraison2();
+	protected EtatModeValidation etatModeValidation = new EtatModeValidation();
 	
 	/**
 	 * 
 	 */
 	public Controleur() {
+		
+		
 		
 		try {
 			parseur = new XMLParseur ();
@@ -31,6 +46,10 @@ public class Controleur
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	protected void setEtatCourant(Etat etat){
+		etatCourant = etat;
 	}
 	
 	public void run()
