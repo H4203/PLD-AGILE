@@ -42,7 +42,9 @@ public class Fenetre extends JFrame
 	private JPanel topButtonsPanel;	
 	// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
 	private JPanel bottomButtonsPanel;
-	// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
+	// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonPrecedent
+	private JButton buttonPrecedent;
+	// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
 	private JButton buttonSuivant;
 	// 1.3.1 mainPanel/ongletsPanel/buttonAccueil
 	private JButton buttonAccueil;
@@ -56,6 +58,8 @@ public class Fenetre extends JFrame
 	private JButton buttonModificationTournee;
 	// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
 	private JButton buttonValidationTournee;
+	
+	private JPanel buttonsPanel;
 	
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -104,30 +108,34 @@ public class Fenetre extends JFrame
 		
 		// 1.2.1 mainPanel/overRightPanel/rightPanel
 		JPanel rightPanel = new JPanel();
-		rightPanel.setLayout(new GridLayout(0,2));
+		rightPanel.setLayout(new BorderLayout());
 		overRightPanel.add(rightPanel);
 		
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel = new JPanel();
 		listeLivraisonsPanel.setLayout(new CardLayout(50, 50));
-		rightPanel.add(listeLivraisonsPanel);
+		rightPanel.add(listeLivraisonsPanel, BorderLayout.CENTER);
 		
 		// 1.2.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel
-		JPanel buttonsPanel = new JPanel();
+		buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(2, 0, 20, 20));
-		rightPanel.add(buttonsPanel);
+		rightPanel.add(buttonsPanel, BorderLayout.SOUTH);
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel = new JPanel();
-		topButtonsPanel.setLayout(new GridLayout(5, 0, 20, 20));
-		buttonsPanel.add(topButtonsPanel);
+		buttonsPanel.add(topButtonsPanel, BorderLayout.CENTER);
 		
 		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel		
 		bottomButtonsPanel = new JPanel();
-		bottomButtonsPanel.setLayout(new GridLayout(2, 0, 20, 20));
+		bottomButtonsPanel.setLayout(new GridLayout(0, 2, 20, 20));
 		buttonsPanel.add(bottomButtonsPanel);
 		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
+		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonPrecedent
+		buttonPrecedent = new JButton("Precedent");
+		buttonPrecedent.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonPrecedent);
+		
+		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
 		buttonSuivant = new JButton("Suivant");
 		buttonSuivant.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonSuivant);
@@ -218,12 +226,6 @@ public class Fenetre extends JFrame
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
 		
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel	
-		bottomButtonsPanel.removeAll();
-		
-		bottomButtonsPanel.add(new JLabel());
-		bottomButtonsPanel.add(buttonSuivant);
-
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		resetOngletsPanelButtons();
 		// 1.3.1 mainPanel/ongletsPanel/buttonAccueil
@@ -250,17 +252,11 @@ public class Fenetre extends JFrame
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
-		
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel	
-		bottomButtonsPanel.removeAll();
 
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 		JButton buttonChargerPlan = new JButton("Charger Plan");
 		buttonChargerPlan.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargerPlan);
-
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
-		bottomButtonsPanel.add(buttonSuivant);
+		topButtonsPanel.add(buttonChargerPlan);
 		
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		resetOngletsPanelButtons();
@@ -303,16 +299,10 @@ public class Fenetre extends JFrame
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
 		
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel	
-		bottomButtonsPanel.removeAll();
-		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
 		JButton buttonChargerDemandeLivraison = new JButton("Charger Demande Livraison");
 		buttonChargerDemandeLivraison.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargerDemandeLivraison);
-		
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
-		bottomButtonsPanel.add(buttonSuivant);
+		topButtonsPanel.add(buttonChargerDemandeLivraison);
 		
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		resetOngletsPanelButtons();
@@ -357,16 +347,10 @@ public class Fenetre extends JFrame
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
 		
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel	
-		bottomButtonsPanel.removeAll();
-		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
 		JButton buttonCalculerTournee = new JButton("Calculer Tournee");
 		buttonCalculerTournee.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonCalculerTournee);
-		
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
-		bottomButtonsPanel.add(buttonSuivant);
+		topButtonsPanel.add(buttonCalculerTournee);
 		
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		resetOngletsPanelButtons();
@@ -444,16 +428,10 @@ public class Fenetre extends JFrame
 		JButton buttonRedo = new JButton("redo");
 		topButtonsPanel.add(buttonRedo);
 		
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel	
-		bottomButtonsPanel.removeAll();
-		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 		JButton buttonValiderTournee = new JButton("Valider Tournee");
 		buttonValiderTournee.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonValiderTournee);
-		
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
-		bottomButtonsPanel.add(buttonSuivant);
+		topButtonsPanel.add(buttonValiderTournee);
 		
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		resetOngletsPanelButtons();
