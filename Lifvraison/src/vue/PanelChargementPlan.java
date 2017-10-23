@@ -1,20 +1,19 @@
 package vue;
-
 import java.awt.Component;
 import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
-import java.awt.FileDialog;
-import javax.swing.JFrame;
 
 public class PanelChargementPlan extends JPanel 
 {
+	private static final long serialVersionUID = 1L;
+
 	public String promptForFolder( Component parent )
 	{
 		String osName = System.getProperty("os.name");
-	    String homeDir = System.getProperty("user.home");
-	    File selectedPath = null;
+	    //String homeDir = System.getProperty("user.home");
+	    //File selectedPath = null;
 		
 		if (osName.equals("Mac OS X")) {
 			String folder = System.getProperty("user.dir");

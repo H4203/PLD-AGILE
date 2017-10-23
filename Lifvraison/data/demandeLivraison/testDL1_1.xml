@@ -1,0 +1,5 @@
+﻿<demandeDeLivraisons>
+<entrepot adresse="8" heureDepart="8:0:0"/>
+<livraison adresse="3" duree="900"/>
+<livraison adresse="2" duree="600"/>
+</demandeDeLivraisons>

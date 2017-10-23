@@ -27,6 +27,9 @@ public class DemandeLivraison {
 			LocalTime depart) {
 		livraisons.add(new Livraison(intersection, dureeDechargement, new PlageHoraire(arrivee, depart)));
 	}
+	public void ajouterLivraison( Livraison livraison) {
+		livraisons.add(livraison);
+	}
 
 	/**
 	 * @return the livraisons
