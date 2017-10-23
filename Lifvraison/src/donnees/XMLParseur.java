@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -59,7 +60,7 @@ public class XMLParseur
 
 		final Element racine = document.getDocumentElement();
 
-		/* on s'assure que l'objet ï¿½ la racine est bien la demande de livraison */
+		/* on s'assure que l'objet a la racine est bien la demande de livraison */
 		if ( !racine.getNodeName().equals("demandeDeLivraisons") )
 		{
 			throw new ParseurException("Le fichier n'est pas une demande de livraison...");
@@ -131,21 +132,32 @@ public class XMLParseur
 				if (monElement.getNodeName().equals("livraison"))
 				{
 					/* on recupere l'id de la livraison */
-					idAdresse = Long.parseLong(monElement.getAttribute("adresse"), 10);
+					try
+					{
+						idAdresse = Long.parseLong(monElement.getAttribute("adresse"), 10);
+					}
+					catch (Exception e)
+					{
+						throw new ParseurException("L'adresse de la "+ nbLivraison++ +" livraison est incorrecte (format = adresse = LONG)", e);
+					}
+
 					adresseLivraison = listeIntersection.get(idAdresse);
+					if (adresseLivraison == null)
+					{
+						throw new ParseurException("L'adresse de la "+ nbLivraison++ +" livraison n'existe pas");
+					}
 					/* on recupere la duree de dechargement */
-					duree =  Integer.parseInt(monElement.getAttribute("duree"));
+					try
+					{
+						duree =  Integer.parseInt(monElement.getAttribute("duree"));
+					}
+					catch (Exception e)
+					{
+						throw new ParseurException("La durée de la "+ nbLivraison++ +" livraison est incorrecte", e);
+					}
 					if (duree < 0)
 					{
-						throw new ParseurException("Une duree ne peut pas etre negative ,\r\n" + 
-								"                                 ,'/\r\n" + 
-								"                               ,' /\r\n" + 
-								"                             ,'  /_____,\r\n" + 
-								"                           .'____    ,'\r\n" + 
-								"                                /  ,'\r\n" + 
-								"                               / ,'\r\n" + 
-								"                              /,'\r\n" + 
-								"                             /'");
+						throw new ParseurException("Une duree ne peut pas etre negative!");
 					}
 					/* on recupere l'heure de debut si elle existe */
 					if (!monElement.getAttribute("debutPlage").equals(""))
@@ -178,7 +190,8 @@ public class XMLParseur
 						{
 							throw new ParseurException("L'heure de fin de plage de la livraison "+ nbLivraison++ +"est incorrecte (format = h:m:s)", e);
 						}
-					} else finPlage = null;
+					} 
+					else finPlage = null;
 
 					nbLivraison++;
 					/* on ajoute la livraison a la demande */
@@ -236,7 +249,7 @@ public class XMLParseur
 		{
 			throw new ParseurException("Le fichier ne contient aucune information");
 		}
-		
+
 		int nbNoeud = 0, nbTroncon = 0;
 		/*on boucle sur tous les enfants de la racine */
 		for (int i = 0; i<nbRacineNoeuds; i++) {
@@ -250,9 +263,9 @@ public class XMLParseur
 				{
 					try
 					{
-					id = Long.parseLong(monElement.getAttribute("id"), 10);
-					x = Integer.parseInt(monElement.getAttribute("x"));
-					y = Integer.parseInt(monElement.getAttribute("y"));
+						id = Long.parseLong(monElement.getAttribute("id"), 10);
+						x = Integer.parseInt(monElement.getAttribute("x"));
+						y = Integer.parseInt(monElement.getAttribute("y"));
 					}
 					catch (Exception e)
 					{
@@ -270,44 +283,34 @@ public class XMLParseur
 					{
 						throw new ParseurException("Veuillez renseigner les noeuds avant de renseigner des troncon!!s");
 					}
-					
+
 					try {
-					nomRue = monElement.getAttribute("nomRue");
-					idDepart = Long.parseLong(monElement.getAttribute("origine"), 10);
-					idArrivee = Long.parseLong(monElement.getAttribute("destination"), 10);
-					longueur = Double.parseDouble(monElement.getAttribute("longueur"));
-					if (longueur < 0)
-					{
-						throw new ParseurException("Une longueur ne peut etre negative   .-'---`-.\r\n" + 
-								",'          `.\r\n" + 
-								"|             \\\r\n" + 
-								"|              \\\r\n" + 
-								"\\           _  \\\r\n" + 
-								",\\  _    ,'-,/-)\\\r\n" + 
-								"( * \\ \\,' ,' ,'-)\r\n" + 
-								" `._,)     -',-')\r\n" + 
-								"   \\/         ''/\r\n" + 
-								"    )        / /\r\n" + 
-								"   /       ,'-'");
-					}
+						nomRue = monElement.getAttribute("nomRue");
+						idDepart = Long.parseLong(monElement.getAttribute("origine"), 10);
+						idArrivee = Long.parseLong(monElement.getAttribute("destination"), 10);
+						longueur = Double.parseDouble(monElement.getAttribute("longueur"));
+						if (longueur < 0)
+						{
+							throw new ParseurException("Une longueur ne peut etre negative!");
+						}
 					}
 					catch (Exception e)
 					{
 						throw new ParseurException("Les attributs du "+ nbTroncon++ +" troncon sont incorrectes (format = nomRue:string, origine:long, destination:long, longueur:double)", e);
 					}
-					
+
 					origine = monPlan.getListeIntersection().get(idDepart);
 					if (origine == null)
 					{
 						throw new ParseurException("L'intersection d'origine du "+ nbTroncon++ +"eme troncon n'existe pas....");
 					}
-					
+
 					destination = monPlan.getListeIntersection().get(idArrivee);
 					if (destination == null)
 					{
 						throw new ParseurException("L'intersection de destination du +"+ nbTroncon++ +" eme troncon n'existe pas....");
 					}
-					
+
 					nbTroncon++;
 					monPlan.ajouterTroncon(nomRue, origine, destination, longueur);
 
