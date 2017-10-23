@@ -54,15 +54,14 @@ public class Tournee
 				break;
 			}
 			
-			List<Livraison> listLiv = demandeLivraison.getLivraisons();
-			Livraison liv = listLiv.get(indexItineraire);
+			Livraison liv = livraisonsOrdonnees.get(indexItineraire+1);
 			PlageHoraire plhr =  liv.getPlagehoraire();
 			if (plhr != null)
 			{
 				if (plhr.getHeureDebut() != null && debut.isBefore(plhr.getHeureDebut()))
 				{
 					/* on ajoute le temps d'attente du debut de plage horaire */
-					fin = demandeLivraison.getLivraisons().get(listeItineraires.indexOf(itineraire)).getPlagehoraire().getHeureDebut();
+					fin = liv.getPlagehoraire().getHeureDebut();
 				}
 				else
 				{
@@ -74,10 +73,11 @@ public class Tournee
 				fin = debut;
 			}
 			/* on ajoute le temps de livrer */
-			fin = fin.plusSeconds(demandeLivraison.getLivraisons().get(indexItineraire).getDureeDechargement());
+			fin = fin.plusSeconds(liv.getDureeDechargement());
 			horaire = new PlageHoraire(debut,fin);
 			listeHoraire.add(horaire);
 		}
+		System.out.println(listeHoraire);
 	}
 
 	public double getLongueur()
@@ -132,6 +132,16 @@ public class Tournee
 		this.livraisonsOrdonnees = livraisonsOrdonnees;
 	}
 	
+	public void ajouterLivraison (Livraison livraison, int position)
+	{
+		livraisonsOrdonnees.add(position, livraison);
+		updateHoraire();
+	}
 	
+	public void supprimerLivraison (int position)
+	{
+		livraisonsOrdonnees.remove(position);
+		updateHoraire();
+	}
 	
 }
