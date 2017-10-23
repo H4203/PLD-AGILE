@@ -31,6 +31,7 @@ public class Controleur
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
+	}
 	
 	public void run()
 	{
@@ -65,7 +66,7 @@ public class Controleur
 	{
 		try {
 			plan = parseur.chargerPlan( cheminPlan );
-			fenetre.setModePlan( plan );
+			fenetre.setModeChargementPlan( plan );
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
