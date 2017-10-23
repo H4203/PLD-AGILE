@@ -1,7 +1,7 @@
 package algorithme;
 
 
-import modeles.*;
+import modeles.Tournee;
 import java.util.List;
 import java.util.ArrayList;
 import tsp.*;
