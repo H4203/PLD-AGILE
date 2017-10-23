@@ -304,8 +304,41 @@ public class Fenetre extends JFrame
 						+ " a " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
 			}
 		}
-		texteListe = texteListe + "Retour � l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
-		labelListeLivraison.setText(texteListe);
+    
+		texteListe += "Retour a l'entrepot - " + tournee.getListeHoraire().get(++i).getHeureFin().toString() + "\n";
+		
+		jLabelListeLivraison.setText(texteListe);
+		System.out.println(texteListe);
+		jPanelListe.add(jLabelListeLivraison);
+		jPanelListe.setBounds(screenSize.width-250,300,300,200);
+		jLabelListeLivraison.setEditable(false);
+		getContentPane().add( jPanelListe);
+		
+		/* bouton */
+		jButtonAjouterLivraison = new JButton("+");
+		jButtonSupprimerLivraison = new JButton("-");
+		jButtonEchangerLivraisons = new JButton("<-/->");
+		jButtonUndo = new JButton("undo");
+		jButtonRedo = new JButton("redo");
+		
+		jButtonAjouterLivraison.setBounds(screenSize.width-180,0,100,50);
+		jButtonSupprimerLivraison.setBounds(screenSize.width-180,60,100,50);
+		jButtonEchangerLivraisons.setBounds(screenSize.width-180,120,100,50);
+		jButtonUndo.setBounds(screenSize.width-180,180,100,50);
+		jButtonRedo.setBounds(screenSize.width-180,240,100,50);
+		
+		getContentPane().add( jButtonAjouterLivraison);
+		getContentPane().add( jButtonSupprimerLivraison);
+		getContentPane().add( jButtonEchangerLivraisons);
+		getContentPane().add( jButtonUndo);
+		getContentPane().add( jButtonRedo);
+		
+		jButtonValider = new JButton ( "Valider Tournee" );
+		jButtonValider.setBounds(screenSize.width-180,screenSize.height-200,150,50);
+
+		getContentPane().add( jButtonValider);
+		getContentPane().add( jButtonRetourAccueil );
+		jButtonValider.addActionListener( ecouteurDeBoutons );
 		
 		setVisible(true);
 	}
