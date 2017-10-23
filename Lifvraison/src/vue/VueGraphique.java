@@ -2,9 +2,7 @@ package vue;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -24,7 +22,7 @@ public class VueGraphique extends JPanel implements Observer
 	{
 		super();
 		
-		//setLayout(new CardLayout(50, 50));
+		setLayout(new CardLayout(50, 50));
 		setBackground(Color.white);
 		
 		plan.addObserver(this);
@@ -48,12 +46,24 @@ public class VueGraphique extends JPanel implements Observer
 		repaint();
 	}
 	
+	public void setModeAccueil()
+	{
+		mapPanel.setAffichagePlan(false);
+		mapPanel.setAffichageDemandeLivraison(false);
+		mapPanel.setAffichageTournee(false);
+		
+		mapPanel.repaint();
+		repaint();
+	}
+	
 	public void setModeChargementPlan()
 	{
 		mapPanel.resize();
+		
 		mapPanel.setAffichagePlan(true);
 		mapPanel.setAffichageDemandeLivraison(false);
 		mapPanel.setAffichageTournee(false);
+		
 		mapPanel.repaint();
 		repaint();
 	}
@@ -63,6 +73,7 @@ public class VueGraphique extends JPanel implements Observer
 		mapPanel.setAffichagePlan(true);
 		mapPanel.setAffichageDemandeLivraison(true);
 		mapPanel.setAffichageTournee(false);
+		
 		mapPanel.repaint();
 		repaint();
 	}
@@ -72,6 +83,7 @@ public class VueGraphique extends JPanel implements Observer
 		mapPanel.setAffichagePlan(true);
 		mapPanel.setAffichageDemandeLivraison(true);
 		mapPanel.setAffichageTournee(true);
+		
 		mapPanel.repaint();
 		repaint();
 	}

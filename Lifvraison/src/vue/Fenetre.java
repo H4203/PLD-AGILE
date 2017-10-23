@@ -219,6 +219,8 @@ public class Fenetre extends JFrame
 	
 	public void setModeAccueil()
 	{		
+		vueGraphique.setModeAccueil();
+		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel		
 		//overMapPanel.removeAll();
 		
