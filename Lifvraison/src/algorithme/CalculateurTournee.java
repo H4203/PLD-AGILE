@@ -14,7 +14,8 @@ public class CalculateurTournee {
 	private List<Dijkstra> lesDijkstra;
 
 	
-	public CalculateurTournee(Tournee laTournee){
+	public CalculateurTournee(Tournee laTournee)
+	{
 		this.laTournee = laTournee;
 		lesItineraires = new ArrayList<Itineraire>();
 		lesDijkstra = new ArrayList<Dijkstra>();
@@ -22,6 +23,9 @@ public class CalculateurTournee {
 	
 	public void run() 
 	{
+		lesItineraires.clear();
+		lesDijkstra.clear();
+		
 		Plan lePlan = laTournee.getPlan();
 		
 		DemandeLivraison dl = laTournee.getDemandeLivraison();

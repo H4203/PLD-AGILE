@@ -71,7 +71,7 @@ public class EcouteurDeBoutons implements ActionListener
 			}
 			case "Calculer Tournee" :
 			{
-				controleur.setModeCalculTournee("");
+				controleur.setModeCalculTournee();
 				break;
 			}
 			case "Calcul Tournee" :

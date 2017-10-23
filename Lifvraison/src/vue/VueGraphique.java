@@ -1,29 +1,78 @@
 package vue;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 
-import modeles.Plan;
+import javax.swing.JPanel;
 
-public class VueGraphique implements Observer
+import modeles.Plan;
+import modeles.DemandeLivraison;
+import modeles.Tournee;
+
+public class VueGraphique extends JPanel implements Observer
 {
-	private Fenetre fenetre;
-	private Plan plan;
-	
-	public VueGraphique(Plan plan, Fenetre fenetre)
+	private static final long serialVersionUID = 1L;
+
+	private MapPanel mapPanel;
+
+	public VueGraphique(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee) 
 	{
-		this.fenetre = fenetre;
-		this.plan = plan;
+		super();
 		
-		// this observe le plan
-		if (plan != null)
-		{
-			plan.addObserver(this);
-		}
+		//setLayout(new CardLayout(50, 50));
+		setBackground(Color.white);
+		
+		plan.addObserver(this);
+		demandeLivraison.addObserver(this);
+		tournee.addObserver(this);
+		
+		mapPanel = new MapPanel(plan, demandeLivraison, tournee);
+		add(mapPanel);
 	}
 	
-	public void update(Observable observable, Object objet)
+	@Override
+	public void paintComponent(Graphics g) 
 	{
-		// Code pour afficher le plan dans la vue graphique
+		mapPanel.paintComponent(g);
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) 
+	{
+		mapPanel.repaint();
+		repaint();
+	}
+	
+	public void setModeChargementPlan()
+	{
+		mapPanel.resize();
+		mapPanel.setAffichagePlan(true);
+		mapPanel.setAffichageDemandeLivraison(false);
+		mapPanel.setAffichageTournee(false);
+		mapPanel.repaint();
+		repaint();
+	}
+	
+	public void setModeChargementDemandeLivraison()
+	{
+		mapPanel.setAffichagePlan(true);
+		mapPanel.setAffichageDemandeLivraison(true);
+		mapPanel.setAffichageTournee(false);
+		mapPanel.repaint();
+		repaint();
+	}
+	
+	public void setModeCalculTournee()
+	{
+		mapPanel.setAffichagePlan(true);
+		mapPanel.setAffichageDemandeLivraison(true);
+		mapPanel.setAffichageTournee(true);
+		mapPanel.repaint();
+		repaint();
 	}
 }

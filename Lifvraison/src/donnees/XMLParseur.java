@@ -39,8 +39,10 @@ public class XMLParseur
 	 * @param listeIntersection les intersections du plan - la map associe les id des intersections avec leur objet Intersection
 	 * @return la demande de livraisons
 	 */
-	public DemandeLivraison chargerLivraison (String cheminDuFichier, HashMap<Long, Intersection> listeIntersection)
+	public void chargerLivraison (DemandeLivraison demandelivraison, String cheminDuFichier, HashMap<Long, Intersection> listeIntersection)
 	{
+		demandelivraison.reset();
+		
 		Document document = null;
 		try
 		{
@@ -62,9 +64,6 @@ public class XMLParseur
 
 		/* on s'assure que l'objet � la racine est bien la demande de livraison */
 		assert (racine.getNodeName().equals("demandeDeLivraisons"));
-
-		/* objet DemandeLivraison qui sera retourn� */
-		DemandeLivraison maDemandeDeLivraison = new DemandeLivraison();
 
 		NodeList racineNoeuds = racine.getChildNodes();
 		int nbRacineNoeuds = racineNoeuds.getLength();
@@ -95,8 +94,8 @@ public class XMLParseur
 					adresse = Long.parseLong(monElement.getAttribute("adresse"), 10);
 
 					/* on remplit les parametres */
-					maDemandeDeLivraison.setHeureDepart(heureDepart);
-					maDemandeDeLivraison.setEntrepot(listeIntersection.get(adresse));
+					demandelivraison.setHeureDepart(heureDepart);
+					demandelivraison.setEntrepot(listeIntersection.get(adresse));
 				}
 
 				/* le noeud est celui contenant les informations sur une livraison */
@@ -128,11 +127,10 @@ public class XMLParseur
 					} else finPlage = null;
 					
 					/* on ajoute la livraison a la demande */
-					maDemandeDeLivraison.ajouterLivraison(adresseLivraison, duree, debutPlage, finPlage);
+					demandelivraison.ajouterLivraison(adresseLivraison, duree, debutPlage, finPlage);
 				}
 			}				
 		}
-		return maDemandeDeLivraison;
 	}
 
 
@@ -141,8 +139,10 @@ public class XMLParseur
 	 * @param cheminDuFichier chemin d'acces sur le disque du fichier XML contenant le plan de livraison
 	 * @return
 	 */
-	public Plan chargerPlan (String cheminDuFichier)
+	public void chargerPlan (Plan plan, String cheminDuFichier)
 	{
+		plan.reset();
+		
 		Document document = null;
 		try
 		{
@@ -164,8 +164,6 @@ public class XMLParseur
 		/* on s'assure que l'objet a la racine est bien le plan*/
 		assert (racine.getNodeName().equals("reseau"));
 
-		Plan monPlan = new Plan();
-
 		NodeList racineNoeuds = racine.getChildNodes();
 		int nbRacineNoeuds = racineNoeuds.getLength();
 
@@ -183,7 +181,7 @@ public class XMLParseur
 					x = Integer.parseInt(monElement.getAttribute("x"));
 					y = Integer.parseInt(monElement.getAttribute("y"));
 
-					monPlan.ajouterIntersection(id, x, y);
+					plan.ajouterIntersection(id, x, y);
 				}
 
 				/* on ajoute les troncons au plan*/
@@ -195,15 +193,13 @@ public class XMLParseur
 					idArrivee = Long.parseLong(monElement.getAttribute("destination"), 10);
 					longueur = Double.parseDouble(monElement.getAttribute("longueur"));
 
-					origine = monPlan.getListeIntersection().get(idDepart);
-					destination = monPlan.getListeIntersection().get(idArrivee);
+					origine = plan.getListeIntersection().get(idDepart);
+					destination = plan.getListeIntersection().get(idArrivee);
 					
-					monPlan.ajouterTroncon(nomRue, origine, destination, longueur);
+					plan.ajouterTroncon(nomRue, origine, destination, longueur);
 					
 				}
 			}				
 		}
-
-		return monPlan;
 	}
 }

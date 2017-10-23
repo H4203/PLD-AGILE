@@ -12,16 +12,22 @@ public class Controleur
 	private XMLParseur parseur;
 	private CalculateurTournee calculateurTournee;
 	private Fenetre fenetre;
+	
 	private Plan plan;
+	private DemandeLivraison demandeLivraison;
 	private Tournee tournee;
-	DemandeLivraison demandeLivraison;
 	
 	private String etat;
 	
 	public Controleur() 
 	{
+		plan = new Plan();
+		demandeLivraison = new DemandeLivraison();
+		tournee = new Tournee(plan, demandeLivraison);
+		
 		parseur = new XMLParseur();
-		fenetre = new Fenetre(this);
+		fenetre = new Fenetre(this, plan, demandeLivraison, tournee);
+		calculateurTournee = new CalculateurTournee(tournee);
 	}
 	
 	public void run()
@@ -32,86 +38,56 @@ public class Controleur
 	public void setModeAccueil()
 	{
 		fenetre.setModeAccueil();
+		
 		etat = "Accueil";
 	}
 	
 	public void setModeChargementPlan()
 	{
-		if (plan == null)
-		{
-			fenetre.setModeChargementPlan();
-		}
-		
-		else
-		{
-			fenetre.setModeChargementPlan(plan);	
-		}
+		fenetre.setModeChargementPlan();	
 		
 		etat = "ChargementPlan";
 	}
 	
 	public void setModeChargementPlan(String cheminPlan)
 	{
-		plan = parseur.chargerPlan(cheminPlan);
-		demandeLivraison = null;
-		tournee = null;
+		demandeLivraison.reset();
+		tournee.reset();
+		parseur.chargerPlan(plan, cheminPlan);
 		
-		fenetre.setModeChargementPlan(plan);
+		fenetre.setModeChargementPlan();
+		
 		etat = "ChargementPlan";
 	}
 	
 	public void setModeChargementDemandeLivraison()
 	{
-		if (demandeLivraison == null)
-		{
-			fenetre.setModeChargementDemandeLivraison();
-		}
-		
-		else
-		{
-			fenetre.setModeChargementDemandeLivraison(demandeLivraison);	
-		}
+		fenetre.setModeChargementDemandeLivraison();	
 		
 		etat = "ChargementDemandeLivraison";
 	}
 	
 	public void setModeChargementDemandeLivraison(String cheminDemandeLivraisons)
 	{	
-		demandeLivraison = parseur.chargerLivraison(cheminDemandeLivraisons, plan.getListeIntersection());	
-		tournee = null;
+		tournee.reset();
+		parseur.chargerLivraison(demandeLivraison, cheminDemandeLivraisons, plan.getListeIntersection());	
 		
-		fenetre.setModeChargementDemandeLivraison(demandeLivraison);
+		fenetre.setModeChargementDemandeLivraison();
+		
 		etat = "ChargementDemandeLivraison";
 	}
 	
 	public void setModeCalculTournee()
-	{
-		if (tournee == null)
-		{
-			fenetre.setModeCalculTournee();
-		}
-		
-		else
-		{
-			fenetre.setModeCalculTournee(tournee);	
-		}
-		
-		etat = "CalculTournee";
-	}
-	
-	public void setModeCalculTournee(String calcul)
 	{		
-		tournee = new Tournee(plan, demandeLivraison);
-		calculateurTournee = new CalculateurTournee(tournee);
 		calculateurTournee.run();
 		
-		fenetre.setModeCalculTournee(tournee);
+		fenetre.setModeCalculTournee();
 		etat = "CalculTournee";
 	}
 	
 	public void setModeModificationTournee()
 	{
-		fenetre.setModeModificationTournee(tournee);
+		fenetre.setModeModificationTournee();
 		etat = "ModificationTournee";
 	}
 	

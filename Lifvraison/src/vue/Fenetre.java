@@ -30,12 +30,13 @@ public class Fenetre extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	
-	//private VueGraphique vueGraphique;
+	// 1.1.1 mainPanel/leftPanel/vueGraphique
+	private VueGraphique vueGraphique;
 	
 	// 1.1.1 mainPanel/leftPanel/overMapPanel
-	private JPanel overMapPanel;
+	//private JPanel overMapPanel;
 	// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
-	private MapPanel mapPanel;	
+	//private MapPanel mapPanel;	
 	// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 	private JPanel listeLivraisonsPanel;
 	// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
@@ -62,7 +63,7 @@ public class Fenetre extends JFrame
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	public Fenetre(Controleur controleur)
+	public Fenetre(Controleur controleur, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
 		super();	
 		
@@ -79,13 +80,17 @@ public class Fenetre extends JFrame
 		leftPanel.setLayout(new BorderLayout());
 		mainPanel.add(leftPanel, BorderLayout.CENTER);
 		
+		// 1.1.1 mainPanel/leftPanel/vueGraphique
+		vueGraphique = new VueGraphique(this, plan, demandeLivraison, tournee);
+		leftPanel.add(vueGraphique, BorderLayout.CENTER);
+		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel
-		overMapPanel = new JPanel();
-		overMapPanel.setLayout(new CardLayout(50, 50));
-		leftPanel.add(overMapPanel, BorderLayout.CENTER);
+		//overMapPanel = new JPanel();
+		//overMapPanel.setLayout(new CardLayout(50, 50));
+		//leftPanel.add(overMapPanel, BorderLayout.CENTER);
 		
 		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
-		mapPanel = new MapPanel(null, null, null);
+		//mapPanel = new MapPanel(null, null, null);
 		
 		// 1.1.2 mainPanel/leftPanel/titlePanel
 		JPanel titlePanel = new JPanel();
@@ -215,11 +220,11 @@ public class Fenetre extends JFrame
 	public void setModeAccueil()
 	{		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel		
-		overMapPanel.removeAll();
+		//overMapPanel.removeAll();
 		
 		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/imageLabel
-		JLabel imageLabel = new JLabel(new ImageIcon("ihm\\image_livreur.jpg"));
-		overMapPanel.add(imageLabel, BorderLayout.CENTER);
+		//JLabel imageLabel = new JLabel(new ImageIcon("ihm\\image_livreur.jpg"));
+		//overMapPanel.add(imageLabel, BorderLayout.CENTER);
 		
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
@@ -236,17 +241,10 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
-	private JButton affichageChargementPlan()
+	public void setModeChargementPlan()
 	{
-		// 1.1.1 mainPanel/leftPanel/overMapPanel
-		overMapPanel.removeAll();
-		
-		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
-		mapPanel.setAffichagePlan(true);
-		mapPanel.setAffichageDemandeLivraison(false);
-		mapPanel.setAffichageTournee(false);
-		overMapPanel.add(mapPanel);
-		mapPanel.repaint();
+		// 1.1.1 mainPanel/leftPanel/vueGraphique
+		vueGraphique.setModeChargementPlan();
 		
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
@@ -268,31 +266,12 @@ public class Fenetre extends JFrame
 		
 		repaint();
 		setVisible(true);
-		
-		return buttonChargerPlan;
-	}
-	
-	public void setModeChargementPlan()
-	{
-		JButton buttonChargerPlan = affichageChargementPlan();
-		
-		ecouteurDeBoutons.actionPerformed(new ActionEvent(buttonChargerPlan, ActionEvent.ACTION_PERFORMED, "Charger Plan", System.currentTimeMillis(), 0));
-	}
-	
-	public void setModeChargementPlan(Plan plan)
-	{
-		mapPanel.setPlan(plan);
-				
-		affichageChargementPlan();
 	}
 
-	private JButton affichageChargementDemandeLivraison()
+	public void setModeChargementDemandeLivraison()
 	{
-		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
-		mapPanel.setAffichagePlan(true);
-		mapPanel.setAffichageDemandeLivraison(true);
-		mapPanel.setAffichageTournee(false);
-		mapPanel.repaint();
+		// 1.1.1 mainPanel/leftPanel/vueGraphique
+		vueGraphique.setModeChargementDemandeLivraison();
 
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
@@ -316,31 +295,12 @@ public class Fenetre extends JFrame
 		
 		repaint();
 		setVisible(true);
-				
-		return buttonChargerDemandeLivraison;
 	}
 	
-	public void setModeChargementDemandeLivraison()
+	public void setModeCalculTournee()
 	{
-		JButton buttonChargerDemandeLivraison = affichageChargementDemandeLivraison();
-		
-		ecouteurDeBoutons.actionPerformed(new ActionEvent(buttonChargerDemandeLivraison, ActionEvent.ACTION_PERFORMED, "Charger Demande Livraison", System.currentTimeMillis(), 0));
-	}
-	
-	public void setModeChargementDemandeLivraison(DemandeLivraison demandeLivraison)
-	{
-		mapPanel.setDemandeLivraison(demandeLivraison);
-		
-		affichageChargementDemandeLivraison();
-	}
-	
-	private JButton affichageCalculTournee()
-	{
-		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
-		mapPanel.setAffichagePlan(true);
-		mapPanel.setAffichageDemandeLivraison(true);
-		mapPanel.setAffichageTournee(true);
-		mapPanel.repaint();
+		// 1.1.1 mainPanel/leftPanel/vueGraphique
+		vueGraphique.setModeCalculTournee();
 		
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
@@ -366,25 +326,9 @@ public class Fenetre extends JFrame
 		
 		repaint();
 		setVisible(true);
-		
-		return buttonCalculerTournee;
 	}
 	
-	public void setModeCalculTournee()
-	{
-		JButton buttonCalculerTournee = affichageCalculTournee();
-		
-		ecouteurDeBoutons.actionPerformed(new ActionEvent(buttonCalculerTournee, ActionEvent.ACTION_PERFORMED, "Calculer Tournee", System.currentTimeMillis(), 0));
-	}
-	
-	public void setModeCalculTournee(Tournee tournee)
-	{
-		mapPanel.setTournee(tournee);
-		
-		affichageCalculTournee();
-	}
-	
-	public void setModeModificationTournee(Tournee tournee)
+	public void setModeModificationTournee()
 	{
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
@@ -395,7 +339,7 @@ public class Fenetre extends JFrame
 		labelListeLivraison.setPreferredSize(new Dimension(200, 300));
 		listeLivraisonsPanel.add(labelListeLivraison);
 		
-		// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
+		/*// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
 		int i = 0;
 		String texteListe = "Liste des livraisons\nDepart - " + tournee.getListeHoraire().get(i).getHeureDebut().toString() + "\n";
 		for(Livraison livraison : tournee.getLivraisonsOrdonnees())
@@ -408,7 +352,7 @@ public class Fenetre extends JFrame
 			}
 		}
 		texteListe = texteListe + "Retour à l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
-		labelListeLivraison.setText(texteListe);
+		labelListeLivraison.setText(texteListe);*/
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();

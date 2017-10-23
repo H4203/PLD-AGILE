@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.BasicStroke;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -39,9 +40,11 @@ public class MapPanel extends JPanel
 	private boolean affichagePlan;
 	private boolean affichageDemandeLivraison;
 	private boolean affichageTournee;
-	
+
 	public MapPanel(Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
+		//setLayout(new CardLayout(50, 50));
+		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
 		this.tournee = tournee;
@@ -49,11 +52,6 @@ public class MapPanel extends JPanel
 		affichagePlan = false;
 		affichageDemandeLivraison = false;
 		affichageTournee = false;
-		
-		if (plan != null)
-		{
-			init();
-		}
 	}
 	
 	public void repaint(Graphics g)
@@ -84,7 +82,6 @@ public class MapPanel extends JPanel
 		
         g2.setColor(Color.BLUE);
         g2.setStroke(new BasicStroke(3));
-        
         
         // affichage itineraire 
         // gestion immonde mais temporaire
@@ -128,10 +125,10 @@ public class MapPanel extends JPanel
         	/* entrepot */
 	        g2.setColor(new Color(0, 150, 0));
 	        
-			g2.fillRect((int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
+        	g2.fillRect((int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
 					realHeight - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
 	    			10, 10);
-			
+	        
 			/*
 			BufferedImage img = null;
 			try {
@@ -148,13 +145,13 @@ public class MapPanel extends JPanel
         	/* heure debut tournee - heure fin tournee */
 			g2.setFont(new Font("default", Font.BOLD, 16));
 			g2.setColor(Color.BLUE);
-			if (tournee != null)
+			if (demandeLivraison != null && tournee != null && tournee.getListeHoraire().size() != 0)
 			{
 				g2.drawString(tournee.getListeHoraire().get(0).getHeureDebut().toString() + " - " + tournee.getListeHoraire().get(tournee.getListeHoraire().size()-1).getHeureDebut().toString(),
 						(int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
 						realHeight - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5);
 			}
-			else
+			else if (demandeLivraison != null)
 			{
 				g2.drawString(demandeLivraison.getHeureDepart().toString(),
 						(int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
@@ -203,26 +200,6 @@ public class MapPanel extends JPanel
         g2.setStroke(new BasicStroke(1));
 	}
 	
-	public void setPlan(Plan plan)
-	{
-		this.plan = plan;
-		
-		if (plan != null)
-		{
-			init();
-		}
-	}
-	
-	public void setDemandeLivraison(DemandeLivraison demandeLivraison)
-	{
-		this.demandeLivraison = demandeLivraison;
-	}
-	
-	public void setTournee(Tournee tournee) 
-	{
-		this.tournee = tournee;
-	}
-	
 	public void setAffichagePlan(boolean etat)
 	{
 		affichagePlan = etat;
@@ -238,7 +215,7 @@ public class MapPanel extends JPanel
 		affichageTournee = etat;
 	}
 	
-	public void init()
+	public void resize()
 	{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
