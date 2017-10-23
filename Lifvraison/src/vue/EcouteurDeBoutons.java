@@ -104,6 +104,11 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.setModeSuivant();
 				break;
 			}
+			case "Precedent" :
+			{	
+				controleur.setModePrecedent();
+				break;
+			}
 		}
 		
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();

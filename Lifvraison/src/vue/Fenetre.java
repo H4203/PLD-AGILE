@@ -123,11 +123,14 @@ public class Fenetre extends JFrame
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel = new JPanel();
-		buttonsPanel.add(topButtonsPanel, BorderLayout.CENTER);
+		topButtonsPanel.setLayout(new FlowLayout());
+		topButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
+		buttonsPanel.add(topButtonsPanel);
 		
 		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel		
 		bottomButtonsPanel = new JPanel();
 		bottomButtonsPanel.setLayout(new GridLayout(0, 2, 20, 20));
+		bottomButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
 		buttonsPanel.add(bottomButtonsPanel);
 		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonPrecedent
@@ -455,12 +458,6 @@ public class Fenetre extends JFrame
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
 
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel	
-		bottomButtonsPanel.removeAll();
-		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/labelFin
-		bottomButtonsPanel.add(new JLabel("Fin"));
-		
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		resetOngletsPanelButtons();
 		// 1.3.1 mainPanel/ongletsPanel/buttonAccueil

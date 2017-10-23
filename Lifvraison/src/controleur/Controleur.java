@@ -152,4 +152,35 @@ public class Controleur
 			}
 		}
 	}
+	public void setModePrecedent()
+	{
+		switch (etat)
+		{
+			case "ChargementPlan" :
+			{
+				setModeAccueil();
+				break;
+			}
+			case "ChargementDemandeLivraison" :
+			{
+				setModeChargementPlan();
+				break;
+			}
+			case "CalculTournee" :
+			{
+				setModeChargementDemandeLivraison();
+				break;
+			}
+			case "ModificationTournee" :
+			{
+				setModeCalculTournee();
+				break;
+			}
+			case "ValidationTournee" :
+			{
+				setModeModificationTournee();
+				break;
+			}
+		}
+	}
 }
