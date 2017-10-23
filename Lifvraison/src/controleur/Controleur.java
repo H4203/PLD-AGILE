@@ -1,6 +1,9 @@
 package controleur;
 
+import javax.swing.JOptionPane;
+
 import algorithme.CalculateurTournee;
+import donnees.ParseurException;
 import donnees.XMLParseur;
 import modeles.Plan;
 import modeles.Tournee;
@@ -15,14 +18,19 @@ public class Controleur
 	private Plan plan;
 	private Tournee tournee;
 	DemandeLivraison demandeLivraison;
-	
 	private String etat;
 	
-	public Controleur() 
-	{
-		parseur = new XMLParseur();
-		fenetre = new Fenetre(this);
-	}
+	/**
+	 * 
+	 */
+	public Controleur() {
+		
+		try {
+			parseur = new XMLParseur ();
+			fenetre = new Fenetre ( this );
+		} catch (ParseurException e) {
+			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
+		}
 	
 	public void run()
 	{
@@ -48,11 +56,19 @@ public class Controleur
 		}
 		
 		etat = "ChargementPlan";
+		
+		
+
 	}
 	
 	public void setModeChargementPlan(String cheminPlan)
 	{
-		plan = parseur.chargerPlan(cheminPlan);
+		try {
+			plan = parseur.chargerPlan( cheminPlan );
+			fenetre.setModePlan( plan );
+		} catch (ParseurException e) {
+			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
+		}
 		demandeLivraison = null;
 		tournee = null;
 		
@@ -77,7 +93,12 @@ public class Controleur
 	
 	public void setModeChargementDemandeLivraison(String cheminDemandeLivraisons)
 	{	
-		demandeLivraison = parseur.chargerLivraison(cheminDemandeLivraisons, plan.getListeIntersection());	
+		
+		try {
+			demandeLivraison = parseur.chargerLivraison( cheminDemandeLivraisons, plan.getListeIntersection() );
+		} catch (ParseurException e) {
+			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
+		}	
 		tournee = null;
 		
 		fenetre.setModeChargementDemandeLivraison(demandeLivraison);

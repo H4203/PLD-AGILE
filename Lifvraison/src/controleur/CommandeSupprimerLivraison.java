@@ -11,12 +11,14 @@ public class CommandeSupprimerLivraison implements Commande {
 	private DemandeLivraison demandeLivraison;
 	private Tournee tournee;
 	private CalculateurTournee calculateurTournee;
+	private int position;
 	
-	CommandeSupprimerLivraison ( Livraison livraison, DemandeLivraison demandeLivraison, Tournee tournee)
+	CommandeSupprimerLivraison ( Livraison livraison, int position, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
 		this.livraison = livraison;
 		this.demandeLivraison = demandeLivraison;
 		this.tournee = tournee;
+		this.position = position;
 	}
 	
 	@Override
@@ -28,7 +30,7 @@ public class CommandeSupprimerLivraison implements Commande {
 	@Override
 	public void undoCommande() {
 		// TODO Auto-generated method stub
-		calculateurTournee.ajouterLivraison(livraison);
+		calculateurTournee.ajouterLivraison(position, livraison);
 	}
 	
 	

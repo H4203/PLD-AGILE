@@ -11,20 +11,22 @@ public class CommandeAjoutLivraison implements Commande {
 	private DemandeLivraison demandeLivraison;
 	private Tournee tournee;
 	private CalculateurTournee calculateurTournee;
+	private int position;
 	
-	CommandeAjoutLivraison ( Livraison livraison, DemandeLivraison demandeLivraison, Tournee tournee, CalculateurTournee calculateurTournee)
+	CommandeAjoutLivraison ( Livraison livraison, int position, DemandeLivraison demandeLivraison, Tournee tournee, CalculateurTournee calculateurTournee)
 	{
 		this.livraison = livraison;
 		this.demandeLivraison = demandeLivraison;
 		this.tournee = tournee;
 		this.calculateurTournee = calculateurTournee;
+		this.position = position;
 	}
 	
 	@Override
 	public void doCommande() {
 		//demandeLivraison.ajouterLivraison(livraison);
 		// recalcul avec algo
-		calculateurTournee.ajouterLivraison(livraison);
+		calculateurTournee.ajouterLivraison(position, livraison);
 	}
 
 	@Override
