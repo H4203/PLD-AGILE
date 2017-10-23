@@ -2,6 +2,8 @@ package modeles;
 import java.util.HashMap;
 import java.util.Observable;
 
+import donnees.ParseurException;
+
 public class Plan extends Observable
 {
 	private HashMap<Long, Intersection> listeIntersection;
@@ -27,14 +29,22 @@ public class Plan extends Observable
 		this.listeIntersection = listeIntersection;
 	}
 	
-	public void ajouterIntersection(Intersection aAjouter)
+	public void ajouterIntersection(Intersection aAjouter) throws ParseurException
 	{
+		if ( listeIntersection.containsKey(aAjouter.getId()) )
+		{
+			throw new ParseurException ("L'id"+ aAjouter.getId() +"est en double...");
+		}
 		this.listeIntersection.put(aAjouter.getId(), aAjouter);
 	}
 	
 
-	public void ajouterIntersection(Long id, int x, int y)
+	public void ajouterIntersection(Long id, int x, int y) throws ParseurException
 	{
+		if ( listeIntersection.containsKey(id) )
+		{
+			throw new ParseurException ("L'id"+ id +"est en double...");
+		}
 		this.listeIntersection.put( id, new Intersection(id,  x,  y) );
 	}
 	
