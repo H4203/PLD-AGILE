@@ -78,6 +78,8 @@ public class CalculateurTournee {
 				{
 					//On remplit la matrice cout avec le dijkstra. On fait la conversion en seconde
 					coutTsp[i][j] = (int)  (d.getItineraire(intersections.get(j).getId()).getLongueur()*3.6/(15*10));
+					
+					//Note : /10 permet d'avoir des m; *3,6/15 permet d'avoir des seconde, le 3,6 permet de faire km/h->m/s
 				}
 			}
 			dijkstra.add(d);
@@ -144,19 +146,12 @@ public class CalculateurTournee {
 		return this.laTournee;
 	}
 	
-	public Tournee ajouterLivraison(Livraison livraison) {
-		int index = -1;
-		for(int i = 0; i < lesItineraires.size(); i++) {
-			if(lesItineraires.get(i).getDepart().getId() == livraison.getIntersection().getId())
-			{
-				index = i;
-			}
-		}
+	public Tournee ajouterLivraison(int index, Livraison livraison) {
 		List<Itineraire> nouvelleTournee = new ArrayList<Itineraire>();
 		List<Livraison> nouvellesLivraisons = new ArrayList<Livraison>();
 		List<Dijkstra> nouveauxDijkstra = new ArrayList<Dijkstra>();
-		if(index != -1) {
-			for(int i = 0; i < index; i++) {
+		if( (index >=0) && (index <= laTournee.getLivraisonsOrdonnees().size()) ) {
+			for(int i = 0; i <= index; i++) {
 				nouveauxDijkstra.add(this.lesDijkstra.get(i));
 				nouvelleTournee.add(this.lesItineraires.get(i));
 				nouvellesLivraisons.add(laTournee.getLivraisonsOrdonnees().get(i));

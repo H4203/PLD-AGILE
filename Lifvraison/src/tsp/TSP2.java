@@ -22,7 +22,10 @@ public class TSP2 extends TemplateTSP {
 			if(cout[sommetCourant][i] < minPtCrt) {
 				minPtCrt = cout[sommetCourant][i];
 			}
-			
+		}
+		somme = somme + minPtCrt;
+		
+		for(Integer i : nonVus) {
 			//Pour les sommets non vus
 			int min = cout[i][0];
 			for(Integer j : nonVus) {
@@ -32,7 +35,7 @@ public class TSP2 extends TemplateTSP {
 			}
 			somme = somme + min + duree[i];
 		}
-		somme = somme + minPtCrt;
+		
 		//System.out.println(somme);
 		return somme;
 	}
