@@ -59,8 +59,6 @@ public class Fenetre extends JFrame
 	// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
 	private JButton buttonValidationTournee;
 	
-	private JPanel buttonsPanel;
-	
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
@@ -117,7 +115,7 @@ public class Fenetre extends JFrame
 		rightPanel.add(listeLivraisonsPanel, BorderLayout.CENTER);
 		
 		// 1.2.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel
-		buttonsPanel = new JPanel();
+		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(2, 0, 20, 20));
 		rightPanel.add(buttonsPanel, BorderLayout.SOUTH);
 		
