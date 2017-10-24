@@ -57,4 +57,11 @@ public class EtatDefault implements Etat{
 		
 	}
 
+	@Override
+	public void validationTournee(Controleur controleur, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
 }

@@ -14,5 +14,6 @@ public interface Etat {
 	public void precedent (Controleur controleur, Fenetre fenetre);
 	public void accueil (Controleur controleur, Fenetre fenetre);
 	public void clicgauche ( Controleur controleur, Fenetre fenetre, int positonPrecedente, Livraison livraison);
+	public void validationTournee (Controleur controleur, Fenetre fenetre);
 
 }

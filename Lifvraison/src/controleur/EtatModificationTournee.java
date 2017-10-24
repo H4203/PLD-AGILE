@@ -22,6 +22,11 @@ public class EtatModificationTournee extends EtatDefault{
 	}
 	
 	@Override
+	public void validationTournee ( Controleur controleur, Fenetre fenetre ) {
+		controleur.setEtatCourant( controleur.etatModeValidation );
+	}
+	
+	@Override
 	public void ajouterLivraison ( Controleur controleur, Fenetre fenetre)
 	{
 		controleur.setEtatCourant( controleur.etatAjoutLivraison1);

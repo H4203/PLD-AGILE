@@ -9,17 +9,18 @@ import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
 import modeles.DemandeLivraison;
+import modeles.Livraison;
 
 public class Controleur 
 {	
-	private XMLParseur parseur;
-	private CalculateurTournee calculateurTournee;
-	private Fenetre fenetre;
-	private Plan plan;
-	private Tournee tournee;
-	DemandeLivraison demandeLivraison;
-	private String etat;
-	private Etat etatCourant;
+	protected XMLParseur parseur;
+	protected CalculateurTournee calculateurTournee;
+	protected Fenetre fenetre;
+	protected Plan plan;
+	protected Tournee tournee;
+	protected DemandeLivraison demandeLivraison;
+	protected String etat;
+	protected Etat etatCourant;
 	
 	// differents etats possible
 	protected EtatAccueil etatAccueil = new EtatAccueil();
@@ -51,6 +52,46 @@ public class Controleur
 	protected void setEtatCourant(Etat etat){
 		etatCourant = etat;
 	}
+	
+	public void chargerPlan( String chemin)
+	{
+		etatCourant.chargerPlan(chemin);
+	}
+	public void chargerLivraison( String chemin)
+	{
+		etatCourant.chargerLivraison(chemin);
+	}
+	public void ajouterLivraison()
+	{
+		etatCourant.ajouterLivraison(this, fenetre);
+	}
+	public void suprimerLivraison( int positon )
+	{
+		etatCourant.suprimerLivraison(this, fenetre, positon);
+	}
+	public void intervertirLivraison(Livraison livraison1, Livraison livraison2)
+	{
+		etatCourant.intervertirLivraison(this, fenetre, livraison1, livraison2);
+	}
+	public void suivant ()
+	{
+		etatCourant.suivant(this, fenetre);
+	}
+	public void precedent ()
+	{
+		etatCourant.precedent(this, fenetre);
+	}
+	public void accueil ()
+	{
+		etatCourant.accueil(this, fenetre);
+	}
+	public void clicgauche ( int positonPrecedente, Livraison livraison)
+	{
+		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
+	}
+
+	
+	
 	
 	public void run()
 	{

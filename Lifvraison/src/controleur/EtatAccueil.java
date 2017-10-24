@@ -8,6 +8,14 @@ public class EtatAccueil extends EtatDefault {
 	public void suivant (Controleur controleur, Fenetre fenetre)
 	{
 		//do stuff
+		if (controleur.plan == null)
+		{
+			fenetre.setModeChargementPlan();
+		}
+		else
+		{
+			fenetre.setModeChargementPlan(controleur.plan);
+		}
 		controleur.setEtatCourant( controleur.etatChargementPlan );
 	}
 	
