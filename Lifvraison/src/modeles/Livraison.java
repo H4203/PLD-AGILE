@@ -13,6 +13,7 @@ public class Livraison {
 	public Livraison(Intersection intersection, int dureeDechargement) {
 		this.intersection = intersection;
 		this.dureeDechargement = dureeDechargement;
+		plageHoraire = null;
 	}
 	
 	public Livraison(Intersection Intersection, int dureeDechargement, PlageHoraire plagehoraire) {

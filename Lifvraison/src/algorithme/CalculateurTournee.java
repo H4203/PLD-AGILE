@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.ArrayList;
 import tsp.*;
 import donnees.XMLParseur;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;;
 
 public class CalculateurTournee {
 	/**
@@ -50,6 +52,9 @@ public class CalculateurTournee {
 		int[][] coutTsp = new int[intersections.size()][intersections.size()];
 		int[] duree = new int[intersections.size()];
 		
+		int[] tempsDebutPlage = new int[intersections.size()];
+		int[] tempsFinPlage = new int[intersections.size()];
+		
 		List<Dijkstra> dijkstra = new ArrayList<Dijkstra>();
 		
 		//On remplit, point par point, la matrice duree et la matrice cout
@@ -62,10 +67,21 @@ public class CalculateurTournee {
 			{
 				//La duree passee a l'entrepot est initialisee a 0
 				duree[0] = 0;
+				tempsDebutPlage[0] = 0;
+				tempsFinPlage[0] = Integer.MAX_VALUE;
 			}
 			else {
 				//get(i-1) car l'entrepot a decale toutes les livraisons dans la matrice intersections
 				duree[i] = livraisons.get(i-1).getDureeDechargement();
+				if(dl.getLivraisons().get(i-1).getPlagehoraire() != null) {
+					tempsDebutPlage[i] = (int) ChronoUnit.SECONDS.between(dl.getHeureDepart(), livraisons.get(i-1).getPlagehoraire().getHeureDebut());
+					tempsFinPlage[i] = (int) ChronoUnit.SECONDS.between(dl.getHeureDepart(), livraisons.get(i-1).getPlagehoraire().getHeureFin());
+				}
+				else {
+					tempsDebutPlage[i] = 0;
+					tempsFinPlage[i] = Integer.MAX_VALUE;
+				}
+				
 			}
 			
 			//Grace au dijkstra, on remplit la matrice de cout, car on peut obtenir le plus court chemin du point courant vers tous les autres points
@@ -77,7 +93,7 @@ public class CalculateurTournee {
 				else
 				{
 					//On remplit la matrice cout avec le dijkstra. On fait la conversion en seconde
-					coutTsp[i][j] = (int)  (d.getItineraire(intersections.get(j).getId()).getLongueur()*3.6/(15*10));
+					coutTsp[i][j] = (int)  (d.getItineraire(intersections.get(j).getId()).getLongueur()*3.6/15);
 					
 					//Note : /10 permet d'avoir des m; *3,6/15 permet d'avoir des seconde, le 3,6 permet de faire km/h->m/s
 				}
@@ -92,7 +108,7 @@ public class CalculateurTournee {
 		long temps = System.currentTimeMillis();
 		
 		//On run le tsp
-		tsp.chercheSolution(Integer.MAX_VALUE, intersections.size(), coutTsp, duree);
+		tsp.chercheSolution(Integer.MAX_VALUE, intersections.size(), coutTsp, duree,tempsDebutPlage, tempsFinPlage);
 		
 		//Affichage du temps mis
 		System.out.println(System.currentTimeMillis() - temps);

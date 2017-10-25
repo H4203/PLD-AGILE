@@ -4,16 +4,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collections;
 
-public class TSP2 extends TemplateTSP {
-	
-	@Override
-	protected Iterator<Integer> iterator(Integer sommetCrt, ArrayList<Integer> nonVus, int[][] cout, int[] duree) {
-		
-		return new IteratorSeq(nonVus, sommetCrt);
-	}
+public class TSP2 extends TSP1 {
 
 	@Override
-	protected int bound(Integer sommetCourant, ArrayList<Integer> nonVus, int[][] cout, int[] duree) {
+	protected int bound(Integer sommetCourant, ArrayList<Integer> nonVus, int[][] cout, int[] duree, int[] tempsDebutPlage, int[] tempsFinPlage, int coutVus) {
+		
+		for(Integer i : nonVus) {
+			if(coutVus + cout[sommetCourant][i] + duree[i] > tempsFinPlage[i]) {
+				return Integer.MAX_VALUE;
+			}
+		}
+		
 		int somme = 0;
 		
 		int minPtCrt = Integer.MAX_VALUE;
@@ -25,11 +26,13 @@ public class TSP2 extends TemplateTSP {
 		}
 		somme = somme + minPtCrt;
 		
+		
+		
 		for(Integer i : nonVus) {
 			//Pour les sommets non vus
 			int min = cout[i][0];
 			for(Integer j : nonVus) {
-				if(cout[i][j] < min  ) {
+				if( (cout[i][j] < min) && (i != j)  ) {
 					min = cout[i][j];
 				}
 			}

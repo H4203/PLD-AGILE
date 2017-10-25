@@ -25,7 +25,12 @@ public class DemandeLivraison {
 
 	public void ajouterLivraison(Intersection intersection, int dureeDechargement, LocalTime arrivee,
 			LocalTime depart) {
-		livraisons.add(new Livraison(intersection, dureeDechargement, new PlageHoraire(arrivee, depart)));
+		if(arrivee == null) {
+			livraisons.add(new Livraison(intersection, dureeDechargement));
+		}
+		else {
+			livraisons.add(new Livraison(intersection, dureeDechargement, new PlageHoraire(arrivee, depart)));
+		}
 	}
 
 	/**

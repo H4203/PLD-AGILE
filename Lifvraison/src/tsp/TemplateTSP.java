@@ -13,7 +13,7 @@ public abstract class TemplateTSP implements TSP {
 		return tempsLimiteAtteint;
 	}
 	
-	public void chercheSolution(int tpsLimite, int nbSommets, int[][] cout, int[] duree){
+	public void chercheSolution(int tpsLimite, int nbSommets, int[][] cout, int[] duree, int[] tempsDebutPlage, int[] tempsFinPlage){
 		tempsLimiteAtteint = false;
 		coutMeilleureSolution = Integer.MAX_VALUE;
 		meilleureSolution = new Integer[nbSommets];
@@ -21,7 +21,7 @@ public abstract class TemplateTSP implements TSP {
 		for (int i=1; i<nbSommets; i++) nonVus.add(i);
 		ArrayList<Integer> vus = new ArrayList<Integer>(nbSommets);
 		vus.add(0); // le premier sommet visite est 0
-		branchAndBound(0, nonVus, vus, 0, cout, duree, System.currentTimeMillis(), tpsLimite);
+		branchAndBound(0, nonVus, vus, 0, cout, duree, System.currentTimeMillis(), tpsLimite, tempsDebutPlage, tempsFinPlage);
 	}
 	
 	public Integer getMeilleureSolution(int i){
@@ -43,7 +43,7 @@ public abstract class TemplateTSP implements TSP {
 	 * @return une borne inferieure du cout des permutations commencant par sommetCourant, 
 	 * contenant chaque sommet de nonVus exactement une fois et terminant par le sommet 0
 	 */
-	protected abstract int bound(Integer sommetCourant, ArrayList<Integer> nonVus, int[][] cout, int[] duree);
+	protected abstract int bound(Integer sommetCourant, ArrayList<Integer> nonVus, int[][] cout, int[] duree, int[] tempsDebutPlage, int[] tempsFinPlage, int coutVus);
 	
 	/**
 	 * Methode devant etre redefinie par les sous-classes de TemplateTSP
@@ -66,7 +66,8 @@ public abstract class TemplateTSP implements TSP {
 	 * @param tpsDebut : moment ou la resolution a commence
 	 * @param tpsLimite : limite de temps pour la resolution
 	 */	
-	 void branchAndBound(int sommetCrt, ArrayList<Integer> nonVus, ArrayList<Integer> vus, int coutVus, int[][] cout, int[] duree, long tpsDebut, int tpsLimite){
+	 void branchAndBound(int sommetCrt, ArrayList<Integer> nonVus, ArrayList<Integer> vus, int coutVus, int[][] cout, int[] duree, long tpsDebut, int tpsLimite, 
+			 int[] tempsDebutPlage, int[] tempsFinPlage){
 		 if (System.currentTimeMillis() - tpsDebut > tpsLimite){
 			 tempsLimiteAtteint = true;
 			 return;
@@ -79,13 +80,17 @@ public abstract class TemplateTSP implements TSP {
 		    		coutMeilleureSolution = coutVus;
 		    		//System.out.println(coutMeilleureSolution);
 		    	}
-	    } else if (coutVus + bound(sommetCrt, nonVus, cout, duree) < coutMeilleureSolution){
+	    } else if (coutVus + bound(sommetCrt, nonVus, cout, duree, tempsDebutPlage, tempsFinPlage, coutVus) < coutMeilleureSolution){
 	        Iterator<Integer> it = iterator(sommetCrt, nonVus, cout, duree);
 	        while (it.hasNext()){
 		        	Integer prochainSommet = it.next();
 		        	vus.add(prochainSommet);
 		        	nonVus.remove(prochainSommet);
-		        	branchAndBound(prochainSommet, nonVus, vus, coutVus + cout[sommetCrt][prochainSommet] + duree[prochainSommet], cout, duree, tpsDebut, tpsLimite);
+		        	if(coutVus+ cout[sommetCrt][prochainSommet] < tempsDebutPlage[prochainSommet]) {
+		        		branchAndBound(prochainSommet, nonVus, vus, tempsDebutPlage[prochainSommet] + duree[prochainSommet], cout, duree, tpsDebut, tpsLimite, tempsDebutPlage, tempsFinPlage);
+		        	}else {
+		        		branchAndBound(prochainSommet, nonVus, vus, coutVus + cout[sommetCrt][prochainSommet] + duree[prochainSommet], cout, duree, tpsDebut, tpsLimite, tempsDebutPlage, tempsFinPlage);
+		        	}
 		        	vus.remove(prochainSommet);
 		        	nonVus.add(prochainSommet);
 	        }	
