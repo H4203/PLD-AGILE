@@ -41,6 +41,8 @@ public class EcouteurDeBoutons implements ActionListener
 			{
 				String chemin = "";
 				
+				fileChooser.setCurrentDirectory(new File("./data/plan"));
+				
 			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 			    {
 			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
@@ -56,6 +58,8 @@ public class EcouteurDeBoutons implements ActionListener
 			case "Charger Demande Livraison" :
 			{
 				String chemin = "";
+				
+				fileChooser.setCurrentDirectory(new File("./data/demandeLivraison"));
 				
 			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 			    {
