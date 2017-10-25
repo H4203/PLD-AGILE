@@ -25,5 +25,12 @@ public class EtatAccueil extends EtatDefault {
 		controleur.setEtatCourant( controleur.etatAccueil );
 		fenetre.setModeAccueil();
 	}
+	
+	@Override
+	public void accueil(Controleur controleur, Fenetre fenetre)
+	{
+		controleur.setEtatCourant( controleur.etatAccueil );
+		fenetre.setModeAccueil();
+	}
 
 }

@@ -402,7 +402,6 @@ public class Fenetre extends JFrame
 	
 		
 		// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
-		;
 		String tableauTexteList[] = new String[tournee.getLivraisonsOrdonnees().size()+2]; //+2 pour entrepot depart et arrive
 		tableauTexteList[0] = "Depart de l'entrepot a " + tournee.getListeHoraire().get(0).getHeureDebut().toString();
 		
