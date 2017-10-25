@@ -31,10 +31,19 @@ public class DemandeLivraison extends Observable
 		livraisons.clear();
 	}
 
-	public void ajouterLivraison(Intersection intersection, int dureeDechargement, LocalTime arrivee, LocalTime depart) 
-	{
-		livraisons.add(new Livraison(intersection, dureeDechargement, new PlageHoraire(arrivee, depart)));
-		notifyObservers();
+	public void ajouterLivraison(Intersection intersection, int dureeDechargement, LocalTime arrivee,
+			LocalTime depart) {
+		if(arrivee == null) {
+			livraisons.add(new Livraison(intersection, dureeDechargement));
+		}
+		else {
+			livraisons.add(new Livraison(intersection, dureeDechargement, new PlageHoraire(arrivee, depart)));
+		}
+    notifyObservers();
+	}
+	public void ajouterLivraison( Livraison livraison) {
+		livraisons.add(livraison);
+    notifyObservers();
 	}
 
 	/**

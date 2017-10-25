@@ -18,16 +18,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import controleur.Controleur;
 import modeles.DemandeLivraison;
 import modeles.Livraison;
+import modeles.PlageHoraire;
 import modeles.Plan;
 import modeles.Tournee;
 
 import javax.swing.JTextArea;
-
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 public class Fenetre extends JFrame
@@ -63,6 +66,12 @@ public class Fenetre extends JFrame
 	private JButton buttonModificationTournee;
 	// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
 	private JButton buttonValidationTournee;
+	
+	//??
+	// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
+	private JList<String> listTexteLivraison;
+	
+	private JPanel buttonsPanel;
 	
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -192,6 +201,8 @@ public class Fenetre extends JFrame
 		buttonValidationTournee.addActionListener(ecouteurDeBoutons);
 		buttonValidationTournee.setEnabled(false);
 		ongletsPanel.add(buttonValidationTournee);
+		
+		
 		
 		/*
 		setUndecorated(true);
@@ -340,27 +351,39 @@ public class Fenetre extends JFrame
 	{
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
+	
 		
-		// 1.2.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison
-		JTextArea labelListeLivraison = new JTextArea();
-		labelListeLivraison.setEditable(false);
-		labelListeLivraison.setPreferredSize(new Dimension(200, 300));
-		listeLivraisonsPanel.add(labelListeLivraison);
-		
+
 		/*// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
+
+		String tableauTexteList[] = new String[tournee.getLivraisonsOrdonnees().size()+2]; //+2 pour entrepot depart et arrive
+		tableauTexteList[0] = "Depart de l'entrepot a " + tournee.getListeHoraire().get(0).getHeureDebut().toString();
+		
 		int i = 0;
-		String texteListe = "Liste des livraisons\nDepart - " + tournee.getListeHoraire().get(i).getHeureDebut().toString() + "\n";
-		for(Livraison livraison : tournee.getLivraisonsOrdonnees())
+		for(PlageHoraire plgrhoraire : tournee.getListeHoraire())
 		{
 			if(i < tournee.getLivraisonsOrdonnees().size()-1)
 			{
 				i = i + 1;
-				texteListe = texteListe + i + " - de " + tournee.getListeHoraire().get(i).getHeureDebut().toString() 
-						+ " a " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
+				tableauTexteList[i] = + i + " - de " + tournee.getListeHoraire().get(i).getHeureDebut().toString() 
+						+ " a " + tournee.getListeHoraire().get(i).getHeureFin().toString();
 			}
 		}
-		texteListe = texteListe + "Retour à l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
-		labelListeLivraison.setText(texteListe);*/
+
+		texteListe = texteListe + "Retour ï¿½ l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
+		labelListeLivraison.setText(texteListe);
+
+		i = i + 1;
+		tableauTexteList[i] = "Retour a l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString();
+		
+		listTexteLivraison = new JList<String>();
+		listTexteLivraison.setListData(tableauTexteList);
+		listTexteLivraison.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		listTexteLivraison.setLayoutOrientation(JList.VERTICAL);
+		listTexteLivraison.setVisibleRowCount(-1); //show max number of item
+		JScrollPane listScroller = new JScrollPane(listTexteLivraison);
+		listScroller.setPreferredSize(new Dimension(250, 80));
+		listeLivraisonsPanel.add(listScroller);*/
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();

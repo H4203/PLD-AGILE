@@ -46,7 +46,7 @@ public class Tournee extends Observable
 		for (Itineraire itineraire : listeItineraires)
 		{
 			/* on converti la longeur de la route en temps */
-			dureeRoute = itineraire.getLongueur()*0.1/15000*3600;
+			dureeRoute = itineraire.getLongueur()/15000*3600;
 
 			/* on recupere l'heure a laquelle il quitte son dernier point */
 			debut = listeHoraire.get(listeHoraire.size()-1).getHeureFin();
@@ -64,15 +64,14 @@ public class Tournee extends Observable
 				break;
 			}
 			
-			List<Livraison> listLiv = demandeLivraison.getLivraisons();
-			Livraison liv = listLiv.get(indexItineraire);
+			Livraison liv = livraisonsOrdonnees.get(indexItineraire+1);
 			PlageHoraire plhr =  liv.getPlagehoraire();
 			if (plhr != null)
 			{
 				if (plhr.getHeureDebut() != null && debut.isBefore(plhr.getHeureDebut()))
 				{
 					/* on ajoute le temps d'attente du debut de plage horaire */
-					fin = demandeLivraison.getLivraisons().get(listeItineraires.indexOf(itineraire)).getPlagehoraire().getHeureDebut();
+					fin = liv.getPlagehoraire().getHeureDebut();
 				}
 				else
 				{
@@ -84,7 +83,7 @@ public class Tournee extends Observable
 				fin = debut;
 			}
 			/* on ajoute le temps de livrer */
-			fin = fin.plusSeconds(demandeLivraison.getLivraisons().get(indexItineraire).getDureeDechargement());
+			fin = fin.plusSeconds(liv.getDureeDechargement());
 			horaire = new PlageHoraire(debut,fin);
 			listeHoraire.add(horaire);
 		}
@@ -144,6 +143,16 @@ public class Tournee extends Observable
 		this.livraisonsOrdonnees = livraisonsOrdonnees;
 	}
 	
+	public void ajouterLivraison (Livraison livraison, int position)
+	{
+		livraisonsOrdonnees.add(position, livraison);
+		updateHoraire();
+	}
 	
+	public void supprimerLivraison (int position)
+	{
+		livraisonsOrdonnees.remove(position);
+		updateHoraire();
+	}
 	
 }

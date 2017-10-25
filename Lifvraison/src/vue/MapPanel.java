@@ -126,7 +126,7 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
     	        	}
     	        	
     	        	g2.setFont(new Font("default", Font.BOLD, 16));
-    	        	g2.setColor(Color.DARK_GRAY);
+    	        	g2.setColor(Color.RED);
     	        	i++;
     	        	if ( i < tournee.getListeItineraires().size())
     	        	{
@@ -195,6 +195,16 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
 	        			sideLength - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
         			8, 8);
+              
+	        	if (livraison.getPlagehoraire() == null || livraison.getPlagehoraire().getHeureDebut() == null || livraison.getPlagehoraire().getHeureFin() == null)
+	        	{
+	        		g2.setColor(Color.BLACK);
+	        		g2.fillRect((int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
+		        			realHeight - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
+		        			8, 8);
+	        		g2.setColor(Color.RED);
+	        	}
+
 	        	/*
 				try {
 					img = ImageIO.read(new File("\\ihm\\mapmarker.png"));

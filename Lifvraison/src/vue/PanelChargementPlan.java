@@ -1,5 +1,4 @@
 package vue;
-
 import java.awt.Component;
 import java.io.File;
 

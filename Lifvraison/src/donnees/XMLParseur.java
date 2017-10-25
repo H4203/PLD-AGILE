@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -24,12 +25,12 @@ public class XMLParseur
 	final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder builder;
 
-	public XMLParseur ()
+	public XMLParseur () throws ParseurException
 	{
 		try {
 			builder = factory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
+			throw new ParseurException(e.getMessage(), e);
 		}
 	}
 
@@ -39,6 +40,7 @@ public class XMLParseur
 	 * @param listeIntersection les intersections du plan - la map associe les id des intersections avec leur objet Intersection
 	 * @return la demande de livraisons
 	 */
+
 	public void chargerLivraison (DemandeLivraison demandelivraison, String cheminDuFichier, HashMap<Long, Intersection> listeIntersection)
 	{
 		demandelivraison.reset();
@@ -51,23 +53,31 @@ public class XMLParseur
 		}
 		catch (SAXException e)
 		{
-			//TODO
-			e.printStackTrace();
+			throw new ParseurException(e.getMessage(), e);
+
 		}
 		catch (IOException e)
 		{
-			//TODO
-			e.printStackTrace();
+			throw new ParseurException(e.getMessage(), e);
 		}
 
 		final Element racine = document.getDocumentElement();
 
-		/* on s'assure que l'objet � la racine est bien la demande de livraison */
-		assert (racine.getNodeName().equals("demandeDeLivraisons"));
+		/* on s'assure que l'objet a la racine est bien la demande de livraison */
+		if ( !racine.getNodeName().equals("demandeDeLivraisons") )
+		{
+			throw new ParseurException("Le fichier n'est pas une demande de livraison...");
+		}
 
 		NodeList racineNoeuds = racine.getChildNodes();
 		int nbRacineNoeuds = racineNoeuds.getLength();
 
+		if ( nbRacineNoeuds == 0 )
+		{
+			throw new ParseurException("Le fichier ne contient aucune information");
+		}
+
+		int nbEntrepot = 0, nbLivraison = 0;
 		/*on boucle sur tous les enfants de la racine */
 		for (int i = 0; i<nbRacineNoeuds; i++) {
 			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) // l'element i est un noeud
@@ -78,21 +88,40 @@ public class XMLParseur
 				 * on set ses valeurs
 				 */
 				LocalTime heureDepart; Long adresse;
+				String heurededepart;
 				int heure, minute, seconde;
 				if ( monElement.getNodeName().equals("entrepot")) 
 				{
 					/* on recupere l'heure de depart */
 					/* on parse nous meme comme leur heure ne sont pas ISO (00:00:00) */
-					heure = Integer.parseInt(monElement.getAttribute("heureDepart").split(":")[0]);
-					minute = Integer.parseInt(monElement.getAttribute("heureDepart").split(":")[1]);
-					seconde = Integer.parseInt(monElement.getAttribute("heureDepart").split(":")[2]);
-					heureDepart = LocalTime.of(heure,minute,seconde);
-
+					try {
+						heurededepart = monElement.getAttribute("heureDepart");
+						heure = Integer.parseInt(heurededepart.split(":")[0]);
+						minute = Integer.parseInt(heurededepart.split(":")[1]);
+						seconde = Integer.parseInt(heurededepart.split(":")[2]);
+						heureDepart = LocalTime.of(heure,minute,seconde);
+					}
+					catch (Exception e)
+					{
+						throw new ParseurException("L'heure de depart est incorrecte (format = h:m:s)", e);
+					}
 					//heureDepart = LocalTime.parse(monElement.getAttribute("heureDepart"));
 
 					/* on recupere l'id de l'intersection de depart */
-					adresse = Long.parseLong(monElement.getAttribute("adresse"), 10);
+					try
+					{
+						adresse = Long.parseLong(monElement.getAttribute("adresse"), 10);
+					}
+					catch ( Exception e)
+					{
+						throw new ParseurException("L'adresse de l'entrepot est incorrecte (format = Long)", e);
+					}
 
+					nbEntrepot ++;
+					if ( nbEntrepot > 1 )
+					{
+						throw new ParseurException("Le fichier contient plus d'1 entrepot");
+					}
 					/* on remplit les parametres */
 					demandelivraison.setHeureDepart(heureDepart);
 					demandelivraison.setEntrepot(listeIntersection.get(adresse));
@@ -103,33 +132,81 @@ public class XMLParseur
 				if (monElement.getNodeName().equals("livraison"))
 				{
 					/* on recupere l'id de la livraison */
-					idAdresse = Long.parseLong(monElement.getAttribute("adresse"), 10);
+					try
+					{
+						idAdresse = Long.parseLong(monElement.getAttribute("adresse"), 10);
+					}
+					catch (Exception e)
+					{
+						throw new ParseurException("L'adresse de la "+ ++nbLivraison +" livraison est incorrecte (format = adresse = LONG)", e);
+					}
+
 					adresseLivraison = listeIntersection.get(idAdresse);
+					if (adresseLivraison == null)
+					{
+						throw new ParseurException("L'adresse de la "+ ++nbLivraison +" livraison n'existe pas");
+					}
 					/* on recupere la duree de dechargement */
-					duree =  Integer.parseInt(monElement.getAttribute("duree"));
+					try
+					{
+						duree =  Integer.parseInt(monElement.getAttribute("duree"));
+					}
+					catch (Exception e)
+					{
+						throw new ParseurException("La duree de la "+ ++nbLivraison +" livraison est incorrecte", e);
+					}
+					if (duree < 0)
+					{
+						throw new ParseurException("Une duree ne peut pas etre negative!");
+					}
 					/* on recupere l'heure de debut si elle existe */
 					if (!monElement.getAttribute("debutPlage").equals(""))
 					{
-						heure = Integer.parseInt(monElement.getAttribute("debutPlage").split(":")[0]);
-						minute = Integer.parseInt(monElement.getAttribute("debutPlage").split(":")[1]);
-						seconde = Integer.parseInt(monElement.getAttribute("debutPlage").split(":")[2]);
-						debutPlage = LocalTime.of(heure,minute,seconde);
-						//debutPlage = LocalTime.parse(monElement.getAttribute("debutPlage"));
+						try
+						{
+							String heurededebutPlage = monElement.getAttribute("debutPlage");
+							heure = Integer.parseInt(heurededebutPlage.split(":")[0]);
+							minute = Integer.parseInt(heurededebutPlage.split(":")[1]);
+							seconde = Integer.parseInt(heurededebutPlage.split(":")[2]);
+							debutPlage = LocalTime.of(heure,minute,seconde);
+						}
+						catch (Exception e)
+						{
+							throw new ParseurException("L'heure de debut de plage de la livraison "+ ++nbLivraison +"est incorrecte (format = h:m:s)", e);
+						}
 					} else debutPlage = null;
 					/* on recupere l'heure de fin */
 					if (!monElement.getAttribute("finPlage").equals(""))
 					{
-						heure = Integer.parseInt(monElement.getAttribute("finPlage").split(":")[0]);
-						minute = Integer.parseInt(monElement.getAttribute("finPlage").split(":")[1]);
-						seconde = Integer.parseInt(monElement.getAttribute("finPlage").split(":")[2]);
-						finPlage = LocalTime.of(heure,minute,seconde);
-						//finPlage = LocalTime.parse(monElement.getAttribute("finPlage"));
-					} else finPlage = null;
-					
+						try
+						{
+							String heuredefinPlage = monElement.getAttribute("finPlage");
+							heure = Integer.parseInt(heuredefinPlage.split(":")[0]);
+							minute = Integer.parseInt(heuredefinPlage.split(":")[1]);
+							seconde = Integer.parseInt(heuredefinPlage.split(":")[2]);
+							finPlage = LocalTime.of(heure,minute,seconde);
+						}
+						catch (Exception e)
+						{
+							throw new ParseurException("L'heure de fin de plage de la livraison "+ ++nbLivraison +"est incorrecte (format = h:m:s)", e);
+						}
+					} 
+					else finPlage = null;
+
+					++nbLivraison;
 					/* on ajoute la livraison a la demande */
 					demandelivraison.ajouterLivraison(adresseLivraison, duree, debutPlage, finPlage);
 				}
 			}				
+		}
+
+		if (nbLivraison == 0 )
+		{
+			throw new ParseurException("Aucune livraison a affectuer ! \n Un jour de repos");
+		}
+		if (nbLivraison == 0 )
+		{
+			throw new ParseurException("Aucun entrepot !");
 		}
 	}
 
@@ -150,23 +227,30 @@ public class XMLParseur
 		}
 		catch (SAXException e)
 		{
-			//TODO
-			e.printStackTrace();
+			throw new ParseurException(e.getMessage(), e);
 		}
 		catch (IOException e)
 		{
-			//TODO
-			e.printStackTrace();
+			throw new ParseurException(e.getMessage(), e);
 		}
 
 		final Element racine = document.getDocumentElement();
 
 		/* on s'assure que l'objet a la racine est bien le plan*/
-		assert (racine.getNodeName().equals("reseau"));
+		if ( !racine.getNodeName().equals("reseau") )
+		{
+			throw new ParseurException("Le fichier n'est pas une demande de livraison...");
+		}
 
 		NodeList racineNoeuds = racine.getChildNodes();
 		int nbRacineNoeuds = racineNoeuds.getLength();
 
+		if ( nbRacineNoeuds == 0 )
+		{
+			throw new ParseurException("Le fichier ne contient aucune information");
+		}
+
+		int nbNoeud = 0, nbTroncon = 0;
 		/*on boucle sur tous les enfants de la racine */
 		for (int i = 0; i<nbRacineNoeuds; i++) {
 			if(racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) // l'element i est un noeud
@@ -177,27 +261,58 @@ public class XMLParseur
 				Long id; int x, y;
 				if (monElement.getNodeName().equals("noeud"))
 				{
-					id = Long.parseLong(monElement.getAttribute("id"), 10);
-					x = Integer.parseInt(monElement.getAttribute("x"));
-					y = Integer.parseInt(monElement.getAttribute("y"));
-
+					try
+					{
+						id = Long.parseLong(monElement.getAttribute("id"), 10);
+						x = Integer.parseInt(monElement.getAttribute("x"));
+						y = Integer.parseInt(monElement.getAttribute("y"));
+					}
+					catch (Exception e)
+					{
+						throw new ParseurException("Les attributs du"+ ++nbNoeud +"noeud ne sont pas correctements renseignes \n (format = id:Long, x:int, y:int)", e);
+					}
+					++nbNoeud;
 					plan.ajouterIntersection(id, x, y);
 				}
 
 				/* on ajoute les troncons au plan*/
 				String nomRue; Long idDepart, idArrivee; double longueur; Intersection origine, destination;
 				if (monElement.getNodeName().equals("troncon"))
-				{					
-					nomRue = monElement.getAttribute("nomRue");
-					idDepart = Long.parseLong(monElement.getAttribute("origine"), 10);
-					idArrivee = Long.parseLong(monElement.getAttribute("destination"), 10);
-					longueur = Double.parseDouble(monElement.getAttribute("longueur"));
+				{
+					if( nbNoeud == 0 )
+					{
+						throw new ParseurException("Veuillez renseigner les noeuds avant de renseigner des troncons!!");
+					}
 
-					origine = plan.getListeIntersection().get(idDepart);
-					destination = plan.getListeIntersection().get(idArrivee);
-					
+					try {
+						nomRue = monElement.getAttribute("nomRue");
+						idDepart = Long.parseLong(monElement.getAttribute("origine"), 10);
+						idArrivee = Long.parseLong(monElement.getAttribute("destination"), 10);
+						longueur = Double.parseDouble(monElement.getAttribute("longueur"));
+						if (longueur < 0)
+						{
+							throw new ParseurException("Une longueur ne peut etre negative!");
+						}
+					}
+					catch (Exception e)
+					{
+						throw new ParseurException("Les attributs du "+ nbTroncon++ +" troncon sont incorrectes (format = nomRue:string, origine:long, destination:long, longueur:double)", e);
+					}
+
+					origine = monPlan.getListeIntersection().get(idDepart);
+					if (origine == null)
+					{
+						throw new ParseurException("L'intersection d'origine du "+ nbTroncon++ +"eme troncon n'existe pas....");
+					}
+
+					destination = monPlan.getListeIntersection().get(idArrivee);
+					if (destination == null)
+					{
+						throw new ParseurException("L'intersection de destination du +"+ nbTroncon++ +" eme troncon n'existe pas....");
+					}
+
+					nbTroncon++;
 					plan.ajouterTroncon(nomRue, origine, destination, longueur);
-					
 				}
 			}				
 		}
