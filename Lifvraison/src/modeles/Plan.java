@@ -13,12 +13,22 @@ public class Plan extends Observable
 	
 	public Plan() {
 		this.listeIntersection = new HashMap<Long, Intersection>();
-		this.listeTroncons =new HashMap<Integer, Troncon>();
+		this.listeTroncons = new HashMap<Integer, Troncon>();
+		
+		notifyObservers();
 	}
 	
 	public Plan(HashMap<Long, Intersection> listeIntersection, HashMap<Integer, Troncon> listeTroncons) {
 		this.listeIntersection = listeIntersection;
 		this.listeTroncons = listeTroncons;
+		
+		notifyObservers();
+	}
+	
+	public void reset()
+	{
+		listeIntersection.clear();
+		listeTroncons.clear();
 	}
 
 	public HashMap<Long, Intersection> getListeIntersection() {
@@ -27,6 +37,8 @@ public class Plan extends Observable
 
 	public void setListeIntersection(HashMap<Long, Intersection> listeIntersection) {
 		this.listeIntersection = listeIntersection;
+		
+		notifyObservers();
 	}
 	
 	public void ajouterIntersection(Intersection aAjouter) throws ParseurException
@@ -46,6 +58,8 @@ public class Plan extends Observable
 			throw new ParseurException ("L'id"+ id +"est en double...");
 		}
 		this.listeIntersection.put( id, new Intersection(id,  x,  y) );
+		
+		notifyObservers();
 	}
 	
 	public void  ajouterTroncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrivee, double longueur)
@@ -56,6 +70,8 @@ public class Plan extends Observable
 		/* on met a jour les valeurs des listes de troncons */
 		intersectionDepart.addTronconSortant(troncon);
 		intersectionArrivee.addTronconEntrant(troncon);
+		
+		notifyObservers();
 	}
 	
 	public HashMap<Integer, Troncon> getListeTroncons() {
@@ -64,6 +80,8 @@ public class Plan extends Observable
 
 	public void setListeTroncons(HashMap<Integer, Troncon> listeTroncons) {
 		this.listeTroncons = listeTroncons;
+		
+		notifyObservers();
 	}
 
 	@Override

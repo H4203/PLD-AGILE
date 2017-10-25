@@ -1,5 +1,6 @@
 package vue;
 
-public class EcouteurDeSouris {
+public class EcouteurDeSouris 
+{
 
 }
