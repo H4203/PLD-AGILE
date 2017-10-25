@@ -73,24 +73,7 @@ public class Fenetre extends JFrame
 		
 		ecouteurDeBoutons = new EcouteurDeBoutons(controleur);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		addComponentListener(new ComponentListener() 
-		{
-		    public void componentResized(ComponentEvent e) 
-		    {
-		        vueGraphique.resize();        
-		    }
 
-			@Override
-			public void componentHidden(ComponentEvent arg0) {}
-
-			@Override
-			public void componentMoved(ComponentEvent arg0) {}
-
-			@Override
-			public void componentShown(ComponentEvent arg0) {}
-		});
-		
 		// 1 mainPanel
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -104,6 +87,8 @@ public class Fenetre extends JFrame
 		// 1.1.1 mainPanel/leftPanel/vueGraphique
 		vueGraphique = new VueGraphique(this, plan, demandeLivraison, tournee);
 		leftPanel.add(vueGraphique, BorderLayout.CENTER);
+		
+		addComponentListener(new EcouteurDeFenetre(vueGraphique)); 
 		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel
 		//overMapPanel = new JPanel();

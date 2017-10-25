@@ -5,6 +5,7 @@ import donnees.XMLParseur;
 import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
+import vue.VueGraphique;
 import modeles.DemandeLivraison;
 
 public class Controleur 
@@ -78,7 +79,7 @@ public class Controleur
 	}
 	
 	public void setModeCalculTournee()
-	{		
+	{	
 		calculateurTournee.run();
 		
 		fenetre.setModeCalculTournee();

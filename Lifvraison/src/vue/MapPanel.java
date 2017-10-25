@@ -76,10 +76,10 @@ public class MapPanel extends JPanel
 		g2.drawLine(sideLength - 1, sideLength - 1, sideLength - 1, 0);
 		g2.drawLine(sideLength - 1, sideLength - 1, 0, sideLength - 1);
 		
+		// Map
+		
 		if (plan != null && affichagePlan == true)
 		{
-			// Affihage des Troncons du Plan
-			
 			for (Map.Entry<Integer, Troncon> mapentry : plan.getListeTroncons().entrySet()) 
 	        {
 	        	g2.drawLine( (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
