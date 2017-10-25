@@ -154,5 +154,26 @@ public class Tournee extends Observable
 		livraisonsOrdonnees.remove(position);
 		updateHoraire();
 	}
-	
+	public String toString() {
+		String str="";
+		int indexLivraison = 0;
+		str = str + "entrepot : \n";
+		for (Itineraire itineraire : listeItineraires ) {
+			str = str + "adresse : " + itineraire.getTroncons().get(0).getNomDeRue() + '\n';
+			str = str + "l'heure depart : " + listeHoraire.get(indexLivraison).getHeureFin() + '\n';
+			str = str + itineraire ; 
+			indexLivraison = indexLivraison + 1 ;
+			str = str + "l'heure arivee : " + listeHoraire.get(indexLivraison).getHeureDebut() + '\n';
+			if (indexLivraison < livraisonsOrdonnees.size() - 2) {
+				str = str + "livraison n¡ã" + indexLivraison + " :\n"; 
+			}
+			else{
+				str = str + "entrepot : \n";
+				str = str + "adresse : "+ listeItineraires.get(0).getTroncons().get(0).getNomDeRue() + '\n';
+			}
+		}
+
+		
+		return str;
+	}
 }

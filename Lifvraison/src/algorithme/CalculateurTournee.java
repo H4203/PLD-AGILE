@@ -131,6 +131,7 @@ public class CalculateurTournee {
 		lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(0).getId()));
 		laTournee.setLivraisonsOrdonnees(livraisonsOrdonnees);
 		laTournee.setListeItineraires(lesItineraires);
+		System.out.println(laTournee);
 	}
 	
 	public List<Itineraire> getLesItineraires() {
@@ -161,8 +162,8 @@ public class CalculateurTournee {
 			laTournee.setListeItineraires(lesItineraires);
 			laTournee.getDemandeLivraison().getLivraisons().remove(index);
 		}
-		
 		return this.laTournee;
+		
 	}
 	
 	public Tournee ajouterLivraison(int index, Livraison livraison) {

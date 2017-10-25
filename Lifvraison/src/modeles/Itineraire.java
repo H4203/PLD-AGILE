@@ -81,7 +81,25 @@ public class Itineraire {
 	 */
 	@Override
 	public String toString() {
-		return "Itineraire [troncons=" + troncons + ", depart=" + depart + ", arrivee=" + arrivee + "]";
+		String str="";
+		String ruePrecedente = "" ;
+		double longueurRue = 0;
+		for (Troncon troncon : troncons) {
+			if (ruePrecedente == "") {
+				ruePrecedente = troncon.getNomDeRue();
+				longueurRue = troncon.getLongueur();
+			}
+			else if (ruePrecedente.equals(troncon.getNomDeRue())){
+				longueurRue = longueurRue + troncon.getLongueur();
+			}
+			else {
+				str = str +" "+ ruePrecedente +" "+ longueurRue;
+				ruePrecedente = troncon.getNomDeRue();
+				longueurRue = troncon.getLongueur();
+			}
+		}
+		str = str +" "+ ruePrecedente +" "+ longueurRue +'\n';
+		return str;
 	}
 	
 	
