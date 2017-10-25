@@ -34,4 +34,11 @@ public class EtatChargementLivraison extends EtatDefault{
 		}
 		fenetre.setModeChargementDemandeLivraison();
 	}
+	
+	@Override
+	public void chargementPlan(Controleur controleur, Fenetre fenetre) {
+		controleur.setEtatCourant( controleur.etatChargementPlan );
+		fenetre.setModeChargementPlan ();
+		
+	}
 }

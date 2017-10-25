@@ -90,7 +90,7 @@ public class EcouteurDeBoutons implements ActionListener
 			}
 			case "Modification Tournee" :
 			{
-				controleur.suivant();
+				controleur.modificationTournee();
 				break;
 			}
 			case "Valider Tournee" :
