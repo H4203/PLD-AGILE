@@ -31,8 +31,7 @@ public class Controleur
 	protected EtatModificationTournee etatModificationTournee  = new EtatModificationTournee();
 	protected EtatAjoutLivraison1 etatAjoutLivraison1 = new EtatAjoutLivraison1();
 	protected EtatAjoutLivraison2 etatAjoutLivraison2 = new EtatAjoutLivraison2();
-	protected EtatSupprimerLivraison1 etatSupprimerLivraison1 = new EtatSupprimerLivraison1();
-	protected EtatSupprimerLivraison2 etatSupprimerLivraison2 = new EtatSupprimerLivraison2();
+	protected EtatSupprimerLivraison etatSupprimerLivraison1 = new EtatSupprimerLivraison();
 	protected EtatModeValidation etatModeValidation = new EtatModeValidation();
 	
 	/**
@@ -40,9 +39,9 @@ public class Controleur
 	 */
 	public Controleur() 
 	{
-		plan = new Plan();
-		demandeLivraison = new DemandeLivraison();
-		tournee = new Tournee(plan, demandeLivraison);
+		plan = null;
+		demandeLivraison = null;
+		tournee = null;
 		
 		try 
 		{
@@ -74,9 +73,9 @@ public class Controleur
 	{
 		etatCourant.ajouterLivraison(this, fenetre);
 	}
-	public void suprimerLivraison( int positon )
+	public void supprimerLivraison( )
 	{
-		etatCourant.suprimerLivraison(this, fenetre, positon);
+		etatCourant.supprimerLivraison(this, fenetre);
 	}
 	public void intervertirLivraison(Livraison livraison1, Livraison livraison2)
 	{

@@ -113,6 +113,12 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.precedent();
 				break;
 			}
+			case "+" :
+				controleur.ajouterLivraison();
+				break;
+			case "-" :
+				controleur.supprimerLivraison();
+				break;
 		}
 		
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();

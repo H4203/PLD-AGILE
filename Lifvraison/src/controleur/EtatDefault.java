@@ -28,7 +28,7 @@ public class EtatDefault implements Etat{
 	}
 
 	@Override
-	public void suprimerLivraison(Controleur controleur, Fenetre fenetre, int positon) {
+	public void supprimerLivraison(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}
