@@ -1,11 +1,14 @@
 package vue;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import modeles.Plan;
@@ -16,11 +19,15 @@ public class VueGraphique extends JPanel implements Observer
 {
 	private static final long serialVersionUID = 1L;
 
+	private Fenetre fenetre;
+	
 	private MapPanel mapPanel;
 
 	public VueGraphique(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee) 
 	{
 		super();
+		
+		this.fenetre = fenetre;
 		
 		setLayout(new CardLayout(50, 50));
 		setBackground(Color.white);
@@ -29,21 +36,25 @@ public class VueGraphique extends JPanel implements Observer
 		demandeLivraison.addObserver(this);
 		tournee.addObserver(this);
 		
-		mapPanel = new MapPanel(plan, demandeLivraison, tournee);
+		mapPanel = new MapPanel(fenetre, plan, demandeLivraison, tournee);
 		add(mapPanel);
 	}
 	
 	@Override
 	public void paintComponent(Graphics g) 
 	{
-		mapPanel.paintComponent(g);
+		
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) 
 	{
-		mapPanel.repaint();
-		repaint();
+		
+	}
+	
+	public void resize()
+	{
+		mapPanel.resize();
 	}
 	
 	public void setModeAccueil()
@@ -51,9 +62,6 @@ public class VueGraphique extends JPanel implements Observer
 		mapPanel.setAffichagePlan(false);
 		mapPanel.setAffichageDemandeLivraison(false);
 		mapPanel.setAffichageTournee(false);
-		
-		mapPanel.repaint();
-		repaint();
 	}
 	
 	public void setModeChargementPlan()
@@ -63,9 +71,6 @@ public class VueGraphique extends JPanel implements Observer
 		mapPanel.setAffichagePlan(true);
 		mapPanel.setAffichageDemandeLivraison(false);
 		mapPanel.setAffichageTournee(false);
-		
-		mapPanel.repaint();
-		repaint();
 	}
 	
 	public void setModeChargementDemandeLivraison()

@@ -7,9 +7,13 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -70,6 +74,23 @@ public class Fenetre extends JFrame
 		ecouteurDeBoutons = new EcouteurDeBoutons(controleur);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		addComponentListener(new ComponentListener() 
+		{
+		    public void componentResized(ComponentEvent e) 
+		    {
+		        vueGraphique.resize();        
+		    }
+
+			@Override
+			public void componentHidden(ComponentEvent arg0) {}
+
+			@Override
+			public void componentMoved(ComponentEvent arg0) {}
+
+			@Override
+			public void componentShown(ComponentEvent arg0) {}
+		});
+		
 		// 1 mainPanel
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -95,7 +116,7 @@ public class Fenetre extends JFrame
 		// 1.1.2 mainPanel/leftPanel/titlePanel
 		JPanel titlePanel = new JPanel();
 		titlePanel.setLayout(new BorderLayout());
-		titlePanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 10));
+		//titlePanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 10));
 		leftPanel.add(titlePanel, BorderLayout.SOUTH);
 		
 		// 1.1.2.1 mainPanel/leftPanel/titlePanel/titleLabel
@@ -106,7 +127,7 @@ public class Fenetre extends JFrame
 		// 1.2 mainPanel/overRightPanel
 		JPanel overRightPanel = new JPanel();
 		overRightPanel.setLayout(new CardLayout(50, 50));
-		overRightPanel.setPreferredSize(new Dimension(screenSize.width / 3, screenSize.height));
+		//overRightPanel.setPreferredSize(new Dimension(screenSize.width / 3, screenSize.height));
 		mainPanel.add(overRightPanel, BorderLayout.EAST);
 		
 		// 1.2.1 mainPanel/overRightPanel/rightPanel
@@ -127,13 +148,13 @@ public class Fenetre extends JFrame
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel = new JPanel();
 		topButtonsPanel.setLayout(new FlowLayout());
-		topButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
+		//topButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
 		buttonsPanel.add(topButtonsPanel);
 		
 		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel		
 		bottomButtonsPanel = new JPanel();
 		bottomButtonsPanel.setLayout(new GridLayout(0, 2, 20, 20));
-		bottomButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
+		//bottomButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
 		buttonsPanel.add(bottomButtonsPanel);
 		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonPrecedent

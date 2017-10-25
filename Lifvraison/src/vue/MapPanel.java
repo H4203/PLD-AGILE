@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.util.Map;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import modeles.Plan;
@@ -25,12 +26,11 @@ public class MapPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
 	
+	private Fenetre fenetre;
+	
 	private Plan plan;
 	private DemandeLivraison demandeLivraison;
 	private Tournee tournee;
-	
-	private int bord = 200;
-	private int realHeight;
 
 	private int xMin;
 	private int yMin;
@@ -41,13 +41,16 @@ public class MapPanel extends JPanel
 	private boolean affichageDemandeLivraison;
 	private boolean affichageTournee;
 
-	public MapPanel(Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
+	public MapPanel(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
-		//setLayout(new CardLayout(50, 50));
+		this.fenetre = fenetre;
 		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
 		this.tournee = tournee;
+		
+		//setPreferredSize(new Dimension((int)Math.round(fenetre.getBounds().height * 0.9), (int)Math.round(fenetre.getBounds().height * 0.9)));
+		setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		affichagePlan = false;
 		affichageDemandeLivraison = false;
@@ -74,9 +77,9 @@ public class MapPanel extends JPanel
 			for (Map.Entry<Integer, Troncon> mapentry : plan.getListeTroncons().entrySet()) 
 	        {
 	        	g2.drawLine( (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
-	        			realHeight - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
-	        			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY),
-	        			realHeight - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX));
+	        			getSize().height - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
+        			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY),
+        			getSize().height - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX));
 	        }
 		}
 		
@@ -96,9 +99,9 @@ public class MapPanel extends JPanel
     	        	for (Troncon troncon : itineraire.getTroncons())
     	        	{
     	        		g2.drawLine((int)Math.round((troncon.getIntersectionDepart().getY() - yMin) * coefY),
-    	        				realHeight - (int)Math.round((troncon.getIntersectionDepart().getX() - xMin) * coefX),
-    	            			(int)Math.round((troncon.getIntersectionArrive().getY() - yMin) * coefY),
-    	            			realHeight - (int)Math.round((troncon.getIntersectionArrive().getX() - xMin) * coefX));
+    	        				getSize().height - (int)Math.round((troncon.getIntersectionDepart().getX() - xMin) * coefX),
+	            			(int)Math.round((troncon.getIntersectionArrive().getY() - yMin) * coefY),
+	            			getSize().height - (int)Math.round((troncon.getIntersectionArrive().getX() - xMin) * coefX));
     	        	}
     	        	
     	        	g2.setFont(new Font("default", Font.BOLD, 16));
@@ -114,8 +117,8 @@ public class MapPanel extends JPanel
 		            			(int)(screenSize.height-bord) - (int)Math.round((itineraire.getArrivee().getX() - xMin) * coefX));
 		            			*/
     	        		g2.drawString(" "+i,
-    	        				(int)Math.round((itineraire.getArrivee().getY() - yMin) * coefY),
-    	        				realHeight - (int)Math.round((itineraire.getArrivee().getX() - xMin) * coefX));
+	        				(int)Math.round((itineraire.getArrivee().getY() - yMin) * coefY),
+	        				getSize().height - (int)Math.round((itineraire.getArrivee().getX() - xMin) * coefX));
     	        	}
     	        	g2.setColor(Color.BLUE);
     	        }
@@ -128,8 +131,8 @@ public class MapPanel extends JPanel
 	        if (demandeLivraison.getEntrepot() != null && demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
     		{
 	        	g2.fillRect((int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
-	        			realHeight - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
-	        			10, 10);
+	        			getSize().height - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
+        			10, 10);
     		}
 	        
 			/*
@@ -152,15 +155,15 @@ public class MapPanel extends JPanel
 					&& demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
 			{
 				g2.drawString(tournee.getListeHoraire().get(0).getHeureDebut().toString() + " - " + tournee.getListeHoraire().get(tournee.getListeHoraire().size()-1).getHeureDebut().toString(),
-						(int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
-						realHeight - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5);
+					(int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
+					getSize().height - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5);
 			}
 			else if (demandeLivraison != null && demandeLivraison.getHeureDepart() != null 
 					&& demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
 			{
 				g2.drawString(demandeLivraison.getHeureDepart().toString(),
-						(int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
-						realHeight - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5);
+					(int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
+					getSize().height - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5);
 			}
 			
 			/* points de livraisons */
@@ -169,8 +172,8 @@ public class MapPanel extends JPanel
 	        {
 	        	/* points de livraison */
 	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
-	        			realHeight - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
-	        			8, 8);
+	        			getSize().height - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
+        			8, 8);
 	        	/*
 				try {
 					img = ImageIO.read(new File("\\ihm\\mapmarker.png"));
@@ -192,8 +195,8 @@ public class MapPanel extends JPanel
 					if ( plhr != null && plhr.getHeureDebut() != null && plhr.getHeureFin() != null )
 					{
 						g2.drawString(plhr.getHeureDebut() + " - " + plhr.getHeureFin(),
-										(int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4,
-										realHeight - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4);
+							(int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4,
+							getSize().height - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4);
 					}
 				}
 				g2.setColor(Color.RED);
@@ -222,7 +225,7 @@ public class MapPanel extends JPanel
 	
 	public void resize()
 	{
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
 		
 		int xMax = 0;
 		int yMax = 0;
@@ -250,10 +253,8 @@ public class MapPanel extends JPanel
 			}
         }
 		
-		realHeight = (int)Math.round(screenSize.height * 0.9 - bord);
-		
-		coefX = (double)(realHeight) / (xMax - xMin);
-		coefY = (double)(realHeight) / (yMax - yMin);
+		coefX = (double)(getSize().height) / (double)(xMax - xMin);
+		coefY = (double)(getSize().height) / (double)(yMax - yMin);
 	}
 }
 
