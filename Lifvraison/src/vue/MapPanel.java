@@ -7,7 +7,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
@@ -22,7 +26,7 @@ import modeles.Itineraire;
 import modeles.Livraison;
 import modeles.PlageHoraire;
 
-public class MapPanel extends JPanel 
+public class MapPanel extends JPanel implements MouseListener, MouseMotionListener
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -38,6 +42,11 @@ public class MapPanel extends JPanel
 	private int yMin;
 	private double coefX;
 	private double coefY;
+	private int zoom;
+	private Point focusPoint;
+	
+	private Point mouseStartPoint;
+	private Point mouseEndPoint;
 	
 	private boolean affichagePlan;
 	private boolean affichageDemandeLivraison;
@@ -54,6 +63,12 @@ public class MapPanel extends JPanel
 		affichagePlan = false;
 		affichageDemandeLivraison = false;
 		affichageTournee = false;
+		
+		addMouseListener(this);
+        addMouseMotionListener(this);
+        
+        zoom = 1;
+        focusPoint = new Point(sideLength / 2, sideLength / 2);
 	}
 	
 	public void repaint(Graphics g)
@@ -82,7 +97,7 @@ public class MapPanel extends JPanel
 		{
 			for (Map.Entry<Integer, Troncon> mapentry : plan.getListeTroncons().entrySet()) 
 	        {
-	        	g2.drawLine( (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
+	        	g2.drawLine((int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
 	        		sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
         			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY),
         			sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX));
@@ -207,8 +222,6 @@ public class MapPanel extends JPanel
 				}
 				g2.setColor(Color.RED);
 	        }
-	        
-	        
         }
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(1));
@@ -271,6 +284,51 @@ public class MapPanel extends JPanel
 			coefX = (double)(getSize().width) / (double)(xMax - xMin);
 			coefY = (double)(getSize().width) / (double)(yMax - yMin);
 		}
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent arg0) 
+	{
+		mouseEndPoint = arg0.getPoint();
+	    //System.out.println("Mouse From " + startPoint + " Dragged to " + endPoint);
+	    System.out.println("Delta : X = " + (mouseEndPoint.x - mouseStartPoint.x) + ", Y = " + (mouseEndPoint.y - mouseStartPoint.y));
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) 
+	{
+
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) 
+	{
+	
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) 
+	{
+	
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) 
+	{
+	
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) 
+	{
+		mouseStartPoint = arg0.getPoint();
+	    //System.out.println("Mouse Pressed at " + startPoint);
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) 
+	{
+
 	}
 }
 
