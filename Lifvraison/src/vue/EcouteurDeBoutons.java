@@ -7,82 +7,110 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import controleur.Controleur;
-import donnees.XMLParseur;
-import modeles.DemandeLivraison;
-import modeles.Plan;
 
-public class EcouteurDeBoutons implements ActionListener{
+public class EcouteurDeBoutons implements ActionListener
+{
 	private Controleur controleur;
-
-	
+	private JFileChooser fileChooser;
 	
 	/**
 	 * @param controleur
 	 */
-	public EcouteurDeBoutons(Controleur controleur) {
+	public EcouteurDeBoutons(Controleur controleur) 
+	{
 		this.controleur = controleur;
+		
+		fileChooser = new JFileChooser();
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		fileChooser.setCurrentDirectory(new File("./data"));
 	}
-
-
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		JFileChooser fc;
-		String chemin ="";
-		
-		switch ( e.getActionCommand() )
+	public void actionPerformed(ActionEvent e) 
+	{			
+		switch(e.getActionCommand())
 		{
-			case "Charger Plan" :
-				fc = new JFileChooser();
-				chemin ="";
-				
-				fc.setFileSelectionMode( JFileChooser.FILES_AND_DIRECTORIES );
-			    
-			    fc.setCurrentDirectory(new File("./data"));
-	
-			    if( fc.showOpenDialog( null ) == JFileChooser.APPROVE_OPTION )
-			    {
-			       chemin = fc.getSelectedFile().getAbsolutePath();
-			    }
-				controleur.importerPlan(chemin);
-				
-				break;
-			case "Charger Livraison" :
-				
-				fc = new JFileChooser();
-				chemin ="";
-				
-				fc.setFileSelectionMode( JFileChooser.FILES_AND_DIRECTORIES );
-			    
-			    fc.setCurrentDirectory(new File("./data"));
-	
-			    if( fc.showOpenDialog( null ) == JFileChooser.APPROVE_OPTION )
-			    {
-			       chemin = fc.getSelectedFile().getAbsolutePath();
-			    }
-				controleur.ImporterDemande( chemin );
-				
-				break;
-			case "Calculer Tournee" :
-				controleur.DemanderCalculTournee();
-				break;
-			case "Valider Tournee" :
-				controleur.ValiderTournee();
-				break;
 			case "Accueil" :
-				controleur.RetourALAccueil();
+			{
+				controleur.setModeAccueil();
 				break;
+			}
+			case "Charger Plan" :
+			{
+				String chemin = "";
+				
+			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+			    {
+			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
+			    }
+
+				controleur.setModeChargementPlan(chemin);
+				break;
+			}
+			case "Chargement Plan" :
+			{
+				controleur.setModeChargementPlan();
+				break;
+			}
+			case "Charger Demande Livraison" :
+			{
+				String chemin = "";
+				
+			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+			    {
+			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
+			    }
+
+				controleur.setModeChargementDemandeLivraison(chemin);
+				break;
+			}
+			case "Chargement Demande Livraison" :
+			{
+				controleur.setModeChargementDemandeLivraison();
+				break;
+			}
+			case "Calculer Tournee" :
+			{
+				controleur.setModeCalculTournee("");
+				break;
+			}
+			case "Calcul Tournee" :
+			{
+				controleur.setModeCalculTournee();
+				break;
+			}
+			case "Modifier Tournee" :
+			{
+				controleur.setModeModificationTournee();
+				break;
+			}
+			case "Modification Tournee" :
+			{
+				controleur.setModeModificationTournee();
+				break;
+			}
+			case "Valider Tournee" :
+			{
+				controleur.setModeValidationTournee();
+				break;
+			}
+			case "Validation Tournee" :
+			{
+				controleur.setModeValidationTournee();
+				break;
+			}
+			case "Suivant" :
+			{	
+				controleur.setModeSuivant();
+				break;
+			}
+			case "Precedent" :
+			{	
+				controleur.setModePrecedent();
+				break;
+			}
 		}
 		
-		
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();
-		
-		
-		
-		
 	}
-	
-	
-
-}
+}	
