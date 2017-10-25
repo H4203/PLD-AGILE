@@ -36,7 +36,7 @@ public class Tournee
 		for (Itineraire itineraire : listeItineraires)
 		{
 			/* on converti la longeur de la route en temps */
-			dureeRoute = itineraire.getLongueur()*0.1/15000*3600;
+			dureeRoute = itineraire.getLongueur()/15000*3600;
 
 			/* on recupere l'heure a laquelle il quitte son dernier point */
 			debut = listeHoraire.get(listeHoraire.size()-1).getHeureFin();
@@ -77,7 +77,6 @@ public class Tournee
 			horaire = new PlageHoraire(debut,fin);
 			listeHoraire.add(horaire);
 		}
-		System.out.println(listeHoraire);
 	}
 
 	public double getLongueur()
