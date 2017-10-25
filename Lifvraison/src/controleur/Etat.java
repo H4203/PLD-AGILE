@@ -5,8 +5,9 @@ import vue.Fenetre;
 
 public interface Etat {
 	
-	public void chargerPlan( String chemin);
-	public void chargerLivraison( String chemin);
+	public void chargerPlan( Controleur controleur, Fenetre fenetre, String chemin);
+	public void chargerDemandeLivraison( Controleur controleur, Fenetre fenetre, String chemin);
+	public void calculerTournee ( Controleur controleur, Fenetre fenetre );
 	public void ajouterLivraison(Controleur controleur, Fenetre fenetre);
 	public void suprimerLivraison(Controleur controleur, Fenetre fenetre, int positon );
 	public void intervertirLivraison(Controleur controleur, Fenetre fenetre, Livraison livraison1, Livraison livraison2);

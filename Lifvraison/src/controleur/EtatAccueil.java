@@ -7,7 +7,7 @@ public class EtatAccueil extends EtatDefault {
 	@Override
 	public void suivant (Controleur controleur, Fenetre fenetre)
 	{
-		//do stuff
+		controleur.setEtatCourant( controleur.etatChargementPlan );
 		if (controleur.plan == null)
 		{
 			fenetre.setModeChargementPlan();
@@ -16,7 +16,7 @@ public class EtatAccueil extends EtatDefault {
 		{
 			fenetre.setModeChargementPlan(controleur.plan);
 		}
-		controleur.setEtatCourant( controleur.etatChargementPlan );
+		
 	}
 	
 	// useless

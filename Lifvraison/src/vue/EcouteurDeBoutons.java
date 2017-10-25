@@ -42,9 +42,8 @@ public class EcouteurDeBoutons implements ActionListener
 			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 			    {
 			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
+			       controleur.chargerPlan(chemin);
 			    }
-
-				controleur.chargerPlan(chemin);
 				break;
 			}
 			case "Chargement Plan" :
@@ -60,8 +59,7 @@ public class EcouteurDeBoutons implements ActionListener
 			    {
 			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
 			    }
-
-				controleur.chargerLivraison(chemin);
+				controleur.chargerDemandeLivraison(chemin);
 				break;
 			}
 			case "Chargement Demande Livraison" :

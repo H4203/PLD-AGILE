@@ -6,17 +6,21 @@ import vue.Fenetre;
 public class EtatDefault implements Etat{
 
 	@Override
-	public void chargerPlan(String chemin) {
+	public void chargerPlan(Controleur controleur, Fenetre fenetre, String chemin) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void chargerLivraison(String chemin) {
+	public void chargerDemandeLivraison(Controleur controleur, Fenetre fenetre, String chemin) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	@Override
+	public void calculerTournee ( Controleur controleur, Fenetre fenetre ) {
+		// TODO Auto-generated method stub
+		
+	}
 	@Override
 	public void ajouterLivraison(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
