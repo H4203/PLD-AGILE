@@ -38,13 +38,16 @@ public class Controleur
 	/**
 	 * 
 	 */
-	public Controleur() {
+	public Controleur() 
+	{
+		plan = new Plan();
+		demandeLivraison = new DemandeLivraison();
+		tournee = new Tournee(plan, demandeLivraison);
 		
-		
-		
-		try {
+		try 
+		{
 			parseur = new XMLParseur ();
-			fenetre = new Fenetre ( this );
+			fenetre = new Fenetre (this, plan, demandeLivraison, tournee);
 			etatCourant = etatAccueil;
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
@@ -89,14 +92,18 @@ public class Controleur
 	}
 	public void accueil ()
 	{
-		plan = new Plan();
-		demandeLivraison = new DemandeLivraison();
-		tournee = new Tournee(plan, demandeLivraison);
+		try
+		{
+			parseur = new XMLParseur();
+		}
+		catch (ParseurException e) 
+		{
+			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
+		}
 		
-		parseur = new XMLParseur();
 		fenetre = new Fenetre(this, plan, demandeLivraison, tournee);
 		calculateurTournee = new CalculateurTournee(tournee);
-
+		
 		etatCourant.accueil(this, fenetre);
 	}
 	public void clicgauche ( int positonPrecedente, Livraison livraison)

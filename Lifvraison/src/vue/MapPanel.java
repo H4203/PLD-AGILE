@@ -193,15 +193,15 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 	        {
 	        	/* points de livraison */
 	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
-	        			sideLength - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
+        			sideLength - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4,
         			8, 8);
               
 	        	if (livraison.getPlagehoraire() == null || livraison.getPlagehoraire().getHeureDebut() == null || livraison.getPlagehoraire().getHeureFin() == null)
 	        	{
 	        		g2.setColor(Color.BLACK);
 	        		g2.fillRect((int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
-		        			realHeight - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
-		        			8, 8);
+        				sideLength - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
+	        			8, 8);
 	        		g2.setColor(Color.RED);
 	        	}
 

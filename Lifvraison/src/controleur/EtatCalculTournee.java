@@ -13,14 +13,14 @@ public class EtatCalculTournee extends EtatDefault{
 		{
 			calculerTournee(controleur, fenetre);
 		}
-		fenetre.setModeModificationTournee(controleur.tournee);
+		fenetre.setModeModificationTournee();
 		
 	}
 	
 	@Override
 	public void precedent (Controleur controleur, Fenetre fenetre) {
 		controleur.setEtatCourant( controleur.etatChargementLivraison );
-		fenetre.setModeChargementDemandeLivraison ( controleur.demandeLivraison );
+		fenetre.setModeChargementDemandeLivraison();
 	}
 	
 	@Override
@@ -32,9 +32,7 @@ public class EtatCalculTournee extends EtatDefault{
 	@Override
 	public void calculerTournee ( Controleur controleur, Fenetre fenetre )
 	{
-		controleur.tournee = new Tournee(controleur.plan, controleur.demandeLivraison);
-		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 		controleur.calculateurTournee.run();
-		fenetre.setModeCalculTournee(controleur.tournee);
+		fenetre.setModeCalculTournee();
 	}
 }

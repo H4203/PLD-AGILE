@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import controleur.Controleur;
+import donnees.ParseurException;
 
 public class EcouteurDeBoutons implements ActionListener
 {
@@ -69,7 +71,7 @@ public class EcouteurDeBoutons implements ActionListener
 			}
 			case "Calculer Tournee" :
 			{
-				controleur.setModeCalculTournee();
+				controleur.calculerTournee();
 				break;
 			}
 			case "Calcul Tournee" :

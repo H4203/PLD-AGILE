@@ -17,10 +17,8 @@ public class EtatChargementPlan extends EtatDefault{
 		}
 		else
 		{
-			fenetre.setModeChargementDemandeLivraison( controleur.demandeLivraison );
+			fenetre.setModeChargementDemandeLivraison();
 		}
-		
-		
 	}
 	
 	@Override
@@ -39,12 +37,10 @@ public class EtatChargementPlan extends EtatDefault{
 	@Override
 	public void chargerPlan ( Controleur controleur, Fenetre fenetre, String chemin) {
 		try{
-			controleur.plan = controleur.parseur.chargerPlan(chemin);
+			controleur.parseur.chargerPlan(controleur.plan, chemin);
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
-		controleur.tournee = null;
-		controleur.demandeLivraison = null;
-		fenetre.setModeChargementPlan(controleur.plan);
+		fenetre.setModeChargementPlan();
 	}
 }
