@@ -138,13 +138,13 @@ public class XMLParseur
 					}
 					catch (Exception e)
 					{
-						throw new ParseurException("L'adresse de la "+ nbLivraison++ +" livraison est incorrecte (format = adresse = LONG)", e);
+						throw new ParseurException("L'adresse de la "+ ++nbLivraison +" livraison est incorrecte (format = adresse = LONG)", e);
 					}
 
 					adresseLivraison = listeIntersection.get(idAdresse);
 					if (adresseLivraison == null)
 					{
-						throw new ParseurException("L'adresse de la "+ nbLivraison++ +" livraison n'existe pas");
+						throw new ParseurException("L'adresse de la "+ ++nbLivraison +" livraison n'existe pas");
 					}
 					/* on recupere la duree de dechargement */
 					try
@@ -153,7 +153,7 @@ public class XMLParseur
 					}
 					catch (Exception e)
 					{
-						throw new ParseurException("La durée de la "+ nbLivraison++ +" livraison est incorrecte", e);
+						throw new ParseurException("La durée de la "+ ++nbLivraison +" livraison est incorrecte", e);
 					}
 					if (duree < 0)
 					{
@@ -172,7 +172,7 @@ public class XMLParseur
 						}
 						catch (Exception e)
 						{
-							throw new ParseurException("L'heure de debut de plage de la livraison "+ nbLivraison++ +"est incorrecte (format = h:m:s)", e);
+							throw new ParseurException("L'heure de debut de plage de la livraison "+ ++nbLivraison +"est incorrecte (format = h:m:s)", e);
 						}
 					} else debutPlage = null;
 					/* on recupere l'heure de fin */
@@ -188,12 +188,12 @@ public class XMLParseur
 						}
 						catch (Exception e)
 						{
-							throw new ParseurException("L'heure de fin de plage de la livraison "+ nbLivraison++ +"est incorrecte (format = h:m:s)", e);
+							throw new ParseurException("L'heure de fin de plage de la livraison "+ ++nbLivraison +"est incorrecte (format = h:m:s)", e);
 						}
 					} 
 					else finPlage = null;
 
-					nbLivraison++;
+					++nbLivraison;
 					/* on ajoute la livraison a la demande */
 					maDemandeDeLivraison.ajouterLivraison(adresseLivraison, duree, debutPlage, finPlage);
 				}
@@ -269,9 +269,9 @@ public class XMLParseur
 					}
 					catch (Exception e)
 					{
-						throw new ParseurException("Les attributs du"+ nbNoeud++ +"noeud ne sont pas correctements renseignés \n (format = id:Long, x:int, y:int)", e);
+						throw new ParseurException("Les attributs du"+ ++nbNoeud +"noeud ne sont pas correctements renseignés \n (format = id:Long, x:int, y:int)", e);
 					}
-					nbNoeud++;
+					++nbNoeud;
 					monPlan.ajouterIntersection(id, x, y);
 				}
 
