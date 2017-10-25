@@ -26,7 +26,7 @@ import modeles.Itineraire;
 import modeles.Livraison;
 import modeles.PlageHoraire;
 
-public class MapPanel extends JPanel implements MouseListener, MouseMotionListener
+public class MapPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -45,9 +45,6 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 	private int zoom;
 	private Point focusPoint;
 	
-	private Point mouseStartPoint;
-	private Point mouseEndPoint;
-	
 	private boolean affichagePlan;
 	private boolean affichageDemandeLivraison;
 	private boolean affichageTournee;
@@ -64,8 +61,10 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 		affichageDemandeLivraison = false;
 		affichageTournee = false;
 		
-		addMouseListener(this);
-        addMouseMotionListener(this);
+		EcouteurDeSouris ecouteurDeSouris = new EcouteurDeSouris();
+		
+		addMouseMotionListener(ecouteurDeSouris);
+		addMouseListener(ecouteurDeSouris);
         
         zoom = 1;
         focusPoint = new Point(sideLength / 2, sideLength / 2);
@@ -294,51 +293,6 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 			coefX = (double)(getSize().width) / (double)(xMax - xMin);
 			coefY = (double)(getSize().width) / (double)(yMax - yMin);
 		}
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent arg0) 
-	{
-		mouseEndPoint = arg0.getPoint();
-	    //System.out.println("Mouse From " + startPoint + " Dragged to " + endPoint);
-	    System.out.println("Delta : X = " + (mouseEndPoint.x - mouseStartPoint.x) + ", Y = " + (mouseEndPoint.y - mouseStartPoint.y));
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) 
-	{
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) 
-	{
-	
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) 
-	{
-	
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) 
-	{
-	
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) 
-	{
-		mouseStartPoint = arg0.getPoint();
-	    //System.out.println("Mouse Pressed at " + startPoint);
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) 
-	{
-
 	}
 }
 
