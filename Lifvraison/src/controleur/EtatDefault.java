@@ -58,6 +58,36 @@ public class EtatDefault implements Etat{
 	}
 
 	@Override
+	public void validerTournee(Controleur controleur, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void chargementPlan(Controleur controleur, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void chargementDemandeLivraison(Controleur controleur, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void calculTournee(Controleur controleur, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public void validationTournee(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		

@@ -44,6 +44,7 @@ public class Controleur
 		try {
 			parseur = new XMLParseur ();
 			fenetre = new Fenetre ( this );
+			etatCourant = etatAccueil;
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
@@ -89,10 +90,37 @@ public class Controleur
 	{
 		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
 	}
+	
+	public void validerTournee() {
+		etatCourant.validerTournee(this, fenetre);
+		
+	}
 
+	public void chargementPlan() {
+		etatCourant.chargementPlan(this, fenetre);
+		
+	}
+
+	public void chargementDemandeLivraison() {
+		etatCourant.chargementDemandeLivraison(this, fenetre);
+		
+	}
+
+	public void calculTournee() {
+		etatCourant.calculTournee(this, fenetre);
+		
+	}
+
+	public void modificationTournee() {
+		etatCourant.modificationTournee(this, fenetre);
+		
+	}
 	
+	public void validationTournee() {
+		etatCourant.validationTournee(this, fenetre);
+	}
 	
-	
+	/*
 	public void run()
 	{
 		setModeAccueil();
@@ -264,5 +292,5 @@ public class Controleur
 				break;
 			}
 		}
-	}
+	}*/
 }
