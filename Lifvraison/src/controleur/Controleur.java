@@ -9,30 +9,122 @@ import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
 import modeles.DemandeLivraison;
+import modeles.Livraison;
 
 public class Controleur 
 {	
-	private XMLParseur parseur;
-	private CalculateurTournee calculateurTournee;
-	private Fenetre fenetre;
-	private Plan plan;
-	private Tournee tournee;
-	DemandeLivraison demandeLivraison;
-	private String etat;
+	protected XMLParseur parseur;
+	protected CalculateurTournee calculateurTournee;
+	protected Fenetre fenetre;
+	protected Plan plan;
+	protected Tournee tournee;
+	protected DemandeLivraison demandeLivraison;
+	protected String etat;
+	protected Etat etatCourant;
+	
+	// differents etats possible
+	protected EtatAccueil etatAccueil = new EtatAccueil();
+	protected EtatChargementPlan etatChargementPlan  = new EtatChargementPlan();
+	protected EtatChargementLivraison etatChargementLivraison  = new EtatChargementLivraison();
+	protected EtatCalculTournee etatCalculTournee  = new EtatCalculTournee();
+	protected EtatModificationTournee etatModificationTournee  = new EtatModificationTournee();
+	protected EtatAjoutLivraison1 etatAjoutLivraison1 = new EtatAjoutLivraison1();
+	protected EtatAjoutLivraison2 etatAjoutLivraison2 = new EtatAjoutLivraison2();
+	protected EtatSupprimerLivraison1 etatSupprimerLivraison1 = new EtatSupprimerLivraison1();
+	protected EtatSupprimerLivraison2 etatSupprimerLivraison2 = new EtatSupprimerLivraison2();
+	protected EtatModeValidation etatModeValidation = new EtatModeValidation();
 	
 	/**
 	 * 
 	 */
 	public Controleur() {
 		
+		
+		
 		try {
 			parseur = new XMLParseur ();
 			fenetre = new Fenetre ( this );
+			etatCourant = etatAccueil;
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
+	protected void setEtatCourant(Etat etat){
+		etatCourant = etat;
+	}
+	
+	public void chargerPlan( String chemin)
+	{
+		etatCourant.chargerPlan(this, fenetre, chemin);
+	}
+	public void chargerDemandeLivraison( String chemin)
+	{
+		etatCourant.chargerDemandeLivraison(this, fenetre, chemin);
+	}
+	public void calculerTournee (  )
+	{
+		etatCourant.calculerTournee(this, fenetre);
+	}
+	public void ajouterLivraison()
+	{
+		etatCourant.ajouterLivraison(this, fenetre);
+	}
+	public void suprimerLivraison( int positon )
+	{
+		etatCourant.suprimerLivraison(this, fenetre, positon);
+	}
+	public void intervertirLivraison(Livraison livraison1, Livraison livraison2)
+	{
+		etatCourant.intervertirLivraison(this, fenetre, livraison1, livraison2);
+	}
+	public void suivant ()
+	{
+		etatCourant.suivant(this, fenetre);
+	}
+	public void precedent ()
+	{
+		etatCourant.precedent(this, fenetre);
+	}
+	public void accueil ()
+	{
+		etatCourant.accueil(this, fenetre);
+	}
+	public void clicgauche ( int positonPrecedente, Livraison livraison)
+	{
+		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
+	}
+	
+	public void validerTournee() {
+		etatCourant.validerTournee(this, fenetre);
+		
+	}
+
+	public void chargementPlan() {
+		etatCourant.chargementPlan(this, fenetre);
+		
+	}
+
+	public void chargementDemandeLivraison() {
+		etatCourant.chargementDemandeLivraison(this, fenetre);
+		
+	}
+
+	public void calculTournee() {
+		etatCourant.calculTournee(this, fenetre);
+		
+	}
+
+	public void modificationTournee() {
+		etatCourant.modificationTournee(this, fenetre);
+		
+	}
+	
+	public void validationTournee() {
+		etatCourant.validationTournee(this, fenetre);
+	}
+	
+	/*
 	public void run()
 	{
 		setModeAccueil();
@@ -204,5 +296,5 @@ public class Controleur
 				break;
 			}
 		}
-	}
+	}*/
 }
