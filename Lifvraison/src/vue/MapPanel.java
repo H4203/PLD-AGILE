@@ -1,20 +1,13 @@
 package vue;
 
 import java.awt.BasicStroke;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import modeles.Plan;
@@ -29,8 +22,6 @@ import modeles.PlageHoraire;
 public class MapPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
-	
-	private Fenetre fenetre;
 	
 	private Plan plan;
 	private DemandeLivraison demandeLivraison;
@@ -51,8 +42,6 @@ public class MapPanel extends JPanel
 
 	public MapPanel(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
-		this.fenetre = fenetre;
-		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
 		this.tournee = tournee;
