@@ -11,6 +11,8 @@ public class Intersection {
 	private List<Troncon> tronconsSortants;
 	private List<Troncon> tronconsEntrants; // Surement a enlever
 	
+	private boolean selected;
+	
 	public Intersection()
 	{
 	}
@@ -22,6 +24,8 @@ public class Intersection {
 		this.y = y;
 		tronconsEntrants = new ArrayList<Troncon>();
 		tronconsSortants = new ArrayList<Troncon>();
+		
+		selected = false;
 	}
 
 	public Long getId() {
@@ -46,6 +50,11 @@ public class Intersection {
 
 	public void setY(Integer y) {
 		this.y = y;
+	}
+	
+	public void setSelected(boolean selected)
+	{
+		this.selected = selected;
 	}
 
 	public List<Troncon> getTronconsSortants() {

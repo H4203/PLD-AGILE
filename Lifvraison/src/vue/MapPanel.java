@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
+import controleur.Controleur;
 import modeles.Plan;
 import modeles.Tournee;
 import modeles.Troncon;
@@ -40,7 +41,7 @@ public class MapPanel extends JPanel
 	private boolean affichageDemandeLivraison;
 	private boolean affichageTournee;
 
-	public MapPanel(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
+	public MapPanel(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur)
 	{
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
@@ -50,7 +51,7 @@ public class MapPanel extends JPanel
 		affichageDemandeLivraison = false;
 		affichageTournee = false;
 		
-		EcouteurDeSouris ecouteurDeSouris = new EcouteurDeSouris();
+		EcouteurDeSouris ecouteurDeSouris = new EcouteurDeSouris(this, controleur);
 		
 		addMouseMotionListener(ecouteurDeSouris);
 		addMouseListener(ecouteurDeSouris);
@@ -282,6 +283,11 @@ public class MapPanel extends JPanel
 			coefX = (double)(getSize().width) / (double)(xMax - xMin);
 			coefY = (double)(getSize().width) / (double)(yMax - yMin);
 		}
+	}
+	
+	public Point convertPoint(Point point)
+	{
+		return new Point((int)Math.round(point.getX() / coefY + yMin), (int)Math.round((point.getY() - sideLength) / coefX + xMin));
 	}
 }
 

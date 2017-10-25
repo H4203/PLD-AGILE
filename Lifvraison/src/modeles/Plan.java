@@ -1,13 +1,18 @@
 package modeles;
+import java.awt.Point;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 
 import donnees.ParseurException;
 
 public class Plan extends Observable
 {
+	private final int clickSelectionTolerance = 4;
+	
 	private HashMap<Long, Intersection> listeIntersection;
 	private HashMap<Integer, Troncon> listeTroncons;
+	private Intersection selectedIntersection;
 
 	private int idTroncon = 1;
 	
@@ -88,6 +93,18 @@ public class Plan extends Observable
 	public String toString() {
 		return "Plan [listeIntersection=" + listeIntersection + ", \nlisteTroncons=" + listeTroncons + "]";
 	}
-
 	
+	public void getAtPoint(Point point)
+	{
+		for (Map.Entry<Long, Intersection> mapentry : listeIntersection.entrySet()) 
+		{
+			if (point.getX() < mapentry.getValue().getX() + clickSelectionTolerance && point.getX() > mapentry.getValue().getX() - clickSelectionTolerance
+					&& point.getY() < mapentry.getValue().getY() + clickSelectionTolerance && point.getY() > mapentry.getValue().getY() - clickSelectionTolerance) 
+			{
+				selectedIntersection.setSelected(false);
+				mapentry.getValue().setSelected(true);
+				selectedIntersection = mapentry.getValue();
+			}
+		}
+	}
 }

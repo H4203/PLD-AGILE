@@ -5,15 +5,25 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import controleur.Controleur;
+
 public class EcouteurDeSouris implements MouseListener, MouseMotionListener
 {
 	private Point startPoint;
 	private Point endPoint;
 	
-	public EcouteurDeSouris()
+	private MapPanel mapPanel;
+	
+	private Controleur controleur;
+	
+	public EcouteurDeSouris(MapPanel mapPanel, Controleur controleur)
 	{
 		startPoint = new Point();
 		endPoint = new Point();
+		
+		this.mapPanel = mapPanel;
+		
+		this.controleur = controleur;
 	}
 	
 	@Override
@@ -27,19 +37,19 @@ public class EcouteurDeSouris implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseMoved(MouseEvent arg0) 
 	{
-
+		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) 
 	{
-	
+		controleur.clicGauche(mapPanel.convertPoint(arg0.getPoint()));
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) 
 	{
-	
+		
 	}
 
 	@Override
