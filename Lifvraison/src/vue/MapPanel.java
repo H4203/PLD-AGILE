@@ -125,9 +125,12 @@ public class MapPanel extends JPanel
         	/* entrepot */
 	        g2.setColor(new Color(0, 150, 0));
 	        
-        	g2.fillRect((int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
-					realHeight - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
-	    			10, 10);
+	        if (demandeLivraison.getEntrepot() != null && demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
+    		{
+	        	g2.fillRect((int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
+	        			realHeight - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
+	        			10, 10);
+    		}
 	        
 			/*
 			BufferedImage img = null;
@@ -145,13 +148,15 @@ public class MapPanel extends JPanel
         	/* heure debut tournee - heure fin tournee */
 			g2.setFont(new Font("default", Font.BOLD, 16));
 			g2.setColor(Color.BLUE);
-			if (demandeLivraison != null && tournee != null && tournee.getListeHoraire().size() != 0)
+			if (demandeLivraison != null && tournee != null && tournee.getListeHoraire().size() != 0 && demandeLivraison.getEntrepot() != null 
+					&& demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
 			{
 				g2.drawString(tournee.getListeHoraire().get(0).getHeureDebut().toString() + " - " + tournee.getListeHoraire().get(tournee.getListeHoraire().size()-1).getHeureDebut().toString(),
 						(int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
 						realHeight - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5);
 			}
-			else if (demandeLivraison != null)
+			else if (demandeLivraison != null && demandeLivraison.getHeureDepart() != null 
+					&& demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
 			{
 				g2.drawString(demandeLivraison.getHeureDepart().toString(),
 						(int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
