@@ -51,8 +51,8 @@ public class EtatModificationTournee extends EtatDefault{
 	}
 	@Override
 	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatCalculTournee );
-		fenetre.setModeCalculTournee();
+		controleur.setEtatCourant( controleur.etatModificationTournee );
+		fenetre.setModeModificationTournee();
 		
 	}
 }

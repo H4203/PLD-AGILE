@@ -6,7 +6,6 @@ public class EtatModeValidation extends EtatDefault{
 	@Override
 	public void suivant (Controleur controleur, Fenetre fenetre) {
 	
-		//do stuff
 		controleur.setEtatCourant( controleur.etatAccueil );
 		fenetre.setModeAccueil();
 	}
