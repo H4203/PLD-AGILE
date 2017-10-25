@@ -9,11 +9,11 @@ public class EtatChargementFichierPlan extends EtatDefault{
 	public void ouvrir (Controleur controleur, Fenetre fenetre, String chemin)
 	{
 		try{
-			controleur.plan = controleur.parseur.chargerPlan(chemin);
+			controleur.parseur.chargerPlan(controleur.plan, chemin);
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
-		fenetre.setModeChargementPlan(controleur.plan);
+		fenetre.setModeChargementPlan();
 	}
 	
 	@Override

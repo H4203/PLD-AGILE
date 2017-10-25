@@ -14,9 +14,8 @@ public class EtatAccueil extends EtatDefault {
 		}
 		else
 		{
-			fenetre.setModeChargementPlan(controleur.plan);
+			fenetre.setModeChargementPlan();
 		}
-		
 	}
 	
 	// useless
@@ -26,4 +25,10 @@ public class EtatAccueil extends EtatDefault {
 		fenetre.setModeAccueil();
 	}
 
+	@Override
+	public void accueil(Controleur controleur, Fenetre fenetre)
+	{
+		controleur.setEtatCourant(controleur.etatAccueil);
+		fenetre.setModeAccueil();
+	}
 }

@@ -28,11 +28,10 @@ public class EtatChargementLivraison extends EtatDefault{
 	@Override
 	public void chargerDemandeLivraison ( Controleur controleur, Fenetre fenetre, String chemin) {
 		try{
-			controleur.demandeLivraison = controleur.parseur.chargerLivraison(chemin, controleur.plan.getListeIntersection());
+			controleur.parseur.chargerLivraison(controleur.demandeLivraison, chemin, controleur.plan.getListeIntersection());
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
-		controleur.tournee = null;
-		fenetre.setModeChargementDemandeLivraison(controleur.demandeLivraison);
+		fenetre.setModeChargementDemandeLivraison();
 	}
 }

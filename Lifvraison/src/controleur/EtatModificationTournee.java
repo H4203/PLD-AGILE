@@ -13,7 +13,7 @@ public class EtatModificationTournee extends EtatDefault{
 	@Override
 	public void precedent (Controleur controleur, Fenetre fenetre) {
 		controleur.setEtatCourant( controleur.etatCalculTournee );
-		fenetre.setModeCalculTournee(controleur.tournee);
+		fenetre.setModeCalculTournee();
 	}
 	
 	@Override

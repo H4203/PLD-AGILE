@@ -39,9 +39,10 @@ public class XMLParseur
 	 * @param cheminDuFichier chemin d'acces sur le disque du fichier XML contenant la demande de livraison
 	 * @param listeIntersection les intersections du plan - la map associe les id des intersections avec leur objet Intersection
 	 * @return la demande de livraisons
+	 * @throws ParseurException 
 	 */
 
-	public void chargerLivraison (DemandeLivraison demandelivraison, String cheminDuFichier, HashMap<Long, Intersection> listeIntersection)
+	public void chargerLivraison (DemandeLivraison demandelivraison, String cheminDuFichier, HashMap<Long, Intersection> listeIntersection) throws ParseurException
 	{
 		demandelivraison.reset();
 		
@@ -215,8 +216,9 @@ public class XMLParseur
 	 * Charge le plan de la ville
 	 * @param cheminDuFichier chemin d'acces sur le disque du fichier XML contenant le plan de livraison
 	 * @return
+	 * @throws ParseurException 
 	 */
-	public void chargerPlan (Plan plan, String cheminDuFichier)
+	public void chargerPlan (Plan plan, String cheminDuFichier) throws ParseurException
 	{
 		plan.reset();
 		
@@ -299,13 +301,13 @@ public class XMLParseur
 						throw new ParseurException("Les attributs du "+ nbTroncon++ +" troncon sont incorrectes (format = nomRue:string, origine:long, destination:long, longueur:double)", e);
 					}
 
-					origine = monPlan.getListeIntersection().get(idDepart);
+					origine = plan.getListeIntersection().get(idDepart);
 					if (origine == null)
 					{
 						throw new ParseurException("L'intersection d'origine du "+ nbTroncon++ +"eme troncon n'existe pas....");
 					}
 
-					destination = monPlan.getListeIntersection().get(idArrivee);
+					destination = plan.getListeIntersection().get(idArrivee);
 					if (destination == null)
 					{
 						throw new ParseurException("L'intersection de destination du +"+ nbTroncon++ +" eme troncon n'existe pas....");
