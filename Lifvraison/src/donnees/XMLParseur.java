@@ -153,7 +153,7 @@ public class XMLParseur
 					}
 					catch (Exception e)
 					{
-						throw new ParseurException("La durée de la "+ ++nbLivraison +" livraison est incorrecte", e);
+						throw new ParseurException("La duree de la "+ ++nbLivraison +" livraison est incorrecte", e);
 					}
 					if (duree < 0)
 					{
@@ -201,7 +201,7 @@ public class XMLParseur
 		}
 		if (nbLivraison == 0 )
 		{
-			throw new ParseurException("Aucune livraison à affectuer ! \n Un jour de repos");
+			throw new ParseurException("Aucune livraison a affectuer ! \n Un jour de repos");
 		}
 		if (nbLivraison == 0 )
 		{
@@ -269,7 +269,7 @@ public class XMLParseur
 					}
 					catch (Exception e)
 					{
-						throw new ParseurException("Les attributs du"+ ++nbNoeud +"noeud ne sont pas correctements renseignés \n (format = id:Long, x:int, y:int)", e);
+						throw new ParseurException("Les attributs du"+ ++nbNoeud +"noeud ne sont pas correctements renseignes \n (format = id:Long, x:int, y:int)", e);
 					}
 					++nbNoeud;
 					monPlan.ajouterIntersection(id, x, y);
@@ -281,7 +281,7 @@ public class XMLParseur
 				{
 					if( nbNoeud == 0 )
 					{
-						throw new ParseurException("Veuillez renseigner les noeuds avant de renseigner des troncon!!s");
+						throw new ParseurException("Veuillez renseigner les noeuds avant de renseigner des troncons!!");
 					}
 
 					try {
