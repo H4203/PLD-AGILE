@@ -44,13 +44,19 @@ public class VueGraphique extends JPanel implements Observer
 	@Override
 	public void paintComponent(Graphics g) 
 	{
+		System.out.println("paintComponent");
 		
+		//mapPanel.repaint();
+		//repaint();
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) 
 	{
+		System.out.println("update");
 		
+		mapPanel.repaint();
+		//repaint();
 	}
 	
 	public void resize()

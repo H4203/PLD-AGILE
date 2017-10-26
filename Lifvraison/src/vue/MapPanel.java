@@ -73,6 +73,9 @@ public class MapPanel extends JPanel
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
+		g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(1));
+		
 		// Border
 		
 		g2.drawLine(0, 0, sideLength - 1, 0);
@@ -93,6 +96,19 @@ public class MapPanel extends JPanel
 	        }
 		}
 		
+        // Selected Intersection
+        
+        g2.setColor(Color.RED);
+        
+        if (plan != null && plan.getSelectedIntersection() != null)
+        {
+        	g2.fillRect((int)Math.round((plan.getSelectedIntersection().getY() - yMin) * coefY) - 4, 
+        			sideLength - (int)Math.round((plan.getSelectedIntersection().getX() - xMin) * coefX) - 4,
+        			8, 8);
+    	}
+        
+        g2.setColor(Color.BLACK);
+        
         g2.setColor(Color.BLUE);
         g2.setStroke(new BasicStroke(3));
         

@@ -20,7 +20,6 @@ public class Plan extends Observable
 	{
 		this.listeIntersection = new HashMap<Long, Intersection>();
 		this.listeTroncons = new HashMap<Integer, Troncon>();
-		selectedIntersection = new Intersection();
 		
 		notifyObservers();
 	}
@@ -96,6 +95,11 @@ public class Plan extends Observable
 		return "Plan [listeIntersection=" + listeIntersection + ", \nlisteTroncons=" + listeTroncons + "]";
 	}
 	
+	public Intersection getSelectedIntersection()
+	{
+		return selectedIntersection;
+	}
+	
 	public void getAtPoint(Point point)
 	{
 		
@@ -107,12 +111,12 @@ public class Plan extends Observable
 			if (point.getX() < mapentry.getValue().getX() + clickSelectionTolerance && point.getX() > mapentry.getValue().getX() - clickSelectionTolerance
 					&& point.getY() < mapentry.getValue().getY() + clickSelectionTolerance && point.getY() > mapentry.getValue().getY() - clickSelectionTolerance) 
 			{
-				selectedIntersection.setSelected(false);
-				mapentry.getValue().setSelected(true);
-				
-				System.out.println(mapentry.getValue());
-				
 				selectedIntersection = mapentry.getValue();
+				
+				//System.out.println(mapentry.getValue());
+				
+				setChanged();
+				notifyObservers();
 			}
 		}
 	}
