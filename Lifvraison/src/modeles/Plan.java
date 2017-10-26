@@ -8,7 +8,7 @@ import donnees.ParseurException;
 
 public class Plan extends Observable
 {
-	private final int clickSelectionTolerance = 4;
+	private final int clickSelectionTolerance = 100;
 	
 	private HashMap<Long, Intersection> listeIntersection;
 	private HashMap<Integer, Troncon> listeTroncons;
@@ -16,9 +16,11 @@ public class Plan extends Observable
 
 	private int idTroncon = 1;
 	
-	public Plan() {
+	public Plan() 
+	{
 		this.listeIntersection = new HashMap<Long, Intersection>();
 		this.listeTroncons = new HashMap<Integer, Troncon>();
+		selectedIntersection = new Intersection();
 		
 		notifyObservers();
 	}
@@ -96,13 +98,20 @@ public class Plan extends Observable
 	
 	public void getAtPoint(Point point)
 	{
+		
 		for (Map.Entry<Long, Intersection> mapentry : listeIntersection.entrySet()) 
 		{
+			//System.out.println(mapentry.getValue().getX());
+			//System.out.println(mapentry.getValue().getY());
+			
 			if (point.getX() < mapentry.getValue().getX() + clickSelectionTolerance && point.getX() > mapentry.getValue().getX() - clickSelectionTolerance
 					&& point.getY() < mapentry.getValue().getY() + clickSelectionTolerance && point.getY() > mapentry.getValue().getY() - clickSelectionTolerance) 
 			{
 				selectedIntersection.setSelected(false);
 				mapentry.getValue().setSelected(true);
+				
+				System.out.println(mapentry.getValue());
+				
 				selectedIntersection = mapentry.getValue();
 			}
 		}

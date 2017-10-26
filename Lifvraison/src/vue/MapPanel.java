@@ -287,7 +287,15 @@ public class MapPanel extends JPanel
 	
 	public Point convertPoint(Point point)
 	{
-		return new Point((int)Math.round(point.getX() / coefY + yMin), (int)Math.round((point.getY() - sideLength) / coefX + xMin));
+		//System.out.println("Raw " + point);
+		
+		Point convertedPoint = new Point((int)Math.round((sideLength - point.getY()) / coefX + xMin), (int)Math.round(point.getX() / coefY + yMin));
+
+		//System.out.println("Converted " + convertedPoint);
+		
+		return convertedPoint;
+		
+		
 	}
 }
 
