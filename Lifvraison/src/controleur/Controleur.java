@@ -117,6 +117,11 @@ public class Controleur
 	{
 		etatCourant.clicgauche(this, point);
 	}
+	
+	public void drag(Point delta)
+	{
+		etatCourant.drag(this, delta);
+	}
 	// End
 	
 	public void validerTournee() {

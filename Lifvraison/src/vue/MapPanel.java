@@ -87,12 +87,14 @@ public class MapPanel extends JPanel
 		
 		if (plan != null && affichagePlan == true)
 		{
+			System.out.println(plan.getFocus());
+			
 			for (Map.Entry<Integer, Troncon> mapentry : plan.getListeTroncons().entrySet()) 
 	        {
-	        	g2.drawLine((int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
-	        		sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
-        			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY),
-        			sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX));
+	        	g2.drawLine((int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() + plan.getFocus().x - yMin) * coefY),
+	        		sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - plan.getFocus().y - xMin) * coefX),
+        			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() + plan.getFocus().x - yMin) * coefY),
+        			sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - plan.getFocus().y - xMin) * coefX));
 	        }
 		}
 		

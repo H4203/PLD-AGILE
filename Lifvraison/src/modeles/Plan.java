@@ -16,10 +16,14 @@ public class Plan extends Observable
 
 	private int idTroncon = 1;
 	
+	private Point focus;
+	
 	public Plan() 
 	{
 		this.listeIntersection = new HashMap<Long, Intersection>();
 		this.listeTroncons = new HashMap<Integer, Troncon>();
+		
+		resetFocus();
 		
 		notifyObservers();
 	}
@@ -27,6 +31,8 @@ public class Plan extends Observable
 	public Plan(HashMap<Long, Intersection> listeIntersection, HashMap<Integer, Troncon> listeTroncons) {
 		this.listeIntersection = listeIntersection;
 		this.listeTroncons = listeTroncons;
+		
+		resetFocus();
 		
 		notifyObservers();
 	}
@@ -84,6 +90,11 @@ public class Plan extends Observable
 		return listeTroncons;
 	}
 
+	public Point getFocus()
+	{
+		return focus;
+	}
+	
 	public void setListeTroncons(HashMap<Integer, Troncon> listeTroncons) {
 		this.listeTroncons = listeTroncons;
 		
@@ -119,5 +130,18 @@ public class Plan extends Observable
 				notifyObservers();
 			}
 		}
+	}
+	
+	public void drag(Point delta)
+	{
+		focus = new Point(focus.x + delta.x, focus.y + delta.y);
+		
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void resetFocus()
+	{
+		focus = new Point(0 ,0);
 	}
 }
