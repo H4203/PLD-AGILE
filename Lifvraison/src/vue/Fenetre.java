@@ -94,7 +94,7 @@ public class Fenetre extends JFrame
 		mainPanel.add(leftPanel, BorderLayout.CENTER);
 		
 		// 1.1.1 mainPanel/leftPanel/vueGraphique
-		vueGraphique = new VueGraphique(this, plan, demandeLivraison, tournee);
+		vueGraphique = new VueGraphique(this, plan, demandeLivraison, tournee, controleur);
 		leftPanel.add(vueGraphique, BorderLayout.CENTER);
 		
 		addComponentListener(new EcouteurDeFenetre(vueGraphique)); 

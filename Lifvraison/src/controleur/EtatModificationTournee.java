@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.Point;
+
 import vue.Fenetre;
 
 public class EtatModificationTournee extends EtatDefault{
@@ -32,5 +34,11 @@ public class EtatModificationTournee extends EtatDefault{
 	public void ajouterLivraison ( Controleur controleur, Fenetre fenetre)
 	{
 		controleur.setEtatCourant( controleur.etatAjoutLivraison1);
+	}
+	
+	@Override
+	public void clicgauche(Controleur controleur, Point point)
+	{
+		controleur.plan.getAtPoint(point);
 	}
 }

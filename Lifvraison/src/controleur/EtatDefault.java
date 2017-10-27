@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.Point;
+
 import modeles.Livraison;
 import vue.Fenetre;
 
@@ -93,6 +95,12 @@ public class EtatDefault implements Etat{
 
 	@Override
 	public void validationTournee(Controleur controleur, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clicgauche(Controleur controleur, Point point) {
 		// TODO Auto-generated method stub
 		
 	}

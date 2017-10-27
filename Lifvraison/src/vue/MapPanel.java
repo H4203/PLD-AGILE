@@ -1,22 +1,16 @@
 package vue;
 
 import java.awt.BasicStroke;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import controleur.Controleur;
 import modeles.Plan;
 import modeles.Tournee;
 import modeles.Troncon;
@@ -26,11 +20,9 @@ import modeles.Itineraire;
 import modeles.Livraison;
 import modeles.PlageHoraire;
 
-public class MapPanel extends JPanel implements MouseListener, MouseMotionListener
+public class MapPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
-	
-	private Fenetre fenetre;
 	
 	private Plan plan;
 	private DemandeLivraison demandeLivraison;
@@ -45,17 +37,12 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 	private int zoom;
 	private Point focusPoint;
 	
-	private Point mouseStartPoint;
-	private Point mouseEndPoint;
-	
 	private boolean affichagePlan;
 	private boolean affichageDemandeLivraison;
 	private boolean affichageTournee;
 
-	public MapPanel(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
+	public MapPanel(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur)
 	{
-		this.fenetre = fenetre;
-		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
 		this.tournee = tournee;
@@ -64,8 +51,10 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 		affichageDemandeLivraison = false;
 		affichageTournee = false;
 		
-		addMouseListener(this);
-        addMouseMotionListener(this);
+		EcouteurDeSouris ecouteurDeSouris = new EcouteurDeSouris(this, controleur);
+		
+		addMouseMotionListener(ecouteurDeSouris);
+		addMouseListener(ecouteurDeSouris);
         
         zoom = 1;
         focusPoint = new Point(sideLength / 2, sideLength / 2);
@@ -83,6 +72,9 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D) g;
+		
+		g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(1));
 		
 		// Border
 		
@@ -104,6 +96,19 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 	        }
 		}
 		
+        // Selected Intersection
+        
+        g2.setColor(Color.RED);
+        
+        if (plan != null && plan.getSelectedIntersection() != null)
+        {
+        	g2.fillRect((int)Math.round((plan.getSelectedIntersection().getY() - yMin) * coefY) - 4, 
+        			sideLength - (int)Math.round((plan.getSelectedIntersection().getX() - xMin) * coefX) - 4,
+        			8, 8);
+    	}
+        
+        g2.setColor(Color.BLACK);
+        
         g2.setColor(Color.BLUE);
         g2.setStroke(new BasicStroke(3));
         
@@ -295,50 +300,18 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 			coefY = (double)(getSize().width) / (double)(yMax - yMin);
 		}
 	}
-
-	@Override
-	public void mouseDragged(MouseEvent arg0) 
-	{
-		mouseEndPoint = arg0.getPoint();
-	    //System.out.println("Mouse From " + startPoint + " Dragged to " + endPoint);
-	    System.out.println("Delta : X = " + (mouseEndPoint.x - mouseStartPoint.x) + ", Y = " + (mouseEndPoint.y - mouseStartPoint.y));
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) 
-	{
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) 
-	{
 	
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) 
+	public Point convertPoint(Point point)
 	{
-	
-	}
+		//System.out.println("Raw " + point);
+		
+		Point convertedPoint = new Point((int)Math.round((sideLength - point.getY()) / coefX + xMin), (int)Math.round(point.getX() / coefY + yMin));
 
-	@Override
-	public void mouseExited(MouseEvent arg0) 
-	{
-	
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) 
-	{
-		mouseStartPoint = arg0.getPoint();
-	    //System.out.println("Mouse Pressed at " + startPoint);
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) 
-	{
-
+		//System.out.println("Converted " + convertedPoint);
+		
+		return convertedPoint;
+		
+		
 	}
 }
 

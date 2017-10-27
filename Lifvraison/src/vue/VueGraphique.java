@@ -11,6 +11,7 @@ import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import controleur.Controleur;
 import modeles.Plan;
 import modeles.DemandeLivraison;
 import modeles.Tournee;
@@ -23,7 +24,7 @@ public class VueGraphique extends JPanel implements Observer
 	
 	private MapPanel mapPanel;
 
-	public VueGraphique(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee) 
+	public VueGraphique(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur) 
 	{
 		super();
 		
@@ -36,20 +37,26 @@ public class VueGraphique extends JPanel implements Observer
 		demandeLivraison.addObserver(this);
 		tournee.addObserver(this);
 		
-		mapPanel = new MapPanel(fenetre, plan, demandeLivraison, tournee);
+		mapPanel = new MapPanel(fenetre, plan, demandeLivraison, tournee, controleur);
 		add(mapPanel);
 	}
 	
 	@Override
 	public void paintComponent(Graphics g) 
 	{
+		System.out.println("paintComponent");
 		
+		//mapPanel.repaint();
+		//repaint();
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) 
 	{
+		System.out.println("update");
 		
+		mapPanel.repaint();
+		//repaint();
 	}
 	
 	public void resize()

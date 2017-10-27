@@ -1,17 +1,23 @@
 package modeles;
+import java.awt.Point;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 
 import donnees.ParseurException;
 
 public class Plan extends Observable
 {
+	private final int clickSelectionTolerance = 100;
+	
 	private HashMap<Long, Intersection> listeIntersection;
 	private HashMap<Integer, Troncon> listeTroncons;
+	private Intersection selectedIntersection;
 
 	private int idTroncon = 1;
 	
-	public Plan() {
+	public Plan() 
+	{
 		this.listeIntersection = new HashMap<Long, Intersection>();
 		this.listeTroncons = new HashMap<Integer, Troncon>();
 		
@@ -88,6 +94,30 @@ public class Plan extends Observable
 	public String toString() {
 		return "Plan [listeIntersection=" + listeIntersection + ", \nlisteTroncons=" + listeTroncons + "]";
 	}
-
 	
+	public Intersection getSelectedIntersection()
+	{
+		return selectedIntersection;
+	}
+	
+	public void getAtPoint(Point point)
+	{
+		
+		for (Map.Entry<Long, Intersection> mapentry : listeIntersection.entrySet()) 
+		{
+			//System.out.println(mapentry.getValue().getX());
+			//System.out.println(mapentry.getValue().getY());
+			
+			if (point.getX() < mapentry.getValue().getX() + clickSelectionTolerance && point.getX() > mapentry.getValue().getX() - clickSelectionTolerance
+					&& point.getY() < mapentry.getValue().getY() + clickSelectionTolerance && point.getY() > mapentry.getValue().getY() - clickSelectionTolerance) 
+			{
+				selectedIntersection = mapentry.getValue();
+				
+				//System.out.println(mapentry.getValue());
+				
+				setChanged();
+				notifyObservers();
+			}
+		}
+	}
 }

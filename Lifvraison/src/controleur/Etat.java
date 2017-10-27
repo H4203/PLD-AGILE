@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.Point;
+
 import modeles.Livraison;
 import vue.Fenetre;
 
@@ -21,5 +23,9 @@ public interface Etat {
 	public void calculTournee (Controleur controleur, Fenetre fenetre);
 	public void modificationTournee (Controleur controleur, Fenetre fenetre);
 	public void validationTournee (Controleur controleur, Fenetre fenetre);
-
+	
+	// Start
+	public void clicgauche(Controleur controleur, Point point);
+	// End
+	
 }

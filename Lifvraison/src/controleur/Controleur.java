@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.Point;
+
 import javax.swing.JOptionPane;
 
 import algorithme.CalculateurTournee;
@@ -109,6 +111,13 @@ public class Controleur
 	{
 		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
 	}
+	
+	// Start
+	public void clicGauche(Point point)
+	{
+		etatCourant.clicgauche(this, point);
+	}
+	// End
 	
 	public void validerTournee() {
 		etatCourant.validerTournee(this, fenetre);
