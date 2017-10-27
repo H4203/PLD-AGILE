@@ -34,8 +34,6 @@ public class MapPanel extends JPanel
 	private int yMin;
 	private double coefX;
 	private double coefY;
-	private int zoom;
-	private Point focusPoint;
 	
 	private boolean affichagePlan;
 	private boolean affichageDemandeLivraison;
@@ -55,9 +53,6 @@ public class MapPanel extends JPanel
 		
 		addMouseMotionListener(ecouteurDeSouris);
 		addMouseListener(ecouteurDeSouris);
-        
-        zoom = 1;
-        focusPoint = new Point(sideLength / 2, sideLength / 2);
 	}
 	
 	public void repaint(Graphics g)
@@ -87,14 +82,12 @@ public class MapPanel extends JPanel
 		
 		if (plan != null && affichagePlan == true)
 		{
-			System.out.println(plan.getFocus());
-			
 			for (Map.Entry<Integer, Troncon> mapentry : plan.getListeTroncons().entrySet()) 
 	        {
-	        	g2.drawLine((int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() + plan.getFocus().x - yMin) * coefY),
-	        		sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - plan.getFocus().y - xMin) * coefX),
-        			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() + plan.getFocus().x - yMin) * coefY),
-        			sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - plan.getFocus().y - xMin) * coefX));
+	        	g2.drawLine((int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() + plan.getFocus().x / coefY - yMin) * coefY),
+	        		sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - plan.getFocus().y / coefX - xMin) * coefX),
+        			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() + plan.getFocus().x / coefY - yMin) * coefY),
+        			sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - plan.getFocus().y / coefX - xMin) * coefX));
 	        }
 		}
 		
