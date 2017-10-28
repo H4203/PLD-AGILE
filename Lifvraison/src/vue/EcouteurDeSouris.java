@@ -32,6 +32,10 @@ public class EcouteurDeSouris implements MouseListener, MouseMotionListener
 		endPoint = arg0.getPoint();
 	    //System.out.println("Mouse From " + startPoint + " Dragged to " + endPoint);
 	    //System.out.println("Delta : X = " + (endPoint.x - startPoint.x) + ", Y = " + (endPoint.y - startPoint.y));
+		
+		controleur.drag(new Point(endPoint.x - startPoint.x, endPoint.y - startPoint.y));
+		
+		startPoint = endPoint;
 	}
 
 	@Override

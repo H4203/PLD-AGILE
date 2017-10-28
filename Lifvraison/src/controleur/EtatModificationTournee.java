@@ -35,10 +35,16 @@ public class EtatModificationTournee extends EtatDefault{
 	{
 		controleur.setEtatCourant( controleur.etatAjoutLivraison1);
 	}
-	
+
+	// start
 	@Override
 	public void clicgauche(Controleur controleur, Point point)
 	{
 		controleur.plan.getAtPoint(point);
 	}
+	public void drag(Controleur controleur, Point delta)
+	{
+		controleur.plan.drag(delta);
+	}
+	// end
 }
