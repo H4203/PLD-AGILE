@@ -102,7 +102,7 @@ public class CalculateurTournee {
 		}
 		
 		//On cree un objet tsp de l'ordre que l'on veut
-		TSP2 tsp = new TSP2();
+		TSP3 tsp = new TSP3();
 		
 		//On prend une valeur de temps pour des calculs de temps si on le souhaite
 		long temps = System.currentTimeMillis();

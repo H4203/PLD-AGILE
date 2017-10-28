@@ -1,12 +1,14 @@
 package tsp;
 
 import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class IteratorSeq implements Iterator<Integer> {
 
 	private Integer[] candidats;
 	private int nbCandidats;
+	private int[][] cout;
 
 	/**
 	 * Cree un iterateur pour iterer sur l'ensemble des sommets de nonVus
