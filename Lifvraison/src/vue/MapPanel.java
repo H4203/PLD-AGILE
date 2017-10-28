@@ -53,6 +53,7 @@ public class MapPanel extends JPanel
 		
 		addMouseMotionListener(ecouteurDeSouris);
 		addMouseListener(ecouteurDeSouris);
+		addMouseWheelListener(ecouteurDeSouris);
 	}
 	
 	public void repaint(Graphics g)
@@ -284,15 +285,15 @@ public class MapPanel extends JPanel
 		{
 			sideLength = getSize().height;
 			
-			coefX = (double)(getSize().height) / (double)(xMax - xMin);
-			coefY = (double)(getSize().height) / (double)(yMax - yMin);
+			coefX = (double)(getSize().height) / (double)(xMax - xMin) * plan.getZoom();
+			coefY = (double)(getSize().height) / (double)(yMax - yMin) * plan.getZoom();
 		}
 		else
 		{
 			sideLength = getSize().width;
 			
-			coefX = (double)(getSize().width) / (double)(xMax - xMin);
-			coefY = (double)(getSize().width) / (double)(yMax - yMin);
+			coefX = (double)(getSize().width) / (double)(xMax - xMin) * plan.getZoom();
+			coefY = (double)(getSize().width) / (double)(yMax - yMin) * plan.getZoom();
 		}
 	}
 	
@@ -300,7 +301,9 @@ public class MapPanel extends JPanel
 	{
 		//System.out.println("Raw " + point);
 		
-		Point convertedPoint = new Point((int)Math.round((sideLength - point.getY()) / coefX + xMin), (int)Math.round(point.getX() / coefY + yMin));
+		// Prendre en compte le focus point
+		
+		Point convertedPoint = new Point((int)Math.round((sideLength - point.getY()) / coefX + xMin + plan.getFocus().y / coefX), (int)Math.round(point.getX() / coefY + yMin - plan.getFocus().x / coefY));
 
 		//System.out.println("Converted " + convertedPoint);
 		

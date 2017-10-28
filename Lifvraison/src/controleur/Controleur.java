@@ -118,9 +118,14 @@ public class Controleur
 		etatCourant.clicgauche(this, point);
 	}
 	
-	public void drag(Point delta)
+	public void mouseDrag(Point delta)
 	{
-		etatCourant.drag(this, delta);
+		etatCourant.mouseDrag(this, delta);
+	}
+	
+	public void mouseWheel(int steps)
+	{
+		etatCourant.mouseWheel(this, steps);
 	}
 	// End
 	

@@ -42,9 +42,13 @@ public class EtatModificationTournee extends EtatDefault{
 	{
 		controleur.plan.getAtPoint(point);
 	}
-	public void drag(Controleur controleur, Point delta)
+	public void mouseDrag(Controleur controleur, Point delta)
 	{
 		controleur.plan.drag(delta);
+	}
+	public void mouseWheel(Controleur controleur, int steps)
+	{
+		controleur.plan.zoom(steps);
 	}
 	// end
 }

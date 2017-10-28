@@ -19,6 +19,7 @@ public class Plan extends Observable
 	// Point Focused
 	// (0, 0) : center
 	private Point focus;
+	private double zoom;
 	
 	public Plan() 
 	{
@@ -26,6 +27,7 @@ public class Plan extends Observable
 		this.listeTroncons = new HashMap<Integer, Troncon>();
 		
 		focus = new Point(0, 0);
+		zoom = 1.0;
 		
 		notifyObservers();
 	}
@@ -141,6 +143,19 @@ public class Plan extends Observable
 		
 		setChanged();
 		notifyObservers();
+	}
+	
+	public void zoom(int steps)
+	{
+		zoom = zoom + steps / 10.0;
+		
+		setChanged();
+		notifyObservers();
+	}
+	
+	public double getZoom()
+	{
+		return zoom;
 	}
 	
 	public void resetFocus()
