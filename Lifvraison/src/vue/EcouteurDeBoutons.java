@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import controleur.Controleur;
+import donnees.ParseurException;
 
 public class EcouteurDeBoutons implements ActionListener
 {
@@ -32,81 +34,83 @@ public class EcouteurDeBoutons implements ActionListener
 		{
 			case "Accueil" :
 			{
-				controleur.setModeAccueil();
+				controleur.accueil();
 				break;
 			}
 			case "Charger Plan" :
 			{
 				String chemin = "";
 				
+				fileChooser.setCurrentDirectory(new File("./data/plan"));
+				
 			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 			    {
 			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
+			       controleur.chargerPlan(chemin);
 			    }
-
-				controleur.setModeChargementPlan(chemin);
 				break;
 			}
 			case "Chargement Plan" :
 			{
-				controleur.setModeChargementPlan();
+				controleur.chargementPlan();
 				break;
 			}
 			case "Charger Demande Livraison" :
 			{
 				String chemin = "";
 				
+				fileChooser.setCurrentDirectory(new File("./data/demandeLivraison"));
+				
 			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 			    {
 			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
 			    }
-
-				controleur.setModeChargementDemandeLivraison(chemin);
+				controleur.chargerDemandeLivraison(chemin);
 				break;
 			}
 			case "Chargement Demande Livraison" :
 			{
-				controleur.setModeChargementDemandeLivraison();
+				controleur.chargementDemandeLivraison();
 				break;
 			}
 			case "Calculer Tournee" :
 			{
-				controleur.setModeCalculTournee("");
+				controleur.calculerTournee();
 				break;
 			}
 			case "Calcul Tournee" :
 			{
-				controleur.setModeCalculTournee();
+				controleur.calculTournee();
 				break;
 			}
 			case "Modifier Tournee" :
 			{
-				controleur.setModeModificationTournee();
+				controleur.suivant();
 				break;
 			}
 			case "Modification Tournee" :
 			{
-				controleur.setModeModificationTournee();
+				controleur.suivant();
 				break;
 			}
 			case "Valider Tournee" :
 			{
-				controleur.setModeValidationTournee();
+				controleur.validerTournee();
 				break;
 			}
 			case "Validation Tournee" :
 			{
-				controleur.setModeValidationTournee();
+				controleur.validationTournee();
 				break;
 			}
 			case "Suivant" :
 			{	
-				controleur.setModeSuivant();
+				controleur.suivant();
 				break;
 			}
 			case "Precedent" :
 			{	
-				controleur.setModePrecedent();
+				controleur.precedent();
 				break;
 			}
 		}

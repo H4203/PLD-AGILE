@@ -39,9 +39,13 @@ public class XMLParseur
 	 * @param cheminDuFichier chemin d'acces sur le disque du fichier XML contenant la demande de livraison
 	 * @param listeIntersection les intersections du plan - la map associe les id des intersections avec leur objet Intersection
 	 * @return la demande de livraisons
+	 * @throws ParseurException 
 	 */
-	public DemandeLivraison chargerLivraison (String cheminDuFichier, HashMap<Long, Intersection> listeIntersection) throws ParseurException
+
+	public void chargerLivraison (DemandeLivraison demandelivraison, String cheminDuFichier, HashMap<Long, Intersection> listeIntersection) throws ParseurException
 	{
+		demandelivraison.reset();
+		
 		Document document = null;
 		try
 		{
@@ -65,9 +69,6 @@ public class XMLParseur
 		{
 			throw new ParseurException("Le fichier n'est pas une demande de livraison...");
 		}
-
-		/* objet DemandeLivraison qui sera retourne */
-		DemandeLivraison maDemandeDeLivraison = new DemandeLivraison();
 
 		NodeList racineNoeuds = racine.getChildNodes();
 		int nbRacineNoeuds = racineNoeuds.getLength();
@@ -123,8 +124,8 @@ public class XMLParseur
 						throw new ParseurException("Le fichier contient plus d'1 entrepot");
 					}
 					/* on remplit les parametres */
-					maDemandeDeLivraison.setHeureDepart(heureDepart);
-					maDemandeDeLivraison.setEntrepot(listeIntersection.get(adresse));
+					demandelivraison.setHeureDepart(heureDepart);
+					demandelivraison.setEntrepot(listeIntersection.get(adresse));
 				}
 
 				/* le noeud est celui contenant les informations sur une livraison */
@@ -138,13 +139,13 @@ public class XMLParseur
 					}
 					catch (Exception e)
 					{
-						throw new ParseurException("L'adresse de la "+ nbLivraison++ +" livraison est incorrecte (format = adresse = LONG)", e);
+						throw new ParseurException("L'adresse de la "+ ++nbLivraison +" livraison est incorrecte (format = adresse = LONG)", e);
 					}
 
 					adresseLivraison = listeIntersection.get(idAdresse);
 					if (adresseLivraison == null)
 					{
-						throw new ParseurException("L'adresse de la "+ nbLivraison++ +" livraison n'existe pas");
+						throw new ParseurException("L'adresse de la "+ ++nbLivraison +" livraison n'existe pas");
 					}
 					/* on recupere la duree de dechargement */
 					try
@@ -153,7 +154,7 @@ public class XMLParseur
 					}
 					catch (Exception e)
 					{
-						throw new ParseurException("La durée de la "+ nbLivraison++ +" livraison est incorrecte", e);
+						throw new ParseurException("La duree de la "+ ++nbLivraison +" livraison est incorrecte", e);
 					}
 					if (duree < 0)
 					{
@@ -172,7 +173,7 @@ public class XMLParseur
 						}
 						catch (Exception e)
 						{
-							throw new ParseurException("L'heure de debut de plage de la livraison "+ nbLivraison++ +"est incorrecte (format = h:m:s)", e);
+							throw new ParseurException("L'heure de debut de plage de la livraison "+ ++nbLivraison +"est incorrecte (format = h:m:s)", e);
 						}
 					} else debutPlage = null;
 					/* on recupere l'heure de fin */
@@ -188,26 +189,26 @@ public class XMLParseur
 						}
 						catch (Exception e)
 						{
-							throw new ParseurException("L'heure de fin de plage de la livraison "+ nbLivraison++ +"est incorrecte (format = h:m:s)", e);
+							throw new ParseurException("L'heure de fin de plage de la livraison "+ ++nbLivraison +"est incorrecte (format = h:m:s)", e);
 						}
 					} 
 					else finPlage = null;
 
-					nbLivraison++;
+					++nbLivraison;
 					/* on ajoute la livraison a la demande */
-					maDemandeDeLivraison.ajouterLivraison(adresseLivraison, duree, debutPlage, finPlage);
+					demandelivraison.ajouterLivraison(adresseLivraison, duree, debutPlage, finPlage);
 				}
 			}				
 		}
+
 		if (nbLivraison == 0 )
 		{
-			throw new ParseurException("Aucune livraison à affectuer ! \n Un jour de repos");
+			throw new ParseurException("Aucune livraison a affectuer ! \n Un jour de repos");
 		}
 		if (nbLivraison == 0 )
 		{
 			throw new ParseurException("Aucun entrepot !");
 		}
-		return maDemandeDeLivraison;
 	}
 
 
@@ -215,9 +216,12 @@ public class XMLParseur
 	 * Charge le plan de la ville
 	 * @param cheminDuFichier chemin d'acces sur le disque du fichier XML contenant le plan de livraison
 	 * @return
+	 * @throws ParseurException 
 	 */
-	public Plan chargerPlan (String cheminDuFichier) throws ParseurException
+	public void chargerPlan (Plan plan, String cheminDuFichier) throws ParseurException
 	{
+		plan.reset();
+		
 		Document document = null;
 		try
 		{
@@ -239,8 +243,6 @@ public class XMLParseur
 		{
 			throw new ParseurException("Le fichier n'est pas une demande de livraison...");
 		}
-
-		Plan monPlan = new Plan();
 
 		NodeList racineNoeuds = racine.getChildNodes();
 		int nbRacineNoeuds = racineNoeuds.getLength();
@@ -269,10 +271,10 @@ public class XMLParseur
 					}
 					catch (Exception e)
 					{
-						throw new ParseurException("Les attributs du"+ nbNoeud++ +"noeud ne sont pas correctements renseignés \n (format = id:Long, x:int, y:int)", e);
+						throw new ParseurException("Les attributs du"+ ++nbNoeud +"noeud ne sont pas correctements renseignes \n (format = id:Long, x:int, y:int)", e);
 					}
-					nbNoeud++;
-					monPlan.ajouterIntersection(id, x, y);
+					++nbNoeud;
+					plan.ajouterIntersection(id, x, y);
 				}
 
 				/* on ajoute les troncons au plan*/
@@ -281,7 +283,7 @@ public class XMLParseur
 				{
 					if( nbNoeud == 0 )
 					{
-						throw new ParseurException("Veuillez renseigner les noeuds avant de renseigner des troncon!!s");
+						throw new ParseurException("Veuillez renseigner les noeuds avant de renseigner des troncons!!");
 					}
 
 					try {
@@ -299,25 +301,22 @@ public class XMLParseur
 						throw new ParseurException("Les attributs du "+ nbTroncon++ +" troncon sont incorrectes (format = nomRue:string, origine:long, destination:long, longueur:double)", e);
 					}
 
-					origine = monPlan.getListeIntersection().get(idDepart);
+					origine = plan.getListeIntersection().get(idDepart);
 					if (origine == null)
 					{
 						throw new ParseurException("L'intersection d'origine du "+ nbTroncon++ +"eme troncon n'existe pas....");
 					}
 
-					destination = monPlan.getListeIntersection().get(idArrivee);
+					destination = plan.getListeIntersection().get(idArrivee);
 					if (destination == null)
 					{
 						throw new ParseurException("L'intersection de destination du +"+ nbTroncon++ +" eme troncon n'existe pas....");
 					}
 
 					nbTroncon++;
-					monPlan.ajouterTroncon(nomRue, origine, destination, longueur);
-
+					plan.ajouterTroncon(nomRue, origine, destination, longueur);
 				}
 			}				
 		}
-
-		return monPlan;
 	}
 }

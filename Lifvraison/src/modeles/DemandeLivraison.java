@@ -4,23 +4,31 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Observable;
 
-public class DemandeLivraison {
-
+public class DemandeLivraison extends Observable 
+{
 	private List<Livraison> livraisons;
 	private LocalTime heureDepart;
 	private Intersection entrepot;
 
-	public DemandeLivraison() {
+	public DemandeLivraison() 
+	{
 		entrepot = new Intersection();
 		livraisons = new ArrayList<Livraison>();
-
 	}
 
-	public DemandeLivraison(List<Livraison> livraisons, LocalTime heureDepart, Intersection entrepot) {
+	public DemandeLivraison(List<Livraison> livraisons, LocalTime heureDepart, Intersection entrepot) 
+	{
 		this.livraisons = livraisons;
 		this.heureDepart = heureDepart;
 		this.entrepot = entrepot;
+		notifyObservers();
+	}
+	
+	public void reset()
+	{
+		livraisons.clear();
 	}
 
 	public void ajouterLivraison(Intersection intersection, int dureeDechargement, LocalTime arrivee,
@@ -31,15 +39,18 @@ public class DemandeLivraison {
 		else {
 			livraisons.add(new Livraison(intersection, dureeDechargement, new PlageHoraire(arrivee, depart)));
 		}
+    notifyObservers();
 	}
 	public void ajouterLivraison( Livraison livraison) {
 		livraisons.add(livraison);
+    notifyObservers();
 	}
 
 	/**
 	 * @return the livraisons
 	 */
-	public List<Livraison> getLivraisons() {
+	public List<Livraison> getLivraisons() 
+	{
 		return livraisons;
 	}
 
@@ -47,14 +58,17 @@ public class DemandeLivraison {
 	 * @param livraisons
 	 *            the livraisons to set
 	 */
-	public void setLivraisons(List<Livraison> livraisons) {
+	public void setLivraisons(List<Livraison> livraisons) 
+	{
 		this.livraisons = livraisons;
+		notifyObservers();
 	}
 
 	/**
 	 * @return the heureDepart
 	 */
-	public LocalTime getHeureDepart() {
+	public LocalTime getHeureDepart() 
+	{
 		return heureDepart;
 	}
 
@@ -62,16 +76,16 @@ public class DemandeLivraison {
 	 * @param heureDepart
 	 *            the heureDepart to set
 	 */
-	public void setHeureDepart(LocalTime heureDepart) {
+	public void setHeureDepart(LocalTime heureDepart) 
+	{
 		this.heureDepart = heureDepart;
 	}
 	
-	
-
 	/**
 	 * @return the entrepot
 	 */
-	public Intersection getEntrepot() {
+	public Intersection getEntrepot() 
+	{
 		return entrepot;
 	}
 
@@ -79,8 +93,10 @@ public class DemandeLivraison {
 	 * @param entrepot
 	 *            the entrepot to set
 	 */
-	public void setEntrepot(Intersection entrepot) {
+	public void setEntrepot(Intersection entrepot) 
+	{
 		this.entrepot = entrepot;
+		notifyObservers();
 	}
 
 	/*
@@ -89,7 +105,8 @@ public class DemandeLivraison {
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return "DemandeLivraison [livraisons=" + livraisons + ", heureDepart=" + heureDepart + ", entrepot=" + entrepot
 				+ "]";
 	}

@@ -1,29 +1,102 @@
 package vue;
 
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
-import modeles.Plan;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 
-public class VueGraphique implements Observer
+import controleur.Controleur;
+import modeles.Plan;
+import modeles.DemandeLivraison;
+import modeles.Tournee;
+
+public class VueGraphique extends JPanel implements Observer
 {
+	private static final long serialVersionUID = 1L;
+
 	private Fenetre fenetre;
-	private Plan plan;
 	
-	public VueGraphique(Plan plan, Fenetre fenetre)
+	private MapPanel mapPanel;
+
+	public VueGraphique(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur) 
 	{
-		this.fenetre = fenetre;
-		this.plan = plan;
+		super();
 		
-		// this observe le plan
-		if (plan != null)
-		{
-			plan.addObserver(this);
-		}
+		this.fenetre = fenetre;
+		
+		setLayout(new CardLayout(50, 50));
+		setBackground(Color.white);
+		
+		plan.addObserver(this);
+		demandeLivraison.addObserver(this);
+		tournee.addObserver(this);
+		
+		mapPanel = new MapPanel(fenetre, plan, demandeLivraison, tournee, controleur);
+		add(mapPanel);
 	}
 	
-	public void update(Observable observable, Object objet)
+	@Override
+	public void paintComponent(Graphics g) 
 	{
-		// Code pour afficher le plan dans la vue graphique
+		//System.out.println("paintComponent");
+		
+		//mapPanel.repaint();
+		//repaint();
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) 
+	{
+		//System.out.println("update");
+		
+		mapPanel.repaint();
+		//repaint();
+	}
+	
+	public void resize()
+	{
+		mapPanel.resize();
+	}
+	
+	public void setModeAccueil()
+	{
+		mapPanel.setAffichagePlan(false);
+		mapPanel.setAffichageDemandeLivraison(false);
+		mapPanel.setAffichageTournee(false);
+	}
+	
+	public void setModeChargementPlan()
+	{
+		mapPanel.resize();
+		
+		mapPanel.setAffichagePlan(true);
+		mapPanel.setAffichageDemandeLivraison(false);
+		mapPanel.setAffichageTournee(false);
+	}
+	
+	public void setModeChargementDemandeLivraison()
+	{
+		mapPanel.setAffichagePlan(true);
+		mapPanel.setAffichageDemandeLivraison(true);
+		mapPanel.setAffichageTournee(false);
+		
+		mapPanel.repaint();
+		repaint();
+	}
+	
+	public void setModeCalculTournee()
+	{
+		mapPanel.setAffichagePlan(true);
+		mapPanel.setAffichageDemandeLivraison(true);
+		mapPanel.setAffichageTournee(true);
+		
+		mapPanel.repaint();
+		repaint();
 	}
 }

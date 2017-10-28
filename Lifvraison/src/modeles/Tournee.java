@@ -3,8 +3,9 @@ package modeles;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class Tournee 
+public class Tournee extends Observable
 {
 	private Plan plan;
 	private DemandeLivraison demandeLivraison; //on en a vraiment besoin ????
@@ -20,9 +21,18 @@ public class Tournee
 		this.demandeLivraison = demandeLivraison;
 		this.listeHoraire = new ArrayList<PlageHoraire>();
 		this.livraisonsOrdonnees = new ArrayList<Livraison>();
+		this.listeItineraires = new ArrayList<Itineraire>();
 		longueur = 0;
+		notifyObservers();
 	}
 
+	public void reset()
+	{
+		listeItineraires.clear();
+		listeHoraire.clear();
+		livraisonsOrdonnees.clear();
+	}
+	
 	private void updateHoraire() {
 		double dureeRoute;
 		LocalTime debut,fin;
@@ -77,7 +87,6 @@ public class Tournee
 			horaire = new PlageHoraire(debut,fin);
 			listeHoraire.add(horaire);
 		}
-		System.out.println(listeHoraire);
 	}
 
 	public double getLongueur()
@@ -91,6 +100,8 @@ public class Tournee
 
 		updateLongueur();
 		updateHoraire();
+		
+		notifyObservers();
 	}
 
 	public List <Itineraire> getListeItineraires()
