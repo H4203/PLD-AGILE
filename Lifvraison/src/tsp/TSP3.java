@@ -2,7 +2,6 @@ package tsp;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Collections;
 
 public class TSP3 extends TSP2 {
 	

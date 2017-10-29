@@ -33,11 +33,8 @@ public class IteratorMinFirst implements Iterator<Integer> {
 	public Integer next() {
 		Integer min = candidats.get(0);
 		int index = 0;
-		//System.out.println(candidats.size());
+
 		for(int i = 1; i < candidats.size(); i++) {
-			//System.out.println(candidats.get(i));
-			//Integer j = cout[sommetCourant][candidats.get(i)];
-			//Integer k = cout[sommetCourant][min];
 			if(cout[sommetCourant][candidats.get(i)] < cout[sommetCourant][min]) {
 				min = candidats.get(i);
 				index = i;

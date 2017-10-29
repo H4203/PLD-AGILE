@@ -5,11 +5,12 @@ import modeles.*;
 import java.util.List;
 import java.util.ArrayList;
 import tsp.*;
+import donnees.ParseurException;
 import donnees.XMLParseur;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;;
 
-public class CalculateurTournee {
+public class CalculateurTournee extends Thread{
 	/**
 	 * La tournee calculee par le tsp
 	 */
@@ -22,6 +23,8 @@ public class CalculateurTournee {
 	 * la liste des plus court chemin par point
 	 */
 	private List<Dijkstra> lesDijkstra;
+	
+	private TSP3 tsp;
 
 	
 	public CalculateurTournee(Tournee laTournee)
@@ -29,6 +32,7 @@ public class CalculateurTournee {
 		this.laTournee = laTournee;
 		lesItineraires = new ArrayList<Itineraire>();
 		lesDijkstra = new ArrayList<Dijkstra>();
+		this.tsp = new TSP3();
 	}
 	
 	public void run() 
@@ -105,7 +109,7 @@ public class CalculateurTournee {
 		}
 		
 		//On cree un objet tsp de l'ordre que l'on veut
-		TSP3 tsp = new TSP3();
+		//TSP3 tsp = new TSP3();
 		
 		//On prend une valeur de temps pour des calculs de temps si on le souhaite
 		long temps = System.currentTimeMillis();
@@ -127,7 +131,7 @@ public class CalculateurTournee {
 			lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(prochainSommet).getId()));
 			sommetCourant = prochainSommet;
 		}
-		//On abtient les chemins à partir des dijkstras
+		//On obtient les chemins à partir des dijkstras
 		lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(0).getId()));
 		laTournee.setLivraisonsOrdonnees(livraisonsOrdonnees);
 		laTournee.setListeItineraires(lesItineraires);
@@ -198,27 +202,17 @@ public class CalculateurTournee {
 		
 		return this.laTournee;
 	}
-
-	/*public static void main (String[] args)
+	
+	public Integer[] getCurrentSolution()
 	{
-		XMLParseur xml = new XMLParseur();
-		Plan lePlan = xml.chargerPlan("data/testPlan1.xml");
-		DemandeLivraison dl = xml.chargerLivraison("data/testDL1_1.xml",lePlan.getListeIntersection());
-		
-		Tournee laTournee = new Tournee(lePlan, dl, new ArrayList<Itineraire>());
-		
-		CalculateurTournee cl = new CalculateurTournee(laTournee);
-		cl.run();
-		
-		List<Itineraire> itineraires = cl.getLesItineraires();
-		for(Itineraire i : itineraires) {
-			System.out.println("-----------------------------------------");
-			List<Troncon> lesTroncons = i.getTroncons();
-			for(Troncon troncon : lesTroncons) {
-				System.out.println("depart :" + troncon.getIntersectionDepart().getId()+ "; arrivee :" + troncon.getIntersectionArrive().getId() + "; nom de rue :" + troncon.getNomDeRue() + "; Longueur : " + troncon.getLongeur());
-			}
-			
+		if(this.tsp.isSolutionPossibleTrouvee()) {
+			return tsp.getMeilleureSolution();
 		}
-	}*/
+		return null;
+	}
+
+	
 
 }
+
+

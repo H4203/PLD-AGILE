@@ -1,7 +1,6 @@
 package tsp;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 
 public class TSP1 extends TemplateTSP {
