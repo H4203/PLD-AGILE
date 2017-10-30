@@ -102,7 +102,7 @@ public class Controleur
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		calculateurTournee = new CalculateurTournee(tournee);
+		
 		
 		etatCourant.accueil(this, fenetre);
 	}

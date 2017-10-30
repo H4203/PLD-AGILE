@@ -98,8 +98,6 @@ public class EtatDefault implements Etat{
 		// TODO Auto-generated method stub
 		
 	}
-
-	// start
 	@Override
 	public void clicgauche(Controleur controleur, Point point) {
 		// TODO Auto-generated method stub
@@ -110,7 +108,6 @@ public class EtatDefault implements Etat{
 		// TODO Auto-generated method stub
 		
 	}
-	// end
 	
 
 }

@@ -286,6 +286,23 @@ public class Fenetre extends JFrame
 		repaint();
 		setVisible(true);
 	}
+	
+	// modification plan non null
+	public void chargerPlan( Plan plan)
+	{
+		vueGraphique.nouveauPlan(plan);
+		setModeChargementPlan();
+	}
+	public void chargerDemandeLivraison( DemandeLivraison demandeLivraison)
+	{
+		vueGraphique.nouvelleDemandeLivraison(demandeLivraison);
+		setModeChargementDemandeLivraison();
+	}
+	public void chargerTournee( Tournee tournee)
+	{
+		vueGraphique.nouvelleTournee(tournee);
+		setModeCalculTournee();
+	}
 
 	public void setModeChargementDemandeLivraison()
 	{
