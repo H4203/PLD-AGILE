@@ -407,18 +407,23 @@ public class Fenetre extends JFrame
 		
 		// 1.2.1.2.1.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonAjouterLivraison
 		JButton buttonAjouterLivraison = new JButton("+");
+		buttonAjouterLivraison.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonAjouterLivraison);
 		// 1.2.1.2.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonSupprimerLivraison
 		JButton buttonSupprimerLivraison = new JButton("-");
+		buttonSupprimerLivraison.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonSupprimerLivraison);
 		// 1.2.1.2.1.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonEchangerLivraisons
 		JButton buttonEchangerLivraisons = new JButton("<-/->");
+		buttonEchangerLivraisons.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonEchangerLivraisons);
 		// 1.2.1.2.1.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonUndo
 		JButton buttonUndo = new JButton("undo");
+		buttonUndo.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonUndo);
 		// 1.2.1.2.1.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonRedo
 		JButton buttonRedo = new JButton("redo");
+		buttonRedo.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonRedo);
 		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee

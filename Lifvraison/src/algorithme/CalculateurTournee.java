@@ -170,6 +170,7 @@ public class CalculateurTournee extends Thread{
 	}
 	
 	public Tournee ajouterLivraison(int index, Livraison livraison) {
+		System.out.println("je suis appele");
 		List<Itineraire> nouvelleTournee = new ArrayList<Itineraire>();
 		List<Livraison> nouvellesLivraisons = new ArrayList<Livraison>();
 		List<Dijkstra> nouveauxDijkstra = new ArrayList<Dijkstra>();
