@@ -1,22 +1,16 @@
 package vue;
 
 import java.awt.BasicStroke;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import controleur.Controleur;
 import modeles.Plan;
 import modeles.Tournee;
 import modeles.Troncon;
@@ -26,11 +20,9 @@ import modeles.Itineraire;
 import modeles.Livraison;
 import modeles.PlageHoraire;
 
-public class MapPanel extends JPanel implements MouseListener, MouseMotionListener
+public class MapPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
-	
-	private Fenetre fenetre;
 	
 	private Plan plan;
 	private DemandeLivraison demandeLivraison;
@@ -42,20 +34,13 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 	private int yMin;
 	private double coefX;
 	private double coefY;
-	private int zoom;
-	private Point focusPoint;
-	
-	private Point mouseStartPoint;
-	private Point mouseEndPoint;
 	
 	private boolean affichagePlan;
 	private boolean affichageDemandeLivraison;
 	private boolean affichageTournee;
 
-	public MapPanel(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
+	public MapPanel(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur)
 	{
-		this.fenetre = fenetre;
-		
 		this.plan = plan;
 		this.demandeLivraison = demandeLivraison;
 		this.tournee = tournee;
@@ -64,11 +49,10 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 		affichageDemandeLivraison = false;
 		affichageTournee = false;
 		
-		addMouseListener(this);
-        addMouseMotionListener(this);
-        
-        zoom = 1;
-        focusPoint = new Point(sideLength / 2, sideLength / 2);
+		EcouteurDeSouris ecouteurDeSouris = new EcouteurDeSouris(this, controleur);
+		
+		addMouseMotionListener(ecouteurDeSouris);
+		addMouseListener(ecouteurDeSouris);
 	}
 	
 	public void repaint(Graphics g)
@@ -84,6 +68,9 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
+		g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(1));
+		
 		// Border
 		
 		g2.drawLine(0, 0, sideLength - 1, 0);
@@ -96,14 +83,27 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 		if (plan != null && affichagePlan == true)
 		{
 			for (Map.Entry<Integer, Troncon> mapentry : plan.getListeTroncons().entrySet()) 
-	        {
-	        	g2.drawLine((int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() - yMin) * coefY),
-	        		sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - xMin) * coefX),
-        			(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() - yMin) * coefY),
-        			sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - xMin) * coefX));
-	        }
+	        {	
+        		g2.drawLine((int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getY() + plan.getFocus().x / coefY - yMin) * coefY),
+        				sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionDepart().getX() - plan.getFocus().y / coefX - xMin) * coefX),
+        				(int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getY() + plan.getFocus().x / coefY - yMin) * coefY),
+        				sideLength - (int)Math.round((((Troncon) mapentry.getValue()).getIntersectionArrive().getX() - plan.getFocus().y / coefX - xMin) * coefX));
+        	}
 		}
 		
+        // Selected Intersection
+        
+        g2.setColor(Color.RED);
+        
+        if (plan != null && plan.getSelectedIntersection() != null)
+        {
+        	g2.fillRect((int)Math.round((plan.getSelectedIntersection().getY() + plan.getFocus().x / coefY - yMin) * coefY) - 4, 
+        			sideLength - (int)Math.round((plan.getSelectedIntersection().getX() - plan.getFocus().y / coefX - xMin) * coefX) - 4,
+        			8, 8);
+    	}
+        
+        g2.setColor(Color.BLACK);
+        
         g2.setColor(Color.BLUE);
         g2.setStroke(new BasicStroke(3));
         
@@ -119,10 +119,10 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
     	        {
     	        	for (Troncon troncon : itineraire.getTroncons())
     	        	{
-    	        		g2.drawLine((int)Math.round((troncon.getIntersectionDepart().getY() - yMin) * coefY),
-	        				sideLength - (int)Math.round((troncon.getIntersectionDepart().getX() - xMin) * coefX),
-	            			(int)Math.round((troncon.getIntersectionArrive().getY() - yMin) * coefY),
-	            			sideLength - (int)Math.round((troncon.getIntersectionArrive().getX() - xMin) * coefX));
+    	        		g2.drawLine((int)Math.round((troncon.getIntersectionDepart().getY() + plan.getFocus().x / coefY - yMin) * coefY),
+	        				sideLength - (int)Math.round((troncon.getIntersectionDepart().getX() - plan.getFocus().y / coefX - xMin) * coefX),
+	            			(int)Math.round((troncon.getIntersectionArrive().getY() + plan.getFocus().x / coefY - yMin) * coefY),
+	            			sideLength - (int)Math.round((troncon.getIntersectionArrive().getX() - plan.getFocus().y / coefX - xMin) * coefX));
     	        	}
     	        	
     	        	g2.setFont(new Font("default", Font.BOLD, 16));
@@ -138,8 +138,8 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 		            			(int)(screenSize.height-bord) - (int)Math.round((itineraire.getArrivee().getX() - xMin) * coefX));
 		            			*/
     	        		g2.drawString(" "+i,
-	        				(int)Math.round((itineraire.getArrivee().getY() - yMin) * coefY),
-	        				sideLength - (int)Math.round((itineraire.getArrivee().getX() - xMin) * coefX));
+	        				(int)Math.round((itineraire.getArrivee().getY() + plan.getFocus().x / coefY - yMin) * coefY),
+	        				sideLength - (int)Math.round((itineraire.getArrivee().getX() - plan.getFocus().y / coefX - xMin) * coefX));
     	        	}
     	        	g2.setColor(Color.BLUE);
     	        }
@@ -151,8 +151,8 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 	        
 	        if (demandeLivraison.getEntrepot() != null && demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
     		{
-	        	g2.fillRect((int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
-	        			sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5, 
+	        	g2.fillRect((int)Math.round((demandeLivraison.getEntrepot().getY() + plan.getFocus().x / coefY - yMin) * coefY) - 5, 
+	        			sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - plan.getFocus().y / coefX - xMin) * coefX) - 5, 
         			10, 10);
     		}
 	        
@@ -176,15 +176,15 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 					&& demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
 			{
 				g2.drawString(tournee.getListeHoraire().get(0).getHeureDebut().toString() + " - " + tournee.getListeHoraire().get(tournee.getListeHoraire().size()-1).getHeureDebut().toString(),
-					(int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
-					sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5);
+					(int)Math.round((demandeLivraison.getEntrepot().getY() + plan.getFocus().x / coefY - yMin) * coefY) - 5, 
+					sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - plan.getFocus().y / coefX - xMin) * coefX) - 5);
 			}
 			else if (demandeLivraison != null && demandeLivraison.getHeureDepart() != null 
 					&& demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
 			{
 				g2.drawString(demandeLivraison.getHeureDepart().toString(),
-					(int)Math.round((demandeLivraison.getEntrepot().getY() - yMin) * coefY) - 5, 
-					sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - xMin) * coefX) - 5);
+					(int)Math.round((demandeLivraison.getEntrepot().getY() + plan.getFocus().x / coefY - yMin) * coefY) - 5, 
+					sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - plan.getFocus().y / coefX - xMin) * coefX) - 5);
 			}
 			
 			/* points de livraisons */
@@ -192,15 +192,15 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 	        for (Livraison livraison : demandeLivraison.getLivraisons()) 
 	        {
 	        	/* points de livraison */
-	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
-        			sideLength - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4,
+	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() + plan.getFocus().x / coefY- yMin) * coefY) - 4, 
+        			sideLength - (int)Math.round((livraison.getIntersection().getX() - plan.getFocus().y / coefX - xMin) * coefX) - 4,
         			8, 8);
               
 	        	if (livraison.getPlagehoraire() == null || livraison.getPlagehoraire().getHeureDebut() == null || livraison.getPlagehoraire().getHeureFin() == null)
 	        	{
 	        		g2.setColor(Color.BLACK);
-	        		g2.fillRect((int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4, 
-        				sideLength - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4, 
+	        		g2.fillRect((int)Math.round((livraison.getIntersection().getY() + plan.getFocus().x / coefY - yMin) * coefY) - 4, 
+        				sideLength - (int)Math.round((livraison.getIntersection().getX() - plan.getFocus().y / coefX - xMin) * coefX) - 4, 
 	        			8, 8);
 	        		g2.setColor(Color.RED);
 	        	}
@@ -226,8 +226,8 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 					if ( plhr != null && plhr.getHeureDebut() != null && plhr.getHeureFin() != null )
 					{
 						g2.drawString(plhr.getHeureDebut() + " - " + plhr.getHeureFin(),
-							(int)Math.round((livraison.getIntersection().getY() - yMin) * coefY) - 4,
-							sideLength - (int)Math.round((livraison.getIntersection().getX() - xMin) * coefX) - 4);
+							(int)Math.round((livraison.getIntersection().getY() + plan.getFocus().x / coefY - yMin) * coefY) - 4,
+							sideLength - (int)Math.round((livraison.getIntersection().getX() - plan.getFocus().y / coefX - xMin) * coefX) - 4);
 					}
 				}
 				g2.setColor(Color.RED);
@@ -295,50 +295,18 @@ public class MapPanel extends JPanel implements MouseListener, MouseMotionListen
 			coefY = (double)(getSize().width) / (double)(yMax - yMin);
 		}
 	}
-
-	@Override
-	public void mouseDragged(MouseEvent arg0) 
-	{
-		mouseEndPoint = arg0.getPoint();
-	    //System.out.println("Mouse From " + startPoint + " Dragged to " + endPoint);
-	    System.out.println("Delta : X = " + (mouseEndPoint.x - mouseStartPoint.x) + ", Y = " + (mouseEndPoint.y - mouseStartPoint.y));
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) 
-	{
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) 
-	{
 	
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) 
+	public Point convertPoint(Point point)
 	{
-	
-	}
+		//System.out.println("Raw " + point);
+		
+		Point convertedPoint = new Point((int)Math.round((sideLength - point.getY()) / coefX + xMin), (int)Math.round(point.getX() / coefY + yMin));
 
-	@Override
-	public void mouseExited(MouseEvent arg0) 
-	{
-	
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) 
-	{
-		mouseStartPoint = arg0.getPoint();
-	    //System.out.println("Mouse Pressed at " + startPoint);
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) 
-	{
-
+		//System.out.println("Converted " + convertedPoint);
+		
+		return convertedPoint;
+		
+		
 	}
 }
 

@@ -1,5 +1,6 @@
 package controleur;
 
+import java.awt.Point;
 import vue.Fenetre;
 
 public class EtatModificationTournee extends EtatDefault{
@@ -54,5 +55,14 @@ public class EtatModificationTournee extends EtatDefault{
 		controleur.setEtatCourant( controleur.etatModificationTournee );
 		fenetre.setModeModificationTournee();
 		
+	}
+	@Override
+	public void clicgauche(Controleur controleur, Point point)
+	{
+		controleur.plan.getAtPoint(point);
+	}
+	public void drag(Controleur controleur, Point delta)
+	{
+		controleur.plan.drag(delta);
 	}
 }
