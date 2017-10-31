@@ -62,8 +62,8 @@ public class Tournee extends Observable
 				listeHoraire.add(horaire);
 				break;
 			}
-			
-			Livraison liv = livraisonsOrdonnees.get(indexItineraire+1);
+			// pls stop
+			Livraison liv = livraisonsOrdonnees.get(indexItineraire); // pas de +1
 			PlageHoraire plhr =  liv.getPlagehoraire();
 			if (plhr != null)
 			{

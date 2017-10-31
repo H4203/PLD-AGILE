@@ -33,7 +33,7 @@ public class Controleur
 	protected EtatModificationTournee etatModificationTournee  = new EtatModificationTournee();
 	protected EtatAjoutLivraison1 etatAjoutLivraison1 = new EtatAjoutLivraison1();
 	protected EtatAjoutLivraison2 etatAjoutLivraison2 = new EtatAjoutLivraison2();
-	protected EtatSupprimerLivraison etatSupprimerLivraison1 = new EtatSupprimerLivraison();
+	protected EtatSupprimerLivraison etatSupprimerLivraison = new EtatSupprimerLivraison();
 	protected EtatModeValidation etatModeValidation = new EtatModeValidation();
 	
 	/**

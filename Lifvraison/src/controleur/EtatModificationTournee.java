@@ -35,6 +35,12 @@ public class EtatModificationTournee extends EtatDefault{
 		controleur.setEtatCourant( controleur.etatAjoutLivraison1);
 		System.out.println("je suis là");
 	}
+	@Override
+	public void supprimerLivraison ( Controleur controleur, Fenetre fenetre)
+	{
+		controleur.setEtatCourant( controleur.etatSupprimerLivraison);
+		System.out.println("je suis là");
+	}
 	
 	@Override
 	public void chargementPlan(Controleur controleur, Fenetre fenetre) {
