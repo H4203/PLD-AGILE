@@ -170,24 +170,28 @@ public class CalculateurTournee extends Thread{
 	}
 	
 	public Tournee ajouterLivraison(int index, Livraison livraison) {
-		System.out.println("je suis appele");
 		List<Itineraire> nouvelleTournee = new ArrayList<Itineraire>();
 		List<Livraison> nouvellesLivraisons = new ArrayList<Livraison>();
 		List<Dijkstra> nouveauxDijkstra = new ArrayList<Dijkstra>();
 		if( (index >=0) && (index <= laTournee.getLivraisonsOrdonnees().size()) ) {
-			for(int i = 0; i <= index; i++) {
+			for(int i = 0; i < index; i++) {
 				nouveauxDijkstra.add(this.lesDijkstra.get(i));
 				nouvelleTournee.add(this.lesItineraires.get(i));
 				nouvellesLivraisons.add(laTournee.getLivraisonsOrdonnees().get(i));
 			}
-			
 			nouvellesLivraisons.add(livraison);
 			Dijkstra d = new Dijkstra(this.laTournee.getPlan(), livraison.getIntersection());
 			d.run();
 			nouveauxDijkstra.add(d);
 			nouvelleTournee.add(this.lesDijkstra.get(index).getItineraire(livraison.getIntersection().getId()));
-			nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(index+1).getDepart().getId()));
-			
+			if ( index+1 < lesItineraires.size() )
+			{
+				nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(index+1).getDepart().getId()));
+			}
+			else
+			{
+				nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(0).getDepart().getId()));
+			}
 			for(int i = index + 1; i < lesItineraires.size(); i++) {
 				nouveauxDijkstra.add(this.lesDijkstra.get(i));
 				nouvelleTournee.add(this.lesItineraires.get(i));
@@ -196,7 +200,10 @@ public class CalculateurTournee extends Thread{
 			
 			this.lesDijkstra = nouveauxDijkstra;
 			this.lesItineraires = nouvelleTournee;
+			// on actualise demande liste livraison ordonné
+			this.laTournee.ajouterLivraison(livraison, index+1);
 			this.laTournee.setListeItineraires(nouvelleTournee);
+			
 		}
 		
 		

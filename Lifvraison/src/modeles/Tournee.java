@@ -55,7 +55,6 @@ public class Tournee extends Observable
 
 			/* on recupere a quel itineraire on est */
 			int indexItineraire = listeItineraires.indexOf(itineraire);
-
 			if (indexItineraire == listeItineraires.size()-1)
 			{
 				/* retour a l'entrepot */
@@ -146,13 +145,13 @@ public class Tournee extends Observable
 	public void ajouterLivraison (Livraison livraison, int position)
 	{
 		livraisonsOrdonnees.add(position, livraison);
-		updateHoraire();
+		//updateHoraire(); inutile ?
 	}
 	
 	public void supprimerLivraison (int position)
 	{
 		livraisonsOrdonnees.remove(position);
-		updateHoraire();
+		//updateHoraire(); inutile ? on doit aussi modifier les itineraires si on veut appeler update horaire 
 	}
 	
 }

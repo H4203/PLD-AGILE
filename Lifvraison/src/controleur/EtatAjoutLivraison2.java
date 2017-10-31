@@ -22,6 +22,7 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 		{
 			controleur.setEtatCourant( controleur.etatModificationTournee);
 			controleur.calculateurTournee.ajouterLivraison(0, new Livraison (pointDeLivraison , 120));
+			controleur.fenetre.setModeModificationTournee();
 		}
 		// cas livraison
 		List<Livraison> Listelivraisons = controleur.demandeLivraison.getLivraisons();
@@ -33,6 +34,7 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 			{
 				controleur.setEtatCourant( controleur.etatModificationTournee);
 				controleur.calculateurTournee.ajouterLivraison(i+1, new Livraison (pointDeLivraison , 120));
+				controleur.fenetre.setModeModificationTournee();
 				// evite une trop grande creation de point
 				break;
 			}
