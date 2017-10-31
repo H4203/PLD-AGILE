@@ -16,7 +16,7 @@ public class EtatSupprimerLivraison extends EtatDefault{
 		Intersection pointAsupprimer = controleur.plan.getSelectedIntersection();
 		
 		// cas livraison
-		List<Livraison> Listelivraisons = controleur.demandeLivraison.getLivraisons();
+		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
 		for ( int i = 0; i < Listelivraisons.size() ; i++)
 		{
 			Livraison livraison = Listelivraisons.get(i);
