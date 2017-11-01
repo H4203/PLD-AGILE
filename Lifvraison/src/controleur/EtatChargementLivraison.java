@@ -15,7 +15,7 @@ public class EtatChargementLivraison extends EtatDefault{
 	
 		controleur.setEtatCourant( controleur.etatCalculTournee );
 		
-		// modif plan peut être null
+		// modif plan peut etre null
 		if ( controleur.tournee == null)
 		{
 			controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
