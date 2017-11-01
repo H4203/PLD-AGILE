@@ -36,6 +36,9 @@ public class Controleur
 	protected EtatSupprimerLivraison etatSupprimerLivraison = new EtatSupprimerLivraison();
 	protected EtatModeValidation etatModeValidation = new EtatModeValidation();
 	
+	private ListeDeCommandes listeDeCommandes;
+	
+	
 	/**
 	 * 
 	 */
@@ -44,6 +47,7 @@ public class Controleur
 		plan = null;
 		demandeLivraison = null;
 		tournee = null;
+		listeDeCommandes = new ListeDeCommandes();
 		
 		try 
 		{
@@ -114,7 +118,7 @@ public class Controleur
 	// Start
 	public void clicGauche(Point point)
 	{
-		etatCourant.clicgauche(this, point);
+		etatCourant.clicgauche(this, point, listeDeCommandes);
 	}
 	
 	public void drag(Point delta)
@@ -123,6 +127,14 @@ public class Controleur
 	}
 	// End
 	
+	public void undo ()
+	{
+		etatCourant.undo(listeDeCommandes);
+	}
+	public void redo ()
+	{
+		etatCourant.redo(listeDeCommandes);
+	}
 	public void validerTournee() {
 		etatCourant.validerTournee(this, fenetre);
 		

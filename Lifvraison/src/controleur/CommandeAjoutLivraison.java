@@ -8,16 +8,12 @@ import modeles.Tournee;
 public class CommandeAjoutLivraison implements Commande {
 
 	private Livraison livraison;
-	private DemandeLivraison demandeLivraison;
-	private Tournee tournee;
 	private CalculateurTournee calculateurTournee;
 	private int position;
 	
-	CommandeAjoutLivraison ( Livraison livraison, int position, DemandeLivraison demandeLivraison, Tournee tournee, CalculateurTournee calculateurTournee)
+	CommandeAjoutLivraison ( int position, Livraison livraison, CalculateurTournee calculateurTournee)
 	{
 		this.livraison = livraison;
-		this.demandeLivraison = demandeLivraison;
-		this.tournee = tournee;
 		this.calculateurTournee = calculateurTournee;
 		this.position = position;
 	}

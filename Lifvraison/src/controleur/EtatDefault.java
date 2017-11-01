@@ -99,12 +99,24 @@ public class EtatDefault implements Etat{
 		
 	}
 	@Override
-	public void clicgauche(Controleur controleur, Point point) {
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public void drag(Controleur controleur, Point delta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void undo(ListeDeCommandes listeDeCommandes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void redo(ListeDeCommandes listeDeCommandes) {
 		// TODO Auto-generated method stub
 		
 	}

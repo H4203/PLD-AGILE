@@ -141,7 +141,7 @@ public class CalculateurTournee extends Thread{
 		return lesItineraires;
 	}
 	
-	public Tournee supprimerLivraison(Livraison livraison) {
+	public int supprimerLivraison(Livraison livraison) {
 		int index = -1;
 		for(int i = 0; i < lesItineraires.size(); i++) {
 			if(lesItineraires.get(i).getArrivee().getId() == livraison.getIntersection().getId())
@@ -172,7 +172,7 @@ public class CalculateurTournee extends Thread{
 			
 		}
 		
-		return this.laTournee;
+		return index;
 	}
 	
 	public Tournee ajouterLivraison(int index, Livraison livraison) {

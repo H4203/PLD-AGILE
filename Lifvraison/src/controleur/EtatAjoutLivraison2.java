@@ -11,7 +11,7 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 	protected Intersection pointDeLivraison;
 
 	@Override
-	public void clicgauche(Controleur controleur, Point point)
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		
 		controleur.plan.getAtPoint(point);
@@ -21,7 +21,8 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 		if ( controleur.demandeLivraison.getEntrepot().equals( pointPrecedant ) )
 		{
 			controleur.setEtatCourant( controleur.etatModificationTournee);
-			controleur.calculateurTournee.ajouterLivraison(0, new Livraison (pointDeLivraison , 120));
+			Livraison nouvelleLivraison = new Livraison (pointDeLivraison , 120);
+			listeDeCommandes.ajoute( new CommandeAjoutLivraison ( 0, nouvelleLivraison, controleur.calculateurTournee));
 			controleur.fenetre.setModeModificationTournee();
 		}
 		// cas livraison
@@ -33,7 +34,8 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 			if ( livraison.getIntersection().equals( pointPrecedant ) )
 			{
 				controleur.setEtatCourant( controleur.etatModificationTournee);
-				controleur.calculateurTournee.ajouterLivraison(i+1, new Livraison (pointDeLivraison , 120));
+				Livraison nouvelleLivraison = new Livraison (pointDeLivraison , 120);
+				listeDeCommandes.ajoute( new CommandeAjoutLivraison ( i+1, nouvelleLivraison, controleur.calculateurTournee));
 				controleur.fenetre.setModeModificationTournee();
 				// evite une trop grande creation de point
 				break;

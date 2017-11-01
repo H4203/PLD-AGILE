@@ -64,12 +64,23 @@ public class EtatModificationTournee extends EtatDefault{
 		
 	}
 	@Override
-	public void clicgauche(Controleur controleur, Point point)
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		controleur.plan.getAtPoint(point);
 	}
+	@Override
 	public void drag(Controleur controleur, Point delta)
 	{
 		controleur.plan.drag(delta);
 	}
+	@Override
+	public void undo(ListeDeCommandes listeDeCommandes) {
+		listeDeCommandes.undo();
+	}
+
+	@Override
+	public void redo(ListeDeCommandes listeDeCommandes) {
+		listeDeCommandes.redo();
+	}
+	
 }

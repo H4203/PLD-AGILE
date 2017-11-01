@@ -7,7 +7,7 @@ import modeles.Intersection;
 public class EtatAjoutLivraison1 extends EtatDefault{
 
 	@Override
-	public void clicgauche(Controleur controleur, Point point)
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		
 		controleur.plan.getAtPoint(point);

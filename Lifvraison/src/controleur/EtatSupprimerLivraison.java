@@ -9,7 +9,7 @@ import modeles.Livraison;
 public class EtatSupprimerLivraison extends EtatDefault{
 
 	@Override
-	public void clicgauche(Controleur controleur, Point point)
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		
 		controleur.plan.getAtPoint(point);
@@ -23,7 +23,7 @@ public class EtatSupprimerLivraison extends EtatDefault{
 			
 			if ( livraison.getIntersection().equals( pointAsupprimer ) )
 			{
-				controleur.calculateurTournee.supprimerLivraison(livraison);
+				listeDeCommandes.ajoute( new CommandeSupprimerLivraison ( livraison, controleur.calculateurTournee ));
 				controleur.setEtatCourant(controleur.etatModificationTournee);
 				controleur.fenetre.setModeModificationTournee();
 				// evite une trop grande supression de point
