@@ -33,9 +33,20 @@ public class VueGraphique extends JPanel implements Observer
 		setLayout(new CardLayout(50, 50));
 		setBackground(Color.white);
 		
-		plan.addObserver(this);
-		demandeLivraison.addObserver(this);
-		tournee.addObserver(this);
+		// modification plan peut etre null
+		if ( plan != null)
+		{
+			plan.addObserver(this);
+			if ( demandeLivraison != null)
+			{
+				demandeLivraison.addObserver(this);
+				if ( tournee != null)
+				{
+					tournee.addObserver(this);
+				}
+			}
+		}
+
 		
 		mapPanel = new MapPanel(fenetre, plan, demandeLivraison, tournee, controleur);
 		add(mapPanel);
@@ -98,5 +109,19 @@ public class VueGraphique extends JPanel implements Observer
 		
 		mapPanel.repaint();
 		repaint();
+	}
+	
+	// modification plan peut etre null
+	public void nouveauPlan ( Plan plan)
+	{
+		mapPanel.setPlan(plan);
+	}
+	public void nouvelleDemandeLivraison ( DemandeLivraison demandeLivraison)
+	{
+		mapPanel.setDemandeLivraison(demandeLivraison);
+	}
+	public void nouvelleTournee ( Tournee tournee)
+	{
+		mapPanel.setTournee(tournee);
 	}
 }
