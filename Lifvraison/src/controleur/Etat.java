@@ -25,7 +25,7 @@ public interface Etat {
 	public void validationTournee (Controleur controleur, Fenetre fenetre);
 	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes);
 	public void drag(Controleur controleur, Point delta);
-	public void undo ( ListeDeCommandes listeDeCommandes);
-	public void redo ( ListeDeCommandes listeDeCommandes);
+	public void undo ( ListeDeCommandes listeDeCommandes, Fenetre fenetre);
+	public void redo ( ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	
 }

@@ -74,13 +74,15 @@ public class EtatModificationTournee extends EtatDefault{
 		controleur.plan.drag(delta);
 	}
 	@Override
-	public void undo(ListeDeCommandes listeDeCommandes) {
+	public void undo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
 		listeDeCommandes.undo();
+		fenetre.setModeModificationTournee();
 	}
 
 	@Override
-	public void redo(ListeDeCommandes listeDeCommandes) {
+	public void redo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
 		listeDeCommandes.redo();
+		fenetre.setModeModificationTournee();
 	}
 	
 }

@@ -129,11 +129,11 @@ public class Controleur
 	
 	public void undo ()
 	{
-		etatCourant.undo(listeDeCommandes);
+		etatCourant.undo(listeDeCommandes, fenetre);
 	}
 	public void redo ()
 	{
-		etatCourant.redo(listeDeCommandes);
+		etatCourant.redo(listeDeCommandes, fenetre);
 	}
 	public void validerTournee() {
 		etatCourant.validerTournee(this, fenetre);
