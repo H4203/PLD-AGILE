@@ -66,10 +66,18 @@ public class EtatModificationTournee extends EtatDefault{
 	{
 		controleur.plan.getAtPoint(point);
 	}
+<<<<<<< HEAD
+	public void mouseDrag(Controleur controleur, Point delta)
+=======
 	@Override
 	public void drag(Controleur controleur, Point delta)
+>>>>>>> Dev
 	{
-		controleur.plan.drag(delta);
+		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
+	}
+	public void mouseWheel(Controleur controleur, int steps, Point point)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
 	@Override
 	public void undo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {

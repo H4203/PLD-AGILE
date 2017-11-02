@@ -65,7 +65,7 @@ public class VueGraphique extends JPanel implements Observer
 	public void update(Observable o, Object arg) 
 	{
 		//System.out.println("update");
-		
+		mapPanel.resize();
 		mapPanel.repaint();
 		//repaint();
 	}
@@ -111,6 +111,11 @@ public class VueGraphique extends JPanel implements Observer
 		repaint();
 	}
 	
+<<<<<<< HEAD
+	public MapPanel getMapPanel()
+	{
+		return mapPanel;
+=======
 	// modification plan peut etre null
 	public void nouveauPlan ( Plan plan)
 	{
@@ -123,5 +128,6 @@ public class VueGraphique extends JPanel implements Observer
 	public void nouvelleTournee ( Tournee tournee)
 	{
 		mapPanel.setTournee(tournee);
+>>>>>>> Dev
 	}
 }
