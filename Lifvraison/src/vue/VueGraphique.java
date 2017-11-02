@@ -99,4 +99,9 @@ public class VueGraphique extends JPanel implements Observer
 		mapPanel.repaint();
 		repaint();
 	}
+	
+	public MapPanel getMapPanel()
+	{
+		return mapPanel;
+	}
 }

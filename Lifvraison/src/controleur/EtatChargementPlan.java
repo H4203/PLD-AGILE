@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.Point;
+
 import javax.swing.JOptionPane;
 
 import donnees.ParseurException;
@@ -42,5 +44,14 @@ public class EtatChargementPlan extends EtatDefault{
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
 		fenetre.setModeChargementPlan();
+	}
+	
+	public void mouseDrag(Controleur controleur, Point delta)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
+	}
+	public void mouseWheel(Controleur controleur, int steps, Point point)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
 }

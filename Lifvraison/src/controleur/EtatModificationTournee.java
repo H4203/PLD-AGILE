@@ -44,11 +44,11 @@ public class EtatModificationTournee extends EtatDefault{
 	}
 	public void mouseDrag(Controleur controleur, Point delta)
 	{
-		controleur.plan.drag(delta);
+		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
 	}
-	public void mouseWheel(Controleur controleur, int steps)
+	public void mouseWheel(Controleur controleur, int steps, Point point)
 	{
-		controleur.plan.zoom(steps);
+		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
 	// end
 }

@@ -471,4 +471,9 @@ public class Fenetre extends JFrame
 		buttonValidationTournee.setEnabled(false);
 		buttonValidationTournee.setBackground(null);
 	}
+	
+	public VueGraphique getVueGraphique()
+	{
+		return vueGraphique;
+	}
 }

@@ -111,7 +111,7 @@ public class EtatDefault implements Etat{
 	}
 	
 	@Override
-	public void mouseWheel(Controleur controleur, int steps) {
+	public void mouseWheel(Controleur controleur, int steps, Point point) {
 		// TODO Auto-generated method stub	
 	}
 	// end

@@ -27,7 +27,7 @@ public interface Etat {
 	// Start
 	public void clicgauche(Controleur controleur, Point point);
 	public void mouseDrag(Controleur controleur, Point delta);
-	public void mouseWheel(Controleur controleur, int steps);
+	public void mouseWheel(Controleur controleur, int steps, Point point);
 	// End
 	
 }

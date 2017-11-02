@@ -123,9 +123,9 @@ public class Controleur
 		etatCourant.mouseDrag(this, delta);
 	}
 	
-	public void mouseWheel(int steps)
+	public void mouseWheel(int steps, Point point)
 	{
-		etatCourant.mouseWheel(this, steps);
+		etatCourant.mouseWheel(this, steps, point);
 	}
 	// End
 	

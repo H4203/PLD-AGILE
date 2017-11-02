@@ -80,6 +80,6 @@ public class EcouteurDeSouris implements MouseListener, MouseMotionListener, Mou
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent event) 
 	{
-		controleur.mouseWheel(event.getWheelRotation());
+		controleur.mouseWheel(event.getWheelRotation(), event.getPoint());
 	}
 }
