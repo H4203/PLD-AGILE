@@ -77,9 +77,7 @@ public class MapPanel extends JPanel
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D) g;
-		
-		System.out.println(focus);
-		
+
 		g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(1));
 		
@@ -266,65 +264,28 @@ public class MapPanel extends JPanel
 	
 	public void resize()
 	{
-<<<<<<< HEAD
-		if (getSize().height < getSize().width)
+		if (plan != null)
 		{
-			sideLength = getSize().height;
-			
-			coefX = (double)(getSize().height) / (double)(plan.getXMax() - plan.getXMin()) * zoom;
-			coefY = (double)(getSize().height) / (double)(plan.getYMax() - plan.getYMin()) * zoom;
-		}
-		else
-		{
-			sideLength = getSize().width;
-			
-			coefX = (double)(getSize().width) / (double)(plan.getXMax() - plan.getXMin()) * zoom;
-			coefY = (double)(getSize().width) / (double)(plan.getYMax() - plan.getYMin()) * zoom;
-=======
-		// modif pour que ca marche
-		if ( plan != null)
-		{
-			int xMax = 0;
-			int yMax = 0;
-			xMin = 999999;
-			yMin = 999999;
-			
-			for (Map.Entry<Long, Intersection> mapentry : plan.getListeIntersection().entrySet()) 
-	        {
-				if (((Intersection) mapentry.getValue()).getX() > xMax)
-				{
-					xMax = ((Intersection) mapentry.getValue()).getX();
-				}
-				else if (((Intersection) mapentry.getValue()).getX() < xMin)
-				{
-					xMin = ((Intersection) mapentry.getValue()).getX();
-				}
-				
-				if (((Intersection) mapentry.getValue()).getY() > yMax)
-				{
-					yMax = ((Intersection) mapentry.getValue()).getY();
-				}
-				else if (((Intersection) mapentry.getValue()).getY() < yMin)
-				{
-					yMin = ((Intersection) mapentry.getValue()).getY();
-				}
-	        }
-			
 			if (getSize().height < getSize().width)
 			{
 				sideLength = getSize().height;
 				
-				coefX = (double)(getSize().height) / (double)(xMax - xMin);
-				coefY = (double)(getSize().height) / (double)(yMax - yMin);
+				coefX = (double)(getSize().height) / (double)(plan.getXMax() - plan.getXMin()) * zoom;
+				coefY = (double)(getSize().height) / (double)(plan.getYMax() - plan.getYMin()) * zoom;
 			}
 			else
 			{
 				sideLength = getSize().width;
 				
-				coefX = (double)(getSize().width) / (double)(xMax - xMin);
-				coefY = (double)(getSize().width) / (double)(yMax - yMin);
+				coefX = (double)(getSize().width) / (double)(plan.getXMax() - plan.getXMin()) * zoom;
+				coefY = (double)(getSize().width) / (double)(plan.getYMax() - plan.getYMin()) * zoom;
 			}
->>>>>>> Dev
+		}
+		else
+		{
+			sideLength = 0;
+			coefX = 1;
+			coefY = 1;
 		}
 	}
 	

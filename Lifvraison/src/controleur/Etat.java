@@ -23,18 +23,10 @@ public interface Etat {
 	public void calculTournee (Controleur controleur, Fenetre fenetre);
 	public void modificationTournee (Controleur controleur, Fenetre fenetre);
 	public void validationTournee (Controleur controleur, Fenetre fenetre);
-<<<<<<< HEAD
-	
-	// Start
 	public void clicgauche(Controleur controleur, Point point);
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes);
 	public void mouseDrag(Controleur controleur, Point delta);
 	public void mouseWheel(Controleur controleur, int steps, Point point);
-	// End
-=======
-	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes);
-	public void drag(Controleur controleur, Point delta);
 	public void undo ( ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	public void redo ( ListeDeCommandes listeDeCommandes, Fenetre fenetre);
->>>>>>> Dev
-	
 }

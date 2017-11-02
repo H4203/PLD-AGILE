@@ -124,6 +124,12 @@ public class EtatDefault implements Etat{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void clicgauche(Controleur controleur, Point point) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }
