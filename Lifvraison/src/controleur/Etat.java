@@ -11,7 +11,7 @@ public interface Etat {
 	public void chargerDemandeLivraison( Controleur controleur, Fenetre fenetre, String chemin);
 	public void calculerTournee ( Controleur controleur, Fenetre fenetre );
 	public void ajouterLivraison(Controleur controleur, Fenetre fenetre);
-	public void suprimerLivraison(Controleur controleur, Fenetre fenetre, int positon );
+	public void supprimerLivraison(Controleur controleur, Fenetre fenetre );
 	public void intervertirLivraison(Controleur controleur, Fenetre fenetre, Livraison livraison1, Livraison livraison2);
 	public void suivant (Controleur controleur, Fenetre fenetre);
 	public void precedent (Controleur controleur, Fenetre fenetre);
@@ -23,11 +23,18 @@ public interface Etat {
 	public void calculTournee (Controleur controleur, Fenetre fenetre);
 	public void modificationTournee (Controleur controleur, Fenetre fenetre);
 	public void validationTournee (Controleur controleur, Fenetre fenetre);
+<<<<<<< HEAD
 	
 	// Start
 	public void clicgauche(Controleur controleur, Point point);
 	public void mouseDrag(Controleur controleur, Point delta);
 	public void mouseWheel(Controleur controleur, int steps, Point point);
 	// End
+=======
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes);
+	public void drag(Controleur controleur, Point delta);
+	public void undo ( ListeDeCommandes listeDeCommandes, Fenetre fenetre);
+	public void redo ( ListeDeCommandes listeDeCommandes, Fenetre fenetre);
+>>>>>>> Dev
 	
 }

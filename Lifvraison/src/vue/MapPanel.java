@@ -266,6 +266,7 @@ public class MapPanel extends JPanel
 	
 	public void resize()
 	{
+<<<<<<< HEAD
 		if (getSize().height < getSize().width)
 		{
 			sideLength = getSize().height;
@@ -279,6 +280,51 @@ public class MapPanel extends JPanel
 			
 			coefX = (double)(getSize().width) / (double)(plan.getXMax() - plan.getXMin()) * zoom;
 			coefY = (double)(getSize().width) / (double)(plan.getYMax() - plan.getYMin()) * zoom;
+=======
+		// modif pour que ca marche
+		if ( plan != null)
+		{
+			int xMax = 0;
+			int yMax = 0;
+			xMin = 999999;
+			yMin = 999999;
+			
+			for (Map.Entry<Long, Intersection> mapentry : plan.getListeIntersection().entrySet()) 
+	        {
+				if (((Intersection) mapentry.getValue()).getX() > xMax)
+				{
+					xMax = ((Intersection) mapentry.getValue()).getX();
+				}
+				else if (((Intersection) mapentry.getValue()).getX() < xMin)
+				{
+					xMin = ((Intersection) mapentry.getValue()).getX();
+				}
+				
+				if (((Intersection) mapentry.getValue()).getY() > yMax)
+				{
+					yMax = ((Intersection) mapentry.getValue()).getY();
+				}
+				else if (((Intersection) mapentry.getValue()).getY() < yMin)
+				{
+					yMin = ((Intersection) mapentry.getValue()).getY();
+				}
+	        }
+			
+			if (getSize().height < getSize().width)
+			{
+				sideLength = getSize().height;
+				
+				coefX = (double)(getSize().height) / (double)(xMax - xMin);
+				coefY = (double)(getSize().height) / (double)(yMax - yMin);
+			}
+			else
+			{
+				sideLength = getSize().width;
+				
+				coefX = (double)(getSize().width) / (double)(xMax - xMin);
+				coefY = (double)(getSize().width) / (double)(yMax - yMin);
+			}
+>>>>>>> Dev
 		}
 	}
 	
@@ -315,6 +361,24 @@ public class MapPanel extends JPanel
 		resize();
 		
 		repaint();
+	}
+	
+	//modification plan peut être null
+	public void setPlan ( Plan plan)
+	{
+		this.plan = plan;
+		// invalide ce qu'il y avait avant
+		setDemandeLivraison(null);
+		setTournee(null);
+	}
+	public void setDemandeLivraison ( DemandeLivraison demandeLivraison)
+	{
+		this.demandeLivraison = demandeLivraison;
+		setTournee(null);
+	}
+	public void setTournee ( Tournee tournee)
+	{
+		this.tournee = tournee;
 	}
 }
 

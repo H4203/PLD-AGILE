@@ -30,7 +30,7 @@ public class EtatDefault implements Etat{
 	}
 
 	@Override
-	public void suprimerLivraison(Controleur controleur, Fenetre fenetre, int positon) {
+	public void supprimerLivraison(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -98,10 +98,8 @@ public class EtatDefault implements Etat{
 		// TODO Auto-generated method stub
 		
 	}
-
-	// start
 	@Override
-	public void clicgauche(Controleur controleur, Point point) {
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes) {
 		// TODO Auto-generated method stub
 	}
 	
@@ -114,7 +112,18 @@ public class EtatDefault implements Etat{
 	public void mouseWheel(Controleur controleur, int steps, Point point) {
 		// TODO Auto-generated method stub	
 	}
-	// end
+
+	@Override
+	public void undo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void redo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

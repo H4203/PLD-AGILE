@@ -1,7 +1,6 @@
 package controleur;
 
 import java.awt.Point;
-
 import vue.Fenetre;
 
 public class EtatModificationTournee extends EtatDefault{
@@ -35,14 +34,44 @@ public class EtatModificationTournee extends EtatDefault{
 	{
 		controleur.setEtatCourant( controleur.etatAjoutLivraison1);
 	}
-
-	// start
 	@Override
-	public void clicgauche(Controleur controleur, Point point)
+	public void supprimerLivraison ( Controleur controleur, Fenetre fenetre)
+	{
+		controleur.setEtatCourant( controleur.etatSupprimerLivraison);
+	}
+	
+	@Override
+	public void chargementPlan(Controleur controleur, Fenetre fenetre) {
+		controleur.setEtatCourant( controleur.etatChargementPlan );
+		fenetre.setModeChargementPlan ();
+	}
+	@Override
+	public void chargementDemandeLivraison(Controleur controleur, Fenetre fenetre) {
+		controleur.setEtatCourant( controleur.etatChargementLivraison );
+		fenetre.setModeChargementDemandeLivraison ();
+	}
+	@Override
+	public void calculTournee(Controleur controleur, Fenetre fenetre) {
+		controleur.setEtatCourant( controleur.etatCalculTournee );
+		fenetre.setModeCalculTournee();	
+	}
+	@Override
+	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
+		controleur.setEtatCourant( controleur.etatModificationTournee );
+		fenetre.setModeModificationTournee();
+		
+	}
+	@Override
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		controleur.plan.getAtPoint(point);
 	}
+<<<<<<< HEAD
 	public void mouseDrag(Controleur controleur, Point delta)
+=======
+	@Override
+	public void drag(Controleur controleur, Point delta)
+>>>>>>> Dev
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
 	}
@@ -50,5 +79,16 @@ public class EtatModificationTournee extends EtatDefault{
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
-	// end
+	@Override
+	public void undo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+		listeDeCommandes.undo();
+		fenetre.setModeModificationTournee();
+	}
+
+	@Override
+	public void redo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+		listeDeCommandes.redo();
+		fenetre.setModeModificationTournee();
+	}
+	
 }

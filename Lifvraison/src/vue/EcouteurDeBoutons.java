@@ -90,7 +90,7 @@ public class EcouteurDeBoutons implements ActionListener
 			}
 			case "Modification Tournee" :
 			{
-				controleur.suivant();
+				controleur.modificationTournee();
 				break;
 			}
 			case "Valider Tournee" :
@@ -113,6 +113,18 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.precedent();
 				break;
 			}
+			case "+" :
+				controleur.ajouterLivraison();
+				break;
+			case "-" :
+				controleur.supprimerLivraison();
+				break;
+			case "undo":
+				controleur.undo();
+				break;
+			case "redo":
+				controleur.redo();
+				break;
 		}
 		
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();

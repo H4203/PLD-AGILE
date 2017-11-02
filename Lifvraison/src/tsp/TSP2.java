@@ -1,9 +1,6 @@
 package tsp;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Collections;
-
 public class TSP2 extends TSP1 {
 
 	@Override
