@@ -324,7 +324,7 @@ public class MapPanel extends JPanel
 		repaint();
 	}
 	
-	//modification plan peut être null
+	//modification plan peut etre null
 	public void setPlan ( Plan plan)
 	{
 		this.plan = plan;
