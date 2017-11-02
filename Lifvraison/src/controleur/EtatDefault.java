@@ -101,12 +101,16 @@ public class EtatDefault implements Etat{
 	@Override
 	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes) {
 		// TODO Auto-generated method stub
-		
 	}
+	
 	@Override
-	public void drag(Controleur controleur, Point delta) {
-		// TODO Auto-generated method stub
-		
+	public void mouseDrag(Controleur controleur, Point delta) {
+		// TODO Auto-generated method stub	
+	}
+	
+	@Override
+	public void mouseWheel(Controleur controleur, int steps, Point point) {
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
@@ -117,6 +121,12 @@ public class EtatDefault implements Etat{
 
 	@Override
 	public void redo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clicgauche(Controleur controleur, Point point) {
 		// TODO Auto-generated method stub
 		
 	}

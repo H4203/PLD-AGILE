@@ -16,25 +16,32 @@ public class Plan extends Observable
 
 	private int idTroncon = 1;
 	
-	// Point Focused
-	// (0, 0) : center
-	private Point focus;
+	private int xMin, xMax, yMin, yMax;
 	
 	public Plan() 
 	{
 		this.listeIntersection = new HashMap<Long, Intersection>();
 		this.listeTroncons = new HashMap<Integer, Troncon>();
 		
-		focus = new Point(0, 0);
-		
-		notifyObservers();
+		init();
 	}
 	
-	public Plan(HashMap<Long, Intersection> listeIntersection, HashMap<Integer, Troncon> listeTroncons) {
+	public Plan(HashMap<Long, Intersection> listeIntersection, HashMap<Integer, Troncon> listeTroncons) 
+	{
 		this.listeIntersection = listeIntersection;
 		this.listeTroncons = listeTroncons;
 		
-		focus = new Point(0, 0);
+		init();
+	}
+	
+	private void init()
+	{
+		xMin = 999999;
+		xMax = 0;
+		yMin = 999999;
+		yMax = 0;
+		
+		resetBounds();
 		
 		notifyObservers();
 	}
@@ -43,17 +50,19 @@ public class Plan extends Observable
 	{
 		listeIntersection.clear();
 		listeTroncons.clear();
-		resetFocus();
+		
+		resetBounds();
 	}
 
 	public HashMap<Long, Intersection> getListeIntersection() {
 		return listeIntersection;
 	}
 
-	public void setListeIntersection(HashMap<Long, Intersection> listeIntersection) {
+	public void setListeIntersection(HashMap<Long, Intersection> listeIntersection) 
+	{
 		this.listeIntersection = listeIntersection;
-		resetFocus();
-		notifyObservers();
+		
+		resetBounds();
 	}
 	
 	public void ajouterIntersection(Intersection aAjouter) throws ParseurException
@@ -63,6 +72,8 @@ public class Plan extends Observable
 			throw new ParseurException ("L'id"+ aAjouter.getId() +"est en double...");
 		}
 		this.listeIntersection.put(aAjouter.getId(), aAjouter);
+		
+		resetBounds();
 	}
 	
 
@@ -74,7 +85,7 @@ public class Plan extends Observable
 		}
 		this.listeIntersection.put( id, new Intersection(id,  x,  y) );
 		
-		notifyObservers();
+		resetBounds();
 	}
 	
 	public void  ajouterTroncon(String nomDeRue, Intersection intersectionDepart, Intersection intersectionArrivee, double longueur)
@@ -86,21 +97,19 @@ public class Plan extends Observable
 		intersectionDepart.addTronconSortant(troncon);
 		intersectionArrivee.addTronconEntrant(troncon);
 		
+		setChanged();
 		notifyObservers();
 	}
 	
-	public HashMap<Integer, Troncon> getListeTroncons() {
+	public HashMap<Integer, Troncon> getListeTroncons() 
+	{
 		return listeTroncons;
 	}
 
-	public Point getFocus()
-	{
-		return focus;
-	}
-	
 	public void setListeTroncons(HashMap<Integer, Troncon> listeTroncons) {
 		this.listeTroncons = listeTroncons;
 		
+		setChanged();
 		notifyObservers();
 	}
 
@@ -116,7 +125,6 @@ public class Plan extends Observable
 	
 	public void getAtPoint(Point point)
 	{
-		
 		for (Map.Entry<Long, Intersection> mapentry : listeIntersection.entrySet()) 
 		{
 			//System.out.println(mapentry.getValue().getX());
@@ -135,16 +143,52 @@ public class Plan extends Observable
 		}
 	}
 	
-	public void drag(Point delta)
+	public void resetBounds()
 	{
-		focus = new Point(focus.x + delta.x, focus.y + delta.y);
+		xMax = 0;
+		yMax = 0;
+		xMin = 999999;
+		yMin = 999999;
+		
+		for (Map.Entry<Long, Intersection> mapentry : listeIntersection.entrySet()) 
+        {
+			if (((Intersection) mapentry.getValue()).getX() > xMax)
+			{
+				xMax = ((Intersection) mapentry.getValue()).getX();
+			}
+			else if (((Intersection) mapentry.getValue()).getX() < xMin)
+			{
+				xMin = ((Intersection) mapentry.getValue()).getX();
+			}
+			
+			if (((Intersection) mapentry.getValue()).getY() > yMax)
+			{
+				yMax = ((Intersection) mapentry.getValue()).getY();
+			}
+			else if (((Intersection) mapentry.getValue()).getY() < yMin)
+			{
+				yMin = ((Intersection) mapentry.getValue()).getY();
+			}
+        }
 		
 		setChanged();
 		notifyObservers();
 	}
 	
-	public void resetFocus()
+	public int getXMin()
 	{
-		focus.setLocation(0, 0);
+		return xMin;
+	}
+	public int getXMax()
+	{
+		return xMax;
+	}
+	public int getYMin()
+	{
+		return yMin;
+	}
+	public int getYMax()
+	{
+		return yMax;
 	}
 }
