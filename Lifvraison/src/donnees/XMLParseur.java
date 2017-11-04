@@ -44,7 +44,7 @@ public class XMLParseur
 
 	public void chargerLivraison (DemandeLivraison demandelivraison, String cheminDuFichier, HashMap<Long, Intersection> listeIntersection) throws ParseurException
 	{
-		demandelivraison.reset();
+		//demandelivraison.reset();
 		
 		Document document = null;
 		try
@@ -220,7 +220,7 @@ public class XMLParseur
 	 */
 	public void chargerPlan (Plan plan, String cheminDuFichier) throws ParseurException
 	{
-		plan.reset();
+		//plan.reset();
 		
 		Document document = null;
 		try
