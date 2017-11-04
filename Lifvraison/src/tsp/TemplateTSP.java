@@ -81,7 +81,7 @@ public abstract class TemplateTSP implements TSP {
 		    		vus.toArray(meilleureSolution);
 		    		coutMeilleureSolution = coutVus;
 		    		solutionPossibleTrouvee = true;
-		    		System.out.println("Nouvelle solution trouvee");
+		    		//System.out.println("Nouvelle solution trouvee");
 		    	}
 	    } else if (coutVus + bound(sommetCrt, nonVus, cout, duree, tempsDebutPlage, tempsFinPlage, coutVus) < coutMeilleureSolution){
 	        Iterator<Integer> it = iterator(sommetCrt, nonVus, cout, duree);

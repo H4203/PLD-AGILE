@@ -212,7 +212,7 @@ public class CalculateurTournee extends Thread{
 			
 			this.lesDijkstra = nouveauxDijkstra;
 			this.lesItineraires = nouvelleTournee;
-			// on actualise demande liste livraison ordonné et on ajoute la livraison à la demande de livraison
+			// on actualise demande liste livraison ordonnï¿½ et on ajoute la livraison ï¿½ la demande de livraison
 			this.laTournee.ajouterLivraison(livraison, index);
 			this.laTournee.getDemandeLivraison().ajouterLivraison(livraison);
 			this.laTournee.setListeItineraires(nouvelleTournee);
@@ -232,7 +232,22 @@ public class CalculateurTournee extends Thread{
 		return null;
 	}
 
-	
+	public Tournee echangerDeuxLivraison(int index1, int index2) {
+		if( (index1 < 1) || (index2 < 1) || (index1 >= this.laTournee.getLivraisonsOrdonnees().size()) || (index2 >=this.laTournee.getLivraisonsOrdonnees().size()) ) {
+			return this.laTournee;
+		}
+		
+		Livraison dl1 = this.laTournee.getLivraisonsOrdonnees().get(index1);
+		Livraison dl2 = this.laTournee.getLivraisonsOrdonnees().get(index2);
+		
+		this.supprimerLivraison(dl1);
+		this.supprimerLivraison(dl2);
+		
+		this.ajouterLivraison(index1-1, dl2);
+		this.ajouterLivraison(index2-1, dl1);
+		
+		return this.laTournee;
+	}
 
 }
 
