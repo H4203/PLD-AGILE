@@ -246,12 +246,11 @@ public class Fenetre extends JFrame
 	public void chargerPlan( Plan plan)
 	{
 		vueGraphique.nouveauPlan(plan);
-		setModeChargementPlan();
+		setModeChargementDemandeLivraison();
 	}
 	public void chargerDemandeLivraison( DemandeLivraison demandeLivraison)
 	{
 		vueGraphique.nouvelleDemandeLivraison(demandeLivraison);
-		setModeChargementDemandeLivraison();
 	}
 	public void chargerTournee( Tournee tournee)
 	{

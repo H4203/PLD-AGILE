@@ -22,6 +22,7 @@ public class EtatChargementPlan extends EtatDefault{
 		controleur.plan = newPlan;
 		controleur.demandeLivraison = null;
 		controleur.tournee = null;
+		controleur.setEtatCourant( controleur.etatChargementLivraison);
 		fenetre.chargerPlan(controleur.plan);
 	}
 	
