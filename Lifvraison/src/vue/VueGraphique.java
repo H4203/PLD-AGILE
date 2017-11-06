@@ -1,14 +1,11 @@
 package vue;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import controleur.Controleur;
@@ -19,16 +16,12 @@ import modeles.Tournee;
 public class VueGraphique extends JPanel implements Observer
 {
 	private static final long serialVersionUID = 1L;
-
-	private Fenetre fenetre;
 	
 	private MapPanel mapPanel;
 
 	public VueGraphique(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur) 
 	{
 		super();
-		
-		this.fenetre = fenetre;
 		
 		setLayout(new CardLayout(50, 50));
 		setBackground(Color.white);
@@ -54,8 +47,6 @@ public class VueGraphique extends JPanel implements Observer
 	@Override
 	public void paintComponent(Graphics g) 
 	{
-		System.out.println("paintComponent");
-		
 		//mapPanel.repaint();
 		
 		//repaint();
@@ -64,8 +55,6 @@ public class VueGraphique extends JPanel implements Observer
 	@Override
 	public void update(Observable o, Object arg) 
 	{
-		System.out.println("update");
-		
 		mapPanel.resize();
 		mapPanel.repaint();
 		

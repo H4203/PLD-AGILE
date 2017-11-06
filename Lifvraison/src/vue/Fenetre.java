@@ -7,30 +7,18 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import controleur.Controleur;
 import modeles.DemandeLivraison;
-import modeles.Livraison;
-import modeles.PlageHoraire;
 import modeles.Plan;
 import modeles.Tournee;
 
-import javax.swing.JTextArea;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 
 public class Fenetre extends JFrame
@@ -69,9 +57,9 @@ public class Fenetre extends JFrame
 	
 	//??
 	// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
-	private JList<String> listTexteLivraison;
+	//private JList<String> listTexteLivraison;
 	
-	private JPanel buttonsPanel;
+	//private JPanel buttonsPanel;
 	
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

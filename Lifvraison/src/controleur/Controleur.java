@@ -10,7 +10,6 @@ import donnees.XMLParseur;
 import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
-import vue.VueGraphique;
 import modeles.DemandeLivraison;
 import modeles.Livraison;
 
