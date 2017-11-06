@@ -129,7 +129,7 @@ public class Fenetre extends JFrame
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel = new JPanel();
-		topButtonsPanel.setLayout(new FlowLayout());
+		topButtonsPanel.setLayout(new GridLayout(2, 3, 20, 20));
 		//topButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
 		buttonsPanel.add(topButtonsPanel);
 		
@@ -354,11 +354,14 @@ public class Fenetre extends JFrame
 	
 	public void setModeModificationTournee()
 	{
+		setModeModificationTournee("");
+	}
+	
+	public void setModeModificationTournee(String etat)
+	{
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
 	
-		
-
 		/*// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
 
 		String tableauTexteList[] = new String[tournee.getLivraisonsOrdonnees().size()+2]; //+2 pour entrepot depart et arrive
@@ -394,23 +397,23 @@ public class Fenetre extends JFrame
 		topButtonsPanel.removeAll();
 		
 		// 1.2.1.2.1.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonAjouterLivraison
-		JButton buttonAjouterLivraison = new JButton("+");
+		JButton buttonAjouterLivraison = new JButton("Ajouter une Livraison");
 		buttonAjouterLivraison.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonAjouterLivraison);
 		// 1.2.1.2.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonSupprimerLivraison
-		JButton buttonSupprimerLivraison = new JButton("-");
+		JButton buttonSupprimerLivraison = new JButton("Retirer une Livraison");
 		buttonSupprimerLivraison.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonSupprimerLivraison);
 		// 1.2.1.2.1.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonEchangerLivraisons
-		JButton buttonEchangerLivraisons = new JButton("<-/->");
+		JButton buttonEchangerLivraisons = new JButton("Echanger 2 Livraisons");
 		buttonEchangerLivraisons.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonEchangerLivraisons);
 		// 1.2.1.2.1.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonUndo
-		JButton buttonUndo = new JButton("undo");
+		JButton buttonUndo = new JButton("Annuler");
 		buttonUndo.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonUndo);
 		// 1.2.1.2.1.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonRedo
-		JButton buttonRedo = new JButton("redo");
+		JButton buttonRedo = new JButton("Retablir");
 		buttonRedo.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonRedo);
 		
@@ -418,6 +421,15 @@ public class Fenetre extends JFrame
 		JButton buttonValiderTournee = new JButton("Valider Tournee");
 		buttonValiderTournee.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonValiderTournee);
+		
+		if (etat.equals("AjoutLivraison") || etat.equals("SuppressionLivraison"))
+		{
+			buttonAjouterLivraison.setEnabled(false);
+			buttonSupprimerLivraison.setEnabled(false);
+			buttonEchangerLivraisons.setEnabled(false);
+			buttonRedo.setEnabled(false);
+			buttonValiderTournee.setEnabled(false);
+		}
 		
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		resetOngletsPanelButtons();

@@ -115,7 +115,7 @@ public class Controleur
 	// Start
 	public void clicGauche(Point point)
 	{
-		etatCourant.clicgauche(this, point, listeDeCommandes);
+		etatCourant.clicgauche(this, fenetre, point, listeDeCommandes);
 	}
 	
 	public void mouseDrag(Point delta)

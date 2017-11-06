@@ -1,15 +1,15 @@
 package controleur;
 
 import java.awt.Point;
+import vue.Fenetre;
 
 import modeles.Intersection;
 
 public class EtatAjoutLivraison1 extends EtatDefault{
 
 	@Override
-	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
-		
 		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection pointDeLivraison = controleur.plan.getSelectedIntersection();
 		if (pointDeLivraison != null)
@@ -20,6 +20,12 @@ public class EtatAjoutLivraison1 extends EtatDefault{
 		}
 		
 		
+	}
+	
+	@Override
+	public void undo(ListeDeCommandes listeDeCommandes, Fenetre fenetre)
+	{
+		fenetre.setModeModificationTournee();
 	}
 
 }

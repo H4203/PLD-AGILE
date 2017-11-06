@@ -33,11 +33,13 @@ public class EtatModificationTournee extends EtatDefault{
 	public void ajouterLivraison ( Controleur controleur, Fenetre fenetre)
 	{
 		controleur.setEtatCourant( controleur.etatAjoutLivraison1);
+		fenetre.setModeModificationTournee("AjoutLivraison");
 	}
 	@Override
 	public void supprimerLivraison ( Controleur controleur, Fenetre fenetre)
 	{
 		controleur.setEtatCourant( controleur.etatSupprimerLivraison);
+		fenetre.setModeModificationTournee("SuppressionLivraison");
 	}
 	
 	@Override
@@ -62,7 +64,7 @@ public class EtatModificationTournee extends EtatDefault{
 		
 	}
 	@Override
-	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
 	}

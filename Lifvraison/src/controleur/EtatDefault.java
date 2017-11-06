@@ -99,7 +99,7 @@ public class EtatDefault implements Etat{
 		
 	}
 	@Override
-	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes) {
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes) {
 		// TODO Auto-generated method stub
 	}
 	

@@ -111,16 +111,16 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.precedent();
 				break;
 			}
-			case "+" :
+			case "Ajouter une Livraison" :
 				controleur.ajouterLivraison();
 				break;
-			case "-" :
+			case "Retirer une Livraison" :
 				controleur.supprimerLivraison();
 				break;
-			case "undo":
+			case "Annuler":
 				controleur.undo();
 				break;
-			case "redo":
+			case "Retablir":
 				controleur.redo();
 				break;
 		}
