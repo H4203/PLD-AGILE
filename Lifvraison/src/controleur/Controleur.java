@@ -10,7 +10,6 @@ import donnees.XMLParseur;
 import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
-import vue.VueGraphique;
 import modeles.DemandeLivraison;
 import modeles.Livraison;
 
@@ -105,8 +104,6 @@ public class Controleur
 		{
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
 		
 		etatCourant.accueil(this, fenetre);
 	}

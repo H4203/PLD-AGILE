@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.Map;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import controleur.Controleur;
@@ -63,6 +64,8 @@ public class MapPanel extends JPanel
 		coefY = 0;
 		focus = new Point(0, 0);
 		zoom = 1;
+		
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
 	public void repaint(Graphics g)
@@ -83,10 +86,10 @@ public class MapPanel extends JPanel
 		
 		// Border
 		
-		g2.drawLine(0, 0, sideLength - 1, 0);
+		/*g2.drawLine(0, 0, sideLength - 1, 0);
 		g2.drawLine(0, 0, 0, sideLength - 1);
 		g2.drawLine(sideLength - 1, sideLength - 1, sideLength - 1, 0);
-		g2.drawLine(sideLength - 1, sideLength - 1, 0, sideLength - 1);
+		g2.drawLine(sideLength - 1, sideLength - 1, 0, sideLength - 1);*/
 		
 		// Map
 
