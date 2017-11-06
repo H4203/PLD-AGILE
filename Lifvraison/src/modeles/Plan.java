@@ -159,16 +159,13 @@ public class Plan extends Observable
 				minY = Math.min(departY, arriveeY);
 				maxY = Math.max(departY, arriveeY);
 				
-				a = (arriveeY - departY) / (arriveeX - departX);				
-				b = departY - a * departX;
+				a = (arriveeX - departX) / (arriveeY - departY);				
+				b = departX - a * departY;
 			
-				if (a * point.getX() + b < point.getY() + tolerance && a * point.getX() + b > point.getY() - tolerance &&
+				if (a * point.getY() + b < point.getX() + tolerance * Math.pow(1.5, Math.abs(a)) && a * point.getY() + b > point.getX() - tolerance * Math.pow(1.5, Math.abs(a)) &&
 						point.getX() <= maxX + tolerance && point.getX() >= minX - tolerance && point.getY() <= maxY + tolerance && point.getY() >= minY - tolerance)
 				{
 					selectedTroncon = troncon.getValue();
-					
-					System.out.println(a * point.getX() + b);
-					System.out.println(point.getY());
 				}
 			}
 		}
