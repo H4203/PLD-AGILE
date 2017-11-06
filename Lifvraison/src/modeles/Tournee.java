@@ -157,19 +157,24 @@ public class Tournee extends Observable
 	public String toString() {
 		String str="";
 		int indexLivraison = 0;
-		str = str + "entrepot : \n";
+	
 		for (Itineraire itineraire : listeItineraires ) {
-			str = str + "adresse : " + itineraire.getTroncons().get(0).getNomDeRue() + '\n';
-			str = str + "l'heure depart : " + listeHoraire.get(indexLivraison).getHeureFin() + '\n';
+			
+			if (itineraire == listeItineraires.get(0)) {
+				str = str + "L'heure depart depuis l'entrepot : " + listeHoraire.get(indexLivraison).getHeureFin() + '\n' + '\n';
+			}
+			else {
+				str = str + "L'adresse de livraison n¡ã"+ indexLivraison + ": " + itineraire.getTroncons().get(0).getNomDeRue() + '\n';
+				str = str + "L'heure depart de livraison n¡ã"+ indexLivraison + ": " + listeHoraire.get(indexLivraison).getHeureFin() + '\n' + '\n';
+				
+			}
 			str = str + itineraire ; 
 			indexLivraison = indexLivraison + 1 ;
-			str = str + "l'heure arivee : " + listeHoraire.get(indexLivraison).getHeureDebut() + '\n';
-			if (indexLivraison < livraisonsOrdonnees.size() - 2) {
-				str = str + "livraison n¡ã" + indexLivraison + " :\n"; 
+			if (indexLivraison < livraisonsOrdonnees.size()) {
+				str = str + '\n' + "L'heure arivee de livraison n¡ã"+ indexLivraison + ": " + listeHoraire.get(indexLivraison).getHeureDebut() + '\n';
 			}
 			else{
-				str = str + "entrepot : \n";
-				str = str + "adresse : "+ listeItineraires.get(0).getTroncons().get(0).getNomDeRue() + '\n';
+				str = str + '\n' + "L'heure de retour de l'entrepot: " + listeHoraire.get(indexLivraison).getHeureDebut() + '\n';
 			}
 		}
 
