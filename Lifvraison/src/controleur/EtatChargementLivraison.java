@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.Point;
+
 import javax.swing.JOptionPane;
 
 import algorithme.CalculateurTournee;
