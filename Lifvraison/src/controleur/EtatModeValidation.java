@@ -22,24 +22,4 @@ public class EtatModeValidation extends EtatDefault{
 		fenetre.setModeAccueil();
 	}
 	
-	@Override
-	public void chargementPlan(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatChargementPlan );
-		fenetre.setModeChargementPlan ();
-	}
-	@Override
-	public void chargementDemandeLivraison(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatChargementLivraison );
-		fenetre.setModeChargementDemandeLivraison ();
-	}
-	/*@Override
-	public void calculTournee(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatCalculTournee );
-		fenetre.setModeCalculTournee();	
-	}*/
-	@Override
-	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatModificationTournee );
-		fenetre.setModeModificationTournee();
-	}
 }

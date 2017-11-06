@@ -36,9 +36,9 @@ public class EtatChargementLivraison extends EtatDefault{
 	}
 	
 	@Override
-	public void chargementPlan(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatChargementPlan );
-		fenetre.setModeChargementPlan();
-		
+	public void calculerTournee ( Controleur controleur, Fenetre fenetre )
+	{
+		controleur.calculateurTournee.run();
+		controleur.setEtatCourant( controleur.etatModificationTournee);
 	}
 }

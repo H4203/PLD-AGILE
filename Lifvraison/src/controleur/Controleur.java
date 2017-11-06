@@ -64,18 +64,15 @@ public class Controleur
 	
 	public void chargerPlan( String chemin)
 	{
-		etatCourant = etatChargementPlan;
 		etatCourant.chargerPlan(this, fenetre, chemin);
 	}
 	public void chargerDemandeLivraison( String chemin)
 	{
-		etatCourant = etatChargementLivraison;
 		etatCourant.chargerDemandeLivraison(this, fenetre, chemin);
 		etatCourant.calculerTournee(this, fenetre);
 	}
 	public void modifierTournee()
 	{
-		etatCourant = etatModificationTournee;
 		etatCourant.modificationTournee(this, fenetre);
 	}
 	public void calculerTournee (  )
@@ -148,32 +145,7 @@ public class Controleur
 	public void validerTournee() {
 		etatCourant.validerTournee(this, fenetre);
 		
-	}
-
-	public void chargementPlan() {
-		etatCourant.chargementPlan(this, fenetre);
-		
-	}
-
-	public void chargementDemandeLivraison() {
-		etatCourant.chargementDemandeLivraison(this, fenetre);
-		
-	}
-
-	public void calculTournee() {
-		etatCourant.calculTournee(this, fenetre);
-		
-	}
-
-	public void modificationTournee() {
-		etatCourant.modificationTournee(this, fenetre);
-		
-	}
-	
-	public void validationTournee() {
-		etatCourant.validationTournee(this, fenetre);
-	}
-	
+	}	
 	public int getToleranceClic()
 	{
 		return fenetre.getVueGraphique().getToleranceClic();

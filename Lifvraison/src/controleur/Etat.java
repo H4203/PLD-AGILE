@@ -18,15 +18,11 @@ public interface Etat {
 	public void accueil (Controleur controleur, Fenetre fenetre);
 	public void clicgauche ( Controleur controleur, Fenetre fenetre, int positonPrecedente, Livraison livraison);
 	public void validerTournee (Controleur controleur, Fenetre fenetre);
-	public void chargementPlan (Controleur controleur, Fenetre fenetre);
-	public void chargementDemandeLivraison (Controleur controleur, Fenetre fenetre);
-	public void calculTournee (Controleur controleur, Fenetre fenetre);
-	public void modificationTournee (Controleur controleur, Fenetre fenetre);
-	public void validationTournee (Controleur controleur, Fenetre fenetre);
 	public void clicgauche(Controleur controleur, Point point);
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes);
 	public void mouseDrag(Controleur controleur, Point delta);
 	public void mouseWheel(Controleur controleur, int steps, Point point);
 	public void undo ( ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	public void redo ( ListeDeCommandes listeDeCommandes, Fenetre fenetre);
+	public void modificationTournee(Controleur controleur, Fenetre fenetre);
 }

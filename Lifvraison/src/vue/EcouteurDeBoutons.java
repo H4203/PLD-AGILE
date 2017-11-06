@@ -48,11 +48,6 @@ public class EcouteurDeBoutons implements ActionListener
 			    }
 				break;
 			}
-			case "Chargement Plan" :
-			{
-				controleur.chargementPlan();
-				break;
-			}
 			case "Charger Demande Livraison" :
 			{
 				String chemin = "";
@@ -66,19 +61,9 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.chargerDemandeLivraison(chemin);
 				break;
 			}
-			case "Chargement Demande Livraison" :
-			{
-				controleur.chargementDemandeLivraison();
-				break;
-			}
 			case "Calculer Tournee" :
 			{
 				controleur.calculerTournee();
-				break;
-			}
-			case "Calcul Tournee" :
-			{
-				controleur.calculTournee();
 				break;
 			}
 			case "Modifier Tournee" :
@@ -86,19 +71,9 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.modifierTournee();
 				break;
 			}
-			case "Modification Tournee" :
-			{
-				controleur.modificationTournee();
-				break;
-			}
 			case "Valider Tournee" :
 			{
 				controleur.validerTournee();
-				break;
-			}
-			case "Validation Tournee" :
-			{
-				controleur.validationTournee();
 				break;
 			}
 			case "Suivant" :

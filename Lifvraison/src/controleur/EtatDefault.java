@@ -68,36 +68,6 @@ public class EtatDefault implements Etat{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void chargementPlan(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void chargementDemandeLivraison(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void calculTournee(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void validationTournee(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
 	@Override
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes) {
 		// TODO Auto-generated method stub
@@ -127,6 +97,12 @@ public class EtatDefault implements Etat{
 
 	@Override
 	public void clicgauche(Controleur controleur, Point point) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}
