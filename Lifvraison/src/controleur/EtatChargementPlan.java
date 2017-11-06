@@ -62,7 +62,7 @@ public class EtatChargementPlan extends EtatDefault{
 	}
 	
 	@Override
-	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
 	}
