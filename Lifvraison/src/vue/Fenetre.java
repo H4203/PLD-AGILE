@@ -399,6 +399,7 @@ public class Fenetre extends JFrame
 	
 	public void setModeModificationTournee(String etat)
 	{
+		vueGraphique.setModeCalculTournee();
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
 	
@@ -418,7 +419,7 @@ public class Fenetre extends JFrame
 			}
 		}
 
-		texteListe = texteListe + "Retour � l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
+		texteListe = texteListe + "Retour a l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
 		labelListeLivraison.setText(texteListe);
 
 		i = i + 1;
