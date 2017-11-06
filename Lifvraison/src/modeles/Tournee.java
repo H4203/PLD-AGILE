@@ -3,8 +3,9 @@ package modeles;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class Tournee 
+public class Tournee extends Observable
 {
 	private Plan plan;
 	private DemandeLivraison demandeLivraison; //on en a vraiment besoin ????
@@ -20,9 +21,18 @@ public class Tournee
 		this.demandeLivraison = demandeLivraison;
 		this.listeHoraire = new ArrayList<PlageHoraire>();
 		this.livraisonsOrdonnees = new ArrayList<Livraison>();
+		this.listeItineraires = new ArrayList<Itineraire>();
 		longueur = 0;
+		notifyObservers();
 	}
 
+	public void reset()
+	{
+		listeItineraires.clear();
+		listeHoraire.clear();
+		livraisonsOrdonnees.clear();
+	}
+	
 	private void updateHoraire() {
 		double dureeRoute;
 		LocalTime debut,fin;
@@ -36,7 +46,7 @@ public class Tournee
 		for (Itineraire itineraire : listeItineraires)
 		{
 			/* on converti la longeur de la route en temps */
-			dureeRoute = itineraire.getLongueur()*0.1/15000*3600;
+			dureeRoute = itineraire.getLongueur()/15000*3600;
 
 			/* on recupere l'heure a laquelle il quitte son dernier point */
 			debut = listeHoraire.get(listeHoraire.size()-1).getHeureFin();
@@ -45,7 +55,6 @@ public class Tournee
 
 			/* on recupere a quel itineraire on est */
 			int indexItineraire = listeItineraires.indexOf(itineraire);
-
 			if (indexItineraire == listeItineraires.size()-1)
 			{
 				/* retour a l'entrepot */
@@ -53,16 +62,15 @@ public class Tournee
 				listeHoraire.add(horaire);
 				break;
 			}
-			
-			List<Livraison> listLiv = demandeLivraison.getLivraisons();
-			Livraison liv = listLiv.get(indexItineraire);
+			// pls stop
+			Livraison liv = livraisonsOrdonnees.get(indexItineraire); // pas de +1
 			PlageHoraire plhr =  liv.getPlagehoraire();
 			if (plhr != null)
 			{
 				if (plhr.getHeureDebut() != null && debut.isBefore(plhr.getHeureDebut()))
 				{
 					/* on ajoute le temps d'attente du debut de plage horaire */
-					fin = demandeLivraison.getLivraisons().get(listeItineraires.indexOf(itineraire)).getPlagehoraire().getHeureDebut();
+					fin = liv.getPlagehoraire().getHeureDebut();
 				}
 				else
 				{
@@ -74,7 +82,7 @@ public class Tournee
 				fin = debut;
 			}
 			/* on ajoute le temps de livrer */
-			fin = fin.plusSeconds(demandeLivraison.getLivraisons().get(indexItineraire).getDureeDechargement());
+			fin = fin.plusSeconds(liv.getDureeDechargement());
 			horaire = new PlageHoraire(debut,fin);
 			listeHoraire.add(horaire);
 		}
@@ -91,6 +99,8 @@ public class Tournee
 
 		updateLongueur();
 		updateHoraire();
+		
+		notifyObservers();
 	}
 
 	public List <Itineraire> getListeItineraires()
@@ -132,6 +142,16 @@ public class Tournee
 		this.livraisonsOrdonnees = livraisonsOrdonnees;
 	}
 	
+	public void ajouterLivraison (Livraison livraison, int position)
+	{
+		livraisonsOrdonnees.add(position, livraison);
+		//updateHoraire(); inutile ?
+	}
 	
+	public void supprimerLivraison (int position)
+	{
+		livraisonsOrdonnees.remove(position);
+		//updateHoraire(); inutile ? on doit aussi modifier les itineraires si on veut appeler update horaire 
+	}
 	
 }
