@@ -47,7 +47,6 @@ public class VueGraphique extends JPanel implements Observer
 			}
 		}
 
-		
 		mapPanel = new MapPanel(fenetre, plan, demandeLivraison, tournee, controleur);
 		add(mapPanel);
 	}
@@ -55,18 +54,21 @@ public class VueGraphique extends JPanel implements Observer
 	@Override
 	public void paintComponent(Graphics g) 
 	{
-		//System.out.println("paintComponent");
+		System.out.println("paintComponent");
 		
 		//mapPanel.repaint();
+		
 		//repaint();
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) 
 	{
-		//System.out.println("update");
+		System.out.println("update");
+		
 		mapPanel.resize();
 		mapPanel.repaint();
+		
 		//repaint();
 	}
 	
@@ -120,13 +122,16 @@ public class VueGraphique extends JPanel implements Observer
 	public void nouveauPlan ( Plan plan)
 	{
 		mapPanel.setPlan(plan);
+		plan.addObserver(this);
 	}
 	public void nouvelleDemandeLivraison ( DemandeLivraison demandeLivraison)
 	{
 		mapPanel.setDemandeLivraison(demandeLivraison);
+		demandeLivraison.addObserver(this);
 	}
 	public void nouvelleTournee ( Tournee tournee)
 	{
 		mapPanel.setTournee(tournee);
+		tournee.addObserver(this);
 	}
 }

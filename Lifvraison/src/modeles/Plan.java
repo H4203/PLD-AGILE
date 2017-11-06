@@ -139,6 +139,8 @@ public class Plan extends Observable
 				
 				setChanged();
 				notifyObservers();
+				
+				System.out.println("notify");
 			}
 		}
 	}

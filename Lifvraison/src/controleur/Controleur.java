@@ -106,8 +106,6 @@ public class Controleur
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		
-		
 		etatCourant.accueil(this, fenetre);
 	}
 	public void clicgauche ( int positonPrecedente, Livraison livraison)
