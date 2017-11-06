@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package controleur;
 
 import java.awt.Point;
@@ -6,6 +5,7 @@ import java.awt.Point;
 import javax.swing.JOptionPane;
 
 import algorithme.CalculateurTournee;
+import donnees.FeuilleDeRoute;
 import donnees.ParseurException;
 import donnees.XMLParseur;
 import modeles.Plan;
@@ -331,4 +331,3 @@ public class Controleur
 		}
 	}*/
 }
->>>>>>> Dev
