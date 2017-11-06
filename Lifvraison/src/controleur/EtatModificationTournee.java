@@ -64,7 +64,7 @@ public class EtatModificationTournee extends EtatDefault{
 	@Override
 	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
 	{
-		controleur.plan.getAtPoint(point);
+		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
 	}
 
 	@Override

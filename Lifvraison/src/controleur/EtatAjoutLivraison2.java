@@ -14,7 +14,7 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		
-		controleur.plan.getAtPoint(point);
+		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection pointPrecedant = controleur.plan.getSelectedIntersection();
 		
 		// cas entrepot

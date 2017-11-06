@@ -7,9 +7,7 @@ import java.util.Observable;
 import donnees.ParseurException;
 
 public class Plan extends Observable
-{
-	private final int clickSelectionTolerance = 100;
-	
+{	
 	private HashMap<Long, Intersection> listeIntersection;
 	private HashMap<Integer, Troncon> listeTroncons;
 	private Intersection selectedIntersection;
@@ -123,15 +121,15 @@ public class Plan extends Observable
 		return selectedIntersection;
 	}
 	
-	public void getAtPoint(Point point)
+	public void getAtPoint(Point point, int tolerance)
 	{
 		for (Map.Entry<Long, Intersection> mapentry : listeIntersection.entrySet()) 
 		{
 			//System.out.println(mapentry.getValue().getX());
 			//System.out.println(mapentry.getValue().getY());
 			
-			if (point.getX() < mapentry.getValue().getX() + clickSelectionTolerance && point.getX() > mapentry.getValue().getX() - clickSelectionTolerance
-					&& point.getY() < mapentry.getValue().getY() + clickSelectionTolerance && point.getY() > mapentry.getValue().getY() - clickSelectionTolerance) 
+			if (point.getX() < mapentry.getValue().getX() + tolerance && point.getX() > mapentry.getValue().getX() - tolerance
+					&& point.getY() < mapentry.getValue().getY() + tolerance && point.getY() > mapentry.getValue().getY() - tolerance) 
 			{
 				selectedIntersection = mapentry.getValue();
 				

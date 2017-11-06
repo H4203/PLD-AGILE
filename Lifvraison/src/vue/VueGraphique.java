@@ -123,4 +123,8 @@ public class VueGraphique extends JPanel implements Observer
 		mapPanel.setTournee(tournee);
 		tournee.addObserver(this);
 	}
+	public int getToleranceClic()
+	{
+		return mapPanel.getToleranceClic();
+	}
 }
