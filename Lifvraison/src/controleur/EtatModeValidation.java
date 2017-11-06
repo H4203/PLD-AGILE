@@ -42,4 +42,10 @@ public class EtatModeValidation extends EtatDefault{
 		controleur.setEtatCourant( controleur.etatModificationTournee );
 		fenetre.setModeModificationTournee();
 	}
+	@Override
+	public void gererFeuilleDeRoute(Controleur controleur, Fenetre fenetre) {
+		controleur.feuilleDeRoute.gerer(controleur.tournee);
+		
+	}
 }
+

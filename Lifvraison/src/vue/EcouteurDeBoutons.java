@@ -123,8 +123,13 @@ public class EcouteurDeBoutons implements ActionListener
 			case "redo":
 				controleur.redo();
 				break;
+			case "Gerer Feuille De Route" :
+			{
+				controleur.gererFeuilleDeRoute();
+			}
 		}
 		
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();
 	}
 }	
+

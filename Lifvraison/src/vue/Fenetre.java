@@ -55,6 +55,8 @@ public class Fenetre extends JFrame
 	// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
 	private JButton buttonValidationTournee;
 	
+	private JButton buttonFeuilleDeRoute;
+	
 	//??
 	// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
 	//private JList<String> listTexteLivraison;
@@ -455,6 +457,11 @@ public class Fenetre extends JFrame
 		buttonModificationTournee.setEnabled(true);
 		// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
 		buttonValidationTournee.setBackground(new Color(200, 200, 255));
+		
+		buttonFeuilleDeRoute = new JButton("Gerer Feuille De Route");
+		buttonFeuilleDeRoute.addActionListener(ecouteurDeBoutons);
+		topButtonsPanel.add(buttonFeuilleDeRoute);	
+		buttonFeuilleDeRoute.setEnabled(true);
 
 		repaint();
 		setVisible(true);
