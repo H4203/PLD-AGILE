@@ -50,7 +50,7 @@ public class Controleur
 		demandeLivraison = null;
 		tournee = null;
 		listeDeCommandes = new ListeDeCommandes();
-		
+		feuilleDeRoute = new FeuilleDeRoute();
 		try 
 		{
 			parseur = new XMLParseur ();
