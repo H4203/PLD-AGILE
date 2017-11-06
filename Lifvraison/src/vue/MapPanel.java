@@ -22,6 +22,8 @@ import modeles.PlageHoraire;
 
 public class MapPanel extends JPanel
 {
+	private final double toleranceSelectionIntersection = 150.0;
+	
 	private static final long serialVersionUID = 1L;
 	
 	private Plan plan;
@@ -329,7 +331,7 @@ public class MapPanel extends JPanel
 	
 	public int getToleranceClic()
 	{
-		return (int)(Math.round(150.0 / zoom));
+		return (int)(Math.round(toleranceSelectionIntersection / zoom));
 	}
 	
 	//modification plan peut etre null
