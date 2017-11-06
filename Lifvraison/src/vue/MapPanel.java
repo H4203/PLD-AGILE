@@ -311,9 +311,9 @@ public class MapPanel extends JPanel
 	{
 		point.setLocation(point.x, point.y - sideLength);
 		
-		zoom = zoom * Math.pow(2, steps);
+		zoom = zoom * Math.pow(2, -steps);
 		
-		if (steps < 0)
+		if (steps > 0)
 		{	
 			focus.setLocation((focus.x + point.x) / 2,
 					(focus.y + point.y) / 2);
