@@ -1,17 +1,19 @@
+<<<<<<< HEAD
 package controleur;
+
+import java.awt.Point;
 
 import javax.swing.JOptionPane;
 
 import algorithme.CalculateurTournee;
-import donnees.FeuilleDeRoute;
 import donnees.ParseurException;
 import donnees.XMLParseur;
 import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
-import vue.VueGraphique;
 import modeles.DemandeLivraison;
 import modeles.Livraison;
+
 
 public class Controleur 
 {	
@@ -33,20 +35,21 @@ public class Controleur
 	protected EtatModificationTournee etatModificationTournee  = new EtatModificationTournee();
 	protected EtatAjoutLivraison1 etatAjoutLivraison1 = new EtatAjoutLivraison1();
 	protected EtatAjoutLivraison2 etatAjoutLivraison2 = new EtatAjoutLivraison2();
-	protected EtatSupprimerLivraison1 etatSupprimerLivraison1 = new EtatSupprimerLivraison1();
-	protected EtatSupprimerLivraison2 etatSupprimerLivraison2 = new EtatSupprimerLivraison2();
+	protected EtatSupprimerLivraison etatSupprimerLivraison = new EtatSupprimerLivraison();
 	protected EtatModeValidation etatModeValidation = new EtatModeValidation();
-
+	
+	private ListeDeCommandes listeDeCommandes;
+	
 	
 	/**
 	 * 
 	 */
 	public Controleur() 
 	{
-		plan = new Plan();
-		demandeLivraison = new DemandeLivraison();
-		tournee = new Tournee(plan, demandeLivraison);
-		feuilleDeRoute = new FeuilleDeRoute ();
+		plan = null;
+		demandeLivraison = null;
+		tournee = null;
+		listeDeCommandes = new ListeDeCommandes();
 		
 		try 
 		{
@@ -78,9 +81,9 @@ public class Controleur
 	{
 		etatCourant.ajouterLivraison(this, fenetre);
 	}
-	public void suprimerLivraison( int positon )
+	public void supprimerLivraison( )
 	{
-		etatCourant.suprimerLivraison(this, fenetre, positon);
+		etatCourant.supprimerLivraison(this, fenetre);
 	}
 	public void intervertirLivraison(Livraison livraison1, Livraison livraison2)
 	{
@@ -105,8 +108,6 @@ public class Controleur
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		calculateurTournee = new CalculateurTournee(tournee);
-		
 		etatCourant.accueil(this, fenetre);
 	}
 	public void clicgauche ( int positonPrecedente, Livraison livraison)
@@ -114,6 +115,31 @@ public class Controleur
 		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
 	}
 	
+	// Start
+	public void clicGauche(Point point)
+	{
+		etatCourant.clicgauche(this, point, listeDeCommandes);
+	}
+	
+	public void mouseDrag(Point delta)
+	{
+		etatCourant.mouseDrag(this, delta);
+	}
+	
+	public void mouseWheel(int steps, Point point)
+	{
+		etatCourant.mouseWheel(this, steps, point);
+	}
+	// End
+	
+	public void undo ()
+	{
+		etatCourant.undo(listeDeCommandes, fenetre);
+	}
+	public void redo ()
+	{
+		etatCourant.redo(listeDeCommandes, fenetre);
+	}
 	public void validerTournee() {
 		etatCourant.validerTournee(this, fenetre);
 		
@@ -142,11 +168,14 @@ public class Controleur
 	public void validationTournee() {
 		etatCourant.validationTournee(this, fenetre);
 	}
-
+	
+	public int getToleranceClic()
+	{
+		return fenetre.getVueGraphique().getToleranceClic();
+	}
 	public void gererFeuilleDeRoute() {
 		etatCourant.gererFeuilleDeRoute(this, fenetre);
 	}
-	
 	/*
 	public void run()
 	{
@@ -302,3 +331,4 @@ public class Controleur
 		}
 	}*/
 }
+>>>>>>> Dev

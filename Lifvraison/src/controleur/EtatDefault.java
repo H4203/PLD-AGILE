@@ -1,5 +1,7 @@
 package controleur;
 
+import java.awt.Point;
+
 import modeles.Livraison;
 import vue.Fenetre;
 
@@ -28,7 +30,7 @@ public class EtatDefault implements Etat{
 	}
 
 	@Override
-	public void suprimerLivraison(Controleur controleur, Fenetre fenetre, int positon) {
+	public void supprimerLivraison(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -96,11 +98,44 @@ public class EtatDefault implements Etat{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes) {
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void mouseDrag(Controleur controleur, Point delta) {
+		// TODO Auto-generated method stub	
+	}
+	
+	@Override
+	public void mouseWheel(Controleur controleur, int steps, Point point) {
+		// TODO Auto-generated method stub	
+	}
+
+	@Override
+	public void undo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void redo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clicgauche(Controleur controleur, Point point) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	@Override
 	public void gererFeuilleDeRoute(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }

@@ -8,6 +8,7 @@ public abstract class TemplateTSP implements TSP {
 	private Integer[] meilleureSolution;
 	private int coutMeilleureSolution = 0;
 	private Boolean tempsLimiteAtteint;
+	private boolean solutionPossibleTrouvee;
 	
 	public Boolean getTempsLimiteAtteint(){
 		return tempsLimiteAtteint;
@@ -17,6 +18,7 @@ public abstract class TemplateTSP implements TSP {
 		tempsLimiteAtteint = false;
 		coutMeilleureSolution = Integer.MAX_VALUE;
 		meilleureSolution = new Integer[nbSommets];
+		solutionPossibleTrouvee = false;
 		ArrayList<Integer> nonVus = new ArrayList<Integer>();
 		for (int i=1; i<nbSommets; i++) nonVus.add(i);
 		ArrayList<Integer> vus = new ArrayList<Integer>(nbSommets);
@@ -78,7 +80,8 @@ public abstract class TemplateTSP implements TSP {
 		    	if (coutVus < coutMeilleureSolution){ // on a trouve une solution meilleure que meilleureSolution
 		    		vus.toArray(meilleureSolution);
 		    		coutMeilleureSolution = coutVus;
-		    		//System.out.println(coutMeilleureSolution);
+		    		solutionPossibleTrouvee = true;
+		    		//System.out.println("Nouvelle solution trouvee");
 		    	}
 	    } else if (coutVus + bound(sommetCrt, nonVus, cout, duree, tempsDebutPlage, tempsFinPlage, coutVus) < coutMeilleureSolution){
 	        Iterator<Integer> it = iterator(sommetCrt, nonVus, cout, duree);
@@ -99,5 +102,15 @@ public abstract class TemplateTSP implements TSP {
 	    		System.out.println(nonVus.size());
 	    }*/
 	}
+
+	public Integer[] getMeilleureSolution() {
+		return meilleureSolution;
+	}
+
+	public boolean isSolutionPossibleTrouvee() {
+		return solutionPossibleTrouvee;
+	}
+	 
+	 
 }
 

@@ -5,10 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 import controleur.Controleur;
-import donnees.ParseurException;
 
 public class EcouteurDeBoutons implements ActionListener
 {
@@ -90,7 +88,7 @@ public class EcouteurDeBoutons implements ActionListener
 			}
 			case "Modification Tournee" :
 			{
-				controleur.suivant();
+				controleur.modificationTournee();
 				break;
 			}
 			case "Valider Tournee" :
@@ -113,6 +111,18 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.precedent();
 				break;
 			}
+			case "+" :
+				controleur.ajouterLivraison();
+				break;
+			case "-" :
+				controleur.supprimerLivraison();
+				break;
+			case "undo":
+				controleur.undo();
+				break;
+			case "redo":
+				controleur.redo();
+				break;
 			case "Gerer Feuille De Route" :
 			{
 				controleur.gererFeuilleDeRoute();
@@ -122,3 +132,4 @@ public class EcouteurDeBoutons implements ActionListener
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();
 	}
 }	
+

@@ -8,23 +8,19 @@ import modeles.Tournee;
 public class CommandeSupprimerLivraison implements Commande {
 
 	private Livraison livraison;
-	private DemandeLivraison demandeLivraison;
-	private Tournee tournee;
 	private CalculateurTournee calculateurTournee;
 	private int position;
 	
-	CommandeSupprimerLivraison ( Livraison livraison, int position, DemandeLivraison demandeLivraison, Tournee tournee)
+	CommandeSupprimerLivraison ( Livraison livraison, CalculateurTournee calculateurTournee)
 	{
 		this.livraison = livraison;
-		this.demandeLivraison = demandeLivraison;
-		this.tournee = tournee;
-		this.position = position;
+		this.calculateurTournee = calculateurTournee;
 	}
 	
 	@Override
 	public void doCommande() {
 		// TODO Auto-generated method stub
-		calculateurTournee.supprimerLivraison(livraison);
+		position = calculateurTournee.supprimerLivraison(livraison) + 1;
 	}
 
 	@Override
