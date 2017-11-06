@@ -33,7 +33,7 @@ public class EtatCalculTournee extends EtatDefault{
 	public void calculerTournee ( Controleur controleur, Fenetre fenetre )
 	{
 		controleur.calculateurTournee.run();
-		fenetre.setModeCalculTournee();
+		//fenetre.setModeCalculTournee();
 	}
 	
 	@Override

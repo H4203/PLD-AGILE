@@ -32,11 +32,11 @@ public class EtatModeValidation extends EtatDefault{
 		controleur.setEtatCourant( controleur.etatChargementLivraison );
 		fenetre.setModeChargementDemandeLivraison ();
 	}
-	@Override
+	/*@Override
 	public void calculTournee(Controleur controleur, Fenetre fenetre) {
 		controleur.setEtatCourant( controleur.etatCalculTournee );
 		fenetre.setModeCalculTournee();	
-	}
+	}*/
 	@Override
 	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
 		controleur.setEtatCourant( controleur.etatModificationTournee );

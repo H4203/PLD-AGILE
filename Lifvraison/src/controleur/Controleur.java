@@ -64,11 +64,19 @@ public class Controleur
 	
 	public void chargerPlan( String chemin)
 	{
+		etatCourant = etatChargementPlan;
 		etatCourant.chargerPlan(this, fenetre, chemin);
 	}
 	public void chargerDemandeLivraison( String chemin)
 	{
+		etatCourant = etatChargementLivraison;
 		etatCourant.chargerDemandeLivraison(this, fenetre, chemin);
+		etatCourant.calculerTournee(this, fenetre);
+	}
+	public void modifierTournee()
+	{
+		etatCourant = etatModificationTournee;
+		etatCourant.modificationTournee(this, fenetre);
 	}
 	public void calculerTournee (  )
 	{
