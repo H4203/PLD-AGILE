@@ -30,11 +30,6 @@ public class EcouteurDeBoutons implements ActionListener
 	{			
 		switch(e.getActionCommand())
 		{
-			case "Accueil" :
-			{
-				controleur.accueil();
-				break;
-			}
 			case "Charger Plan" :
 			{
 				String chemin = "";
@@ -74,16 +69,6 @@ public class EcouteurDeBoutons implements ActionListener
 			case "Valider Tournee" :
 			{
 				controleur.validerTournee();
-				break;
-			}
-			case "Suivant" :
-			{	
-				controleur.suivant();
-				break;
-			}
-			case "Precedent" :
-			{	
-				controleur.precedent();
 				break;
 			}
 			case "Ajouter une Livraison" :

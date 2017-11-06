@@ -13,11 +13,6 @@ import vue.Fenetre;
 
 public class EtatChargementLivraison extends EtatDefault{
 	
-	@Override
-	public void accueil(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatAccueil );
-		fenetre.setModeAccueil ();
-	}
 	
 	@Override
 	public void chargerDemandeLivraison ( Controleur controleur, Fenetre fenetre, String chemin) {

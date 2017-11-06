@@ -40,29 +40,11 @@ public class EtatDefault implements Etat{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	@Override
-	public void suivant (Controleur controleur, Fenetre fenetre) {
-		
-	}
-	
-	@Override
-	public void precedent (Controleur controleur, Fenetre fenetre) {
-		
-	}
-
-	@Override
-	public void accueil(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void clicgauche(Controleur controleur, Fenetre fenetre, int positonPrecedente, Livraison livraison) {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public void validerTournee(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
@@ -72,12 +54,10 @@ public class EtatDefault implements Etat{
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes) {
 		// TODO Auto-generated method stub
 	}
-	
 	@Override
 	public void mouseDrag(Controleur controleur, Point delta) {
 		// TODO Auto-generated method stub	
 	}
-	
 	@Override
 	public void mouseWheel(Controleur controleur, int steps, Point point) {
 		// TODO Auto-generated method stub	

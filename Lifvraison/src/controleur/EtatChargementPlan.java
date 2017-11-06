@@ -9,14 +9,7 @@ import modeles.Plan;
 import vue.Fenetre;
 
 public class EtatChargementPlan extends EtatDefault{
-	
-	@Override
-	public void accueil(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatAccueil );
-		fenetre.setModeAccueil();
-		
-	}
-	
+
 	@Override
 	public void chargerPlan ( Controleur controleur, Fenetre fenetre, String chemin) {
 		Plan newPlan = new Plan ();
