@@ -10,7 +10,9 @@ public class Plan extends Observable
 {	
 	private HashMap<Long, Intersection> listeIntersection;
 	private HashMap<Integer, Troncon> listeTroncons;
+	
 	private Intersection selectedIntersection;
+	private Troncon selectedTroncon;
 
 	private int idTroncon = 1;
 	
@@ -115,30 +117,61 @@ public class Plan extends Observable
 	public String toString() {
 		return "Plan [listeIntersection=" + listeIntersection + ", \nlisteTroncons=" + listeTroncons + "]";
 	}
-	
+
 	public Intersection getSelectedIntersection()
 	{
 		return selectedIntersection;
 	}
 	
+	public Troncon getSelectedTroncon()
+	{
+		return selectedTroncon;
+	}
+	
 	public void getAtPoint(Point point, int tolerance)
 	{
-		for (Map.Entry<Long, Intersection> mapentry : listeIntersection.entrySet()) 
+		selectedIntersection = null;
+		selectedTroncon = null;
+		
+		for (Map.Entry<Long, Intersection> intersection : listeIntersection.entrySet()) 
 		{
-			//System.out.println(mapentry.getValue().getX());
-			//System.out.println(mapentry.getValue().getY());
-			
-			if (point.getX() < mapentry.getValue().getX() + tolerance && point.getX() > mapentry.getValue().getX() - tolerance
-					&& point.getY() < mapentry.getValue().getY() + tolerance && point.getY() > mapentry.getValue().getY() - tolerance) 
+			if (point.getX() < intersection.getValue().getX() + tolerance && point.getX() > intersection.getValue().getX() - tolerance
+					&& point.getY() < intersection.getValue().getY() + tolerance && point.getY() > intersection.getValue().getY() - tolerance) 
 			{
-				selectedIntersection = mapentry.getValue();
-				
-				//System.out.println(mapentry.getValue());
-				
-				setChanged();
-				notifyObservers();
+				selectedIntersection = intersection.getValue();
 			}
 		}
+		
+		if (selectedIntersection == null)
+		{
+			double departX, departY, arriveeX, arriveeY, minX, minY, maxX, maxY;
+			double a, b;
+			
+			for (Map.Entry<Integer, Troncon> troncon : listeTroncons.entrySet()) 
+			{
+				departX = troncon.getValue().getIntersectionDepart().getX();
+				departY = troncon.getValue().getIntersectionDepart().getY();
+				arriveeX = troncon.getValue().getIntersectionArrive().getX();
+				arriveeY = troncon.getValue().getIntersectionArrive().getY();
+				
+				minX = Math.min(departX, arriveeX);
+				maxX = Math.max(departX, arriveeX);
+				minY = Math.min(departY, arriveeY);
+				maxY = Math.max(departY, arriveeY);
+				
+				a = (arriveeX - departX) / (arriveeY - departY);				
+				b = departX - a * departY;
+			
+				if (a * point.getY() + b < point.getX() + tolerance * Math.pow(1.5, Math.abs(a)) && a * point.getY() + b > point.getX() - tolerance * Math.pow(1.5, Math.abs(a)) &&
+						point.getX() <= maxX + tolerance && point.getX() >= minX - tolerance && point.getY() <= maxY + tolerance && point.getY() >= minY - tolerance)
+				{
+					selectedTroncon = troncon.getValue();
+				}
+			}
+		}
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void resetBounds()
