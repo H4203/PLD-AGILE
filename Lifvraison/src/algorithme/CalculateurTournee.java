@@ -202,7 +202,14 @@ public class CalculateurTournee extends Thread{
 			}
 			else
 			{
-				nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(0).getDepart().getId()));
+				if ( laTournee.getLivraisonsOrdonnees().size() != 0)
+				{
+					nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(0).getDepart().getId()));
+				}
+				else
+				{
+					nouvelleTournee.add(d.getItineraire(this.laTournee.getDemandeLivraison().getEntrepot().getId()));
+				}
 			}
 			for(int i = index + 1; i < lesItineraires.size(); i++) {
 				nouveauxDijkstra.add(this.lesDijkstra.get(i));
@@ -212,7 +219,7 @@ public class CalculateurTournee extends Thread{
 			
 			this.lesDijkstra = nouveauxDijkstra;
 			this.lesItineraires = nouvelleTournee;
-			// on actualise demande liste livraison ordonn� et on ajoute la livraison � la demande de livraison
+			// on actualise demande liste livraison ordonne et on ajoute la livraison et la demande de livraison
 			this.laTournee.ajouterLivraison(livraison, index);
 			this.laTournee.getDemandeLivraison().ajouterLivraison(livraison);
 			this.laTournee.setListeItineraires(nouvelleTournee);

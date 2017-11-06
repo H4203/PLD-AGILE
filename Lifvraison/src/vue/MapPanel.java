@@ -132,31 +132,34 @@ public class MapPanel extends JPanel
         		int i = 0;
         		for (Itineraire itineraire : tournee.getListeItineraires())
     	        {
-    	        	for (Troncon troncon : itineraire.getTroncons())
+    	        	if ( itineraire != null)
     	        	{
-    	        		g2.drawLine((int)Math.round((troncon.getIntersectionDepart().getY() + focus.x / coefY - plan.getYMin()) * coefY),
-	        				sideLength - (int)Math.round((troncon.getIntersectionDepart().getX() - focus.y / coefX - plan.getXMin()) * coefX),
-	            			(int)Math.round((troncon.getIntersectionArrive().getY() + focus.x / coefY - plan.getYMin()) * coefY),
-	            			sideLength - (int)Math.round((troncon.getIntersectionArrive().getX() - focus.y / coefX - plan.getXMin()) * coefX));
+	        			for (Troncon troncon : itineraire.getTroncons())
+	    	        	{
+	    	        		g2.drawLine((int)Math.round((troncon.getIntersectionDepart().getY() + focus.x / coefY - plan.getYMin()) * coefY),
+		        				sideLength - (int)Math.round((troncon.getIntersectionDepart().getX() - focus.y / coefX - plan.getXMin()) * coefX),
+		            			(int)Math.round((troncon.getIntersectionArrive().getY() + focus.x / coefY - plan.getYMin()) * coefY),
+		            			sideLength - (int)Math.round((troncon.getIntersectionArrive().getX() - focus.y / coefX - plan.getXMin()) * coefX));
+	    	        	}
+	    	        	
+	    	        	g2.setFont(new Font("default", Font.BOLD, 16));
+	    	        	g2.setColor(Color.RED);
+	    	        	i++;
+	    	        	if ( i < tournee.getListeItineraires().size())
+	    	        	{
+			        		/* horaires */
+							/*g2.drawString(tournee.getListeHoraire().get(i).getHeureDebut().toString()
+									+ " - " +
+									tournee.getListeHoraire().get(i).getHeureFin().toString(),
+									(int)Math.round((itineraire.getArrivee().getY() - plan.getYMin()) * coefY),
+			            			(int)(screenSize.height-bord) - (int)Math.round((itineraire.getArrivee().getX() - plan.getXMin()) * coefX));
+			            			*/
+	    	        		g2.drawString(" "+i,
+		        				(int)Math.round((itineraire.getArrivee().getY() + focus.x / coefY - plan.getYMin()) * coefY),
+		        				sideLength - (int)Math.round((itineraire.getArrivee().getX() - focus.y / coefX - plan.getXMin()) * coefX));
+	    	        	}
+	    	        	g2.setColor(Color.BLUE);
     	        	}
-    	        	
-    	        	g2.setFont(new Font("default", Font.BOLD, 16));
-    	        	g2.setColor(Color.RED);
-    	        	i++;
-    	        	if ( i < tournee.getListeItineraires().size())
-    	        	{
-		        		/* horaires */
-						/*g2.drawString(tournee.getListeHoraire().get(i).getHeureDebut().toString()
-								+ " - " +
-								tournee.getListeHoraire().get(i).getHeureFin().toString(),
-								(int)Math.round((itineraire.getArrivee().getY() - plan.getYMin()) * coefY),
-		            			(int)(screenSize.height-bord) - (int)Math.round((itineraire.getArrivee().getX() - plan.getXMin()) * coefX));
-		            			*/
-    	        		g2.drawString(" "+i,
-	        				(int)Math.round((itineraire.getArrivee().getY() + focus.x / coefY - plan.getYMin()) * coefY),
-	        				sideLength - (int)Math.round((itineraire.getArrivee().getX() - focus.y / coefX - plan.getXMin()) * coefX));
-    	        	}
-    	        	g2.setColor(Color.BLUE);
     	        }
         	}
         	
