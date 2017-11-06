@@ -67,6 +67,8 @@ public class Fenetre extends JFrame
 	// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
 	private JButton buttonValidationTournee;
 	
+	private JButton buttonFeuilleDeRoute;
+	
 	//??
 	// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
 	private JList<String> listTexteLivraison;
@@ -138,6 +140,7 @@ public class Fenetre extends JFrame
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(2, 0, 20, 20));
 		rightPanel.add(buttonsPanel, BorderLayout.SOUTH);
+	
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel = new JPanel();
@@ -160,6 +163,8 @@ public class Fenetre extends JFrame
 		buttonSuivant = new JButton("Suivant");
 		buttonSuivant.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonSuivant);
+	
+		
 		
 		// 1.3 mainPanel/ongletsPanel
 		JPanel ongletsPanel = new JPanel();
@@ -202,8 +207,7 @@ public class Fenetre extends JFrame
 		buttonValidationTournee.setEnabled(false);
 		ongletsPanel.add(buttonValidationTournee);
 		
-		
-		
+	
 		/*
 		setUndecorated(true);
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -370,7 +374,7 @@ public class Fenetre extends JFrame
 			}
 		}
 
-		texteListe = texteListe + "Retour � l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
+		texteListe = texteListe + "Retour 锟� l'entrepot - " + tournee.getListeHoraire().get(i).getHeureFin().toString() + "\n";
 		labelListeLivraison.setText(texteListe);
 
 		i = i + 1;
@@ -446,12 +450,20 @@ public class Fenetre extends JFrame
 		// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
 		buttonValidationTournee.setBackground(new Color(200, 200, 255));
 
+		
+		
+		buttonFeuilleDeRoute = new JButton("Gerer Feuille De Route");
+		buttonFeuilleDeRoute.addActionListener(ecouteurDeBoutons);
+		topButtonsPanel.add(buttonFeuilleDeRoute);	
+		buttonFeuilleDeRoute.setEnabled(true);
+		
 		repaint();
 		setVisible(true);
 	}
 	
 	public void resetOngletsPanelButtons()
 	{
+				
 		// 1.3.1 mainPanel/ongletsPanel/buttonAccueil
 		buttonAccueil.setEnabled(false);
 		buttonAccueil.setBackground(null);
@@ -470,5 +482,8 @@ public class Fenetre extends JFrame
 		// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
 		buttonValidationTournee.setEnabled(false);
 		buttonValidationTournee.setBackground(null);
+		
+			
+		
 	}
 }

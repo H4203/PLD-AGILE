@@ -21,5 +21,6 @@ public interface Etat {
 	public void calculTournee (Controleur controleur, Fenetre fenetre);
 	public void modificationTournee (Controleur controleur, Fenetre fenetre);
 	public void validationTournee (Controleur controleur, Fenetre fenetre);
+	public void gererFeuilleDeRoute(Controleur controleur, Fenetre fenetre);
 
 }

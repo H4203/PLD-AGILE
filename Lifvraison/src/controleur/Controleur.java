@@ -3,6 +3,7 @@ package controleur;
 import javax.swing.JOptionPane;
 
 import algorithme.CalculateurTournee;
+import donnees.FeuilleDeRoute;
 import donnees.ParseurException;
 import donnees.XMLParseur;
 import modeles.Plan;
@@ -22,6 +23,7 @@ public class Controleur
 	protected DemandeLivraison demandeLivraison;
 	protected String etat;
 	protected Etat etatCourant;
+	protected FeuilleDeRoute feuilleDeRoute;
 	
 	// differents etats possible
 	protected EtatAccueil etatAccueil = new EtatAccueil();
@@ -34,6 +36,7 @@ public class Controleur
 	protected EtatSupprimerLivraison1 etatSupprimerLivraison1 = new EtatSupprimerLivraison1();
 	protected EtatSupprimerLivraison2 etatSupprimerLivraison2 = new EtatSupprimerLivraison2();
 	protected EtatModeValidation etatModeValidation = new EtatModeValidation();
+
 	
 	/**
 	 * 
@@ -43,6 +46,7 @@ public class Controleur
 		plan = new Plan();
 		demandeLivraison = new DemandeLivraison();
 		tournee = new Tournee(plan, demandeLivraison);
+		feuilleDeRoute = new FeuilleDeRoute ();
 		
 		try 
 		{
@@ -137,6 +141,10 @@ public class Controleur
 	
 	public void validationTournee() {
 		etatCourant.validationTournee(this, fenetre);
+	}
+
+	public void gererFeuilleDeRoute() {
+		etatCourant.gererFeuilleDeRoute(this, fenetre);
 	}
 	
 	/*

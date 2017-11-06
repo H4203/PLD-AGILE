@@ -113,6 +113,10 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.precedent();
 				break;
 			}
+			case "Gerer Feuille De Route" :
+			{
+				controleur.gererFeuilleDeRoute();
+			}
 		}
 		
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();

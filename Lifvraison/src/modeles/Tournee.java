@@ -154,6 +154,7 @@ public class Tournee extends Observable
 		livraisonsOrdonnees.remove(position);
 		updateHoraire();
 	}
+	
 	public String toString() {
 		String str="";
 		int indexLivraison = 0;
@@ -161,20 +162,20 @@ public class Tournee extends Observable
 		for (Itineraire itineraire : listeItineraires ) {
 			
 			if (itineraire == listeItineraires.get(0)) {
-				str = str + "L'heure depart depuis l'entrepot : " + listeHoraire.get(indexLivraison).getHeureFin() + '\n' + '\n';
+				str = str + "L'heure depart depuis l'entrepot : " + listeHoraire.get(indexLivraison).getHeureFin() + "\r\n" + "\r\n";
 			}
 			else {
-				str = str + "L'adresse de livraison n¡ã"+ indexLivraison + ": " + itineraire.getTroncons().get(0).getNomDeRue() + '\n';
-				str = str + "L'heure depart de livraison n¡ã"+ indexLivraison + ": " + listeHoraire.get(indexLivraison).getHeureFin() + '\n' + '\n';
+				str = str + "L'adresse de livraison n¡ã"+ indexLivraison + ": " + itineraire.getTroncons().get(0).getNomDeRue() + "\r\n";
+				str = str + "L'heure depart de livraison n¡ã"+ indexLivraison + ": " + listeHoraire.get(indexLivraison).getHeureFin() + "\r\n" + "\r\n";
 				
 			}
 			str = str + itineraire ; 
 			indexLivraison = indexLivraison + 1 ;
 			if (indexLivraison < livraisonsOrdonnees.size()) {
-				str = str + '\n' + "L'heure arivee de livraison n¡ã"+ indexLivraison + ": " + listeHoraire.get(indexLivraison).getHeureDebut() + '\n';
+				str = str + "\r\n" + "L'heure arivee de livraison n¡ã"+ indexLivraison + ": " + listeHoraire.get(indexLivraison).getHeureDebut() + "\r\n";
 			}
 			else{
-				str = str + '\n' + "L'heure de retour de l'entrepot: " + listeHoraire.get(indexLivraison).getHeureDebut() + '\n';
+				str = str + "\r\n" + "L'heure de retour de l'entrepot: " + listeHoraire.get(indexLivraison).getHeureDebut() + "\r\n";
 			}
 		}
 

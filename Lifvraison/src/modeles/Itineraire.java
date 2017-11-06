@@ -135,7 +135,7 @@ public class Itineraire {
 					ruePrecedente = "Rue sans nom";
 				}
 				
-				str = str +  (int)longueurRue + "m dans "+ ruePrecedente +"\n";
+				str = str +  (int)longueurRue + "m dans "+ ruePrecedente +"\r\n";
 				if (Math.PI/3<=B && B<=2*Math.PI/3) {
 					str = str + "Continuez ";
 				}
@@ -152,7 +152,7 @@ public class Itineraire {
 		}
 		
 
-		str = str +  (int)longueurRue + "m dans "+ ruePrecedente +"\n";
+		str = str +  (int)longueurRue + "m dans "+ ruePrecedente +"\r\n";
 
 		return str;
 	}
