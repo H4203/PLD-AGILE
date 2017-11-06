@@ -22,7 +22,7 @@ import modeles.PlageHoraire;
 
 public class MapPanel extends JPanel
 {
-	private final double toleranceSelectionIntersection = 150.0;
+	private final double toleranceSelectionIntersection = 20.0;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -194,7 +194,7 @@ public class MapPanel extends JPanel
 					(int)Math.round((demandeLivraison.getEntrepot().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 5, 
 					sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 5);
 			}
-			else if (demandeLivraison != null && demandeLivraison.getHeureDepart() != null 
+			else if (demandeLivraison != null && demandeLivraison.getEntrepot() != null && demandeLivraison.getHeureDepart() != null 
 					&& demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
 			{
 				g2.drawString(demandeLivraison.getHeureDepart().toString(),
@@ -311,9 +311,9 @@ public class MapPanel extends JPanel
 	{
 		point.setLocation(point.x, point.y - sideLength);
 		
-		zoom = zoom * Math.pow(2, steps);
+		zoom = zoom * Math.pow(2, -steps);
 		
-		if (steps < 0)
+		if (steps > 0)
 		{	
 			focus.setLocation((focus.x + point.x) / 2,
 					(focus.y + point.y) / 2);
@@ -331,7 +331,19 @@ public class MapPanel extends JPanel
 	
 	public int getToleranceClic()
 	{
-		return (int)(Math.round(toleranceSelectionIntersection / zoom));
+		int tolerance = (int)(Math.round(toleranceSelectionIntersection / (coefX + coefY))); 
+		
+		if (tolerance < 10)
+		{
+			return 10;
+		}
+		
+		if (tolerance > 800)
+		{
+			return 800;
+		}
+		
+		return tolerance;
 	}
 	
 	//modification plan peut etre null

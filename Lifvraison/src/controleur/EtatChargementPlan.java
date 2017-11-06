@@ -60,4 +60,10 @@ public class EtatChargementPlan extends EtatDefault{
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
+	
+	@Override
+	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
+	{
+		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
+	}
 }
