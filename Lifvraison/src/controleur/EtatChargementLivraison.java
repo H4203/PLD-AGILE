@@ -28,6 +28,7 @@ public class EtatChargementLivraison extends EtatDefault{
 		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 		controleur.calculateurTournee.run();
 		fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
+		fenetre.chargerTournee(controleur.tournee);
 	}
 	
 	@Override
