@@ -19,13 +19,11 @@ public class CommandeSupprimerLivraison implements Commande {
 	
 	@Override
 	public void doCommande() {
-		// TODO Auto-generated method stub
-		position = calculateurTournee.supprimerLivraison(livraison) + 1;
+		position = calculateurTournee.supprimerLivraison(livraison)	;
 	}
 
 	@Override
 	public void undoCommande() {
-		// TODO Auto-generated method stub
 		calculateurTournee.ajouterLivraison(position, livraison);
 	}
 	
