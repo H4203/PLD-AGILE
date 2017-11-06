@@ -327,6 +327,11 @@ public class MapPanel extends JPanel
 		repaint();
 	}
 	
+	public int getToleranceClic()
+	{
+		return (int)(Math.round(150.0 / zoom));
+	}
+	
 	//modification plan peut etre null
 	public void setPlan ( Plan plan)
 	{

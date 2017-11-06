@@ -166,6 +166,11 @@ public class Controleur
 		etatCourant.validationTournee(this, fenetre);
 	}
 	
+	public int getToleranceClic()
+	{
+		return fenetre.getVueGraphique().getToleranceClic();
+	}
+	
 	/*
 	public void run()
 	{

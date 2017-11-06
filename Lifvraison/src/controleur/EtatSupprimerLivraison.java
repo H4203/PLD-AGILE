@@ -12,7 +12,7 @@ public class EtatSupprimerLivraison extends EtatDefault{
 	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		
-		controleur.plan.getAtPoint(point);
+		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection pointAsupprimer = controleur.plan.getSelectedIntersection();
 		
 		// cas livraison
