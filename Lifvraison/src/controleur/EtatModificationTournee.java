@@ -1,70 +1,77 @@
 package controleur;
 
 import java.awt.Point;
+
+import javax.swing.JOptionPane;
+
+import algorithme.CalculateurTournee;
+import donnees.ParseurException;
+import modeles.DemandeLivraison;
+import modeles.Plan;
+import modeles.Tournee;
 import vue.Fenetre;
 
 public class EtatModificationTournee extends EtatDefault{
-	@Override
-	public void suivant (Controleur controleur, Fenetre fenetre) {
+
 	
-		controleur.setEtatCourant( controleur.etatModeValidation );
-		fenetre.setModeValidationTournee();
+	@Override
+	public void chargerPlan ( Controleur controleur, Fenetre fenetre, String chemin) {
+		Plan newPlan = new Plan ();
+		try{
+			controleur.parseur.chargerPlan(newPlan, chemin);
+		} catch (ParseurException e) {
+			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
+		}
+		// on attribut le nouveau plan
+		controleur.plan = newPlan;
+		controleur.demandeLivraison = null;
+		controleur.tournee = null;
+		controleur.setEtatCourant( controleur.etatChargementLivraison);
+		fenetre.chargerPlan(controleur.plan);
 	}
 	
 	@Override
-	public void precedent (Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatCalculTournee );
-		fenetre.setModeCalculTournee();
+	public void chargerDemandeLivraison ( Controleur controleur, Fenetre fenetre, String chemin) {
+		DemandeLivraison newDemandeLivraison = new DemandeLivraison ();
+		try{
+			controleur.parseur.chargerLivraison(newDemandeLivraison, chemin, controleur.plan.getListeIntersection());
+		} catch (ParseurException e) {
+			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
+		}
+		controleur.demandeLivraison = newDemandeLivraison;
+		controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
+		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
+		controleur.calculateurTournee.run();
+		controleur.setEtatCourant(controleur.etatModificationTournee);
+		fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
+		fenetre.chargerTournee(controleur.tournee);
 	}
 	
 	@Override
-	public void accueil(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatAccueil );
-		fenetre.setModeAccueil ();
+	public void calculerTournee ( Controleur controleur, Fenetre fenetre )
+	{
+		controleur.calculateurTournee.run();
+		controleur.setEtatCourant( controleur.etatModificationTournee);
 	}
 	
-	@Override
-	public void validerTournee ( Controleur controleur, Fenetre fenetre ) {
-		controleur.setEtatCourant( controleur.etatModeValidation );
-		fenetre.setModeValidationTournee();
-	}
 	
 	@Override
 	public void ajouterLivraison ( Controleur controleur, Fenetre fenetre)
 	{
 		controleur.setEtatCourant( controleur.etatAjoutLivraison1);
+		fenetre.setModeModificationTournee("AjoutLivraison");
 	}
 	@Override
 	public void supprimerLivraison ( Controleur controleur, Fenetre fenetre)
 	{
 		controleur.setEtatCourant( controleur.etatSupprimerLivraison);
+		fenetre.setModeModificationTournee("SuppressionLivraison");
 	}
 	
 	@Override
-	public void chargementPlan(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatChargementPlan );
-		fenetre.setModeChargementPlan ();
-	}
-	@Override
-	public void chargementDemandeLivraison(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatChargementLivraison );
-		fenetre.setModeChargementDemandeLivraison ();
-	}
-	@Override
-	public void calculTournee(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatCalculTournee );
-		fenetre.setModeCalculTournee();	
-	}
-	@Override
-	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatModificationTournee );
-		fenetre.setModeModificationTournee();
-		
-	}
-	@Override
-	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
-		controleur.plan.getAtPoint(point);
+		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
 	}
 
 	@Override
@@ -80,15 +87,21 @@ public class EtatModificationTournee extends EtatDefault{
 	}
 	
 	@Override
-	public void undo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
 		listeDeCommandes.undo();
 		fenetre.setModeModificationTournee();
 	}
 
 	@Override
-	public void redo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+	public void redo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
 		listeDeCommandes.redo();
 		fenetre.setModeModificationTournee();
+	}
+	
+	@Override
+	public void validerTournee(Controleur controleur, Fenetre fenetre)
+	{
+		fenetre.setModeValidationTournee();
 	}
 	
 }

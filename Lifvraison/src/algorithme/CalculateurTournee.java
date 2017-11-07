@@ -120,9 +120,6 @@ public class CalculateurTournee extends Thread{
 		//Affichage du temps mis
 		System.out.println(System.currentTimeMillis() - temps);
 		
-		//On ajoute l'entrepot en premier dans la liste de livraisons ordonnees NOOOOOOOOOOOOON !!!!!!!!!!!!!!!!
-		/*int sommetCourant = 0;
-		livraisonsOrdonnees.add(livraisons.get(sommetCourant));*/
 		int sommetCourant = 0;
 		//On demande au tsp les sommets dans l'ordre pour ajouter les livraisons
 		for(int i = 1; i < intersections.size(); i++) {
@@ -209,7 +206,22 @@ public class CalculateurTournee extends Thread{
 				nouvelleTournee.add(this.lesItineraires.get(i));
 				nouvellesLivraisons.add(laTournee.getLivraisonsOrdonnees().get(i-1));
 			}
-			
+			double longueur = 0;
+			for(int i = 0; i < nouvellesLivraisons.size(); i++) {
+				double aAjouter = nouvelleTournee.get(i).getLongueur()*3.6/15;
+				if(nouvellesLivraisons.get(i).getPlagehoraire() == null) {
+					longueur = longueur + aAjouter + nouvellesLivraisons.get(i).getDureeDechargement();
+				} else {
+					longueur = longueur + aAjouter + nouvellesLivraisons.get(i).getDureeDechargement();
+					LocalTime lt = laTournee.getDemandeLivraison().getHeureDepart().plusSeconds((long) longueur);
+					if(lt.isAfter(nouvellesLivraisons.get(i).getPlagehoraire().getHeureFin())) {
+						return this.laTournee;
+					}
+					if(laTournee.getDemandeLivraison().getHeureDepart().plusSeconds( (long) (longueur + aAjouter)).isBefore((nouvellesLivraisons.get(i).getPlagehoraire().getHeureDebut()))) {
+						longueur = (int) ChronoUnit.SECONDS.between(lt, nouvellesLivraisons.get(i).getPlagehoraire().getHeureDebut()) + nouvellesLivraisons.get(i).getDureeDechargement();
+					}
+				}
+			}
 			this.lesDijkstra = nouveauxDijkstra;
 			this.lesItineraires = nouvelleTournee;
 			// on actualise demande liste livraison ordonn� et on ajoute la livraison � la demande de livraison
@@ -233,7 +245,7 @@ public class CalculateurTournee extends Thread{
 	}
 
 	public Tournee echangerDeuxLivraison(int index1, int index2) {
-		if( (index1 < 1) || (index2 < 1) || (index1 >= this.laTournee.getLivraisonsOrdonnees().size()) || (index2 >=this.laTournee.getLivraisonsOrdonnees().size()) ) {
+		if( (index1 < 0) || (index2 < 0) || (index1 >= this.laTournee.getLivraisonsOrdonnees().size()) || (index2 >=this.laTournee.getLivraisonsOrdonnees().size()) ) {
 			return this.laTournee;
 		}
 		

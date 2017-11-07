@@ -154,4 +154,32 @@ public class Tournee extends Observable
 		//updateHoraire(); inutile ? on doit aussi modifier les itineraires si on veut appeler update horaire 
 	}
 	
+	public String toString() {
+		String str="";
+		int indexLivraison = 0;
+	
+		for (Itineraire itineraire : listeItineraires ) {
+			
+			if (itineraire == listeItineraires.get(0)) {
+				str = str + "L'heure depart depuis l'entrepot : " + listeHoraire.get(indexLivraison).getHeureFin() + "\r\n" + "\r\n";
+			}
+			else {
+				str = str + "L'adresse de livraison n¡ã"+ indexLivraison + ": " + itineraire.getTroncons().get(0).getNomDeRue() + "\r\n";
+				str = str + "L'heure depart de livraison n¡ã"+ indexLivraison + ": " + listeHoraire.get(indexLivraison).getHeureFin() + "\r\n" + "\r\n";
+				
+			}
+			str = str + itineraire ; 
+			indexLivraison = indexLivraison + 1 ;
+			if (indexLivraison < livraisonsOrdonnees.size()) {
+				str = str + "\r\n" + "L'heure arivee de livraison n¡ã"+ indexLivraison + ": " + listeHoraire.get(indexLivraison).getHeureDebut() + "\r\n";
+			}
+			else{
+				str = str + "\r\n" + "L'heure de retour de l'entrepot: " + listeHoraire.get(indexLivraison).getHeureDebut() + "\r\n";
+			}
+		}
+
+		
+		return str;
+	}
+	
 }

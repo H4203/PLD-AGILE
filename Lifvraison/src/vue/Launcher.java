@@ -8,7 +8,7 @@ public class Launcher
 	{
 		Controleur controleur = new Controleur ();
 		
-		controleur.accueil();
+		controleur.launch();
 	}
 }
 

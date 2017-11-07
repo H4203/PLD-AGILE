@@ -3,6 +3,8 @@ package controleur;
 import java.awt.Point;
 import java.util.List;
 
+import vue.Fenetre;
+
 import modeles.Intersection;
 import modeles.Livraison;
 
@@ -11,10 +13,10 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 	protected Intersection pointDeLivraison;
 
 	@Override
-	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		
-		controleur.plan.getAtPoint(point);
+		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection pointPrecedant = controleur.plan.getSelectedIntersection();
 		
 		// cas entrepot
@@ -41,5 +43,24 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 				break;
 			}
 		}
+	}
+	
+	@Override
+	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre)
+	{
+		controleur.setEtatCourant(controleur.etatModificationTournee);
+		fenetre.setModeModificationTournee();
+	}
+	
+	@Override
+	public void mouseDrag(Controleur controleur, Point delta)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
+	}
+	
+	@Override
+	public void mouseWheel(Controleur controleur, int steps, Point point)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
 }
