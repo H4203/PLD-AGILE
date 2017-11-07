@@ -96,6 +96,16 @@ public class VueGraphique extends JPanel implements Observer
 	{
 		mapPanel.setAffichagePlan(true);
 		mapPanel.setAffichageDemandeLivraison(true);
+		mapPanel.setAffichageTournee(false);
+		
+		mapPanel.repaint();
+		repaint();
+	}
+	
+	public void setModeModificationTournee()
+	{
+		mapPanel.setAffichagePlan(true);
+		mapPanel.setAffichageDemandeLivraison(true);
 		mapPanel.setAffichageTournee(true);
 		
 		mapPanel.repaint();
