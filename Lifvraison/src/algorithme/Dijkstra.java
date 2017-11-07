@@ -37,7 +37,7 @@ public class Dijkstra {
 	 * @param lePlan
 	 * @param pointDepart
 	 */
-	Dijkstra(Plan lePlan, Intersection pointDepart) {
+	public Dijkstra(Plan lePlan, Intersection pointDepart) {
 		this.lePlan = lePlan;
 		this.ptDepart = pointDepart;
 		
@@ -149,7 +149,7 @@ public class Dijkstra {
 
 	}
 
-	private void relacher(Intersection si, Intersection sj) {
+	public void relacher(Intersection si, Intersection sj) {
 
 		List<Troncon> lesTroncons = si.getTronconsSortants();
 		Troncon leTroncon = null;

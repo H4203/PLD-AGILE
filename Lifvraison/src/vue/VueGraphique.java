@@ -110,8 +110,8 @@ public class VueGraphique extends JPanel implements Observer
 	// modification plan peut etre null
 	public void nouveauPlan ( Plan plan)
 	{
-		mapPanel.setPlan(plan);
 		plan.addObserver(this);
+		mapPanel.setPlan(plan);
 	}
 	public void nouvelleDemandeLivraison ( DemandeLivraison demandeLivraison)
 	{
@@ -122,5 +122,9 @@ public class VueGraphique extends JPanel implements Observer
 	{
 		mapPanel.setTournee(tournee);
 		tournee.addObserver(this);
+	}
+	public int getToleranceClic()
+	{
+		return mapPanel.getToleranceClic();
 	}
 }

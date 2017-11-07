@@ -5,10 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 import controleur.Controleur;
-import donnees.ParseurException;
 
 public class EcouteurDeBoutons implements ActionListener
 {
@@ -32,11 +30,6 @@ public class EcouteurDeBoutons implements ActionListener
 	{			
 		switch(e.getActionCommand())
 		{
-			case "Accueil" :
-			{
-				controleur.accueil();
-				break;
-			}
 			case "Charger Plan" :
 			{
 				String chemin = "";
@@ -48,11 +41,6 @@ public class EcouteurDeBoutons implements ActionListener
 			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
 			       controleur.chargerPlan(chemin);
 			    }
-				break;
-			}
-			case "Chargement Plan" :
-			{
-				controleur.chargementPlan();
 				break;
 			}
 			case "Charger Demande Livraison" :
@@ -68,29 +56,14 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.chargerDemandeLivraison(chemin);
 				break;
 			}
-			case "Chargement Demande Livraison" :
-			{
-				controleur.chargementDemandeLivraison();
-				break;
-			}
 			case "Calculer Tournee" :
 			{
 				controleur.calculerTournee();
 				break;
 			}
-			case "Calcul Tournee" :
-			{
-				controleur.calculTournee();
-				break;
-			}
 			case "Modifier Tournee" :
 			{
-				controleur.suivant();
-				break;
-			}
-			case "Modification Tournee" :
-			{
-				controleur.modificationTournee();
+				controleur.modifierTournee();
 				break;
 			}
 			case "Valider Tournee" :
@@ -98,41 +71,25 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.validerTournee();
 				break;
 			}
-			case "Validation Tournee" :
-			{
-				controleur.validationTournee();
-				break;
-			}
-			case "Suivant" :
-			{	
-				controleur.suivant();
-				break;
-			}
-			case "Supprimer" :
-			{
-				controleur.supprimerLivraison();
-				controleur.modificationDansLaListe();
-				break;
-			}
-			case "Precedent" :
-			{	
-				controleur.precedent();
-				break;
-			}
-			case "+" :
+			case "Ajouter une Livraison" :
 				controleur.ajouterLivraison();
 				break;
-			case "-" :
+			case "Retirer une Livraison" :
 				controleur.supprimerLivraison();
 				break;
-			case "undo":
+			case "Annuler":
 				controleur.undo();
 				break;
-			case "redo":
+			case "Retablir":
 				controleur.redo();
 				break;
+			case "Gerer Feuille De Route" :
+			{
+				controleur.gererFeuilleDeRoute();
+			}
 		}
 		
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();
 	}
 }	
+

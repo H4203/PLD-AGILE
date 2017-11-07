@@ -2,6 +2,7 @@ package controleur;
 
 import java.awt.Point;
 import java.util.List;
+import vue.Fenetre;
 
 import modeles.Intersection;
 import modeles.Livraison;
@@ -9,10 +10,9 @@ import modeles.Livraison;
 public class EtatSupprimerLivraison extends EtatDefault{
 
 	@Override
-	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
-		
-		controleur.plan.getAtPoint(point);
+		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection pointAsupprimer = controleur.plan.getSelectedIntersection();
 		
 		// cas livraison
@@ -42,6 +42,24 @@ public class EtatSupprimerLivraison extends EtatDefault{
 		listeDeCommandes.ajoute( new CommandeSupprimerLivraison ( livraison, controleur.calculateurTournee ));
 		controleur.setEtatCourant(controleur.etatModificationTournee);
 		controleur.fenetre.setModeModificationTournee();
+	}
 		
+	@Override
+	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre)
+	{
+		controleur.setEtatCourant(controleur.etatModificationTournee);
+		fenetre.setModeModificationTournee();
+	}
+	
+	@Override
+	public void mouseDrag(Controleur controleur, Point delta)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
+	}
+	
+	@Override
+	public void mouseWheel(Controleur controleur, int steps, Point point)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
 }
