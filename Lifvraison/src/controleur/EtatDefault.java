@@ -40,93 +40,49 @@ public class EtatDefault implements Etat{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	@Override
-	public void suivant (Controleur controleur, Fenetre fenetre) {
-		
-	}
-	
-	@Override
-	public void precedent (Controleur controleur, Fenetre fenetre) {
-		
-	}
-
-	@Override
-	public void accueil(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void clicgauche(Controleur controleur, Fenetre fenetre, int positonPrecedente, Livraison livraison) {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public void validerTournee(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
-	public void chargementPlan(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void chargementDemandeLivraison(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void calculTournee(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void validationTournee(Controleur controleur, Fenetre fenetre) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes) {
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes) {
 		// TODO Auto-generated method stub
 	}
-	
 	@Override
 	public void mouseDrag(Controleur controleur, Point delta) {
 		// TODO Auto-generated method stub	
 	}
-	
 	@Override
 	public void mouseWheel(Controleur controleur, int steps, Point point) {
 		// TODO Auto-generated method stub	
 	}
 
 	@Override
-	public void undo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void redo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+	public void redo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void clicgauche(Controleur controleur, Point point) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}

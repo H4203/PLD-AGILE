@@ -9,34 +9,7 @@ import modeles.Plan;
 import vue.Fenetre;
 
 public class EtatChargementPlan extends EtatDefault{
-	
-	@Override
-	public void suivant (Controleur controleur, Fenetre fenetre) {
-	
-		controleur.setEtatCourant( controleur.etatChargementLivraison );
-		if ( controleur.demandeLivraison == null)
-		{
-			fenetre.setModeChargementDemandeLivraison();
-		}
-		else
-		{
-			fenetre.setModeChargementDemandeLivraison();
-		}
-	}
-	
-	@Override
-	public void precedent (Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatAccueil );
-		fenetre.setModeAccueil();
-	}
-	
-	@Override
-	public void accueil(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatAccueil );
-		fenetre.setModeAccueil();
-		
-	}
-	
+
 	@Override
 	public void chargerPlan ( Controleur controleur, Fenetre fenetre, String chemin) {
 		Plan newPlan = new Plan ();
@@ -49,20 +22,23 @@ public class EtatChargementPlan extends EtatDefault{
 		controleur.plan = newPlan;
 		controleur.demandeLivraison = null;
 		controleur.tournee = null;
+		controleur.setEtatCourant( controleur.etatChargementLivraison);
 		fenetre.chargerPlan(controleur.plan);
 	}
 	
+	@Override
 	public void mouseDrag(Controleur controleur, Point delta)
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
 	}
+	@Override
 	public void mouseWheel(Controleur controleur, int steps, Point point)
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
 	
 	@Override
-	public void clicgauche(Controleur controleur, Point point, ListeDeCommandes listeDeCommandes)
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
 	}
