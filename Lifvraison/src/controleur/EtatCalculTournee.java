@@ -37,8 +37,10 @@ public class EtatCalculTournee extends EtatDefault{
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
 		controleur.demandeLivraison = newDemandeLivraison;
-		controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
-		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
+		controleur.tournee = null;
+		controleur.calculateurTournee = null;
+		//controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
+		//controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 		controleur.setEtatCourant(controleur.etatCalculTournee);
 		fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
 	}
@@ -46,6 +48,8 @@ public class EtatCalculTournee extends EtatDefault{
 	@Override
 	public void calculerTournee ( Controleur controleur, Fenetre fenetre )
 	{
+		controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
+		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 		controleur.calculateurTournee.run();
 		controleur.setEtatCourant( controleur.etatModificationTournee);
 		fenetre.chargerTournee(controleur.tournee);

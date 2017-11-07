@@ -40,12 +40,10 @@ public class EtatModificationTournee extends EtatDefault{
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
 		controleur.demandeLivraison = newDemandeLivraison;
-		controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
-		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
-		controleur.calculateurTournee.run();
-		controleur.setEtatCourant(controleur.etatModificationTournee);
+		controleur.tournee = null;
+		controleur.calculateurTournee = null;
+		controleur.setEtatCourant(controleur.etatCalculTournee);
 		fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
-		fenetre.chargerTournee(controleur.tournee);
 	}
 	
 	@Override

@@ -72,7 +72,6 @@ public class Controleur
 	public void chargerDemandeLivraison( String chemin)
 	{
 		etatCourant.chargerDemandeLivraison(this, fenetre, chemin);
-		etatCourant.calculerTournee(this, fenetre);
 	}
 	public void modifierTournee()
 	{
