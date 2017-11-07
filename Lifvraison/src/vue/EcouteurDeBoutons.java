@@ -7,82 +7,89 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import controleur.Controleur;
-import donnees.XMLParseur;
-import modeles.DemandeLivraison;
-import modeles.Plan;
 
-public class EcouteurDeBoutons implements ActionListener{
+public class EcouteurDeBoutons implements ActionListener
+{
 	private Controleur controleur;
-
-	
+	private JFileChooser fileChooser;
 	
 	/**
 	 * @param controleur
 	 */
-	public EcouteurDeBoutons(Controleur controleur) {
+	public EcouteurDeBoutons(Controleur controleur) 
+	{
 		this.controleur = controleur;
+		
+		fileChooser = new JFileChooser();
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		fileChooser.setCurrentDirectory(new File("./data"));
 	}
-
-
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		JFileChooser fc;
-		String chemin ="";
-		
-		switch ( e.getActionCommand() )
+	public void actionPerformed(ActionEvent e) 
+	{			
+		switch(e.getActionCommand())
 		{
 			case "Charger Plan" :
-				fc = new JFileChooser();
-				chemin ="";
+			{
+				String chemin = "";
 				
-				fc.setFileSelectionMode( JFileChooser.FILES_AND_DIRECTORIES );
-			    
-			    fc.setCurrentDirectory(new File("./data"));
-	
-			    if( fc.showOpenDialog( null ) == JFileChooser.APPROVE_OPTION )
+				fileChooser.setCurrentDirectory(new File("./data/plan"));
+				
+			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 			    {
-			       chemin = fc.getSelectedFile().getAbsolutePath();
+			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
+			       controleur.chargerPlan(chemin);
 			    }
-				controleur.importerPlan(chemin);
-				
 				break;
-			case "Charger Livraison" :
+			}
+			case "Charger Demande Livraison" :
+			{
+				String chemin = "";
 				
-				fc = new JFileChooser();
-				chemin ="";
+				fileChooser.setCurrentDirectory(new File("./data/demandeLivraison"));
 				
-				fc.setFileSelectionMode( JFileChooser.FILES_AND_DIRECTORIES );
-			    
-			    fc.setCurrentDirectory(new File("./data"));
-	
-			    if( fc.showOpenDialog( null ) == JFileChooser.APPROVE_OPTION )
+			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 			    {
-			       chemin = fc.getSelectedFile().getAbsolutePath();
+			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
 			    }
-				controleur.ImporterDemande( chemin );
-				
+				controleur.chargerDemandeLivraison(chemin);
 				break;
+			}
 			case "Calculer Tournee" :
-				controleur.DemanderCalculTournee();
+			{
+				controleur.calculerTournee();
 				break;
+			}
+			case "Modifier Tournee" :
+			{
+				controleur.modifierTournee();
+				break;
+			}
 			case "Valider Tournee" :
-				controleur.ValiderTournee();
+			{
+				controleur.validerTournee();
 				break;
-			case "Accueil" :
-				controleur.RetourALAccueil();
+			}
+			case "Ajouter une Livraison" :
+				controleur.ajouterLivraison();
 				break;
+			case "Retirer une Livraison" :
+				controleur.supprimerLivraison();
+				break;
+			case "Annuler":
+				controleur.undo();
+				break;
+			case "Retablir":
+				controleur.redo();
+				break;
+			case "Gerer Feuille De Route" :
+			{
+				controleur.gererFeuilleDeRoute();
+			}
 		}
 		
-		
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();
-		
-		
-		
-		
 	}
-	
-	
+}	
 
-}
