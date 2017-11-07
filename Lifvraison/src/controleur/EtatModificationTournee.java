@@ -98,4 +98,10 @@ public class EtatModificationTournee extends EtatDefault{
 		fenetre.setModeModificationTournee();
 	}
 	
+	@Override
+	public void validerTournee(Controleur controleur, Fenetre fenetre)
+	{
+		fenetre.setModeValidationTournee();
+	}
+	
 }

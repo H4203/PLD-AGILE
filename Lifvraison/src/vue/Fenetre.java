@@ -257,52 +257,19 @@ public class Fenetre extends JFrame
 		vueGraphique.nouvelleTournee(tournee);
 		setModeModificationTournee();
 	}
-
-	public void setModeAccueil()
-	{		
-		vueGraphique.setModeAccueil();
-		
-		// 1.1.1 mainPanel/leftPanel/overMapPanel		
-		//overMapPanel.removeAll();
-		
-		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/imageLabel
-		//JLabel imageLabel = new JLabel(new ImageIcon("ihm\\image_livreur.jpg"));
-		//overMapPanel.add(imageLabel, BorderLayout.CENTER);
-		
-		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
-		listeLivraisonsPanel.removeAll();
-		
-		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
-		topButtonsPanel.removeAll();
-		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
-		buttonChargerPlan.setEnabled(true);
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
-		buttonChargerDemandeLivraison.setEnabled(false);
-		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
-		buttonValiderTournee.setEnabled(false);
-		
-		// 1.3.x mainPanel/ongletsPanel/buttons		
-		//resetOngletsPanelButtons();
-		// 1.3.1 mainPanel/ongletsPanel/buttonAccueil
-		//buttonAccueil.setBackground(new Color(200, 200, 255));
-			
-		repaint();
-		setVisible(true);
-	}
 	
 	public void setModeChargementPlan()
-	{
+	{	
 		// 1.1.1 mainPanel/leftPanel/vueGraphique
 		vueGraphique.setModeChargementPlan();
 		
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
 		
-		/*// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
+		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
 
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
+		/*// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 		JButton buttonChargerPlan = new JButton("Charger Plan");
 		buttonChargerPlan.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonChargerPlan);*/
@@ -310,7 +277,7 @@ public class Fenetre extends JFrame
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 		buttonChargerPlan.setEnabled(true);
 		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
-		buttonChargerDemandeLivraison.setEnabled(true);
+		buttonChargerDemandeLivraison.setEnabled(false);
 		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 		buttonValiderTournee.setEnabled(false);
 		
@@ -333,10 +300,10 @@ public class Fenetre extends JFrame
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
 		
-		/*// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
+		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
 		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
+		/*// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
 		JButton buttonChargerDemandeLivraison = new JButton("Charger Demande Livraison");
 		buttonChargerDemandeLivraison.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonChargerDemandeLivraison);*/
@@ -400,6 +367,7 @@ public class Fenetre extends JFrame
 	public void setModeModificationTournee(String etat)
 	{
 		vueGraphique.setModeCalculTournee();
+		
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		listeLivraisonsPanel.removeAll();
 	
@@ -499,6 +467,9 @@ public class Fenetre extends JFrame
 	{
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
+				
+		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
+		bottomButtonsPanel.removeAll();
 
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		//resetOngletsPanelButtons();
