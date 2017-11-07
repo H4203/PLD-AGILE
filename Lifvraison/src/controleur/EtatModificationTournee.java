@@ -67,11 +67,7 @@ public class EtatModificationTournee extends EtatDefault{
 		controleur.setEtatCourant( controleur.etatSupprimerLivraison);
 		fenetre.setModeModificationTournee("SuppressionLivraison");
 	}
-	@Override
-	public void intervertirLivraison(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatIntervertirLivraisons1);
-		fenetre.setModeModificationTournee("IntervertirLivraison");
-	}
+
 	@Override
 	public void intervertirLivraisons(Controleur controleur, Fenetre fenetre, Livraison livraison1, Livraison livraison2)
 	{
