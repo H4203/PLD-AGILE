@@ -81,7 +81,7 @@ public class Plan extends Observable
 	{
 		if ( listeIntersection.containsKey(id) )
 		{
-			throw new ParseurException ("L'id"+ id +"est en double...");
+			throw new ParseurException ("L'id "+ id +" est en double...");
 		}
 		this.listeIntersection.put( id, new Intersection(id,  x,  y) );
 		
