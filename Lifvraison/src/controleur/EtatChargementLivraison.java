@@ -53,4 +53,16 @@ public class EtatChargementLivraison extends EtatDefault{
 		controleur.calculateurTournee.run();
 		controleur.setEtatCourant( controleur.etatModificationTournee);
 	}
+	
+	@Override
+	public void mouseWheel(Controleur controleur, int steps, Point point)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
+	}
+	
+	@Override
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
+	{
+		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
+	}
 }

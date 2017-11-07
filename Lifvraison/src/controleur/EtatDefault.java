@@ -64,13 +64,13 @@ public class EtatDefault implements Etat{
 	}
 
 	@Override
-	public void undo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void redo(ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
+	public void redo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}

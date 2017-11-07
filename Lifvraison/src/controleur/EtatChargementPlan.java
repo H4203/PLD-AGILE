@@ -26,10 +26,12 @@ public class EtatChargementPlan extends EtatDefault{
 		fenetre.chargerPlan(controleur.plan);
 	}
 	
+	@Override
 	public void mouseDrag(Controleur controleur, Point delta)
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
 	}
+	@Override
 	public void mouseWheel(Controleur controleur, int steps, Point point)
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
