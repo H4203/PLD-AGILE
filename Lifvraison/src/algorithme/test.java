@@ -44,7 +44,8 @@ public class test {
 		}
 		System.out.println();
 		//cl.ajouterLivraison(4, new Livraison(lePlan.getListeIntersection().get((long) 245039019), 300));
-		cl.echangerDeuxLivraison(4, 5);
+		cl.echangerDeuxLivraison(8, 7);
+		//cl.supprimerLivraison(laTournee.getLivraisonsOrdonnees().get(5));
 		laTournee = cl.getLaTournee();
 		for(Livraison l : laTournee.getLivraisonsOrdonnees()) {
 			System.out.print(" " + l.getIntersection().getId() + ";");

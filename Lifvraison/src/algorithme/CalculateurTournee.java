@@ -165,7 +165,7 @@ public class CalculateurTournee extends Thread{
 				nouvelleTournee.add(lesDijkstra.get(index).getItineraire(lesItineraires.get(0).getDepart().getId()));
 			}
 			this.lesItineraires = nouvelleTournee;
-			this.lesDijkstra.remove(index+1);
+			this.lesDijkstra.remove(index);
 			laTournee.getDemandeLivraison().getLivraisons().remove(livraison);
 			laTournee.supprimerLivraison(index);
 			laTournee.setListeItineraires(lesItineraires);
@@ -195,7 +195,9 @@ public class CalculateurTournee extends Thread{
 			Dijkstra d = new Dijkstra(this.laTournee.getPlan(), livraison.getIntersection());
 			d.run();
 			nouveauxDijkstra.add(d);
-			nouvelleTournee.add(this.lesDijkstra.get(index).getItineraire(livraison.getIntersection().getId()));
+			if(index != this.lesDijkstra.size())
+				nouvelleTournee.add(this.lesDijkstra.get(index).getItineraire(livraison.getIntersection().getId()));
+
 			if ( index+1 < lesItineraires.size() )
 			{
 				nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(index+1).getDepart().getId()));
@@ -249,7 +251,7 @@ public class CalculateurTournee extends Thread{
 	}
 
 	public Tournee echangerDeuxLivraison(int index1, int index2) {
-		if( (index1 < 0) || (index2 < 0) || (index1 >= this.laTournee.getLivraisonsOrdonnees().size()) || (index2 >=this.laTournee.getLivraisonsOrdonnees().size()) ) {
+		if( (index1 < 0) || (index2 < 0) || (index1 >= this.laTournee.getLivraisonsOrdonnees().size()) || (index2 >=this.laTournee.getLivraisonsOrdonnees().size()) || (index1 == index2)) {
 			return this.laTournee;
 		}
 		
