@@ -74,6 +74,7 @@ public class EtatDefault implements Etat{
 		// TODO Auto-generated method stub
 		
 	}
+<<<<<<< HEAD
 
 	@Override
 	public void clicgauche(Controleur controleur, Point point) {
@@ -83,11 +84,17 @@ public class EtatDefault implements Etat{
 
 	@Override
 	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
+=======
+
+	@Override
+	public void clicgauche(Controleur controleur, Point point) {
+>>>>>>> Dev
 		// TODO Auto-generated method stub
 		
 	}
 	
 	@Override
+<<<<<<< HEAD
 	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
@@ -95,6 +102,16 @@ public class EtatDefault implements Etat{
 	@Override
 	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes)
 	{
+=======
+	public void modificationTournee(Controleur controleur, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre) {
+		// TODO Auto-generated method stub
+>>>>>>> Dev
 		
 	}
 	

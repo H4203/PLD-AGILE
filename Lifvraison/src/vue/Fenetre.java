@@ -64,9 +64,12 @@ public class Fenetre extends JFrame
 	// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 	private JButton buttonValiderTournee;
 	
+<<<<<<< HEAD
 	private JLabel chargementLabel;
 	private JPanel barreChargementPanel;
 	//??
+=======
+>>>>>>> Dev
 	// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
 	//private JList<String> listTexteLivraison;
 	
@@ -261,12 +264,18 @@ public class Fenetre extends JFrame
 	public void chargerDemandeLivraison( DemandeLivraison demandeLivraison)
 	{
 		vueGraphique.nouvelleDemandeLivraison(demandeLivraison);
+<<<<<<< HEAD
 		vueTextuelle.nouvelleDemandeLivraison(demandeLivraison);
+=======
+>>>>>>> Dev
 	}
 	public void chargerTournee( Tournee tournee)
 	{
 		vueGraphique.nouvelleTournee(tournee);
+<<<<<<< HEAD
 		vueTextuelle.nouvelleTournee(tournee);
+=======
+>>>>>>> Dev
 		setModeModificationTournee();
 	}
 	
@@ -375,6 +384,7 @@ public class Fenetre extends JFrame
 	{
 		setModeModificationTournee("");
 	}
+<<<<<<< HEAD
 	
 	public void setModeModificationTournee(String etat)
 	{
@@ -383,6 +393,16 @@ public class Fenetre extends JFrame
 		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 		//listeLivraisonsPanel.removeAll();
 		
+=======
+	
+	public void setModeModificationTournee(String etat)
+	{
+		vueGraphique.setModeCalculTournee();
+		
+		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
+		listeLivraisonsPanel.removeAll();
+	
+>>>>>>> Dev
 		/*// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
 
 		String tableauTexteList[] = new String[tournee.getLivraisonsOrdonnees().size()+2]; //+2 pour entrepot depart et arrive

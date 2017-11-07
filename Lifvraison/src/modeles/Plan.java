@@ -134,6 +134,7 @@ public class Plan extends Observable
 		selectedTroncon = null;
 		
 		for (Map.Entry<Long, Intersection> intersection : listeIntersection.entrySet()) 
+<<<<<<< HEAD
 		{
 			if (point.getX() < intersection.getValue().getX() + tolerance && point.getX() > intersection.getValue().getX() - tolerance
 					&& point.getY() < intersection.getValue().getY() + tolerance && point.getY() > intersection.getValue().getY() - tolerance) 
@@ -144,6 +145,18 @@ public class Plan extends Observable
 		
 		if (selectedIntersection == null)
 		{
+=======
+		{
+			if (point.getX() < intersection.getValue().getX() + tolerance && point.getX() > intersection.getValue().getX() - tolerance
+					&& point.getY() < intersection.getValue().getY() + tolerance && point.getY() > intersection.getValue().getY() - tolerance) 
+			{
+				selectedIntersection = intersection.getValue();
+			}
+		}
+		
+		if (selectedIntersection == null)
+		{
+>>>>>>> Dev
 			double departX, departY, arriveeX, arriveeY, minX, minY, maxX, maxY;
 			double a, b;
 			
@@ -169,6 +182,9 @@ public class Plan extends Observable
 				}
 			}
 		}
+		
+		setChanged();
+		notifyObservers();
 	}
 	
 	public void getLivraison (Livraison livraison)

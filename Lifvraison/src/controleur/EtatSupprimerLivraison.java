@@ -32,6 +32,7 @@ public class EtatSupprimerLivraison extends EtatDefault{
 		}
 	}
 	
+<<<<<<< HEAD
 	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes)
 	{
 		
@@ -44,6 +45,8 @@ public class EtatSupprimerLivraison extends EtatDefault{
 		controleur.fenetre.setModeModificationTournee();
 	}
 		
+=======
+>>>>>>> Dev
 	@Override
 	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre)
 	{
