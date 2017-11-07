@@ -36,11 +36,7 @@ public class EtatDefault implements Etat{
 	}
 
 	@Override
-<<<<<<< HEAD
 	public void intervertirLivraisons(Controleur controleur, Fenetre fenetre, Livraison livraison1, Livraison livraison2) {
-=======
-	public void intervertirLivraison(Controleur controleur, Fenetre fenetre) {
->>>>>>> Dev
 		// TODO Auto-generated method stub
 		
 	}
