@@ -36,6 +36,8 @@ public class Controleur
 	protected EtatAjoutLivraison1 etatAjoutLivraison1 = new EtatAjoutLivraison1();
 	protected EtatAjoutLivraison2 etatAjoutLivraison2 = new EtatAjoutLivraison2();
 	protected EtatSupprimerLivraison etatSupprimerLivraison = new EtatSupprimerLivraison();	
+	protected EtatIntervertirLivraisons1 etatIntervertirLivraisons1 = new EtatIntervertirLivraisons1();
+	protected EtatIntervertirLivraisons2 etatIntervertirLivraisons2 = new EtatIntervertirLivraisons2();
 	private ListeDeCommandes listeDeCommandes;
 	
 	
@@ -90,9 +92,9 @@ public class Controleur
 	{
 		etatCourant.supprimerLivraison(this, fenetre);
 	}
-	public void intervertirLivraison(Livraison livraison1, Livraison livraison2)
+	public void intervertirLivraison()
 	{
-		etatCourant.intervertirLivraison(this, fenetre, livraison1, livraison2);
+		etatCourant.intervertirLivraison(this, fenetre);
 	}
 	public void clicgauche ( int positonPrecedente, Livraison livraison)
 	{
