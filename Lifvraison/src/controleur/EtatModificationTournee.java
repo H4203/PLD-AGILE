@@ -5,6 +5,7 @@ import java.awt.Point;
 import javax.swing.JOptionPane;
 
 import algorithme.CalculateurTournee;
+import donnees.FeuilleDeRoute;
 import donnees.ParseurException;
 import modeles.DemandeLivraison;
 import modeles.Plan;
@@ -101,7 +102,16 @@ public class EtatModificationTournee extends EtatDefault{
 	@Override
 	public void validerTournee(Controleur controleur, Fenetre fenetre)
 	{
+		controleur.feuilleDeRoute = new FeuilleDeRoute();
+		controleur.feuilleDeRoute.gerer(controleur.tournee);
 		fenetre.setModeValidationTournee();
+	}
+	@Override
+	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre) {
+		controleur.feuilleDeRoute = new FeuilleDeRoute();
+		controleur.feuilleDeRoute.gerer(controleur.tournee);
+		fenetre.setModeValidationTournee();
+		
 	}
 	
 }
