@@ -15,6 +15,22 @@ public class EtatChargementLivraison extends EtatDefault{
 	
 	
 	@Override
+	public void chargerPlan ( Controleur controleur, Fenetre fenetre, String chemin) {
+		Plan newPlan = new Plan ();
+		try{
+			controleur.parseur.chargerPlan(newPlan, chemin);
+		} catch (ParseurException e) {
+			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
+		}
+		// on attribut le nouveau plan
+		controleur.plan = newPlan;
+		controleur.demandeLivraison = null;
+		controleur.tournee = null;
+		controleur.setEtatCourant( controleur.etatChargementLivraison);
+		fenetre.chargerPlan(controleur.plan);
+	}
+	
+	@Override
 	public void chargerDemandeLivraison ( Controleur controleur, Fenetre fenetre, String chemin) {
 		DemandeLivraison newDemandeLivraison = new DemandeLivraison ();
 		try{
