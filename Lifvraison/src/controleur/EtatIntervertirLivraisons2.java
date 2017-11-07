@@ -9,14 +9,14 @@ import vue.Fenetre;
 
 public class EtatIntervertirLivraisons2 extends EtatDefault{
 	
-	protected Intersection livraison1;
+	protected int posLivraison1 = -1;
+	protected int posLivraison2 = -1;
 
 	@Override
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
 		
-		int posLivraison1 = -1;
-		int posLivraison2 = -1;
+		
 		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection livraison2 = controleur.plan.getSelectedIntersection();
 		
@@ -25,10 +25,6 @@ public class EtatIntervertirLivraisons2 extends EtatDefault{
 		for ( int i = 0; i < Listelivraisons.size() ; i++)
 		{
 			Livraison livraison = Listelivraisons.get(i);
-			if ( livraison.getIntersection().equals( livraison1 ) )
-			{
-				posLivraison1 = i;
-			}
 			if ( livraison.getIntersection().equals( livraison2 ) )
 			{
 				posLivraison2 = i;
@@ -36,9 +32,9 @@ public class EtatIntervertirLivraisons2 extends EtatDefault{
 		}
 		System.out.println(posLivraison1);
 		System.out.println(posLivraison2);
-		controleur.setEtatCourant( controleur.etatModificationTournee);
-		if ( posLivraison1 != posLivraison2  && posLivraison1 != -1 && posLivraison2 != -1)
+		if ( posLivraison1 != posLivraison2 && posLivraison2 != -1)
 		{
+			controleur.setEtatCourant( controleur.etatModificationTournee);
 			listeDeCommandes.ajoute( new CommandeIntervertirCommande ( posLivraison1, posLivraison2 , controleur.calculateurTournee));
 			System.out.println("test");
 		}

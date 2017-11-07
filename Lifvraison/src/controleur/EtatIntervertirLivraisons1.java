@@ -1,8 +1,10 @@
 package controleur;
 
 import java.awt.Point;
+import java.util.List;
 
 import modeles.Intersection;
+import modeles.Livraison;
 import vue.Fenetre;
 
 public class EtatIntervertirLivraisons1 extends EtatDefault{
@@ -12,10 +14,20 @@ public class EtatIntervertirLivraisons1 extends EtatDefault{
 		System.out.println("test1");
 		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection livraison1 = controleur.plan.getSelectedIntersection();
-		if (livraison1 != null)
+		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
+		int posLivraison1 = -1;
+		for ( int i = 0; i < Listelivraisons.size() ; i++)
+		{
+			Livraison livraison = Listelivraisons.get(i);
+			if ( livraison.getIntersection().equals( livraison1 ) )
+			{
+				 posLivraison1 = i;
+			}
+		}
+		if (posLivraison1 != -1)
 		{
 			controleur.setEtatCourant( controleur.etatIntervertirLivraisons2);
-			controleur.etatIntervertirLivraisons2.livraison1 = livraison1;
+			controleur.etatIntervertirLivraisons2.posLivraison1 = posLivraison1;
 		}
 		
 		
