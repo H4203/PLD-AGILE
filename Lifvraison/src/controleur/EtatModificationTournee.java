@@ -8,6 +8,7 @@ import algorithme.CalculateurTournee;
 import donnees.FeuilleDeRoute;
 import donnees.ParseurException;
 import modeles.DemandeLivraison;
+import modeles.Livraison;
 import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
@@ -65,6 +66,13 @@ public class EtatModificationTournee extends EtatDefault{
 	{
 		controleur.setEtatCourant( controleur.etatSupprimerLivraison);
 		fenetre.setModeModificationTournee("SuppressionLivraison");
+	}
+	
+	@Override
+	public void intervertirLivraisons(Controleur controleur, Fenetre fenetre, Livraison livraison1, Livraison livraison2)
+	{
+		//controleur.setEtatCourant( controleur.etatIntervertirLivraisons1);
+		fenetre.setModeModificationTournee("IntervertirLivraisons");
 	}
 	
 	@Override

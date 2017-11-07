@@ -77,6 +77,9 @@ public class EcouteurDeBoutons implements ActionListener
 			case "Retirer une Livraison" :
 				controleur.supprimerLivraison();
 				break;
+			case "Echanger 2 Livraisons" :
+				//controleur.intervertirLivraisons();
+				break;
 			case "Annuler":
 				controleur.undo();
 				break;

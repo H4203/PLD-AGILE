@@ -12,7 +12,7 @@ public interface Etat {
 	public void calculerTournee ( Controleur controleur, Fenetre fenetre );
 	public void ajouterLivraison(Controleur controleur, Fenetre fenetre);
 	public void supprimerLivraison(Controleur controleur, Fenetre fenetre );
-	public void intervertirLivraison(Controleur controleur, Fenetre fenetre, Livraison livraison1, Livraison livraison2);
+	public void intervertirLivraisons(Controleur controleur, Fenetre fenetre, Livraison livraison1, Livraison livraison2);
 	public void clicgauche ( Controleur controleur, Fenetre fenetre, int positonPrecedente, Livraison livraison);
 	public void validerTournee (Controleur controleur, Fenetre fenetre);
 	public void clicgauche(Controleur controleur, Point point);

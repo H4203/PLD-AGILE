@@ -90,9 +90,9 @@ public class Controleur
 	{
 		etatCourant.supprimerLivraison(this, fenetre);
 	}
-	public void intervertirLivraison(Livraison livraison1, Livraison livraison2)
+	public void intervertirLivraisons(Livraison livraison1, Livraison livraison2)
 	{
-		etatCourant.intervertirLivraison(this, fenetre, livraison1, livraison2);
+		etatCourant.intervertirLivraisons(this, fenetre, livraison1, livraison2);
 	}
 	public void clicgauche ( int positonPrecedente, Livraison livraison)
 	{

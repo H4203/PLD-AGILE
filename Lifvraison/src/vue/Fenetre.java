@@ -457,7 +457,7 @@ public class Fenetre extends JFrame
 		buttonValiderTournee.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonValiderTournee);*/
 		
-		if (etat.equals("AjoutLivraison") || etat.equals("SuppressionLivraison"))
+		if (etat.equals("AjoutLivraison") || etat.equals("SuppressionLivraison") || etat.equals("IntervertirLivraisons"))
 		{
 			buttonAjouterLivraison.setEnabled(false);
 			buttonSupprimerLivraison.setEnabled(false);
