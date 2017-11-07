@@ -32,6 +32,7 @@ public class Controleur
 	protected EtatChargementLivraison etatChargementLivraison  = new EtatChargementLivraison();
 	protected EtatCalculTournee etatCalculTournee = new EtatCalculTournee();
 	protected EtatModificationTournee etatModificationTournee  = new EtatModificationTournee();
+	protected EtatGenererFeuilleDeRoute etatGenererFeuilleDeRoute = new EtatGenererFeuilleDeRoute();
 	protected EtatAjoutLivraison1 etatAjoutLivraison1 = new EtatAjoutLivraison1();
 	protected EtatAjoutLivraison2 etatAjoutLivraison2 = new EtatAjoutLivraison2();
 	protected EtatSupprimerLivraison etatSupprimerLivraison = new EtatSupprimerLivraison();	
@@ -77,7 +78,7 @@ public class Controleur
 	{
 		etatCourant.modificationTournee(this, fenetre);
 	}
-	public void calculerTournee (  )
+	public void calculerTournee()
 	{
 		etatCourant.calculerTournee(this, fenetre);
 	}
@@ -98,7 +99,7 @@ public class Controleur
 		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
 	}
 	
-	// Start
+
 	public void clicGauche(Point point)
 	{
 		etatCourant.clicgauche(this, fenetre, point, listeDeCommandes);
@@ -113,7 +114,6 @@ public class Controleur
 	{
 		etatCourant.mouseWheel(this, steps, point);
 	}
-	// End
 	
 	public void undo ()
 	{
@@ -123,12 +123,12 @@ public class Controleur
 	{
 		etatCourant.redo(this, listeDeCommandes, fenetre);
 	}
-	public void validerTournee() {
+	public void validerTournee() 
+	{
 		etatCourant.validerTournee(this, fenetre);
-		
 	}
-	
-	public void gererFeuilleDeRoute() {
+	public void genererFeuilleDeRoute() 
+	{
 		etatCourant.genererFeuilleDeRoute(this, fenetre);
 	}
 	public int getToleranceClic()

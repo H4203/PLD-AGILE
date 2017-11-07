@@ -2,9 +2,9 @@ L'heure depart depuis l'entrepot : 08:00
 
 Continuez 677m dans Avenue Paul Santy
 
-L'heure arivee de livraison n¡ã1: 08:02:42
-L'adresse de livraison n¡ã1: Rue Varichon
-L'heure depart de livraison n¡ã1: 08:12:42
+L'heure arivee de livraison n??1: 08:02:42
+L'adresse de livraison n??1: Rue Varichon
+L'heure depart de livraison n??1: 08:12:42
 
 Continuez 232m dans Rue Varichon
 Tournez a droite et continuez 116m dans Rue de la Concorde
@@ -12,9 +12,9 @@ Tournez a droite et continuez 130m dans Rue Jean Sarrazin
 Tournez a droite et continuez 62m dans Rue Rochambeau
 Tournez a droite et continuez 142m dans Rue Théodore Lévigne
 
-L'heure arivee de livraison n¡ã2: 08:15:26
-L'adresse de livraison n¡ã2: Boulevard des États-Unis
-L'heure depart de livraison n¡ã2: 08:25:26
+L'heure arivee de livraison n??2: 08:15:26
+L'adresse de livraison n??2: Boulevard des États-Unis
+L'heure depart de livraison n??2: 08:25:26
 
 Continuez 89m dans Boulevard des États-Unis
 Tournez a gauche et continuez 92m dans Rue Émile Combes
@@ -26,9 +26,9 @@ Tournez a droite et continuez 702m dans Rue Pierre Delore
 Tournez a gauche et continuez 413m dans Route de Vienne
 Tournez a gauche et continuez 152m dans Avenue Berthelot
 
-L'heure arivee de livraison n¡ã3: 08:34:12
-L'adresse de livraison n¡ã3: Avenue Berthelot
-L'heure depart de livraison n¡ã3: 08:44:12
+L'heure arivee de livraison n??3: 08:34:12
+L'adresse de livraison n??3: Avenue Berthelot
+L'heure depart de livraison n??3: 08:44:12
 
 Continuez 1438m dans Avenue Berthelot
 Tournez a droite et continuez 997m dans Boulevard Jean XXIII
@@ -44,8 +44,8 @@ Tournez a droite et continuez 13m dans Avenue Lacassagne
 Tournez a droite et continuez 392m dans Rue des Peupliers
 
 L'heure de retour de l'entrepot: 09:01:26
-L'adresse de livraison n¡ã4: Rue des Peupliers
-L'heure depart de livraison n¡ã4: 09:06:26
+L'adresse de livraison n??4: Rue des Peupliers
+L'heure depart de livraison n??4: 09:06:26
 
 Continuez 392m dans Rue des Peupliers
 Tournez a droite et continuez 13m dans Avenue Lacassagne

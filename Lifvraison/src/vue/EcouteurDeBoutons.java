@@ -83,9 +83,9 @@ public class EcouteurDeBoutons implements ActionListener
 			case "Retablir":
 				controleur.redo();
 				break;
-			case "Gerer Feuille De Route" :
+			case "Generer Feuille de Route" :
 			{
-				controleur.gererFeuilleDeRoute();
+				controleur.genererFeuilleDeRoute();
 			}
 		}
 		
