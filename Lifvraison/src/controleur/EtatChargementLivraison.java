@@ -59,7 +59,11 @@ public class EtatChargementLivraison extends EtatDefault{
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
-	
+	@Override
+	public void mouseDrag(Controleur controleur, Point delta)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
+	}
 	@Override
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
