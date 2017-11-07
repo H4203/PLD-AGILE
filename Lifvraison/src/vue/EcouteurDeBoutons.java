@@ -83,8 +83,13 @@ public class EcouteurDeBoutons implements ActionListener
 			case "Retablir":
 				controleur.redo();
 				break;
+			case "Gerer Feuille De Route" :
+			{
+				controleur.gererFeuilleDeRoute();
+			}
 		}
 		
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();
 	}
 }	
+

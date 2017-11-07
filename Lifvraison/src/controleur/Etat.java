@@ -22,4 +22,5 @@ public interface Etat {
 	public void undo (Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	public void redo (Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	public void modificationTournee(Controleur controleur, Fenetre fenetre);
+	public void gererFeuilleDeRoute(Controleur controleur, Fenetre fenetre);
 }

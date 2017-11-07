@@ -5,6 +5,7 @@ import java.awt.Point;
 import javax.swing.JOptionPane;
 
 import algorithme.CalculateurTournee;
+import donnees.FeuilleDeRoute;
 import donnees.ParseurException;
 import donnees.XMLParseur;
 import modeles.Plan;
@@ -12,6 +13,7 @@ import modeles.Tournee;
 import vue.Fenetre;
 import modeles.DemandeLivraison;
 import modeles.Livraison;
+
 
 public class Controleur 
 {	
@@ -23,6 +25,7 @@ public class Controleur
 	protected DemandeLivraison demandeLivraison;
 	protected String etat;
 	protected Etat etatCourant;
+	protected FeuilleDeRoute feuilleDeRoute;
 	
 	// differents etats possible
 	protected EtatChargementPlan etatChargementPlan  = new EtatChargementPlan();
@@ -123,10 +126,16 @@ public class Controleur
 	public void validerTournee() {
 		etatCourant.validerTournee(this, fenetre);
 		
-	}	
+	}
+	
+	public void gererFeuilleDeRoute() {
+		etatCourant.gererFeuilleDeRoute(this, fenetre);
+	}
 	public int getToleranceClic()
 	{
 		return fenetre.getVueGraphique().getToleranceClic();
 	}
+
 	
 }
+
