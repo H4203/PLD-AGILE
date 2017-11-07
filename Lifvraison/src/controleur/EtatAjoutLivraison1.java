@@ -23,9 +23,22 @@ public class EtatAjoutLivraison1 extends EtatDefault{
 	}
 	
 	@Override
-	public void undo(ListeDeCommandes listeDeCommandes, Fenetre fenetre)
+	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre)
 	{
+		controleur.setEtatCourant( controleur.etatModificationTournee);
 		fenetre.setModeModificationTournee();
+	}
+	
+	@Override
+	public void mouseDrag(Controleur controleur, Point delta)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
+	}
+	
+	@Override
+	public void mouseWheel(Controleur controleur, int steps, Point point)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
 
 }

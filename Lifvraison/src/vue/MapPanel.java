@@ -64,8 +64,9 @@ public class MapPanel extends JPanel
 	{
 		coefX = 0;
 		coefY = 0;
-		focus = new Point(0, 0);
-		zoom = 1;
+		focus = new Point();
+		
+		resetZoomFocus();
 		
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
@@ -325,7 +326,6 @@ public class MapPanel extends JPanel
 		}
 		
 		resize();
-		
 		repaint();
 	}
 	
@@ -346,19 +346,30 @@ public class MapPanel extends JPanel
 		return tolerance;
 	}
 	
+	public void resetZoomFocus()
+	{
+		zoom = 1;
+		focus.setLocation(0, 0);
+	}
+	
 	//modification plan peut etre null
 	public void setPlan ( Plan plan)
 	{
 		this.plan = plan;
-		// invalide ce qu'il y avait avant
 		setDemandeLivraison(null);
 		setTournee(null);
+		
+		resetZoomFocus();
+		resize();
+		repaint();
 	}
+	
 	public void setDemandeLivraison ( DemandeLivraison demandeLivraison)
 	{
 		this.demandeLivraison = demandeLivraison;
 		setTournee(null);
 	}
+	
 	public void setTournee ( Tournee tournee)
 	{
 		this.tournee = tournee;

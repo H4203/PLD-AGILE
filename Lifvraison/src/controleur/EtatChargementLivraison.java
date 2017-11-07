@@ -12,32 +12,22 @@ import modeles.Tournee;
 import vue.Fenetre;
 
 public class EtatChargementLivraison extends EtatDefault{
-	@Override
-	public void suivant (Controleur controleur, Fenetre fenetre) {
 	
-		controleur.setEtatCourant( controleur.etatCalculTournee );
-		
-		// modif plan peut etre null
-		if ( controleur.tournee == null)
-		{
-			controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
-			fenetre.chargerTournee(controleur.tournee);
-			controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
+	
+	@Override
+	public void chargerPlan ( Controleur controleur, Fenetre fenetre, String chemin) {
+		Plan newPlan = new Plan ();
+		try{
+			controleur.parseur.chargerPlan(newPlan, chemin);
+		} catch (ParseurException e) {
+			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
-		
-		fenetre.setModeCalculTournee();
-	}
-	
-	@Override
-	public void precedent (Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatChargementPlan );
-		fenetre.setModeChargementPlan();
-	}
-	
-	@Override
-	public void accueil(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatAccueil );
-		fenetre.setModeAccueil ();
+		// on attribut le nouveau plan
+		controleur.plan = newPlan;
+		controleur.demandeLivraison = null;
+		controleur.tournee = null;
+		controleur.setEtatCourant( controleur.etatChargementLivraison);
+		fenetre.chargerPlan(controleur.plan);
 	}
 	
 	@Override
@@ -49,14 +39,34 @@ public class EtatChargementLivraison extends EtatDefault{
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
 		controleur.demandeLivraison = newDemandeLivraison;
-		controleur.tournee = null;
+		controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
+		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
+		controleur.calculateurTournee.run();
+		controleur.setEtatCourant(controleur.etatModificationTournee);
 		fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
+		fenetre.chargerTournee(controleur.tournee);
 	}
 	
 	@Override
-	public void chargementPlan(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatChargementPlan );
-		fenetre.setModeChargementPlan ();
-		
+	public void calculerTournee ( Controleur controleur, Fenetre fenetre )
+	{
+		controleur.calculateurTournee.run();
+		controleur.setEtatCourant( controleur.etatModificationTournee);
+	}
+	
+	@Override
+	public void mouseWheel(Controleur controleur, int steps, Point point)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
+	}
+	@Override
+	public void mouseDrag(Controleur controleur, Point delta)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
+	}
+	@Override
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
+	{
+		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
 	}
 }
