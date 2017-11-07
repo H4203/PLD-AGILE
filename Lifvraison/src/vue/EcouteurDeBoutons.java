@@ -68,7 +68,17 @@ public class EcouteurDeBoutons implements ActionListener
 			}
 			case "Valider Tournee" :
 			{
-				controleur.validerTournee();
+				String chemin = "";
+				
+				fileChooser.setCurrentDirectory(new File("./data/feuilleDeRoute"));
+				
+				
+			    if(fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION)
+			    {
+			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
+			       controleur.validerTournee(chemin);
+			    }
+				
 				break;
 			}
 			case "Ajouter une Livraison" :
@@ -85,7 +95,18 @@ public class EcouteurDeBoutons implements ActionListener
 				break;
 			case "Gerer Feuille De Route" :
 			{
-				controleur.gererFeuilleDeRoute();
+				String chemin = "";
+				
+				fileChooser.setCurrentDirectory(new File("./data/feuilleDeRoute"));
+				
+				
+			    if(fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION)
+			    {
+			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
+			       controleur.gererFeuilleDeRoute(chemin);
+			    }
+				
+				break;
 			}
 		}
 		

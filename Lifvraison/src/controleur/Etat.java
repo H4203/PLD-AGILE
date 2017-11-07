@@ -14,7 +14,7 @@ public interface Etat {
 	public void supprimerLivraison(Controleur controleur, Fenetre fenetre );
 	public void intervertirLivraison(Controleur controleur, Fenetre fenetre, Livraison livraison1, Livraison livraison2);
 	public void clicgauche ( Controleur controleur, Fenetre fenetre, int positonPrecedente, Livraison livraison);
-	public void validerTournee (Controleur controleur, Fenetre fenetre);
+	public void validerTournee (Controleur controleur, Fenetre fenetre,String chemin);
 	public void clicgauche(Controleur controleur, Point point);
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes);
 	public void mouseDrag(Controleur controleur, Point delta);
@@ -22,5 +22,5 @@ public interface Etat {
 	public void undo (Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	public void redo (Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	public void modificationTournee(Controleur controleur, Fenetre fenetre);
-	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre);
+	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre, String chemin);
 }

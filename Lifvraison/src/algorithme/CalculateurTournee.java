@@ -120,7 +120,7 @@ public class CalculateurTournee extends Thread{
 		tsp.chercheSolution(Integer.MAX_VALUE, intersections.size(), coutTsp, duree,tempsDebutPlage, tempsFinPlage);
 		
 		//Affichage du temps mis
-		System.out.println(System.currentTimeMillis() - temps);
+		//System.out.println(System.currentTimeMillis() - temps);
 		
 		int sommetCourant = 0;
 		//On demande au tsp les sommets dans l'ordre pour ajouter les livraisons
@@ -131,7 +131,7 @@ public class CalculateurTournee extends Thread{
 			this.lesDijkstra.add(dijkstra.get(prochainSommet));
 			sommetCourant = prochainSommet;
 		}
-		//On obtient les chemins à partir des dijkstras
+		//On obtient les chemins 脿 partir des dijkstras
 		lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(0).getId()));
 		laTournee.setLivraisonsOrdonnees(livraisonsOrdonnees);
 		laTournee.setListeItineraires(lesItineraires);
@@ -230,7 +230,7 @@ public class CalculateurTournee extends Thread{
 			}
 			this.lesDijkstra = nouveauxDijkstra;
 			this.lesItineraires = nouvelleTournee;
-			// on actualise demande liste livraison ordonn� et on ajoute la livraison � la demande de livraison
+			// on actualise demande liste livraison ordonn锟� et on ajoute la livraison 锟� la demande de livraison
 			this.laTournee.ajouterLivraison(livraison, index);
 			this.laTournee.getDemandeLivraison().ajouterLivraison(livraison);
 			this.laTournee.setListeItineraires(nouvelleTournee);

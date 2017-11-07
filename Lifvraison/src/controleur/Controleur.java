@@ -123,13 +123,13 @@ public class Controleur
 	{
 		etatCourant.redo(this, listeDeCommandes, fenetre);
 	}
-	public void validerTournee() {
-		etatCourant.validerTournee(this, fenetre);
+	public void validerTournee(String chemin) {
+		etatCourant.validerTournee(this, fenetre,chemin);
 		
 	}
 	
-	public void gererFeuilleDeRoute() {
-		etatCourant.genererFeuilleDeRoute(this, fenetre);
+	public void gererFeuilleDeRoute(String chemin) {
+		etatCourant.genererFeuilleDeRoute(this, fenetre,chemin);
 	}
 	public int getToleranceClic()
 	{

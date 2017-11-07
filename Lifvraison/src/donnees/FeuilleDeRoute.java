@@ -10,13 +10,13 @@ public class FeuilleDeRoute {
 	public FeuilleDeRoute() {
 		
 	}
-	public void gerer(Tournee tournee) {
+	public void gerer(Tournee tournee,String str) {
 
 		FileOutputStream fop = null;
 		File file;
 
 		try {
-			file = new File("data/feuille de route.txt");
+			file = new File(str);
 			fop = new FileOutputStream(file);
 
 			if (!file.exists()) {

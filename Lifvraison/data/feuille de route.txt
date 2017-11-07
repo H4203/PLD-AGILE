@@ -1,64 +1,205 @@
 L'heure depart depuis l'entrepot : 08:00
 
-Continuez 677m dans Avenue Paul Santy
+Continuez 36m dans Rue sans nom
+Tournez a droite et continuez 343m dans Route de Corbas
+Tournez a droite et continuez 250m dans Rue Georges Roudil
+Continuez 453m dans Boulevard de Jodino
+Tournez a droite et continuez 391m dans Avenue Marcel Cachin
+Tournez a gauche et continuez 67m dans Rue sans nom
+Tournez a droite et continuez 1058m dans Avenue Jean Cagne
+Tournez a droite et continuez 512m dans Avenue Maurice Thorez
+Continuez 260m dans Boulevard L¨¦nine
+Tournez a droite et continuez 150m dans Rue Auguste Renoir
 
-L'heure arivee de livraison n¡ã1: 08:02:42
-L'adresse de livraison n¡ã1: Rue Varichon
-L'heure depart de livraison n¡ã1: 08:12:42
+L'heure arivee de livraison n¡ã1: 08:14:06
+L'adresse de livraison n¡ã1: Rue Auguste Renoir
+L'heure depart de livraison n¡ã1: 08:24:06
 
-Continuez 232m dans Rue Varichon
-Tournez a droite et continuez 116m dans Rue de la Concorde
-Tournez a droite et continuez 130m dans Rue Jean Sarrazin
-Tournez a droite et continuez 62m dans Rue Rochambeau
-Tournez a droite et continuez 142m dans Rue Théodore Lévigne
+Continuez 150m dans Rue Auguste Renoir
+Tournez a droite et continuez 260m dans Boulevard L¨¦nine
+Tournez a gauche et continuez 965m dans Avenue Maurice Thorez
+Tournez a gauche et continuez 361m dans Rue Auguste Blanqui
+Tournez a droite et continuez 256m dans Rue du Cluzel
+Tournez a droite et continuez 110m dans Rue Romain Rolland
+Tournez a droite et continuez 213m dans Rue Yves Farge
+Tournez a droite et continuez 94m dans Avenue Jean Jaur¨¨s
+Tournez a droite et continuez 312m dans Rue ?mile Zola
+Tournez a droite et continuez 24m dans Rue sans nom
+Continuez 196m dans Rue ?mile Zola
+Tournez a droite et continuez 319m dans Boulevard du Docteur Coblod
+Tournez a droite et continuez 381m dans Pont Berliet
+Tournez a droite et continuez 148m dans Mont¨¦e du Lyonnais
+Tournez a droite et continuez 296m dans Rue du Lyonnais
+Tournez a droite et continuez 1061m dans Avenue Henri Germain
+Tournez a gauche et continuez 578m dans Rue Jean Zay
+Tournez a droite et continuez 139m dans Rue Condorcet
+Continuez 1148m dans Chemin de Revaison
+Tournez a gauche et continuez 396m dans Rue Camille Desmoulins
+Continuez 406m dans Rue du Chavorlay
+Tournez a droite et continuez 18m dans Rue sans nom
+Continuez 86m dans Rue de l'Agriculture
 
-L'heure arivee de livraison n¡ã2: 08:15:26
-L'adresse de livraison n¡ã2: Boulevard des États-Unis
-L'heure depart de livraison n¡ã2: 08:25:26
+L'heure arivee de livraison n¡ã2: 08:55:49
+L'adresse de livraison n¡ã2: Rue de l'Agriculture
+L'heure depart de livraison n¡ã2: 09:00:49
 
-Continuez 89m dans Boulevard des États-Unis
-Tournez a gauche et continuez 92m dans Rue Émile Combes
-Tournez a droite et continuez 215m dans Rue des Serpollières
-Tournez a gauche et continuez 7m dans Rue Paul Cazeneuve
-Tournez a droite et continuez 301m dans Rue Jean Chevailler
-Tournez a gauche et continuez 216m dans Rue Villon
-Tournez a droite et continuez 702m dans Rue Pierre Delore
-Tournez a gauche et continuez 413m dans Route de Vienne
-Tournez a gauche et continuez 152m dans Avenue Berthelot
+Continuez 86m dans Rue de l'Agriculture
+Continuez 9m dans Rue sans nom
+Tournez a droite et continuez 1755m dans Rue de l'Aviation
+Continuez 13m dans Rue sans nom
+Tournez a droite et continuez 554m dans Rue de l'Aviation
+Tournez a droite et continuez 92m dans Avenue Louis Mouillard
+Tournez a gauche et continuez 44m dans Rue sans nom
+Tournez a droite et continuez 231m dans Avenue Louis Mouillard
+Tournez a droite et continuez 38m dans Rue sans nom
+Tournez a droite et continuez 257m dans Avenue Louis Mouillard
+Tournez a droite et continuez 538m dans Rue sans nom
+Tournez a droite et continuez 47m dans Carrefour des Marauders
+Continuez 957m dans Rue du 35e R¨¦giment d'Aviation
+Tournez a gauche et continuez 30m dans Rue sans nom
+Tournez a droite et continuez 332m dans Avenue du Pr¨¦sident Salvador Allende
+Tournez a droite et continuez 75m dans Rue Payan
+Tournez a droite et continuez 273m dans Avenue Galli¨¦ni
 
-L'heure arivee de livraison n¡ã3: 08:34:12
-L'adresse de livraison n¡ã3: Avenue Berthelot
-L'heure depart de livraison n¡ã3: 08:44:12
+L'heure arivee de livraison n¡ã3: 09:22:10
+L'adresse de livraison n¡ã3: Route de Genas
+L'heure depart de livraison n¡ã3: 09:37:10
 
-Continuez 1438m dans Avenue Berthelot
-Tournez a droite et continuez 997m dans Boulevard Jean XXIII
-Tournez a droite et continuez 13m dans Avenue des Frères Lumière
-Continuez 45m dans Place d'Arsonval
-Continuez 501m dans Avenue Rockefeller
-Tournez a droite et continuez 124m dans Rue Viala
-Continuez 217m dans Rue Piperoux
-Tournez a droite et continuez 73m dans Cours Eugénie
-Tournez a gauche et continuez 342m dans Rue Claude Farrère
-Tournez a droite et continuez 149m dans Rue Pascal
-Tournez a droite et continuez 13m dans Avenue Lacassagne
-Tournez a droite et continuez 392m dans Rue des Peupliers
+Continuez 60m dans Route de Genas
+Tournez a droite et continuez 33m dans Rond-Point des 7 Chemins
+Tournez a droite et continuez 334m dans Avenue Franklin Roosevelt
+Tournez a droite et continuez 102m dans Rue Albert Rougerie
+Continuez 12m dans Rue sans nom
+Tournez a droite et continuez 25m dans Rue des Fr¨¨res Lumi¨¨re
 
-L'heure de retour de l'entrepot: 09:01:26
-L'adresse de livraison n¡ã4: Rue des Peupliers
-L'heure depart de livraison n¡ã4: 09:06:26
+L'heure arivee de livraison n¡ã4: 09:39:26
+L'adresse de livraison n¡ã4: Rue des Fr¨¨res Lumi¨¨re
+L'heure depart de livraison n¡ã4: 09:44:26
 
-Continuez 392m dans Rue des Peupliers
-Tournez a droite et continuez 13m dans Avenue Lacassagne
-Tournez a droite et continuez 258m dans Rue Pascal
-Tournez a droite et continuez 320m dans Avenue Esquirol
-Continuez 163m dans Cours Eugénie
-Tournez a droite et continuez 133m dans Avenue Rockefeller
-Continuez 209m dans Rue Victor de Laprade
-Tournez a droite et continuez 197m dans Rue Volney Rue Victor de Laprade
-Continuez 450m dans Boulevard Ambroise Paré
-Tournez a gauche et continuez 668m dans Rue du Professeur Joseph Nicolas
-Continuez 63m dans Avenue Général Frère
-Tournez a droite et continuez 200m dans Rue des Roses
-Tournez a droite et continuez 59m dans Avenue Paul Santy
+Continuez 21m dans Rue des Fr¨¨res Lumi¨¨re
+Tournez a gauche et continuez 66m dans Rue sans nom
+Tournez a droite et continuez 299m dans Rue des Sept Chemins
+Tournez a droite et continuez 1323m dans Route de Genas
+Tournez a droite et continuez 177m dans Rue du Luxembourg
+Tournez a droite et continuez 512m dans Rue S¨¦verine
+Tournez a gauche et continuez 229m dans Avenue de Bel-Air
+Tournez a droite et continuez 364m dans Rue de la Ligne de l'EstAvenue de Bel-Air
+Continuez 358m dans Rue Fr¨¦d¨¦ric Fays
+Tournez a droite et continuez 137m dans Rue L¨¦on Blum
+Continuez 7m dans Rue de Delle
 
-L'heure de retour de l'entrepot: 09:18:57
+L'heure arivee de livraison n¡ã5: 09:58:25
+L'adresse de livraison n¡ã5: Rue L¨¦on Blum
+L'heure depart de livraison n¡ã5: 10:03:25
+
+Continuez 1288m dans Rue L¨¦on Blum
+Continuez 858m dans Avenue de B?hlen
+Tournez a droite et continuez 188m dans Avenue Garibaldi
+Tournez a droite et continuez 139m dans Rue sans nom
+Tournez a droite et continuez 219m dans Avenue Garibaldi
+Tournez a droite et continuez 1091m dans Avenue Jean Jaur¨¨s
+Tournez a gauche et continuez 144m dans Rue Paul Bert
+Tournez a droite et continuez 200m dans 
+
+L'heure arivee de livraison n¡ã6: 10:19:56
+L'adresse de livraison n¡ã6: 
+L'heure depart de livraison n¡ã6: 10:34:56
+
+Continuez 200m dans Rue sans nom
+Tournez a droite et continuez 144m dans Rue Paul Bert
+Tournez a gauche et continuez 1091m dans Avenue Jean Jaur¨¨s
+Tournez a droite et continuez 219m dans Avenue Garibaldi
+Tournez a droite et continuez 138m dans Rue sans nom
+Tournez a droite et continuez 188m dans Avenue Garibaldi
+Tournez a droite et continuez 858m dans Avenue de B?hlen
+Continuez 382m dans Rue L¨¦on Blum
+Tournez a droite et continuez 360m dans Cours ?mile Zola
+Tournez a droite et continuez 1226m dans Rue sans nom
+Tournez a droite et continuez 1765m dans Boulevard Laurent Bonnevay
+Tournez a gauche et continuez 483m dans Boulevard Laurent Bonnevay Boulevard P¨¦riph¨¦rique Nord
+Tournez a droite et continuez 1071m dans Boulevard P¨¦riph¨¦rique Nord Viaduc de la Feyssine
+Continuez 509m dans Rue sans nom
+Tournez a droite et continuez 543m dans Viaduc Joseph Picot
+Tournez a droite et continuez 26m dans 
+
+L'heure arivee de livraison n¡ã7: 11:11:46
+L'adresse de livraison n¡ã7: Route de Strasbourg
+L'heure depart de livraison n¡ã7: 11:26:46
+
+Continuez 1150m dans Route de Strasbourg
+Continuez 20m dans Rue sans nom
+Tournez a droite et continuez 690m dans Grande Rue de Saint-Clair
+Tournez a droite et continuez 466m dans Cours Aristide Briand Grande Rue de Saint-Clair
+Continuez 867m dans Cours Aristide Briand
+Tournez a droite et continuez 61m dans Place Adrien Godien
+Tournez a droite et continuez 16m dans Rue Eug¨¨ne Pons
+Tournez a droite et continuez 109m dans Rue Eug¨¨ne Pons Rue des Actionnaires
+Tournez a droite et continuez 127m dans Rue Eug¨¨ne Pons Rue Guitton Rue Mascrany
+Tournez a droite et continuez 476m dans Rue Eug¨¨ne Pons
+Continuez 72m dans Rue Artaud
+Tournez a droite et continuez 142m dans Rue de la Tour du Pin
+Tournez a droite et continuez 330m dans Rue Dumont d'Urville
+Tournez a droite et continuez 38m dans Rue Jeanne-Marie C¨¦lu
+Tournez a droite et continuez 87m dans Rue Jos¨¦phin Soulary
+Continuez 36m dans Rue de Belfort
+Tournez a droite et continuez 78m dans Rue Dumenge
+
+L'heure arivee de livraison n¡ã8: 11:45:51
+L'adresse de livraison n¡ã8: Rue du Pavillon
+L'heure depart de livraison n¡ã8: 12:15
+
+Continuez 92m dans Rue du Pavillon
+Continuez 95m dans Rue d'Austerlitz
+Tournez a droite et continuez 7m dans Rue Aim¨¦ Boussange
+Tournez a gauche et continuez 116m dans Rue d'Austerlitz
+Tournez a droite et continuez 209m dans Rue Mottet de G¨¦rando
+Continuez 215m dans Place Colbert
+Tournez a droite et continuez 342m dans Mont¨¦e Saint-S¨¦bastien
+Tournez a droite et continuez 101m dans Place Croix-Paquet
+Tournez a gauche et continuez 88m dans Rue Roger Violi
+Tournez a droite et continuez 195m dans Quai Andr¨¦ Lassagne
+Tournez a gauche et continuez 60m dans Quai Andr¨¦ Lassagne Quai Jean Moulin
+Tournez a droite et continuez 526m dans Quai Jean Moulin
+Tournez a gauche et continuez 706m dans Quai Jules Courmont
+Tournez a droite et continuez 30m dans Rue de la Barre
+Continuez 289m dans Cours Gambetta Pont de la Guilloti¨¨re
+Tournez a droite et continuez 230m dans Cours Gambetta
+Tournez a droite et continuez 681m dans Grande Rue de la Guilloti¨¨re
+Tournez a droite et continuez 222m dans Rue Claude Boyer
+Tournez a droite et continuez 30m dans Rue du B¨¦guin
+Tournez a gauche et continuez 106m dans Rue Saint-Lazare
+Continuez 172m dans Rue des Trois Pierres
+Tournez a droite et continuez 142m dans Rue de la Madeleine
+Tournez a droite et continuez 83m dans Rue Chevreul
+Tournez a droite et continuez 202m dans Rue Garibaldi
+Tournez a gauche et continuez 665m dans Rue Paul Duvivier
+Tournez a droite et continuez 2638m dans Route de Vienne
+Tournez a gauche et continuez 814m dans Avenue Jean Jaur¨¨s
+Tournez a droite et continuez 713m dans Rue Carnot
+Continuez 66m dans Avenue de la R¨¦publique
+Tournez a droite et continuez 219m dans All¨¦e Picard
+Tournez a droite et continuez 187m dans Rue Gabriel P¨¦ri
+Tournez a droite et continuez 97m dans Rue des Minguettes
+Tournez a droite et continuez 171m dans Rue Guy de Maupassant
+
+L'heure de retour de l'entrepot: 12:57:05
+L'adresse de livraison n¡ã9: Rue Guy de Maupassant
+L'heure depart de livraison n¡ã9: 13:07:05
+
+Continuez 171m dans Rue Guy de Maupassant
+Tournez a droite et continuez 97m dans Rue des Minguettes
+Continuez 825m dans Rue Gabriel P¨¦ri
+Tournez a gauche et continuez 446m dans Rue Romain Rolland
+Tournez a droite et continuez 155m dans Rue Gaspard Picard
+Tournez a droite et continuez 189m dans Avenue Marcel Paul
+Tournez a droite et continuez 22m dans Rue sans nom
+Tournez a gauche et continuez 223m dans Rue Gambetta
+Continuez 216m dans Avenue Marcel Hou?l
+Tournez a droite et continuez 200m dans Rue Jules Ferry
+Tournez a droite et continuez 243m dans Rue Pasteur
+Tournez a droite et continuez 145m dans Route de Corbas
+Tournez a droite et continuez 23m dans Rue sans nom
+Tournez a gauche et continuez 556m dans Route de Corbas
+Tournez a droite et continuez 51m dans 
+
+L'heure de retour de l'entrepot: 13:21:21

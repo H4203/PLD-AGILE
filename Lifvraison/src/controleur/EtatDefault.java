@@ -46,7 +46,7 @@ public class EtatDefault implements Etat{
 		
 	}
 	@Override
-	public void validerTournee(Controleur controleur, Fenetre fenetre) {
+	public void validerTournee(Controleur controleur, Fenetre fenetre, String chemin) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -88,7 +88,7 @@ public class EtatDefault implements Etat{
 	}
 	
 	@Override
-	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre) {
+	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre, String chemin) {
 		// TODO Auto-generated method stub
 		
 	}
