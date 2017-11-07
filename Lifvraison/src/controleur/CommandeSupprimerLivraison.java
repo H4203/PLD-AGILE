@@ -28,7 +28,5 @@ public class CommandeSupprimerLivraison implements Commande {
 		// TODO Auto-generated method stub
 		calculateurTournee.ajouterLivraison(position, livraison);
 	}
-	
-	
 
 }

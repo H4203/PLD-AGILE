@@ -10,6 +10,7 @@ import donnees.XMLParseur;
 import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
+import vue.VueGraphique;
 import modeles.DemandeLivraison;
 import modeles.Livraison;
 
@@ -110,6 +111,10 @@ public class Controleur
 	public void clicgauche ( int positonPrecedente, Livraison livraison)
 	{
 		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
+	}
+	public void modificationDansLaListe ( )
+	{
+		etatCourant.modificationDansLaListe(this, listeDeCommandes);
 	}
 	
 	// Start

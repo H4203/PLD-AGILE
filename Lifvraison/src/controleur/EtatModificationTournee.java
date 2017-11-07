@@ -1,6 +1,9 @@
 package controleur;
 
 import java.awt.Point;
+import java.util.List;
+
+import modeles.Livraison;
 import vue.Fenetre;
 
 public class EtatModificationTournee extends EtatDefault{
@@ -66,7 +69,23 @@ public class EtatModificationTournee extends EtatDefault{
 	{
 		controleur.plan.getAtPoint(point);
 	}
-
+	@Override
+	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes)
+	{
+		int index = controleur.fenetre.getVueTextuelle().getListPanel().getCurrentSelection();
+		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
+		if(index > 0 && index <= Listelivraisons.size())
+		{
+			Livraison livraison = Listelivraisons.get(index-1);
+		
+			controleur.plan.getLivraison(livraison);
+		}
+		else if (index == 0 || index == Listelivraisons.size()+1)
+		{
+			controleur.plan.getEntrepot( controleur.tournee.getDemandeLivraison().getEntrepot());
+		}
+	}
+	
 	@Override
 	public void mouseDrag(Controleur controleur, Point delta)
 	{

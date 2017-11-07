@@ -1,6 +1,9 @@
 package controleur;
 
+import java.util.List;
+
 import algorithme.CalculateurTournee;
+import modeles.Livraison;
 import modeles.Tournee;
 import vue.Fenetre;
 

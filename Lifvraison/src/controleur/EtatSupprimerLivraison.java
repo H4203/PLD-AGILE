@@ -31,4 +31,17 @@ public class EtatSupprimerLivraison extends EtatDefault{
 			}
 		}
 	}
+	
+	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes)
+	{
+		
+		int index = controleur.fenetre.getVueTextuelle().getListPanel().getCurrentSelection() - 1;
+		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
+		Livraison livraison = Listelivraisons.get(index);
+		
+		listeDeCommandes.ajoute( new CommandeSupprimerLivraison ( livraison, controleur.calculateurTournee ));
+		controleur.setEtatCourant(controleur.etatModificationTournee);
+		controleur.fenetre.setModeModificationTournee();
+		
+	}
 }

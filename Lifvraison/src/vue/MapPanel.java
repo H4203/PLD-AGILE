@@ -22,6 +22,8 @@ import modeles.PlageHoraire;
 
 public class MapPanel extends JPanel
 {
+	private final double toleranceSelectionIntersection = 20.0;
+	
 	private static final long serialVersionUID = 1L;
 	
 	private Plan plan;
@@ -84,13 +86,19 @@ public class MapPanel extends JPanel
 		g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(1));
 		
-		// Border
-		
-		/*g2.drawLine(0, 0, sideLength - 1, 0);
-		g2.drawLine(0, 0, 0, sideLength - 1);
-		g2.drawLine(sideLength - 1, sideLength - 1, sideLength - 1, 0);
-		g2.drawLine(sideLength - 1, sideLength - 1, 0, sideLength - 1);*/
-		
+        // Selected Intersection
+        
+        g2.setColor(Color.RED);
+        
+        if (plan != null && plan.getSelectedIntersection() != null)
+        {
+        	g2.fillRect((int)Math.round((plan.getSelectedIntersection().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 5, 
+        			sideLength - (int)Math.round((plan.getSelectedIntersection().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 5,
+        			10, 10);
+    	}
+        
+        g2.setColor(Color.BLACK);
+
 		// Map
 
 		if (plan != null && affichagePlan == true)
@@ -102,26 +110,13 @@ public class MapPanel extends JPanel
         				(int)Math.round((( (Troncon) mapentry.getValue() ).getIntersectionArrive().getY() - plan.getYMin()) * coefY + focus.x),
         				sideLength - (int)Math.round((( (Troncon) mapentry.getValue() ).getIntersectionArrive().getX() - plan.getXMin()) * coefX - focus.y));
         	}
-		}
+		}   
 		
-        // Selected Intersection
-        
-        g2.setColor(Color.RED);
-        
-        if (plan != null && plan.getSelectedIntersection() != null)
-        {
-        	g2.fillRect((int)Math.round((plan.getSelectedIntersection().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 4, 
-        			sideLength - (int)Math.round((plan.getSelectedIntersection().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 4,
-        			8, 8);
-    	}
-        
         g2.setColor(Color.BLACK);
         
         g2.setColor(Color.BLUE);
-        g2.setStroke(new BasicStroke(3));
+        g2.setStroke(new BasicStroke(2));
         
-        // affichage itineraire 
-        // gestion immonde mais temporaire
         if ( demandeLivraison != null && affichageDemandeLivraison == true)
         {
         	/* affiche la tournee */
@@ -164,9 +159,9 @@ public class MapPanel extends JPanel
 	        
 	        if (demandeLivraison.getEntrepot() != null && demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
     		{
-	        	g2.fillRect((int)Math.round((demandeLivraison.getEntrepot().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 5, 
-	        			sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 5, 
-        			10, 10);
+	        	g2.fillRect((int)Math.round((demandeLivraison.getEntrepot().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 3, 
+	        			sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 3, 
+        			6, 6);
     		}
 	        
 			/*
@@ -192,7 +187,7 @@ public class MapPanel extends JPanel
 					(int)Math.round((demandeLivraison.getEntrepot().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 5, 
 					sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 5);
 			}
-			else if (demandeLivraison != null && demandeLivraison.getHeureDepart() != null 
+			else if (demandeLivraison != null && demandeLivraison.getEntrepot() != null && demandeLivraison.getHeureDepart() != null 
 					&& demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
 			{
 				g2.drawString(demandeLivraison.getHeureDepart().toString(),
@@ -205,16 +200,16 @@ public class MapPanel extends JPanel
 	        for (Livraison livraison : demandeLivraison.getLivraisons()) 
 	        {
 	        	/* points de livraison */
-	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() + focus.x / coefY- plan.getYMin()) * coefY) - 4, 
-        			sideLength - (int)Math.round((livraison.getIntersection().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 4,
-        			8, 8);
+	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() + focus.x / coefY- plan.getYMin()) * coefY) - 3, 
+        			sideLength - (int)Math.round((livraison.getIntersection().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 3,
+        			6, 6);
               
 	        	if (livraison.getPlagehoraire() == null || livraison.getPlagehoraire().getHeureDebut() == null || livraison.getPlagehoraire().getHeureFin() == null)
 	        	{
 	        		g2.setColor(Color.BLACK);
-	        		g2.fillRect((int)Math.round((livraison.getIntersection().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 4, 
-        				sideLength - (int)Math.round((livraison.getIntersection().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 4, 
-	        			8, 8);
+	        		g2.fillRect((int)Math.round((livraison.getIntersection().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 3, 
+        				sideLength - (int)Math.round((livraison.getIntersection().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 3, 
+	        			6, 6);
 	        		g2.setColor(Color.RED);
 	        	}
 
@@ -248,6 +243,19 @@ public class MapPanel extends JPanel
         }
         g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(1));
+        
+        // Selected Intersection
+        g2.setColor(Color.RED);
+        
+        if (plan != null && plan.getSelectedIntersection() != null)
+        {
+        	g2.fillRect((int)Math.round((plan.getSelectedIntersection().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 5, 
+        			sideLength - (int)Math.round((plan.getSelectedIntersection().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 5,
+        			10, 10);
+    	}
+        
+        g2.setColor(Color.BLACK);
+
 	}
 	
 	public void setAffichagePlan(boolean etat)

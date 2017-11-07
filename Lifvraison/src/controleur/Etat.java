@@ -29,4 +29,6 @@ public interface Etat {
 	public void mouseWheel(Controleur controleur, int steps, Point point);
 	public void undo ( ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	public void redo ( ListeDeCommandes listeDeCommandes, Fenetre fenetre);
+	
+	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes);
 }

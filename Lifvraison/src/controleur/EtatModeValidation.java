@@ -42,4 +42,5 @@ public class EtatModeValidation extends EtatDefault{
 		controleur.setEtatCourant( controleur.etatModificationTournee );
 		fenetre.setModeModificationTournee();
 	}
+
 }
