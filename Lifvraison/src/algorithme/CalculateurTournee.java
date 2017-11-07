@@ -4,6 +4,8 @@ package algorithme;
 import modeles.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import tsp.*;
 import donnees.ParseurException;
 import donnees.XMLParseur;
@@ -68,7 +70,7 @@ public class CalculateurTournee extends Thread{
 		for(int i = 0; i< intersections.size(); i++) {
 			Intersection lIntersection = intersections.get(i);
 			Dijkstra d = new Dijkstra(lePlan, lIntersection);
-			this.lesDijkstra.add(d);
+			//this.lesDijkstra.add(d);
 			d.run();
 			if(i == 0)
 			{
@@ -126,6 +128,7 @@ public class CalculateurTournee extends Thread{
 			int prochainSommet = tsp.getMeilleureSolution(i);
 			livraisonsOrdonnees.add(livraisons.get(prochainSommet-1));
 			lesItineraires.add(dijkstra.get(sommetCourant).getItineraire(intersections.get(prochainSommet).getId()));
+			this.lesDijkstra.add(dijkstra.get(prochainSommet));
 			sommetCourant = prochainSommet;
 		}
 		//On obtient les chemins à partir des dijkstras
@@ -201,11 +204,12 @@ public class CalculateurTournee extends Thread{
 			{
 				nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(0).getDepart().getId()));
 			}
-			for(int i = index + 1; i < lesItineraires.size(); i++) {
+			for(int i = index + 1; i < lesItineraires.size()-1; i++) {
 				nouveauxDijkstra.add(this.lesDijkstra.get(i));
 				nouvelleTournee.add(this.lesItineraires.get(i));
 				nouvellesLivraisons.add(laTournee.getLivraisonsOrdonnees().get(i-1));
 			}
+			nouvelleTournee.add(this.lesItineraires.get(lesItineraires.size()-1));
 			double longueur = 0;
 			for(int i = 0; i < nouvellesLivraisons.size(); i++) {
 				double aAjouter = nouvelleTournee.get(i).getLongueur()*3.6/15;
@@ -249,16 +253,26 @@ public class CalculateurTournee extends Thread{
 			return this.laTournee;
 		}
 		
+		if(index2 < index1) {
+			int temp = index1;
+			index1 = index2;
+			index2 = temp;
+		}
+		
 		Livraison dl1 = this.laTournee.getLivraisonsOrdonnees().get(index1);
 		Livraison dl2 = this.laTournee.getLivraisonsOrdonnees().get(index2);
 		
 		this.supprimerLivraison(dl1);
 		this.supprimerLivraison(dl2);
 		
-		this.ajouterLivraison(index1-1, dl2);
-		this.ajouterLivraison(index2-1, dl1);
+		this.ajouterLivraison(index1, dl2);
+		this.ajouterLivraison(index2, dl1);
 		
 		return this.laTournee;
+	}
+
+	public Tournee getLaTournee() {
+		return laTournee;
 	}
 
 }
