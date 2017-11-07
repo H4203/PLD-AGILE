@@ -81,7 +81,14 @@ public class Itineraire {
 	 */
 	@Override
 	public String toString() {
-		return "Itineraire [troncons=" + troncons + ", depart=" + depart + ", arrivee=" + arrivee + "]";
+		String tronconsChaineDeCaracteres ="" ;
+		String newLigne=System.getProperty("line.separator"); 
+		for (Troncon t : troncons) {
+			tronconsChaineDeCaracteres+=t.toString()+ newLigne;
+			
+		
+		}
+		return "Itineraire [troncons=" + tronconsChaineDeCaracteres + newLigne + ", depart=" + depart + ", arrivee=" + arrivee + "]";
 	}
 	
 	

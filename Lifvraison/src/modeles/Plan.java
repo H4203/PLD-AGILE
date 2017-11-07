@@ -1,5 +1,7 @@
 package modeles;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Observable;
 
 public class Plan extends Observable
@@ -58,7 +60,13 @@ public class Plan extends Observable
 
 	@Override
 	public String toString() {
-		return "Plan [listeIntersection=" + listeIntersection + ", \nlisteTroncons=" + listeTroncons + "]";
+		String chaineDeRetour = " Plan : \n" ;
+		 for (Map.Entry mapentry : listeIntersection.entrySet()) {
+	           chaineDeRetour+= "id: "+mapentry.getKey() 
+	                              + " | valeur: " + mapentry.getValue() + "\n";
+	        }
+		return chaineDeRetour;
+		 //return "Plan [listeIntersection=" + listeIntersection + ", \nlisteTroncons=" + listeTroncons + "]";
 	}
 
 	
