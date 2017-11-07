@@ -73,7 +73,7 @@ public class VueGraphique extends JPanel implements Observer
 		mapPanel.setAffichageTournee(false);
 	}
 	
-	public void setModeChargementPlan()
+	public void setModePlan()
 	{
 		mapPanel.resize();
 		
@@ -82,7 +82,7 @@ public class VueGraphique extends JPanel implements Observer
 		mapPanel.setAffichageTournee(false);
 	}
 	
-	public void setModeChargementDemandeLivraison()
+	public void setModeDemandeLivraison()
 	{
 		mapPanel.setAffichagePlan(true);
 		mapPanel.setAffichageDemandeLivraison(true);
@@ -92,17 +92,7 @@ public class VueGraphique extends JPanel implements Observer
 		repaint();
 	}
 	
-	public void setModeCalculTournee()
-	{
-		mapPanel.setAffichagePlan(true);
-		mapPanel.setAffichageDemandeLivraison(true);
-		mapPanel.setAffichageTournee(false);
-		
-		mapPanel.repaint();
-		repaint();
-	}
-	
-	public void setModeModificationTournee()
+	public void setModeTournee()
 	{
 		mapPanel.setAffichagePlan(true);
 		mapPanel.setAffichageDemandeLivraison(true);

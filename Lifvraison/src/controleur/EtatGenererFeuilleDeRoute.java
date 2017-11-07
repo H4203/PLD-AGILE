@@ -12,9 +12,8 @@ import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
 
-public class EtatModificationTournee extends EtatDefault{
-
-	
+public class EtatGenererFeuilleDeRoute extends EtatDefault
+{
 	@Override
 	public void chargerPlan ( Controleur controleur, Fenetre fenetre, String chemin) {
 		Plan newPlan = new Plan ();
@@ -42,6 +41,8 @@ public class EtatModificationTournee extends EtatDefault{
 		controleur.demandeLivraison = newDemandeLivraison;
 		controleur.tournee = null;
 		controleur.calculateurTournee = null;
+		//controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
+		//controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 		controleur.setEtatCourant(controleur.etatCalculTournee);
 		fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
 	}
@@ -49,38 +50,11 @@ public class EtatModificationTournee extends EtatDefault{
 	@Override
 	public void calculerTournee ( Controleur controleur, Fenetre fenetre )
 	{
+		controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
+		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 		controleur.calculateurTournee.run();
 		controleur.setEtatCourant( controleur.etatModificationTournee);
-	}
-	
-	
-	@Override
-	public void ajouterLivraison ( Controleur controleur, Fenetre fenetre)
-	{
-		controleur.setEtatCourant( controleur.etatAjoutLivraison1);
-		fenetre.setModeModificationTournee("AjoutLivraison");
-	}
-	@Override
-	public void supprimerLivraison ( Controleur controleur, Fenetre fenetre)
-	{
-		controleur.setEtatCourant( controleur.etatSupprimerLivraison);
-		fenetre.setModeModificationTournee("SuppressionLivraison");
-	}
-	@Override
-	public void intervertirLivraison(Controleur controleur, Fenetre fenetre) {
-		controleur.setEtatCourant( controleur.etatIntervertirLivraisons1);
-		fenetre.setModeModificationTournee("IntervertirLivraison");
-	}
-	@Override
-	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
-	{
-		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
-	}
-
-	@Override
-	public void mouseDrag(Controleur controleur, Point delta)
-	{
-		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
+		fenetre.chargerTournee(controleur.tournee);
 	}
 	
 	@Override
@@ -88,17 +62,15 @@ public class EtatModificationTournee extends EtatDefault{
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
-	
 	@Override
-	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
-		listeDeCommandes.undo();
-		fenetre.setModeModificationTournee();
+	public void mouseDrag(Controleur controleur, Point delta)
+	{
+		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
 	}
-
 	@Override
-	public void redo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
-		listeDeCommandes.redo();
-		fenetre.setModeModificationTournee();
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
+	{
+		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
 	}
 	
 	@Override
@@ -106,5 +78,13 @@ public class EtatModificationTournee extends EtatDefault{
 	{
 		controleur.setEtatCourant(controleur.etatGenererFeuilleDeRoute);
 		fenetre.setModeGenerationFeuilleDeRoute();
-	}	
+	}
+	
+	@Override
+	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre)
+	{
+		controleur.feuilleDeRoute = new FeuilleDeRoute();
+		controleur.feuilleDeRoute.gerer(controleur.tournee);
+		fenetre.setModeFin();
+	}
 }
