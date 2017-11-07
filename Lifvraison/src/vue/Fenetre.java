@@ -55,19 +55,13 @@ public class Fenetre extends JFrame
 	// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
 	private JButton buttonValidationTournee;*/
 	
-<<<<<<< HEAD
 	// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 	private JButton buttonChargerPlan;
 	// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
 	private JButton buttonChargerDemandeLivraison;
-	// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
+	// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 	private JButton buttonValiderTournee;
-		
-=======
-	private JButton buttonFeuilleDeRoute;
 	
->>>>>>> Dev
-	//??
 	// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
 	//private JList<String> listTexteLivraison;
 	
@@ -159,7 +153,7 @@ public class Fenetre extends JFrame
 		buttonChargerDemandeLivraison = new JButton("Charger Demande Livraison");
 		buttonChargerDemandeLivraison.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonChargerDemandeLivraison);
-		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
+		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 		buttonValiderTournee = new JButton("Valider Tournee");
 		buttonValiderTournee.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonValiderTournee);
@@ -489,16 +483,7 @@ public class Fenetre extends JFrame
 		// 1.3.5 mainPanel/ongletsPanel/buttonModificationTournee
 		buttonModificationTournee.setEnabled(true);
 		// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
-<<<<<<< HEAD
 		buttonValidationTournee.setBackground(new Color(200, 200, 255));*/
-=======
-		buttonValidationTournee.setBackground(new Color(200, 200, 255));
-		
-		buttonFeuilleDeRoute = new JButton("Gerer Feuille De Route");
-		buttonFeuilleDeRoute.addActionListener(ecouteurDeBoutons);
-		topButtonsPanel.add(buttonFeuilleDeRoute);	
-		buttonFeuilleDeRoute.setEnabled(true);
->>>>>>> Dev
 
 		repaint();
 		setVisible(true);
