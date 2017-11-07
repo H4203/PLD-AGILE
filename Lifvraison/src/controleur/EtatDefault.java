@@ -88,7 +88,7 @@ public class EtatDefault implements Etat{
 	}
 	
 	@Override
-	public void gererFeuilleDeRoute(Controleur controleur, Fenetre fenetre) {
+	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre) {
 		// TODO Auto-generated method stub
 		
 	}

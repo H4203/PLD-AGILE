@@ -11,9 +11,7 @@ import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
 
-public class EtatChargementLivraison extends EtatDefault{
-	
-	
+public class EtatCalculTournee extends EtatDefault{
 	@Override
 	public void chargerPlan ( Controleur controleur, Fenetre fenetre, String chemin) {
 		Plan newPlan = new Plan ();
@@ -43,9 +41,15 @@ public class EtatChargementLivraison extends EtatDefault{
 		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 		controleur.setEtatCourant(controleur.etatCalculTournee);
 		fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
-		
 	}
 	
+	@Override
+	public void calculerTournee ( Controleur controleur, Fenetre fenetre )
+	{
+		controleur.calculateurTournee.run();
+		controleur.setEtatCourant( controleur.etatModificationTournee);
+		fenetre.chargerTournee(controleur.tournee);
+	}
 	
 	@Override
 	public void mouseWheel(Controleur controleur, int steps, Point point)
@@ -62,4 +66,5 @@ public class EtatChargementLivraison extends EtatDefault{
 	{
 		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
 	}
+	
 }
