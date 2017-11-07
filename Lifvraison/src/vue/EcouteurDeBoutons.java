@@ -89,6 +89,7 @@ public class EcouteurDeBoutons implements ActionListener
 			case "Generer Feuille de Route" :
 			{
 				controleur.genererFeuilleDeRoute();
+				break;
 			}
 		}
 		
