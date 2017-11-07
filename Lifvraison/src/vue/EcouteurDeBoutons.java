@@ -77,6 +77,9 @@ public class EcouteurDeBoutons implements ActionListener
 			case "Retirer une Livraison" :
 				controleur.supprimerLivraison();
 				break;
+			case "Echanger 2 Livraisons" :
+				controleur.intervertirLivraison();
+				break;
 			case "Annuler":
 				controleur.undo();
 				break;
@@ -84,9 +87,8 @@ public class EcouteurDeBoutons implements ActionListener
 				controleur.redo();
 				break;
 			case "Gerer Feuille De Route" :
-			{
 				controleur.gererFeuilleDeRoute();
-			}
+				break;
 		}
 		
 		//PanelChargementPlan panelChargementPlan = new PanelChargementPlan();
