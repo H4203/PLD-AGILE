@@ -14,9 +14,12 @@ import vue.Fenetre;
 import modeles.DemandeLivraison;
 import modeles.Livraison;
 
-
-public class Controleur 
-{	
+/**
+ * 
+ * @author H4203 Traduit les interactions entre l�utilisateur et la vue en
+ *         actions pour le modele ou la vue
+ */
+public class Controleur {
 	protected XMLParseur parseur;
 	protected CalculateurTournee calculateurTournee;
 	protected Fenetre fenetre;
@@ -26,122 +29,195 @@ public class Controleur
 	protected String etat;
 	protected Etat etatCourant;
 	protected FeuilleDeRoute feuilleDeRoute;
-	
-	protected EtatChargementPlan etatChargementPlan  = new EtatChargementPlan();
-	protected EtatChargementLivraison etatChargementLivraison  = new EtatChargementLivraison();
+  
+	// differents etats possible
+	protected EtatChargementPlan etatChargementPlan = new EtatChargementPlan();
+	protected EtatChargementLivraison etatChargementLivraison = new EtatChargementLivraison();
 	protected EtatCalculTournee etatCalculTournee = new EtatCalculTournee();
-	protected EtatModificationTournee etatModificationTournee  = new EtatModificationTournee();
+	protected EtatModificationTournee etatModificationTournee = new EtatModificationTournee();
 	protected EtatGenererFeuilleDeRoute etatGenererFeuilleDeRoute = new EtatGenererFeuilleDeRoute();
 	protected EtatAjoutLivraison1 etatAjoutLivraison1 = new EtatAjoutLivraison1();
 	protected EtatAjoutLivraison2 etatAjoutLivraison2 = new EtatAjoutLivraison2();
-	protected EtatSupprimerLivraison etatSupprimerLivraison = new EtatSupprimerLivraison();	
+	protected EtatSupprimerLivraison etatSupprimerLivraison = new EtatSupprimerLivraison();
 	protected EtatIntervertirLivraisons1 etatIntervertirLivraisons1 = new EtatIntervertirLivraisons1();
 	protected EtatIntervertirLivraisons2 etatIntervertirLivraisons2 = new EtatIntervertirLivraisons2();
 	private ListeDeCommandes listeDeCommandes;
-	
-	
+
 	/**
-	 * 
+	 * Cree le controleur de l'application
 	 */
-	public Controleur() 
-	{
+	public Controleur() {
 		plan = null;
 		demandeLivraison = null;
 		tournee = null;
 		listeDeCommandes = new ListeDeCommandes();
-		
-		try 
-		{
-			parseur = new XMLParseur ();
-			fenetre = new Fenetre (this, plan, demandeLivraison, tournee);
+
+		try {
+			parseur = new XMLParseur();
+			fenetre = new Fenetre(this, plan, demandeLivraison, tournee);
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	public void launch () {
-		setEtatCourant ( etatChargementPlan );
+
+	/**
+	 * lance l'application
+	 */
+	public void launch() {
+		setEtatCourant(etatChargementPlan);
 		fenetre.setModeChargementPlan();
 	}
-	
-	protected void setEtatCourant(Etat etat){
+
+	/**
+	 * definit l'etat courant
+	 * 
+	 * @param etat
+	 *            = le nouvel etat
+	 */
+	protected void setEtatCourant(Etat etat) {
 		etatCourant = etat;
 	}
-	
-	public void chargerPlan( String chemin)
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Charger Plan"
+	 * 
+	 * @param chemin
+	 *            = le chemin d'acces du plan a ouvrir
+	 */
+	public void chargerPlan(String chemin) {
 		etatCourant.chargerPlan(this, fenetre, chemin);
 	}
-	public void chargerDemandeLivraison( String chemin)
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Charger Demande
+	 * Livraison"
+	 * 
+	 * @param chemin
+	 *            = le chemin d'acces de la demande de livraison
+	 */
+	public void chargerDemandeLivraison(String chemin) {
 		etatCourant.chargerDemandeLivraison(this, fenetre, chemin);
 	}
-	public void modifierTournee()
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Modifier Tournee"
+	 */
+	public void modifierTournee() {
 		etatCourant.modificationTournee(this, fenetre);
 	}
-	public void calculerTournee()
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Calculer Tournee"
+	 */
+	public void calculerTournee() {
 		etatCourant.calculerTournee(this, fenetre);
 	}
-	public void ajouterLivraison()
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Ajouter une
+	 * Livraison"
+	 */
+	public void ajouterLivraison() {
 		etatCourant.ajouterLivraison(this, fenetre);
 	}
-	public void supprimerLivraison( )
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Retirer une
+	 * Livraison"
+	 */
+	public void supprimerLivraison() {
 		etatCourant.supprimerLivraison(this, fenetre);
 	}
 
-	public void intervertirLivraisons()
-	{
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Echanger 2
+	 * Livraisons"
+	 */
+	public void intervertirLivraisons() {
 		etatCourant.intervertirLivraisons(this, fenetre);
 	}
-	
-	public void clicgauche ( int positonPrecedente, Livraison livraison)
-	{
-		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
-	}
-	public void modificationDansLaListe ( )
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur un element de la liste de la
+	 * vue textuelle
+	 */
+	public void modificationDansLaListe() {
 		etatCourant.modificationDansLaListe(this, listeDeCommandes);
 	}
-	
-	public void clicGauche(Point point)
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic gauche sur un point de la vue
+	 * graphique
+	 * 
+	 * @param point
+	 *            = coordonnees du plan correspondant au point clique
+	 */
+	public void clicGauche(Point point) {
 		etatCourant.clicgauche(this, fenetre, point, listeDeCommandes);
 	}
-	
-	public void mouseDrag(Point delta)
-	{
+
+	/**
+	 * Methode appelee par fenetre apres avoir bouge la souris en maintenant appuye
+	 * le clic gauche
+	 * 
+	 * @param delta
+	 *            = coordonnees du plan correspondant au point pointe par la souris
+	 */
+	public void mouseDrag(Point delta) {
 		etatCourant.mouseDrag(this, delta);
 	}
-	
-	public void mouseWheel(int steps, Point point)
-	{
+
+	/**
+	 * Methode appelee par fenetre apres avoir bouge la molette de la souris
+	 * 
+	 * @param point
+	 *            = coordonnees du plan correspondant au point pointe par la souris
+	 * @param steps
+	 *            = le nombre de pas de la molette
+	 */
+	public void mouseWheel(int steps, Point point) {
 		etatCourant.mouseWheel(this, steps, point);
 	}
-	
-	public void undo ()
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Annuler"
+	 */
+	public void undo() {
 		etatCourant.undo(this, listeDeCommandes, fenetre);
 	}
-	public void redo ()
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Retablir"
+	 */
+	public void redo() {
 		etatCourant.redo(this, listeDeCommandes, fenetre);
 	}
-	public void validerTournee() 
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Valider Tournee"
+	 */
+	public void validerTournee() {
 		etatCourant.validerTournee(this, fenetre);
 	}
-	public void genererFeuilleDeRoute(String chemin) 
-	{
+
+	/**
+	 * Methode appelee par fenetre apres un clic sur le bouton "Generer Feuille de
+	 * Route"
+	 * 
+	 * @param chemin
+	 *            = le chemin d'acces du fichier a creer
+	 */
+	public void genererFeuilleDeRoute(String chemin) {
 		etatCourant.genererFeuilleDeRoute(this, fenetre, chemin);
 	}
-	public int getToleranceClic()
-	{
+
+	/**
+	 * fait le lien entre tolerance en pixel et tolerance en metre
+	 * 
+	 * @return la tolerance en pixel
+	 */
+	public int getToleranceClic() {
 		return fenetre.getVueGraphique().getToleranceClic();
 	}
 
-	
 }
-
