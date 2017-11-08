@@ -20,8 +20,7 @@ import modeles.Tournee;
 import javax.swing.SwingConstants;
 
 /**
- * @author Pache
- *
+ * @author H4203
  */
 public class Fenetre extends JFrame
 {
