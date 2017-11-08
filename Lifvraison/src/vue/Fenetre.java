@@ -20,6 +20,9 @@ import modeles.Tournee;
 import javax.swing.SwingConstants;
 
 /**
+ * Classe Fenetre
+ * Herite de JFrame
+ * Gere la VueGraphique, la VueTextuelle et les boutons
  * @author H4203
  */
 public class Fenetre extends JFrame

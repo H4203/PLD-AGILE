@@ -19,28 +19,61 @@ import modeles.DemandeLivraison;
 import modeles.Itineraire;
 import modeles.Livraison;
 import modeles.PlageHoraire;
-
+/**
+ * Classe MapPanel
+ * Herite de JPanel
+ * Gere l'affichage des elements du Modele : Plan, DemandeLivraison, Tournee
+ * @author H4203
+ */
 public class MapPanel extends JPanel
 {
-	private final double toleranceSelectionIntersection = 20.0;
-	
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Tolerance sur la selection au clic
+	 */
+	private final double toleranceSelection = 20.0;
 	
 	private Plan plan;
 	private DemandeLivraison demandeLivraison;
 	private Tournee tournee;
 
+	/**
+	 * Taille du carre englobant le plan
+	 */
 	private int sideLength;
 	
+	/**
+	 * Coefficients de mise a l'echelle du plan
+	 */
 	private double coefX;
 	private double coefY;
+	/**
+	 * Point gerant le placement du plan
+	 */
 	private Point focus;
+	/**
+	 * Niveau de zoom du plan
+	 */
 	private double zoom;
 	
+	/**
+	 * Booleens pour activer l'affiche des objets du Modele
+	 */
 	private boolean affichagePlan;
 	private boolean affichageDemandeLivraison;
 	private boolean affichageTournee;
 
+	/**
+	 * Constructeur de MapPanel
+	 * Ajoute les ecouteurs de souris
+	 * Appelle l'initialisation
+	 * @param fenetre
+	 * @param plan
+	 * @param demandeLivraison
+	 * @param tournee
+	 * @param controleur
+	 */
 	public MapPanel(Fenetre fenetre, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur)
 	{
 		this.plan = plan;
@@ -58,8 +91,13 @@ public class MapPanel extends JPanel
 		addMouseWheelListener(ecouteurDeSouris);
 		
 		init();
+		
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
+	/**
+	 * Initialisation de la mise a l'echelle, du zoom, et le placement du plan
+	 */
 	private void init()
 	{
 		coefX = 0;
@@ -67,8 +105,6 @@ public class MapPanel extends JPanel
 		focus = new Point();
 		
 		resetZoomFocus();
-		
-		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
 	public void repaint(Graphics g)
@@ -78,6 +114,9 @@ public class MapPanel extends JPanel
 		paintComponent(g);
 	}
 	
+	/**
+	 * Affiche les elements du modele
+	 */
 	public void paintComponent(Graphics g)
 	{		
 		super.paintComponent(g);
@@ -237,21 +276,38 @@ public class MapPanel extends JPanel
         g2.setStroke(new BasicStroke(1));
 	}
 	
+	/**
+	 * Setter de l'etat d'affichage du Plan
+	 * @param etat
+	 */
 	public void setAffichagePlan(boolean etat)
 	{
 		affichagePlan = etat;
 	}
 	
+	/**
+	 * Setter de l'etat d'affichage de la DemandeLivraison
+	 * @param etat
+	 */
 	public void setAffichageDemandeLivraison(boolean etat)
 	{
 		affichageDemandeLivraison = etat;
 	}
 	
+	/**
+	 * Setter de l'etat d'affchage de la Tournee
+	 * @param etat
+	 */
 	public void setAffichageTournee(boolean etat)
 	{
 		affichageTournee = etat;
 	}
 	
+	/**
+	 * Adapte les coefficients de mise a l'echelle du plan
+	 * En fonction de la taille du panel, de la taille du plan, et du niveau de zoom
+	 * Appelle repaint
+	 */
 	public void resize()
 	{	
 		if (plan != null)
@@ -281,6 +337,12 @@ public class MapPanel extends JPanel
 		repaint();
 	}
 	
+	/**
+	 * Convertit un Point dans le systeme de coordonnee de MapPanel en un Point dans le le systeme de coordonnees du Plan
+	 * En fonction de la taille de MapPanel, du placement, du niveau de zoom, et de la mise a l'echelle du Plan
+	 * @param point Point dans le systeme de coordonnees de MapPanel
+	 * @return Point dans le systeme de coordonnees du Plan
+	 */
 	public Point convertPoint(Point point)
 	{
 		Point convertedPoint = new Point((int)Math.round((sideLength - point.getY()) / coefX + plan.getXMin() + focus.y / coefX), (int)Math.round(point.getX() / coefY + plan.getYMin() - focus.x / coefY));
@@ -288,12 +350,22 @@ public class MapPanel extends JPanel
 		return convertedPoint;
 	}
 	
+	/**
+	 * Deplace le plan de la valeur de delta
+	 * @param delta Point dont les coordonnees representent le deplacement du Plan
+	 */
 	public void drag(Point delta)
 	{
 		focus.setLocation(focus.x + delta.x, focus.y + delta.y);
 		repaint();
 	}
 	
+	/**
+	 * Change le niveau de zoom du Plan
+	 * En fonction du nombre de pas et du Point depuis lequel le zoom a ete effectue
+	 * @param steps nombre de pas 
+	 * @param point Point depuis lequel le zoom a ete effectue
+	 */
 	public void zoom(int steps, Point point)
 	{
 		point.setLocation(point.x, point.y - sideLength);
@@ -314,9 +386,13 @@ public class MapPanel extends JPanel
 		resize();
 	}
 	
+	/**
+	 * Renvoie la tolerance de selection au clic dans le systeme de coordonnees du Plan
+	 * @return tolerance de selection au clic dans le systeme de coordonnees du Plan
+	 */
 	public int getToleranceClic()
 	{
-		int tolerance = (int)(Math.round(toleranceSelectionIntersection / (coefX + coefY))); 
+		int tolerance = (int)(Math.round(toleranceSelection / (coefX + coefY))); 
 		
 		if (tolerance < 10)
 		{
@@ -331,12 +407,22 @@ public class MapPanel extends JPanel
 		return tolerance;
 	}
 	
+	/**
+	 * Reinitialise le deplacement et le niveau de zoom du Plan
+	 */
 	public void resetZoomFocus()
 	{
 		zoom = 1;
 		focus.setLocation(0, 0);
 	}
 	
+	/**
+	 * Setter du Plan
+	 * Reinitialise la DemandeLivraison et la Tournee
+	 * Appelle la reinitialisation du niveau de zoom et du placement du Plan
+	 * Appelle la mise a l'echelle du Plan
+	 * @param plan nouveau Plan
+	 */
 	public void setPlan ( Plan plan)
 	{
 		this.plan = plan;
@@ -348,12 +434,21 @@ public class MapPanel extends JPanel
 		repaint();
 	}
 	
+	/**
+	 * Setter de la DemandeLivraison
+	 * Reinitialise la DemandeLivraison
+	 * @param demandeLivraison nouvelle DemandeLivraison
+	 */
 	public void setDemandeLivraison ( DemandeLivraison demandeLivraison)
 	{
 		this.demandeLivraison = demandeLivraison;
 		setTournee(null);
 	}
 	
+	/**
+	 * Setter de la Tournee
+	 * @param tournee nouvelleTournee
+	 */
 	public void setTournee ( Tournee tournee)
 	{
 		this.tournee = tournee;
