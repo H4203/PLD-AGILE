@@ -52,7 +52,7 @@ public class ListPanel extends JPanel
 	private JPanel splitPanel;
 
 	private JPanel detailsPanel;
-	private JTextPane detailsTextArea;
+	private JLabel detailsTextArea;
 	private JPanel detailsButtonPanel;
 
 	private JPanel detailsTronconPanel;
@@ -88,7 +88,7 @@ public class ListPanel extends JPanel
 		detailsPanel = new JPanel();
 		detailsPanel.setLayout(new BorderLayout());
 
-		detailsTextArea = new JTextPane();
+		detailsTextArea = new JLabel();
 		detailsTextArea.setLayout(new FlowLayout());
 		detailsPanel.add(detailsTextArea, BorderLayout.NORTH);
 
@@ -137,9 +137,9 @@ public class ListPanel extends JPanel
 	public void remplirListe ()
 	{
 		String color = "black";
-		detailsTextArea.removeAll();
+		detailsTextArea.setVisible(false);
 		detailsTextArea.repaint();
-		listTexteLivraison.removeAll();
+		//listTexteLivraison.setVisible(false);
 
 		if ( affichageTournee && tournee != null && !tournee.getLivraisonsOrdonnees().isEmpty() ) {
 			String tableauTexteList[] = new String[tournee.getLivraisonsOrdonnees().size()+2]; 
@@ -167,7 +167,7 @@ public class ListPanel extends JPanel
 						}
 					}
 					tableauTexteList[i] = "<html><font color='"+color+"'>Livraison " + i + " - de " + plgrhoraire.getHeureDebut().toString()
-							+ " a " + plgrhoraire.getHeureFin().toString();
+							+ " a " + plgrhoraire.getHeureFin().toString() + " - duree de livraison: " + (int)(tournee.getLivraisonsOrdonnees().get(i-1).getDureeDechargement()/60) + " mins";
 
 				}
 				i = i + 1;
@@ -199,8 +199,7 @@ public class ListPanel extends JPanel
 			}
 
 			listTexteLivraison.setListData(tableauTexteList);
-
-			scrollPane.setBorder(new TitledBorder(null, "Details Demande De Livraison", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
+			scrollPane.setBorder(new TitledBorder(null, "Details Demande Livraison", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
 			scrollPane.setViewportView(listTexteLivraison);
 			splitPanel.setVisible(true);
 			detailsPanel.setVisible(false);
@@ -226,14 +225,11 @@ public class ListPanel extends JPanel
 			if ( !tournee.getLivraisonsOrdonnees().isEmpty() && index > 0 && index < tournee.getLivraisonsOrdonnees().size() ) {
 				Livraison livraison = tournee.getLivraisonsOrdonnees().get(index);
 				if(livraison.getPlagehoraire() != null ) {
-					detailsTextArea.setText(detailsTextArea.getText()+"\n Plage horaire : " + livraison.getPlagehoraire().getHeureDebut() + " - " + livraison.getPlagehoraire().getHeureFin());
+					detailsTextArea.setText(detailsTextArea.getText()+"<br> Plage horaire : " + livraison.getPlagehoraire().getHeureDebut() + " - " + livraison.getPlagehoraire().getHeureFin());
 				}
-				detailsTextArea.setText(detailsTextArea.getText()+"\n Duree de dechargement :" + livraison.getDureeDechargement()/60 + " minutes");
+				detailsTextArea.setText(detailsTextArea.getText()+"<br> Duree de dechargement :" + livraison.getDureeDechargement()/60 + " minutes");
 			}
-		} else {
-			detailsTextArea.setText(detailsTextArea.getText()+"\n Duree de dechargement :" + demandeLivraison.getLivraisons().get(listTexteLivraison.getSelectedIndex()).getDureeDechargement()/60 + " minutes");
 		}
-
 		detailsPanel.setVisible(true);
 		splitPanel.setVisible(true);
 		detailsPanel.repaint();

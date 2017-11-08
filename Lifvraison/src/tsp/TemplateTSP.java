@@ -74,7 +74,7 @@ public abstract class TemplateTSP implements TSP {
 			 tempsLimiteAtteint = true;
 			 return;
 		 }
-		
+		int bound = bound(sommetCrt, nonVus, cout, duree, tempsDebutPlage, tempsFinPlage, coutVus);
 	    if (nonVus.size() == 0){ // tous les sommets ont ete visites
 		    	coutVus += cout[sommetCrt][0];
 		    	if (coutVus < coutMeilleureSolution){ // on a trouve une solution meilleure que meilleureSolution
@@ -83,7 +83,7 @@ public abstract class TemplateTSP implements TSP {
 		    		solutionPossibleTrouvee = true;
 		    		//System.out.println("Nouvelle solution trouvee");
 		    	}
-	    } else if (coutVus + bound(sommetCrt, nonVus, cout, duree, tempsDebutPlage, tempsFinPlage, coutVus) < coutMeilleureSolution){
+	    } else if (coutVus + bound < coutMeilleureSolution){
 	        Iterator<Integer> it = iterator(sommetCrt, nonVus, cout, duree);
 	        while (it.hasNext()){
 		        	Integer prochainSommet = it.next();

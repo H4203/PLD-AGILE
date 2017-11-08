@@ -8,7 +8,8 @@ public class TSP2 extends TSP1 {
 		
 		for(Integer i : nonVus) {
 			if(coutVus + cout[sommetCourant][i] + duree[i] > tempsFinPlage[i]) {
-				return Integer.MAX_VALUE;
+				//return Integer.MAX_VALUE;
+				return -1;
 			}
 		}
 		
