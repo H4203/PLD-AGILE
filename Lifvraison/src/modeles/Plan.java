@@ -174,6 +174,22 @@ public class Plan extends Observable
 		notifyObservers();
 	}
 	
+	public void getLivraison (Livraison livraison)
+	{
+		selectedIntersection = livraison.getIntersection();
+		
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void getEntrepot (Intersection entrepot)
+	{
+		selectedIntersection = entrepot;
+		
+		setChanged();
+		notifyObservers();
+	}
+	
 	public void resetBounds()
 	{
 		xMax = 0;

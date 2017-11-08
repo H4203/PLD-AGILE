@@ -143,35 +143,38 @@ public class CalculateurTournee extends Thread{
 	
 	public int supprimerLivraison(Livraison livraison) {
 		int index = -1;
-		for(int i = 0; i < lesItineraires.size()-1; i++) {
-			if(lesItineraires.get(i).getArrivee().getId() == livraison.getIntersection().getId())
+		for(int i = 0; i < lesItineraires.size(); i++) {
+			if(lesItineraires.get(i).getDepart().getId() == livraison.getIntersection().getId())
 			{
 				index = i;
 			}
 		}
 		List<Itineraire> nouvelleTournee = new ArrayList<Itineraire>();
 		if(index != -1) {
-			for(int i = 0; i < index; i++) {
+			for(int i = 0; i < index-1; i++) {
 				nouvelleTournee.add(this.lesItineraires.get(i));
 			}
-			if(index+1 != (this.lesItineraires.size()-1)) {
-				if(index != 0)
-				nouvelleTournee.add(lesDijkstra.get(index-1).getItineraire(lesDijkstra.get(index+1).getPtDepart().getId()));
-				else
-					nouvelleTournee.add(lesDijkstra.get(index+1).getItineraire(this.laTournee.getDemandeLivraison().getEntrepot().getId()));
-					
-				for(int i = index+2; i < lesItineraires.size(); i++) {
+			if(index != (this.lesItineraires.size()-1)) {
+				if(index != 1)
+					nouvelleTournee.add(lesDijkstra.get(index-2).getItineraire(lesDijkstra.get(index).getPtDepart().getId()));
+				else {
+					//nouvelleTournee.add(lesDijkstra.get(index+1).getItineraire(this.laTournee.getDemandeLivraison().getEntrepot().getId()));
+					Dijkstra d = new Dijkstra(this.laTournee.getPlan(), this.laTournee.getDemandeLivraison().getEntrepot());
+					d.run();
+					nouvelleTournee.add(d.getItineraire(this.lesDijkstra.get(index).getPtDepart().getId()));
+				}
+				for(int i = index+1; i < lesItineraires.size(); i++) {
 					nouvelleTournee.add(this.lesItineraires.get(i));
 				}
 			}
 			else
 			{
-				nouvelleTournee.add(lesDijkstra.get(index-1).getItineraire(lesItineraires.get(0).getDepart().getId()));
+				nouvelleTournee.add(lesDijkstra.get(index-2).getItineraire(this.laTournee.getDemandeLivraison().getEntrepot().getId()));
 			}
 			this.lesItineraires = nouvelleTournee;
-			this.lesDijkstra.remove(index);
+			this.lesDijkstra.remove(index-1);
 			laTournee.getDemandeLivraison().getLivraisons().remove(livraison);
-			//laTournee.supprimerLivraison(index);
+			laTournee.supprimerLivraison(index-1);
 			laTournee.setListeItineraires(lesItineraires);
 			
 		}
@@ -205,7 +208,10 @@ public class CalculateurTournee extends Thread{
 				nouveauxDijkstra.add(this.lesDijkstra.get(index));
 			}
 			else if(index != this.lesDijkstra.size()) {
-				nouvelleTournee.add(d.getItineraire(laTournee.getDemandeLivraison().getEntrepot().getId()));
+				//nouvelleTournee.add(d.getItineraire(laTournee.getDemandeLivraison().getEntrepot().getId()));
+				Dijkstra d2 = new Dijkstra(this.laTournee.getPlan(), this.laTournee.getDemandeLivraison().getEntrepot());
+				d2.run();
+				nouvelleTournee.add(d2.getItineraire(livraison.getIntersection().getId()));
 				nouveauxDijkstra.add(this.lesDijkstra.get(index));
 			}
 			else if ( index == this.lesDijkstra.size()) {
@@ -217,13 +223,13 @@ public class CalculateurTournee extends Thread{
 
 			if ( index+1 < lesItineraires.size() )
 			{
-				nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(index+1).getDepart().getId()));
+				nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(index).getArrivee().getId()));
 			}
 			else
 			{
 				nouvelleTournee.add(d.getItineraire(this.lesItineraires.get(0).getDepart().getId()));
 			}
-			for(int i = index + 1; i < lesItineraires.size()-1; i++) {
+			for(int i = index +1; i < lesItineraires.size()-1; i++) {
 				nouveauxDijkstra.add(this.lesDijkstra.get(i));
 				nouvelleTournee.add(this.lesItineraires.get(i));
 				nouvellesLivraisons.add(laTournee.getLivraisonsOrdonnees().get(i-1));
@@ -252,6 +258,7 @@ public class CalculateurTournee extends Thread{
 			this.lesItineraires = nouvelleTournee;
 			// on actualise demande liste livraison ordonn� et on ajoute la livraison � la demande de livraison
 			this.laTournee.ajouterLivraison(livraison, index);
+			//this.laTournee.setLivraisonsOrdonnees(nouvellesLivraisons);
 			this.laTournee.getDemandeLivraison().ajouterLivraison(livraison);
 			this.laTournee.setListeItineraires(nouvelleTournee);
 			System.out.println();

@@ -102,6 +102,10 @@ public class Controleur
 	{
 		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
 	}
+	public void modificationDansLaListe ( )
+	{
+		etatCourant.modificationDansLaListe(this, listeDeCommandes);
+	}
 	
 	public void clicGauche(Point point)
 	{
