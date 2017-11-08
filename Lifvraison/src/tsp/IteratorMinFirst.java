@@ -6,13 +6,22 @@ import java.util.Iterator;
 
 public class IteratorMinFirst implements Iterator<Integer> {
 
+	/**
+	 * Listes des sommets a visiter
+	 */
 	private ArrayList<Integer> candidats;
+	/**
+	 * Matrice des couts, premettant de trouver le sommet dont le cout depuis le point courant est le moins couteux
+	 */
 	private int[][] cout;
+	/**
+	 * Sommet actuel
+	 */
 	private Integer sommetCourant;
 
 	/**
 	 * Cree un iterateur pour iterer sur l'ensemble des sommets de nonVus
-	 * @param nonVus
+	 * @param nonVus Liste des sommets pas encore visites
 	 * @param sommetCrt
 	 */
 	public IteratorMinFirst(Collection<Integer> nonVus, int sommetCrt, int[][] cout){

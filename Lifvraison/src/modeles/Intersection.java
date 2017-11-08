@@ -2,19 +2,43 @@ package modeles;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
-
+/**
+ * Classe contenant toutes les informations relatives a une intersection
+ */
 public class Intersection {
 
+	/**
+	 * id de l'intersection
+	 */
 	private Long id;
+	/**
+	 * Coordonnee x de l'intersection
+	 */
 	private Integer x;
+	/**
+	 * Coordonnee y de l'intersection
+	 */
 	private Integer y;
+	/**
+	 * List des troncons ayant pour point de depart l'intersection
+	 */
 	private List<Troncon> tronconsSortants;
-	private List<Troncon> tronconsEntrants; // Surement a enlever
-	
+	/**
+	 * List des troncons ayant pour point d'arrivee l'intersection
+	 */
+	private List<Troncon> tronconsEntrants; 
+	/**
+	 * Constructeur par defaut
+	 */
 	public Intersection()
 	{
 	}
-	
+	/**
+	 * Constructeur a partir de l'id et des coordonnees
+	 * @param id
+	 * @param x
+	 * @param y
+	 */
 	public Intersection(Long id, Integer x, Integer y)
 	{
 		this.id = id;
@@ -51,7 +75,11 @@ public class Intersection {
 	public List<Troncon> getTronconsSortants() {
 		return tronconsSortants;
 	}
-	
+	/**
+	 * Methode permettant d'obtenir le troncon a l'index i
+	 * @param i position du troncon souhaite
+	 * @return retourne le troncon, null si i non valide
+	 */
 	public Troncon getTronconsSortantsi(int i) {
 		if((i > 0) && (i < tronconsSortants.size()) ) {
 			return tronconsSortants.get(i);
