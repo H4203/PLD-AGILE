@@ -19,29 +19,59 @@ import modeles.Tournee;
 
 import javax.swing.SwingConstants;
 
+/**
+ * @author Pache
+ *
+ */
 public class Fenetre extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * VueGraphique contenant le plan
+	 */
 	private VueGraphique vueGraphique;
+	/**
+	 * VueTextuelle contenant les details des Livraisons et elements du plan
+	 */
 	private VueTextuelle vueTextuelle;
 
+	/**
+	 * Panel des boutons des actions de modification de Tournee
+	 */
 	private JPanel overActionButtonsPanel;
 
+	/**
+	 * Boutons des differentes actions de modification de Tournee
+	 */
 	private JButton buttonAjouterLivraison;
 	private JButton buttonSupprimerLivraison;
 	private JButton buttonEchangerLivraisons;
 	private JButton buttonUndo;
 	private JButton buttonRedo;
 	
+	/**
+	 * Boutons des differents etats
+	 */
 	private JButton buttonChargerPlan;
 	private JButton buttonChargerDemandeLivraison;
 	private JButton buttonCalulerTournee;
 	private JButton buttonValiderTournee;
 	private JButton buttonGenererFeuilleDeRoute;	
 	
+	/**
+	 * Indication pour l'utilisateur affichee en dessous du plan
+	 */
 	private JLabel indicationsLabel;
 	
+	/**
+	 * Constructeur de Fenetre
+	 * Cree et ajoute tous les elements de la fenetre
+	 * @param controleur
+	 * @param plan
+	 * @param demandeLivraison
+	 * @param tournee
+	 */
 	public Fenetre(Controleur controleur, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
 		super();
@@ -159,12 +189,22 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
+	/**
+	 * Fait suivre le nouveau Plan a la VueGraphique
+	 * Change le mode de la Fenetre pour le mode chargement de DemandeLivraison
+	 * @param plan nouveau Plan
+	 */
 	public void chargerPlan(Plan plan)
 	{
 		vueGraphique.nouveauPlan(plan);
 		setModeChargementDemandeLivraison();
 	}
 	
+	/**
+	 * Fait suivre la nouvelle DemandeLivraison a la VueGraphique et a la VueTextuelle
+	 * Change le mode de la Fenetre pour le mode calcul de Tournee
+	 * @param demandeLivraison nouvelle DemandeLivraison
+	 */
 	public void chargerDemandeLivraison(DemandeLivraison demandeLivraison)
 	{
 		vueGraphique.nouvelleDemandeLivraison(demandeLivraison);
@@ -172,6 +212,11 @@ public class Fenetre extends JFrame
 		setModeCalculTournee();
 	}
 	
+	/**
+	 * Fait suivre la nouvelle Tournee a la VueGraphique et a la VueTextuelle
+	 * Change le mode de la Fenetre pour le mode modification de Tournee
+	 * @param tournee nouvelle Tournee
+	 */
 	public void chargerTournee(Tournee tournee)
 	{
 		vueGraphique.nouvelleTournee(tournee);
@@ -179,6 +224,10 @@ public class Fenetre extends JFrame
 		setModeModificationTournee();
 	}
 	
+	/**
+	 * Change le mode de la Fenetre pour le mode chargement de Plan
+	 * Change les modes de VueGraphique et VueTextuelle pour le mode Plan
+	 */
 	public void setModeChargementPlan()
 	{	
 		setIndicationLabel("<html>Cliquez sur Charger Plan pour choisir le fichier du plan</html>");
@@ -198,6 +247,11 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
+	/**
+	 * Change le mode de la Fenetre pour le mode chargement de DemandeLivraison
+	 * Change le mode de VueGraphique pour le mode DemandeLivraison
+	 * Change le mode de VueTextuelle pour le mode Plan
+	 */	
 	public void setModeChargementDemandeLivraison()
 	{
 		setIndicationLabel("<html>Plan chargé avec succès<br>Cliquez sur Charger Demande Livraison pour choisir le fichier de demande de livraison</html>");
@@ -217,6 +271,10 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
+	/**
+	 * Change le mode de la Fenetre pour le mode calcul de Tournee
+	 * Change les modes de VueGraphique et VueTextuelle pour le mode DemandeLivraison
+	 */
 	public void setModeCalculTournee()
 	{
 		setIndicationLabel("<html>Demande de livraison chargée avec succès<br>Cliquez sur Calculer Tournee pour lancer le calcul de la tournee</html>");
@@ -236,11 +294,21 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
+	/**
+	 * Change le mode de la Fenetre pour le mode modification de Tournee
+	 * Dans l'etat par defaut
+	 */
 	public void setModeModificationTournee()
 	{
 		setModeModificationTournee("");
 	}
 	
+	/**
+	 * Change le mode de la Fenetre pour le mode modification de Tournee
+	 * Dans l'etat actuel
+	 * Change les modes de VueGraphique et VueTextuelle pour le mode Tournee
+	 * @param etat etat actuel de la modification de Tournee
+	 */
 	public void setModeModificationTournee(String etat)
 	{
 		vueGraphique.setModeTournee();
@@ -281,6 +349,10 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
+	/**
+	 * Change le mode de la Fenetre pour le mode generation de FeuilleDeRoute
+	 * Change les modes de VueGraphique et VueTextuelle pour le mode Tournee
+	 */
 	public void setModeGenerationFeuilleDeRoute()
 	{
 		setIndicationLabel("<html>Tournee validee<br>Cliquez sur Generer Feuille de Route pour enregistrer votre fichier</html>");
@@ -300,16 +372,28 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
+	/**
+	 * Getter VueGraphique
+	 * @return vueGraphique
+	 */
 	public VueGraphique getVueGraphique()
 	{
 		return vueGraphique;
 	}
 	
+	/**
+	 * Getter VueTextuelle
+	 * @return vueTextuelle
+	 */
 	public VueTextuelle getVueTextuelle() 
 	{
 		return vueTextuelle;
 	}
 	
+	/**
+	 * Change l'indication affichee en dessous du plan
+	 * @param indication a afficher
+	 */
 	public void setIndicationLabel(String indication)
 	{
 		indicationsLabel.setText(indication);
