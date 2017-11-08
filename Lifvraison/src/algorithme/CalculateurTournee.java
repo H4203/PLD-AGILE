@@ -204,7 +204,7 @@ public class CalculateurTournee extends Thread{
 				nouvelleTournee.add(this.lesDijkstra.get(index-1).getItineraire(livraison.getIntersection().getId()));
 				nouveauxDijkstra.add(this.lesDijkstra.get(index));
 			}
-			else
+			else if(index != this.lesDijkstra.size())
 				{nouvelleTournee.add(d.getItineraire(laTournee.getDemandeLivraison().getEntrepot().getId()));
 				nouveauxDijkstra.add(this.lesDijkstra.get(index));
 				}
@@ -276,10 +276,11 @@ public class CalculateurTournee extends Thread{
 		Livraison dl1 = this.laTournee.getLivraisonsOrdonnees().get(index1);
 		Livraison dl2 = this.laTournee.getLivraisonsOrdonnees().get(index2);
 		
-		this.supprimerLivraison(dl1);
+		
 		this.supprimerLivraison(dl2);
 		
 		this.ajouterLivraison(index1, dl2);
+		this.supprimerLivraison(dl1);
 		this.ajouterLivraison(index2, dl1);
 		
 		return this.laTournee;
