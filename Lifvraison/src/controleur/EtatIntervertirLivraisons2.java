@@ -43,6 +43,24 @@ public class EtatIntervertirLivraisons2 extends EtatDefault{
 	}
 	
 	@Override
+	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes) {
+		int index = controleur.fenetre.getVueTextuelle().getListPanel().getCurrentSelection();
+		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
+		if(index > 0 && index <= Listelivraisons.size())
+		{
+			Livraison livraison = Listelivraisons.get(index-1);
+			
+			if ( posLivraison1 != posLivraison2 && posLivraison2 != -1)
+			{
+				controleur.plan.getLivraison(livraison);
+				controleur.setEtatCourant( controleur.etatModificationTournee);
+				listeDeCommandes.ajoute( new CommandeIntervertirCommande ( posLivraison1, posLivraison2 , controleur.calculateurTournee));
+				controleur.fenetre.setModeModificationTournee();
+			}
+		}
+	}
+	
+	@Override
 	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre)
 	{
 		controleur.setEtatCourant(controleur.etatModificationTournee);

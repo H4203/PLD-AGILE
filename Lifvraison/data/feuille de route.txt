@@ -1,0 +1,62 @@
+L'heure depart depuis l'entrepot : 08:00
+
+Continuez 136m dans Rue du Professeur Beauvisage
+Tournez a droite et continuez 33m dans Avenue du Général Frère
+Continuez 281m dans Boulevard Edmond Michelet
+Tournez a droite et continuez 1067m dans Boulevard Ambroise Paré
+Tournez a droite et continuez 787m dans Rue Viala
+Tournez a gauche et continuez 254m dans Rue Ferdinand Buisson
+Tournez a droite et continuez 69m dans Rue Charles Richard
+
+L'heure arivee de livraison n¡ã1: 08:10:30
+L'adresse de livraison n¡ã1: Rue Charles Richard
+L'heure depart de livraison n¡ã1: 09:15
+
+Continuez 354m dans Rue Charles Richard
+Continuez 125m dans Rue Antoinette
+
+L'heure arivee de livraison n¡ã2: 09:16:55
+L'adresse de livraison n¡ã2: Rue Antoinette
+L'heure depart de livraison n¡ã2: 11:10
+
+Continuez 140m dans Rue Antoinette
+Tournez a gauche et continuez 140m dans Cours Richard Vitton
+Tournez a droite et continuez 18m dans Place Ronde André Bourgogne
+Tournez a droite et continuez 52m dans Rue de l'Église
+Tournez a droite et continuez 220m dans Rue Général Leclerc
+Tournez a droite et continuez 391m dans Rue Poizat
+Tournez a droite et continuez 161m dans Rue Antoine Primat
+
+L'heure arivee de livraison n¡ã3: 11:14:30
+L'adresse de livraison n¡ã3: Rue Antoine Primat
+L'heure depart de livraison n¡ã3: 11:24:30
+
+Continuez 161m dans Rue Antoine Primat
+Tournez a droite et continuez 391m dans Rue Poizat
+Tournez a droite et continuez 19m dans Rue Général Leclerc
+Tournez a droite et continuez 447m dans Boulevard Honoré de Balzac
+Continuez 89m dans Rue Antonin Perrin
+Tournez a droite et continuez 541m dans Rue Bonnand
+Tournez a droite et continuez 260m dans Cours Docteur Long
+Continuez 49m dans Place Henri
+Tournez a droite et continuez 562m dans Rue du Professeur Florence
+Tournez a droite et continuez 50m dans Place d'Arsonval
+Tournez a droite et continuez 77m dans Boulevard Jean XXIII
+Continuez 208m dans Rue Léa et Napoléon Bullukian
+Tournez a droite et continuez 71m dans Rue Nungesser et Coli
+Tournez a gauche et continuez 295m dans Rue Seignemartin
+Tournez a droite et continuez 304m dans Rue Auguste Pinton
+Tournez a droite et continuez 9m dans Rue Bataille
+
+L'heure de retour de l'entrepot: 11:38:39
+L'adresse de livraison n¡ã4: Rue Bataille
+L'heure depart de livraison n¡ã4: 12:15
+
+Continuez 109m dans Rue Bataille
+Tournez a gauche et continuez 412m dans Rue Édouard Nieuport
+Tournez a droite et continuez 126m dans Rue Professeur Morat
+Continuez 79m dans Avenue Général Frère
+Tournez a droite et continuez 14m dans Avenue du Général Frère
+Tournez a droite et continuez 136m dans Rue du Professeur Beauvisage
+
+L'heure de retour de l'entrepot: 12:18:30

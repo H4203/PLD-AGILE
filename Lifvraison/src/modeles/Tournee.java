@@ -46,7 +46,7 @@ public class Tournee extends Observable
 		for (Itineraire itineraire : listeItineraires)
 		{
 			/* on converti la longeur de la route en temps */
-			dureeRoute = itineraire.getLongueur()/15000*3600;
+			dureeRoute = (itineraire.getLongueur()/15)*3.6;
 
 			/* on recupere l'heure a laquelle il quitte son dernier point */
 			debut = listeHoraire.get(listeHoraire.size()-1).getHeureFin();

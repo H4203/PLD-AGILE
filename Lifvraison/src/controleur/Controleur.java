@@ -87,20 +87,28 @@ public class Controleur
 	public void ajouterLivraison()
 	{
 		etatCourant.ajouterLivraison(this, fenetre);
+		fenetre.setBarreChargement("Cliquez sur une intersection du plan");
 	}
 	public void supprimerLivraison( )
 	{
 		etatCourant.supprimerLivraison(this, fenetre);
+		fenetre.setBarreChargement("Cliquez sur un point de livraison du plan ou de la liste");
 	}
 
 	public void intervertirLivraisons()
 	{
+		fenetre.setBarreChargement("Cliquez sur un point de livraison du plan ou de la liste");
+
 		etatCourant.intervertirLivraisons(this, fenetre);
 	}
 	
 	public void clicgauche ( int positonPrecedente, Livraison livraison)
 	{
 		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
+	}
+	public void modificationDansLaListe ( )
+	{
+		etatCourant.modificationDansLaListe(this, listeDeCommandes);
 	}
 	
 	public void clicGauche(Point point)

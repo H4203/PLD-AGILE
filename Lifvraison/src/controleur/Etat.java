@@ -23,4 +23,5 @@ public interface Etat {
 	public void redo (Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	public void modificationTournee(Controleur controleur, Fenetre fenetre);
 	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre, String chemin);
+	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes);
 }
