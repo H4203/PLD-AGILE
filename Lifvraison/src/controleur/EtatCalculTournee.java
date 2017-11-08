@@ -20,7 +20,6 @@ public class EtatCalculTournee extends EtatDefault{
 		Plan newPlan = new Plan ();
 		try{
 			controleur.parseur.chargerPlan(newPlan, chemin);
-			// on attribut le nouveau plan
 			controleur.plan = newPlan;
 			controleur.demandeLivraison = null;
 			controleur.tournee = null;
@@ -40,8 +39,6 @@ public class EtatCalculTournee extends EtatDefault{
 			controleur.demandeLivraison = newDemandeLivraison;
 			controleur.tournee = null;
 			controleur.calculateurTournee = null;
-			//controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
-			//controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 			controleur.setEtatCourant(controleur.etatCalculTournee);
 			fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
 		} catch (ParseurException e) {
@@ -77,12 +74,12 @@ public class EtatCalculTournee extends EtatDefault{
 		
 		Intersection pointSelectionne = controleur.plan.getSelectedIntersection();
 
-		// cas entrepot
+		// entrepot
 		if ( controleur.demandeLivraison.getEntrepot().equals( pointSelectionne ) )
 		{	
 			fenetre.getVueTextuelle().getListPanel().setSelectedIndex(0);
 		}
-		// cas livraison
+		// livraison
 		List<Livraison> Listelivraisons = controleur.demandeLivraison.getLivraisons();
 		for ( int i = 0; i < Listelivraisons.size() ; i++)
 		{

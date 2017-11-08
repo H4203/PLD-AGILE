@@ -19,7 +19,7 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection pointPrecedant = controleur.plan.getSelectedIntersection();
 		
-		// cas entrepot
+		// entrepot
 		if ( controleur.demandeLivraison.getEntrepot().equals( pointPrecedant ) )
 		{
 			controleur.setEtatCourant( controleur.etatModificationTournee);
@@ -29,7 +29,7 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 			
 			fenetre.getVueTextuelle().getListPanel().setSelectedIndex(0);
 		}
-		// cas livraison
+		// livraison
 		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
 		for ( int i = 0; i < Listelivraisons.size() ; i++)
 		{
@@ -42,7 +42,7 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 				listeDeCommandes.ajoute( new CommandeAjoutLivraison ( i+1, nouvelleLivraison, controleur.calculateurTournee));
 				controleur.fenetre.setModeModificationTournee();
 				fenetre.getVueTextuelle().getListPanel().setSelectedIndex(i+1);
-				// evite une trop grande creation de point
+
 				break;
 			}
 		}
