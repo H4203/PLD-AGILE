@@ -218,50 +218,27 @@ public class ListPanel extends JPanel
 
 	public void remplirDetails () {
 		splitPanel.setVisible(false);
-		detailsPanel.setVisible(false);
+        detailsPanel.setVisible(false);
 
-		/*detailsPanel.setBorder(new TitledBorder(null, "Details Livraison", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
-		//detailsTextArea.append(listTexteLivraison.getSelectedValue());
-		if(tournee != null)
-		{
-			int index = listTexteLivraison.getSelectedIndex()-1;
-			if(index >= 0 && index<tournee.getLivraisonsOrdonnees().size()) {
-				if ( !tournee.getLivraisonsOrdonnees().isEmpty() && index > 0 && index < tournee.getLivraisonsOrdonnees().size() ) {
-					detailsTextArea.setText("Livraison de "+tournee.getListeHoraire().get(index).getHeureDebut()+
-							" à "+tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureFin()+
-							"\n durée de dechargement: "+(int)(tournee.getLivraisonsOrdonnees().get(index).getDureeDechargement()/60)+" mins");
-				}
-				if(tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire() != null ) {
+        detailsPanel.setBorder(new TitledBorder(null, "Details Livraison", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
+        detailsTextArea.setText(listTexteLivraison.getSelectedValue());
+        if(tournee != null)
+        {
+            int index = listTexteLivraison.getSelectedIndex()-1;
+            if ( !tournee.getLivraisonsOrdonnees().isEmpty() && index > 0 && index < tournee.getLivraisonsOrdonnees().size() ) {
+                Livraison livraison = tournee.getLivraisonsOrdonnees().get(index);
+                if(livraison.getPlagehoraire() != null ) {
+                    detailsTextArea.setText(detailsTextArea.getText()+"\n Plage horaire : " + livraison.getPlagehoraire().getHeureDebut() + " - " + livraison.getPlagehoraire().getHeureFin());
+                }
+                detailsTextArea.setText(detailsTextArea.getText()+"\n Duree de dechargement :" + livraison.getDureeDechargement()/60 + " minutes");
+            }
+        }
 
-					detailsTextArea.setText("Livraison de "+tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureDebut()+
-							" à "+tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureFin()+
-							"\n durée de dechargement: "+(int)(tournee.getLivraisonsOrdonnees().get(index).getDureeDechargement()/60)+" mins"
-							+"\n Plage horaire : " + tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureDebut() + 
-							" - " + tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureFin());
-				}
-			}
-			//detailsTextArea.setText(detailsTextArea.getText()+"<br> Duree de dechargement :" + livraison.getDureeDechargement()/60 + " minutes");
-		} else {
-			int index = listTexteLivraison.getSelectedIndex()-1;
-			if(index>=0) {
-				Livraison livraison = demandeLivraison.getLivraisons().get(index);
-				if(livraison.getPlagehoraire() != null ) {
-					detailsTextArea.setText("Livraison de "+livraison.getPlagehoraire().getHeureDebut()+" à "+livraison.getPlagehoraire().getHeureDebut()+
-							"\n durée de dechargement: "+(int)(livraison.getDureeDechargement()/60)+" mins");
-					if(livraison.getPlagehoraire() != null ) {
-						detailsTextArea.setText("Livraison de "+livraison.getPlagehoraire().getHeureDebut()+" à "+livraison.getPlagehoraire().getHeureDebut()+
-								"\n durée de dechargement: "+(int)(livraison.getDureeDechargement()/60)+" mins"+"\n Plage horaire : " + livraison.getPlagehoraire().getHeureDebut() 
-								+ " - " + livraison.getPlagehoraire().getHeureFin());
-					}
-				}
-			}
-		}*/
-
-		detailsPanel.setVisible(true);
-		splitPanel.setVisible(true);
-		detailsPanel.repaint();
-		splitPanel.repaint();
-		repaint();
+        detailsPanel.setVisible(true);
+        splitPanel.setVisible(true);
+        detailsPanel.repaint();
+        splitPanel.repaint();
+        repaint();
 	}
 
 	public void cacherDetails()
