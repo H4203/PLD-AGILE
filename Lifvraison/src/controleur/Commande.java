@@ -2,12 +2,13 @@ package controleur;
 
 public interface Commande {
 	/**
-	 * Execute la commande 
+	 * Execute la commande
 	 */
-	public void doCommande ();
+	public void doCommande();
+
 	/**
-	 * Execute la commande inverse 
+	 * Execute la commande inverse
 	 */
-	public void undoCommande ();
+	public void undoCommande();
 
 }
