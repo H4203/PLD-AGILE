@@ -205,7 +205,7 @@ public class Fenetre extends JFrame
 		setIndicationLabel("<html>Plan chargé avec succès<br>Cliquez sur Charger Demande Livraison pour choisir le fichier de demande de livraison</html>");
 		
 		vueGraphique.setModeDemandeLivraison();
-		vueTextuelle.setModeDemandeLivraison();
+		vueTextuelle.setModePlan();
 		
 		overActionButtonsPanel.setVisible(false);
 		

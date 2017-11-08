@@ -65,6 +65,9 @@ public class VueTextuelle extends JPanel implements Observer
 	{
 		listPanel.setAffichageDemandeLivraison(false);
 		listPanel.setAffichageTournee(false);
+		
+		listPanel.remplirListe();
+		repaint();
 	}
 
 	public void setModeDemandeLivraison()
