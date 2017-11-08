@@ -3,6 +3,7 @@ package algorithme;
 import donnees.ParseurException;
 import donnees.XMLParseur;
 import modeles.DemandeLivraison;
+import modeles.Livraison;
 import modeles.Plan;
 import modeles.Tournee;
 
@@ -27,7 +28,7 @@ public class test {
 		DemandeLivraison dl = new DemandeLivraison();
 		
 		try {
-			xml.chargerLivraison(dl, "data/demandeLivraison/DLgrand20.xml",lePlan.getListeIntersection());
+			xml.chargerLivraison(dl, "data/demandeLivraison/DLgrand10.xml",lePlan.getListeIntersection());
 		} catch (ParseurException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,31 +37,19 @@ public class test {
 		Tournee laTournee = new Tournee(lePlan, dl);
 		
 		CalculateurTournee cl = new CalculateurTournee(laTournee);
-		cl.start();
-		
-		System.out.println("Thread lance");
-		
-		while(cl.isAlive()) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-			Integer[] tab = cl.getCurrentSolution();
-			System.out.print("[");
-			for(int i = 0; i < tab.length; i++) {
-				System.out.print(tab[i]);
-				if(i != tab.length-1) {
-					System.out.print(";");
-				}
-				
-			}
-			System.out.println("]");
+		cl.run();
+		laTournee = cl.getLaTournee();
+		for(Livraison l : laTournee.getLivraisonsOrdonnees()) {
+			System.out.print(" " + l.getIntersection().getId() + ";");
 		}
-		
+		System.out.println();
+		//cl.ajouterLivraison(4, new Livraison(lePlan.getListeIntersection().get((long) 245039019), 300));
+		cl.echangerDeuxLivraison(8, 7);
+		//cl.supprimerLivraison(laTournee.getLivraisonsOrdonnees().get(5));
+		laTournee = cl.getLaTournee();
+		for(Livraison l : laTournee.getLivraisonsOrdonnees()) {
+			System.out.print(" " + l.getIntersection().getId() + ";");
+		}
 		
 	}
 }

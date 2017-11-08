@@ -2,34 +2,44 @@ package controleur;
 
 import java.awt.Point;
 import java.util.List;
-import vue.Fenetre;
 
 import modeles.Intersection;
 import modeles.Livraison;
+import vue.Fenetre;
 
-public class EtatSupprimerLivraison extends EtatDefault{
+public class EtatIntervertirLivraisons2 extends EtatDefault{
+	
+	protected int posLivraison1 = -1;
+	protected int posLivraison2 = -1;
 
 	@Override
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
+		
+		
 		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
-		Intersection pointAsupprimer = controleur.plan.getSelectedIntersection();
+		Intersection livraison2 = controleur.plan.getSelectedIntersection();
 		
 		// cas livraison
 		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
 		for ( int i = 0; i < Listelivraisons.size() ; i++)
 		{
 			Livraison livraison = Listelivraisons.get(i);
-			
-			if ( livraison.getIntersection().equals( pointAsupprimer ) )
+			if ( livraison.getIntersection().equals( livraison2 ) )
 			{
-				listeDeCommandes.ajoute( new CommandeSupprimerLivraison ( livraison, controleur.calculateurTournee ));
-				controleur.setEtatCourant(controleur.etatModificationTournee);
-				controleur.fenetre.setModeModificationTournee();
-				// evite une trop grande supression de point
-				break;
+				posLivraison2 = i;
 			}
 		}
+		System.out.println(posLivraison1);
+		System.out.println(posLivraison2);
+		if ( posLivraison1 != posLivraison2 && posLivraison2 != -1)
+		{
+			controleur.setEtatCourant( controleur.etatModificationTournee);
+			listeDeCommandes.ajoute( new CommandeIntervertirCommande ( posLivraison1, posLivraison2 , controleur.calculateurTournee));
+			System.out.println("test");
+			controleur.fenetre.setModeModificationTournee();
+		}
+		
 	}
 	
 	@Override
@@ -38,14 +48,18 @@ public class EtatSupprimerLivraison extends EtatDefault{
 		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
 		if(index > 0 && index <= Listelivraisons.size())
 		{
-			Livraison livraison = Listelivraisons.get(index-2);
+			Livraison livraison = Listelivraisons.get(index-1);
 			
-			listeDeCommandes.ajoute( new CommandeSupprimerLivraison ( livraison, controleur.calculateurTournee ));
-			controleur.setEtatCourant(controleur.etatModificationTournee);
-			controleur.fenetre.setModeModificationTournee();
+			if ( posLivraison1 != posLivraison2 && posLivraison2 != -1)
+			{
+				controleur.plan.getLivraison(livraison);
+				controleur.setEtatCourant( controleur.etatModificationTournee);
+				listeDeCommandes.ajoute( new CommandeIntervertirCommande ( posLivraison1, posLivraison2 , controleur.calculateurTournee));
+				controleur.fenetre.setModeModificationTournee();
+			}
 		}
 	}
-
+	
 	@Override
 	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre)
 	{
@@ -64,4 +78,5 @@ public class EtatSupprimerLivraison extends EtatDefault{
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
+
 }

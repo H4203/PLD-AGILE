@@ -1,0 +1,24 @@
+L'heure depart depuis l'entrepot : 08:00
+
+Continuez 1m dans 1
+Tournez a droite et continuez 1m dans 2
+
+L'heure arivee de livraison n.1: 08:00
+L'adresse de livraison n.1: 3
+L'heure depart de livraison n.1: 08:15
+
+Continuez 1m dans 3
+Tournez a gauche et continuez 1m dans 4
+Tournez a gauche et continuez 1m dans 1
+Continuez 1m dans 5
+
+L'heure de retour de l'entrepot: 08:15
+L'adresse de livraison n.2: 6
+L'heure depart de livraison n.2: 08:25
+
+Continuez 1m dans 6
+Tournez a droite et continuez 1m dans 7
+Tournez a droite et continuez 1m dans 8
+Continuez 1m dans 9
+
+L'heure de retour de l'entrepot: 08:25

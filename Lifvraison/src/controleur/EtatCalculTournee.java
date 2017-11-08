@@ -6,7 +6,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import algorithme.CalculateurTournee;
-import donnees.FeuilleDeRoute;
 import donnees.ParseurException;
 import modeles.DemandeLivraison;
 import modeles.Intersection;
@@ -15,9 +14,7 @@ import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
 
-public class EtatModificationTournee extends EtatDefault{
-
-	
+public class EtatCalculTournee extends EtatDefault{
 	@Override
 	public void chargerPlan ( Controleur controleur, Fenetre fenetre, String chemin) {
 		Plan newPlan = new Plan ();
@@ -32,6 +29,7 @@ public class EtatModificationTournee extends EtatDefault{
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
+		
 	}
 	
 	@Override
@@ -49,36 +47,29 @@ public class EtatModificationTournee extends EtatDefault{
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
+		
 	}
 	
 	@Override
 	public void calculerTournee ( Controleur controleur, Fenetre fenetre )
 	{
+		controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
+		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 		controleur.calculateurTournee.run();
 		controleur.setEtatCourant( controleur.etatModificationTournee);
+		fenetre.chargerTournee(controleur.tournee);
 	}
 	
-	
 	@Override
-	public void ajouterLivraison ( Controleur controleur, Fenetre fenetre)
+	public void mouseWheel(Controleur controleur, int steps, Point point)
 	{
-		controleur.setEtatCourant( controleur.etatAjoutLivraison1);
-		fenetre.setModeModificationTournee("AjoutLivraison");
+		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
 	@Override
-	public void supprimerLivraison ( Controleur controleur, Fenetre fenetre)
+	public void mouseDrag(Controleur controleur, Point delta)
 	{
-		controleur.setEtatCourant( controleur.etatSupprimerLivraison);
-		fenetre.setModeModificationTournee("SuppressionLivraison");
+		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
 	}
-
-	@Override
-	public void intervertirLivraisons(Controleur controleur, Fenetre fenetre)
-	{
-		controleur.setEtatCourant( controleur.etatIntervertirLivraisons1);
-		fenetre.setModeModificationTournee("IntervertirLivraisons");
-	}
-	
 	@Override
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
@@ -92,7 +83,7 @@ public class EtatModificationTournee extends EtatDefault{
 			fenetre.getVueTextuelle().getListPanel().setSelectedIndex(0);
 		}
 		// cas livraison
-		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
+		List<Livraison> Listelivraisons = controleur.demandeLivraison.getLivraisons();
 		for ( int i = 0; i < Listelivraisons.size() ; i++)
 		{
 			Livraison livraison = Listelivraisons.get(i);
@@ -103,42 +94,11 @@ public class EtatModificationTournee extends EtatDefault{
 			}
 		}
 	}
-
-	@Override
-	public void mouseDrag(Controleur controleur, Point delta)
-	{
-		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
-	}
-	
-	@Override
-	public void mouseWheel(Controleur controleur, int steps, Point point)
-	{
-		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
-	}
-	
-	@Override
-	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
-		listeDeCommandes.undo();
-		fenetre.setModeModificationTournee();
-	}
-
-	@Override
-	public void redo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
-		listeDeCommandes.redo();
-		fenetre.setModeModificationTournee();
-	}
-	
-	@Override
-	public void validerTournee(Controleur controleur, Fenetre fenetre)
-	{
-		controleur.setEtatCourant(controleur.etatGenererFeuilleDeRoute);
-		fenetre.setModeGenerationFeuilleDeRoute();
-	}
 	
 	@Override
 	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes) {
 		int index = controleur.fenetre.getVueTextuelle().getListPanel().getCurrentSelection();
-		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
+		List<Livraison> Listelivraisons = controleur.demandeLivraison.getLivraisons();
 		if(index > 0 && index <= Listelivraisons.size())
 		{
 			Livraison livraison = Listelivraisons.get(index-1);
@@ -147,7 +107,7 @@ public class EtatModificationTournee extends EtatDefault{
 		}
 		else if (index == 0 || index == Listelivraisons.size()+1)
 		{
-			controleur.plan.getEntrepot( controleur.tournee.getDemandeLivraison().getEntrepot());
+			controleur.demandeLivraison.getEntrepot();
 		}
 	}
 }

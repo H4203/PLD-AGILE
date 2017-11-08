@@ -1,0 +1,45 @@
+L'heure depart depuis l'entrepot : 08:00
+
+Continuez 129m dans Rue Guilloud
+Tournez a droite et continuez 154m dans Rue du Docteur Rebatel
+Tournez a droite et continuez 177m dans Place Ambroise Courtois
+Continuez 303m dans Avenue des Fr¨¨res Lumi¨¨re
+Tournez a droite et continuez 120m dans Rue Maryse Basti¨¦
+Tournez a droite et continuez 358m dans Rue Feuillat
+Tournez a droite et continuez 84m dans Impasse Gazagnon
+
+L'heure arivee de livraison nï¿½ï¿½1: 08:05:19
+L'adresse de livraison nï¿½ï¿½1: Impasse Gazagnon
+L'heure depart de livraison nï¿½ï¿½1: 08:20:19
+
+Continuez 84m dans Impasse Gazagnon
+Tournez a droite et continuez 247m dans Rue Feuillat
+Tournez a gauche et continuez 634m dans Avenue Lacassagne
+
+L'heure arivee de livraison nï¿½ï¿½2: 08:24:11
+L'adresse de livraison nï¿½ï¿½2: Avenue Lacassagne
+L'heure depart de livraison nï¿½ï¿½2: 08:29:11
+
+Continuez 160m dans Avenue Lacassagne
+
+L'heure arivee de livraison nï¿½ï¿½3: 08:29:49
+L'adresse de livraison nï¿½ï¿½3: Avenue Lacassagne
+L'heure depart de livraison nï¿½ï¿½3: 08:44:49
+
+Continuez 230m dans Avenue Lacassagne
+Tournez a droite et continuez 47m dans Cours Eug¨¦nie
+Tournez a droite et continuez 141m dans Rue Trarieux
+Continuez 79m dans Rue Viala
+
+L'heure de retour de l'entrepot: 08:46:48
+L'adresse de livraison nï¿½ï¿½4: Rue Coignet
+L'heure depart de livraison nï¿½ï¿½4: 09:01:48
+
+Continuez 25m dans Rue Coignet
+Tournez a droite et continuez 79m dans Rue Viala
+Tournez a droite et continuez 539m dans Rue Trarieux
+Tournez a gauche et continuez 173m dans Rue du Professeur Florence
+Tournez a droite et continuez 754m dans Cours Albert Thomas
+Continuez 139m dans Rue Jeanne Koehler
+
+L'heure de retour de l'entrepot: 09:08:38

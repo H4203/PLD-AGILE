@@ -23,7 +23,7 @@ public class VueGraphique extends JPanel implements Observer
 	{
 		super();
 		
-		setLayout(new CardLayout(50, 50));
+		setLayout(new CardLayout(40, 40));
 		setBackground(Color.white);
 		
 		// modification plan peut etre null
@@ -73,7 +73,7 @@ public class VueGraphique extends JPanel implements Observer
 		mapPanel.setAffichageTournee(false);
 	}
 	
-	public void setModeChargementPlan()
+	public void setModePlan()
 	{
 		mapPanel.resize();
 		
@@ -82,7 +82,7 @@ public class VueGraphique extends JPanel implements Observer
 		mapPanel.setAffichageTournee(false);
 	}
 	
-	public void setModeChargementDemandeLivraison()
+	public void setModeDemandeLivraison()
 	{
 		mapPanel.setAffichagePlan(true);
 		mapPanel.setAffichageDemandeLivraison(true);
@@ -92,7 +92,7 @@ public class VueGraphique extends JPanel implements Observer
 		repaint();
 	}
 	
-	public void setModeCalculTournee()
+	public void setModeTournee()
 	{
 		mapPanel.setAffichagePlan(true);
 		mapPanel.setAffichageDemandeLivraison(true);
