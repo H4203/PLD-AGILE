@@ -130,9 +130,9 @@ public class Controleur
 	{
 		etatCourant.validerTournee(this, fenetre);
 	}
-	public void genererFeuilleDeRoute() 
+	public void genererFeuilleDeRoute(String chemin) 
 	{
-		etatCourant.genererFeuilleDeRoute(this, fenetre);
+		etatCourant.genererFeuilleDeRoute(this, fenetre, chemin);
 	}
 	public int getToleranceClic()
 	{

@@ -88,7 +88,17 @@ public class EcouteurDeBoutons implements ActionListener
 				break;
 			case "Generer Feuille de Route" :
 			{
-				controleur.genererFeuilleDeRoute();
+				String chemin = "";
+				
+				fileChooser.setCurrentDirectory(new File("./data/feuilleDeRoute"));
+				
+				
+			    if(fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION)
+			    {
+			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
+			       controleur.genererFeuilleDeRoute(chemin);
+			    }
+
 				break;
 			}
 		}
