@@ -83,7 +83,7 @@ public class EtatModificationTournee extends EtatDefault {
 		if (controleur.demandeLivraison.getEntrepot().equals(pointSelectionne)) {
 			fenetre.getVueTextuelle().getListPanel().setSelectedIndex(0);
 		}
-		
+
 		// livraison
 		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
 		for (int i = 0; i < Listelivraisons.size(); i++) {

@@ -72,7 +72,6 @@ public class EtatCalculTournee extends EtatDefault {
 
 		Intersection pointSelectionne = controleur.plan.getSelectedIntersection();
 
-
 		// cas entrepot
 		if (controleur.demandeLivraison.getEntrepot().equals(pointSelectionne)) {
 			fenetre.getVueTextuelle().getListPanel().setSelectedIndex(0);
