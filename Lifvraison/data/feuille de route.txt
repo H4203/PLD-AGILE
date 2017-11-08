@@ -1,23 +1,64 @@
 L'heure depart depuis l'entrepot : 08:00
 
-Continuez 132m dans Rue Trarieux
-Tournez a gauche et continuez 173m dans Rue du Professeur Florence
-Tournez a droite et continuez 625m dans Cours Albert Thomas
-Tournez a gauche et continuez 177m dans Place Ambroise Courtois
+Continuez 677m dans Avenue Paul Santy
 
-L'heure arivee de livraison n??1: 08:04:26
-L'adresse de livraison n??1: Avenue des Frères Lumière
-L'heure depart de livraison n??1: 08:19:26
+L'heure arivee de livraison n??1: 08:02:42
+L'adresse de livraison n??1: Rue Varichon
+L'heure depart de livraison n??1: 08:12:42
 
-Continuez 640m dans Avenue des Frères Lumière
+Continuez 232m dans Rue Varichon
+Tournez a droite et continuez 116m dans Rue de la Concorde
+Tournez a droite et continuez 130m dans Rue Jean Sarrazin
+Tournez a droite et continuez 62m dans Rue Rochambeau
+Tournez a droite et continuez 142m dans Rue Théodore Lévigne
+
+L'heure arivee de livraison n??2: 08:15:26
+L'adresse de livraison n??2: Boulevard des États-Unis
+L'heure depart de livraison n??2: 08:25:26
+
+Continuez 89m dans Boulevard des États-Unis
+Tournez a gauche et continuez 92m dans Rue Émile Combes
+Tournez a droite et continuez 215m dans Rue des Serpollières
+Tournez a gauche et continuez 7m dans Rue Paul Cazeneuve
+Tournez a droite et continuez 301m dans Rue Jean Chevailler
+Tournez a gauche et continuez 216m dans Rue Villon
+Tournez a droite et continuez 702m dans Rue Pierre Delore
+Tournez a gauche et continuez 413m dans Route de Vienne
+Tournez a gauche et continuez 152m dans Avenue Berthelot
+
+L'heure arivee de livraison n??3: 08:34:12
+L'adresse de livraison n??3: Avenue Berthelot
+L'heure depart de livraison n??3: 08:44:12
+
+Continuez 1438m dans Avenue Berthelot
+Tournez a droite et continuez 997m dans Boulevard Jean XXIII
+Tournez a droite et continuez 13m dans Avenue des Frères Lumière
 Continuez 45m dans Place d'Arsonval
 Continuez 501m dans Avenue Rockefeller
-Tournez a droite et continuez 461m dans Rue Viala
+Tournez a droite et continuez 124m dans Rue Viala
+Continuez 217m dans Rue Piperoux
+Tournez a droite et continuez 73m dans Cours Eugénie
+Tournez a gauche et continuez 342m dans Rue Claude Farrère
+Tournez a droite et continuez 149m dans Rue Pascal
+Tournez a droite et continuez 13m dans Avenue Lacassagne
+Tournez a droite et continuez 392m dans Rue des Peupliers
 
-L'heure de retour de l'entrepot: 08:26:01
-L'adresse de livraison n??2: Rue Trarieux
-L'heure depart de livraison n??2: 08:36:01
+L'heure de retour de l'entrepot: 09:01:26
+L'adresse de livraison n??4: Rue des Peupliers
+L'heure depart de livraison n??4: 09:06:26
 
-Continuez 407m dans Rue Trarieux
+Continuez 392m dans Rue des Peupliers
+Tournez a droite et continuez 13m dans Avenue Lacassagne
+Tournez a droite et continuez 258m dans Rue Pascal
+Tournez a droite et continuez 320m dans Avenue Esquirol
+Continuez 163m dans Cours Eugénie
+Tournez a droite et continuez 133m dans Avenue Rockefeller
+Continuez 209m dans Rue Victor de Laprade
+Tournez a droite et continuez 197m dans Rue Volney Rue Victor de Laprade
+Continuez 450m dans Boulevard Ambroise Paré
+Tournez a gauche et continuez 668m dans Rue du Professeur Joseph Nicolas
+Continuez 63m dans Avenue Général Frère
+Tournez a droite et continuez 200m dans Rue des Roses
+Tournez a droite et continuez 59m dans Avenue Paul Santy
 
-L'heure de retour de l'entrepot: 08:37:38
+L'heure de retour de l'entrepot: 09:18:57

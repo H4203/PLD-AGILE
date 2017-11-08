@@ -111,10 +111,10 @@ public class Fenetre extends JFrame
 		//titlePanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 10));
 		leftPanel.add(titlePanel, BorderLayout.SOUTH);
 		
-		// 1.1.2.1 mainPanel/leftPanel/titlePanel/titleLabel
+		/*// 1.1.2.1 mainPanel/leftPanel/titlePanel/titleLabel
 		JLabel titleLabel = new JLabel("~LIfvraison~", SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Serif", Font.PLAIN, 30));
-		titlePanel.add(titleLabel, BorderLayout.CENTER);
+		titlePanel.add(titleLabel, BorderLayout.CENTER);*/
 		
 		// 1.2 mainPanel/overRightPanel
 		JPanel overRightPanel = new JPanel();
@@ -147,7 +147,7 @@ public class Fenetre extends JFrame
 		bottomButtonsPanel = new JPanel();
 		bottomButtonsPanel.setLayout(new GridLayout(1, 5, 20, 20));
 		//bottomButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
-		buttonsPanel.add(bottomButtonsPanel);
+		mainPanel.add(bottomButtonsPanel, BorderLayout.SOUTH);
 		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 		buttonChargerPlan = new JButton("Charger Plan");
@@ -457,7 +457,7 @@ public class Fenetre extends JFrame
 		buttonValiderTournee.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonValiderTournee);*/
 		
-		if (etat.equals("AjoutLivraison") || etat.equals("SuppressionLivraison"))
+		if (etat.equals("AjoutLivraison") || etat.equals("SuppressionLivraison") || etat.equals("IntervertirLivraisons"))
 		{
 			buttonAjouterLivraison.setEnabled(false);
 			buttonSupprimerLivraison.setEnabled(false);

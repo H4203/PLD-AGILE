@@ -92,16 +92,17 @@ public class Controleur
 	{
 		etatCourant.supprimerLivraison(this, fenetre);
 	}
-	public void intervertirLivraison()
+
+	public void intervertirLivraisons()
 	{
-		etatCourant.intervertirLivraison(this, fenetre);
+		etatCourant.intervertirLivraisons(this, fenetre);
 	}
+	
 	public void clicgauche ( int positonPrecedente, Livraison livraison)
 	{
 		etatCourant.clicgauche(this, fenetre, positonPrecedente, livraison);
 	}
 	
-
 	public void clicGauche(Point point)
 	{
 		etatCourant.clicgauche(this, fenetre, point, listeDeCommandes);
