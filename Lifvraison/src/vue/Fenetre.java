@@ -400,6 +400,7 @@ public class Fenetre extends JFrame
 		
 		// 1.1.1 mainPanel/leftPanel/vueGraphique
 		vueGraphique.setModeTournee();
+		vueTextuelle.setModeDemandeLivraison();
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		actionButtonsPanel.setVisible(false);
 
@@ -539,7 +540,7 @@ public class Fenetre extends JFrame
 		setBarreChargement("<html>Tournee validee<br>Cliquez sur Generer Feuille de Route pour enregistrer votre fichier</html>");
 		
 		vueGraphique.setModeTournee();
-		
+		vueTextuelle.setModeTournee();
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		actionButtonsPanel.setVisible(false);
 

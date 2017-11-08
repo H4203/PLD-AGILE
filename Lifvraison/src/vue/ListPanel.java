@@ -52,7 +52,7 @@ public class ListPanel extends JPanel
 	private JPanel splitPanel;
 
 	private JPanel detailsPanel;
-	private JTextPane detailsTextArea;
+	private JTextArea detailsTextArea;
 	private JPanel detailsButtonPanel;
 
 	private JPanel detailsTronconPanel;
@@ -78,7 +78,7 @@ public class ListPanel extends JPanel
 
 		listTexteLivraison.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listTexteLivraison.setLayoutOrientation(JList.VERTICAL);
-		listTexteLivraison.setVisibleRowCount(10);
+		listTexteLivraison.setVisibleRowCount(20);
 
 		listSelectionModel = listTexteLivraison.getSelectionModel();
 		listSelectionModel.addListSelectionListener( ecouteurDeListes );
@@ -88,13 +88,14 @@ public class ListPanel extends JPanel
 		detailsPanel = new JPanel();
 		detailsPanel.setLayout(new BorderLayout());
 
-		detailsTextArea = new JTextPane();
+		detailsTextArea = new JTextArea();
+		//detailsTextArea.setContentType("text/html");
 		detailsTextArea.setLayout(new FlowLayout());
-		detailsPanel.add(detailsTextArea, BorderLayout.NORTH);
+		detailsPanel.add(detailsTextArea, BorderLayout.CENTER);
 
 		detailsButtonPanel = new JPanel();
 		detailsButtonPanel.setLayout(new FlowLayout());
-		detailsPanel.add(detailsButtonPanel);
+		detailsPanel.add(detailsButtonPanel, BorderLayout.SOUTH);
 
 		/*ecouteurDeBoutons = new EcouteurDeBoutons(controleur);
 
@@ -167,7 +168,7 @@ public class ListPanel extends JPanel
 						}
 					}
 					tableauTexteList[i] = "<html><font color='"+color+"'>Livraison " + i + " - de " + plgrhoraire.getHeureDebut().toString()
-							+ " a " + plgrhoraire.getHeureFin().toString();
+							+ " a " + plgrhoraire.getHeureFin().toString() + "<br>duree de dechargement: "+(int)(tournee.getLivraisonsOrdonnees().get(i-1).getDureeDechargement()/60)+" mins</font></html>";
 
 				}
 				i = i + 1;
@@ -190,12 +191,13 @@ public class ListPanel extends JPanel
 			for(Livraison livraison: demandeLivraison.getLivraisons()) {
 				i++;
 				if (livraison.getPlagehoraire() != null && livraison.getPlagehoraire().getHeureDebut() != null ) {
-					tableauTexteList[i] = "Livraison " + i + " - de " + livraison.getPlagehoraire().getHeureDebut().toString() 
+					tableauTexteList[i] = "<html>Livraison " + i + " - de " + livraison.getPlagehoraire().getHeureDebut().toString() 
 							+ " a " + livraison.getPlagehoraire().getHeureFin().toString();
 				}
 				else {
-					tableauTexteList[i] = "Livraison " + i + "- sans plage horaire";
+					tableauTexteList[i] = "<html>Livraison " + i + "- sans plage horaire";
 				}
+				tableauTexteList[i] += "<br>duree de dechargement: "+(int)(livraison.getDureeDechargement()/60)+" mins</html>";
 			}
 
 			listTexteLivraison.setListData(tableauTexteList);
@@ -219,19 +221,40 @@ public class ListPanel extends JPanel
 		detailsPanel.setVisible(false);
 
 		detailsPanel.setBorder(new TitledBorder(null, "Details Livraison", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
-		detailsTextArea.setText(listTexteLivraison.getSelectedValue());
+		//detailsTextArea.append(listTexteLivraison.getSelectedValue());
 		if(tournee != null)
 		{
 			int index = listTexteLivraison.getSelectedIndex()-1;
-			if ( !tournee.getLivraisonsOrdonnees().isEmpty() && index > 0 && index < tournee.getLivraisonsOrdonnees().size() ) {
-				Livraison livraison = tournee.getLivraisonsOrdonnees().get(index);
-				if(livraison.getPlagehoraire() != null ) {
-					detailsTextArea.setText(detailsTextArea.getText()+"\n Plage horaire : " + livraison.getPlagehoraire().getHeureDebut() + " - " + livraison.getPlagehoraire().getHeureFin());
+			if(index >= 0 && index<tournee.getLivraisonsOrdonnees().size()) {
+				if ( !tournee.getLivraisonsOrdonnees().isEmpty() && index > 0 && index < tournee.getLivraisonsOrdonnees().size() ) {
+					detailsTextArea.setText("Livraison de "+tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureDebut()+
+							" à "+tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureFin()+
+							"\n durée de dechargement: "+(int)(tournee.getLivraisonsOrdonnees().get(index).getDureeDechargement()/60)+" mins");
 				}
-				detailsTextArea.setText(detailsTextArea.getText()+"\n Duree de dechargement :" + livraison.getDureeDechargement()/60 + " minutes");
+				if(tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire() != null ) {
+
+					detailsTextArea.setText("Livraison de "+tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureDebut()+
+							" à "+tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureFin()+
+							"\n durée de dechargement: "+(int)(tournee.getLivraisonsOrdonnees().get(index).getDureeDechargement()/60)+" mins"
+							+"\n Plage horaire : " + tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureDebut() + 
+							" - " + tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureFin());
+				}
 			}
+			//detailsTextArea.setText(detailsTextArea.getText()+"<br> Duree de dechargement :" + livraison.getDureeDechargement()/60 + " minutes");
 		} else {
-			detailsTextArea.setText(detailsTextArea.getText()+"\n Duree de dechargement :" + demandeLivraison.getLivraisons().get(listTexteLivraison.getSelectedIndex()).getDureeDechargement()/60 + " minutes");
+			int index = listTexteLivraison.getSelectedIndex()-1;
+			if(index>=0) {
+				Livraison livraison = demandeLivraison.getLivraisons().get(index);
+				if(livraison.getPlagehoraire() != null ) {
+					detailsTextArea.setText("Livraison de "+livraison.getPlagehoraire().getHeureDebut()+" à "+livraison.getPlagehoraire().getHeureDebut()+
+							"\n durée de dechargement: "+(int)(livraison.getDureeDechargement()/60)+" mins");
+					if(livraison.getPlagehoraire() != null ) {
+						detailsTextArea.setText("Livraison de "+livraison.getPlagehoraire().getHeureDebut()+" à "+livraison.getPlagehoraire().getHeureDebut()+
+								"\n durée de dechargement: "+(int)(livraison.getDureeDechargement()/60)+" mins"+"\n Plage horaire : " + livraison.getPlagehoraire().getHeureDebut() 
+								+ " - " + livraison.getPlagehoraire().getHeureFin());
+					}
+				}
+			}
 		}
 
 		detailsPanel.setVisible(true);
@@ -289,35 +312,4 @@ public class ListPanel extends JPanel
 		listTexteLivraison.setSelectedIndex(index);
 	}
 
-	public class Rendu extends JLabel implements ListCellRenderer {
-
-		Color depassePlageHoraireCouleur = Color.RED;
-		Color attenteCouleur = Color.ORANGE;
-		Color aUnePHCouleur = Color.YELLOW;
-		Color selectionnerCouleur = Color.BLUE;
-
-		public  Rendu(){
-		}
-
-		public Component getListCellRendererComponent(JList list, 
-				Object value, // valeur à afficher
-				int index, // indice d'item
-				boolean isSelected, // l'item est-il sélectionné
-				boolean cellHasFocus) // La liste a-t-elle le focus
-		{
-			String s = value.toString();
-			if (isSelected) {
-				setBackground(list.getSelectionBackground());
-				setForeground(selectionnerCouleur);
-			}else{
-				setBackground(list.getBackground());
-				setForeground(list.getForeground());
-				setText(s);
-			}
-			setEnabled(list.isEnabled());
-			setFont(list.getFont());
-			setOpaque(true);
-			return this;
-		}
-	}
 }
