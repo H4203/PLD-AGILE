@@ -121,8 +121,8 @@ public class Fenetre extends JFrame
 		
 		// 1.1.2 mainPanel/leftPanel/titlePanel
 		barreChargementPanel = new JPanel();
-		barreChargementPanel.setLayout(new CardLayout(100,10));
-		barreChargementPanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 20));
+		barreChargementPanel.setLayout(new CardLayout(100,0));
+		//barreChargementPanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 20));
 		leftPanel.add(barreChargementPanel, BorderLayout.SOUTH);
 		
 		// 1.1.2.1 mainPanel/leftPanel/titlePanel/titleLabel
@@ -498,7 +498,7 @@ public class Fenetre extends JFrame
 		}
 		else
 		{
-			setBarreChargement("<html>Calcul de la tournée chargée avec succès<br>Utilisez les boutons de droite pour modifier votre tournee, puis cliquez sur Valider Tournee pour valider votre tournee</html>");
+			setBarreChargement("<html>Tournée calculée avec succès<br>Utilisez les boutons de droite pour modifier votre tournee, puis cliquez sur Valider Tournee pour valider votre tournee</html>");
 			
 			buttonAjouterLivraison.setEnabled(true);
 			buttonSupprimerLivraison.setEnabled(true);
