@@ -27,7 +27,6 @@ public class Controleur
 	protected Etat etatCourant;
 	protected FeuilleDeRoute feuilleDeRoute;
 	
-	// differents etats possible
 	protected EtatChargementPlan etatChargementPlan  = new EtatChargementPlan();
 	protected EtatChargementLivraison etatChargementLivraison  = new EtatChargementLivraison();
 	protected EtatCalculTournee etatCalculTournee = new EtatCalculTournee();
