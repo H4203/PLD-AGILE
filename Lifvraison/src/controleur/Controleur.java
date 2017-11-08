@@ -98,6 +98,7 @@ public class Controleur
 	public void intervertirLivraisons()
 	{
 		fenetre.setBarreChargement("Cliquez sur un point de livraison du plan ou de la liste");
+
 		etatCourant.intervertirLivraisons(this, fenetre);
 	}
 	

@@ -36,9 +36,21 @@ public class Fenetre extends JFrame
 	// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
 	private JPanel listeLivraisonsPanel;
 	// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
-	private JPanel topButtonsPanel;	
-	// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
-	private JPanel bottomButtonsPanel;
+	private JPanel actionButtonsPanel;	
+	// 1.3.1 mainPanel/overButtonsPanel/stateButtonsPanel
+	private JPanel stateButtonsPanel;
+
+	// 1.2.1.2.1.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonAjouterLivraison	
+	JButton buttonAjouterLivraison;
+	// 1.2.1.2.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonSupprimerLivraison
+	JButton buttonSupprimerLivraison;
+	// 1.2.1.2.1.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonEchangerLivraisons
+	JButton buttonEchangerLivraisons;
+	// 1.2.1.2.1.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonUndo
+	JButton buttonUndo;
+	// 1.2.1.2.1.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonRedo
+	JButton buttonRedo;
+	
 	/*// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonPrecedent
 	private JButton buttonPrecedent;
 	// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonSuivant
@@ -141,37 +153,65 @@ public class Fenetre extends JFrame
 		rightPanel.add(buttonsPanel, BorderLayout.SOUTH);
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
-		topButtonsPanel = new JPanel();
-		topButtonsPanel.setLayout(new GridLayout(2, 3, 20, 20));
+		actionButtonsPanel = new JPanel();
+		actionButtonsPanel.setLayout(new GridLayout(2, 3, 20, 20));
 		//topButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
-		buttonsPanel.add(topButtonsPanel);
+		buttonsPanel.add(actionButtonsPanel);
 		
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel		
-		bottomButtonsPanel = new JPanel();
-		bottomButtonsPanel.setLayout(new GridLayout(1, 5, 20, 20));
+		// 1.2.1.2.1.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonAjouterLivraison
+		buttonAjouterLivraison = new JButton("Ajouter une Livraison");
+		buttonAjouterLivraison.addActionListener(ecouteurDeBoutons);
+		actionButtonsPanel.add(buttonAjouterLivraison);
+		// 1.2.1.2.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonSupprimerLivraison
+		buttonSupprimerLivraison = new JButton("Retirer une Livraison");
+		buttonSupprimerLivraison.addActionListener(ecouteurDeBoutons);
+		actionButtonsPanel.add(buttonSupprimerLivraison);
+		// 1.2.1.2.1.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonEchangerLivraisons
+		buttonEchangerLivraisons = new JButton("Echanger 2 Livraisons");
+		buttonEchangerLivraisons.addActionListener(ecouteurDeBoutons);
+		actionButtonsPanel.add(buttonEchangerLivraisons);
+		// 1.2.1.2.1.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonUndo
+		buttonUndo = new JButton("Annuler");
+		buttonUndo.addActionListener(ecouteurDeBoutons);
+		actionButtonsPanel.add(buttonUndo);
+		// 1.2.1.2.1.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonRedo
+		buttonRedo = new JButton("Retablir");
+		buttonRedo.addActionListener(ecouteurDeBoutons);
+		actionButtonsPanel.add(buttonRedo);
+
+		// 1.3 mainPanel/overBottomButtonsPanel
+		JPanel overBottomButtonsPanel = new JPanel();
+		overBottomButtonsPanel.setLayout(new CardLayout(50,50));
+		mainPanel.add(overBottomButtonsPanel, BorderLayout.SOUTH);
+		
+		// 1.3.1 mainPanel/overBottomButtonsPanel/stateButtonsPanel		
+		stateButtonsPanel = new JPanel();
+		stateButtonsPanel.setLayout(new GridLayout(1, 5, 20, 20));
 		//bottomButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
-		mainPanel.add(bottomButtonsPanel, BorderLayout.SOUTH);
+		overBottomButtonsPanel.add(stateButtonsPanel, BorderLayout.SOUTH);
+
 		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
+		// 1.3.1.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 		buttonChargerPlan = new JButton("Charger Plan");
 		buttonChargerPlan.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargerPlan);
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
+		stateButtonsPanel.add(buttonChargerPlan);
+		// 1.3.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
 		buttonChargerDemandeLivraison = new JButton("Charger Demande Livraison");
 		buttonChargerDemandeLivraison.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonChargerDemandeLivraison);
-		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
+
+		stateButtonsPanel.add(buttonChargerDemandeLivraison);
+		// 1.3.1.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
 		buttonCalulerTournee = new JButton("Calculer Tournee");
 		buttonCalulerTournee .addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonCalulerTournee );
-		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
+		stateButtonsPanel.add(buttonCalulerTournee );
+		// 1.3.1.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 		buttonValiderTournee = new JButton("Valider Tournee");
 		buttonValiderTournee.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonValiderTournee);
-		// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
+		stateButtonsPanel.add(buttonValiderTournee);
+		// 1.3.1.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
 		buttonGenererFeuilleDeRoute = new JButton("Generer Feuille de Route");
 		buttonGenererFeuilleDeRoute.addActionListener(ecouteurDeBoutons);
-		bottomButtonsPanel.add(buttonGenererFeuilleDeRoute );
+		stateButtonsPanel.add(buttonGenererFeuilleDeRoute );
 		
 		/*// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonPrecedent
 		buttonPrecedent = new JButton("Precedent");
@@ -285,7 +325,7 @@ public class Fenetre extends JFrame
 		vueTextuelle.setModePlan();
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
-		topButtonsPanel.removeAll();
+		actionButtonsPanel.setVisible(false);
 
 		/*// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 		JButton buttonChargerPlan = new JButton("Charger Plan");
@@ -322,7 +362,7 @@ public class Fenetre extends JFrame
 		vueTextuelle.setModeDemandeLivraison();
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
-		topButtonsPanel.removeAll();
+		actionButtonsPanel.setVisible(false);
 		
 		/*// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
 		JButton buttonChargerDemandeLivraison = new JButton("Charger Demande Livraison");
@@ -358,11 +398,9 @@ public class Fenetre extends JFrame
 	{
 		// 1.1.1 mainPanel/leftPanel/vueGraphique
 		vueGraphique.setModeTournee();
-		vueTextuelle.setModeTournee();
-		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
-		topButtonsPanel.removeAll();
-		
+		actionButtonsPanel.setVisible(false);
+
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 		buttonChargerPlan.setEnabled(true);
 		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
@@ -432,30 +470,8 @@ public class Fenetre extends JFrame
 		listeLivraisonsPanel.add(listScroller);*/
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
-		topButtonsPanel.removeAll();
+		actionButtonsPanel.setVisible(true);
 		
-		// 1.2.1.2.1.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonAjouterLivraison
-		JButton buttonAjouterLivraison = new JButton("Ajouter une Livraison");
-		buttonAjouterLivraison.addActionListener(ecouteurDeBoutons);
-		topButtonsPanel.add(buttonAjouterLivraison);
-		// 1.2.1.2.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonSupprimerLivraison
-		JButton buttonSupprimerLivraison = new JButton("Retirer une Livraison");
-		buttonSupprimerLivraison.addActionListener(ecouteurDeBoutons);
-		topButtonsPanel.add(buttonSupprimerLivraison);
-		// 1.2.1.2.1.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonEchangerLivraisons
-		JButton buttonEchangerLivraisons = new JButton("Echanger 2 Livraisons");
-		buttonEchangerLivraisons.addActionListener(ecouteurDeBoutons);
-		topButtonsPanel.add(buttonEchangerLivraisons);
-		// 1.2.1.2.1.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonUndo
-		JButton buttonUndo = new JButton("Annuler");
-		buttonUndo.addActionListener(ecouteurDeBoutons);
-		topButtonsPanel.add(buttonUndo);
-		// 1.2.1.2.1.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel/buttonRedo
-		JButton buttonRedo = new JButton("Retablir");
-		buttonRedo.addActionListener(ecouteurDeBoutons);
-		topButtonsPanel.add(buttonRedo);
-
-		setBarreChargement("Cliquez sur un des boutons pour modifier votre tournee et cliquez sur Valider tournee pour valider votre tournee");
 		/*// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 		JButton buttonValiderTournee = new JButton("Valider Tournee");
 		buttonValiderTournee.addActionListener(ecouteurDeBoutons);
@@ -467,6 +483,13 @@ public class Fenetre extends JFrame
 			buttonSupprimerLivraison.setEnabled(false);
 			buttonEchangerLivraisons.setEnabled(false);
 			buttonRedo.setEnabled(false);
+		}
+		else
+		{
+			buttonAjouterLivraison.setEnabled(true);
+			buttonSupprimerLivraison.setEnabled(true);
+			buttonEchangerLivraisons.setEnabled(true);
+			buttonRedo.setEnabled(true);
 		}
 		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
@@ -500,10 +523,10 @@ public class Fenetre extends JFrame
 	public void setModeGenerationFeuilleDeRoute()
 	{
 		vueGraphique.setModeTournee();
-		vueTextuelle.setModeTournee();
 
+		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
-		topButtonsPanel.removeAll();
+		actionButtonsPanel.setVisible(false);
 
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 		buttonChargerPlan.setEnabled(true);
@@ -540,13 +563,13 @@ public class Fenetre extends JFrame
 	public void setModeFin()
 	{
 		vueGraphique.setModeTournee();
-		vueTextuelle.setModeTournee();
+		vueTextuelle.setModeTournee();	
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
-		topButtonsPanel.removeAll();
+		actionButtonsPanel.setVisible(false);
 		
 		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
-		bottomButtonsPanel.removeAll();
-		setBarreChargement("Bonne tournee!");
+		stateButtonsPanel.removeAll();
+		
 		repaint();
 		setVisible(true);
 	}
