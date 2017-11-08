@@ -481,6 +481,13 @@ public class Fenetre extends JFrame
 			buttonEchangerLivraisons.setEnabled(false);
 			buttonRedo.setEnabled(false);
 		}
+		else
+		{
+			buttonAjouterLivraison.setEnabled(true);
+			buttonSupprimerLivraison.setEnabled(true);
+			buttonEchangerLivraisons.setEnabled(true);
+			buttonRedo.setEnabled(true);
+		}
 		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 		buttonChargerPlan.setEnabled(true);
