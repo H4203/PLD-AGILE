@@ -2,9 +2,7 @@ package vue;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -47,7 +45,7 @@ public class Fenetre extends JFrame
 	public Fenetre(Controleur controleur, Plan plan, DemandeLivraison demandeLivraison, Tournee tournee)
 	{
 		super();
-		
+				
 		EcouteurDeBoutons ecouteurDeBoutons = new EcouteurDeBoutons(controleur);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

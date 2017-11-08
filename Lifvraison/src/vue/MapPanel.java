@@ -86,7 +86,15 @@ public class MapPanel extends JPanel
 
 		g2.setColor(Color.BLACK);
         g2.setStroke(new BasicStroke(1));
-		
+
+        // BackGround
+        
+        g2.setColor(Color.WHITE);
+        
+        g2.fillRect(0, 0, getSize().width, getSize().height);
+        
+        g2.setColor(Color.BLACK);
+        
         // Selected Intersection
         
         g2.setColor(Color.RED);
