@@ -15,7 +15,6 @@ public class EtatChargementPlan extends EtatDefault{
 		Plan newPlan = new Plan ();
 		try{
 			controleur.parseur.chargerPlan(newPlan, chemin);
-			// on attribut le nouveau plan
 			controleur.plan = newPlan;
 			controleur.demandeLivraison = null;
 			controleur.tournee = null;

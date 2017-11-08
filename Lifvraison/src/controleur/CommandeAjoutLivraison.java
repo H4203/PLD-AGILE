@@ -1,9 +1,7 @@
 package controleur;
 
 import algorithme.CalculateurTournee;
-import modeles.DemandeLivraison;
 import modeles.Livraison;
-import modeles.Tournee;
 
 public class CommandeAjoutLivraison implements Commande {
 
@@ -20,8 +18,7 @@ public class CommandeAjoutLivraison implements Commande {
 	
 	@Override
 	public void doCommande() {
-		//demandeLivraison.ajouterLivraison(livraison);
-		// recalcul avec algo
+
 		calculateurTournee.ajouterLivraison(position, livraison);
 	}
 

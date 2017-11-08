@@ -10,11 +10,9 @@ import java.awt.event.ComponentListener;
  */
 public class EcouteurDeFenetre implements ComponentListener {
 	private VueGraphique vueGraphique;
-	private VueTextuelle vueTextuelle;
 
 	public EcouteurDeFenetre(VueGraphique vueGraphique, VueTextuelle vueTextuelle) {
 		this.vueGraphique = vueGraphique;
-		this.vueTextuelle = vueTextuelle;
 	}
 
 	/**

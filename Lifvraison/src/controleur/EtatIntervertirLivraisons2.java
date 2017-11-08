@@ -20,7 +20,7 @@ public class EtatIntervertirLivraisons2 extends EtatDefault{
 		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection livraison2 = controleur.plan.getSelectedIntersection();
 		
-		// cas livraison
+		// livraison
 		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
 		for ( int i = 0; i < Listelivraisons.size() ; i++)
 		{
