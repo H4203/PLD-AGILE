@@ -37,8 +37,9 @@ public class EtatIntervertirLivraisons2 extends EtatDefault{
 			controleur.setEtatCourant( controleur.etatModificationTournee);
 			listeDeCommandes.ajoute( new CommandeIntervertirCommande ( posLivraison1, posLivraison2 , controleur.calculateurTournee));
 			System.out.println("test");
+			controleur.fenetre.setModeModificationTournee();
 		}
-		controleur.fenetre.setModeModificationTournee();
+		
 	}
 	
 	@Override
