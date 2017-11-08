@@ -17,15 +17,16 @@ public class EtatCalculTournee extends EtatDefault{
 		Plan newPlan = new Plan ();
 		try{
 			controleur.parseur.chargerPlan(newPlan, chemin);
+			// on attribut le nouveau plan
+			controleur.plan = newPlan;
+			controleur.demandeLivraison = null;
+			controleur.tournee = null;
+			controleur.setEtatCourant( controleur.etatChargementLivraison);
+			fenetre.chargerPlan(controleur.plan);
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
-		// on attribut le nouveau plan
-		controleur.plan = newPlan;
-		controleur.demandeLivraison = null;
-		controleur.tournee = null;
-		controleur.setEtatCourant( controleur.etatChargementLivraison);
-		fenetre.chargerPlan(controleur.plan);
+		
 	}
 	
 	@Override
@@ -33,16 +34,17 @@ public class EtatCalculTournee extends EtatDefault{
 		DemandeLivraison newDemandeLivraison = new DemandeLivraison ();
 		try{
 			controleur.parseur.chargerLivraison(newDemandeLivraison, chemin, controleur.plan.getListeIntersection());
+			controleur.demandeLivraison = newDemandeLivraison;
+			controleur.tournee = null;
+			controleur.calculateurTournee = null;
+			//controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
+			//controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
+			controleur.setEtatCourant(controleur.etatCalculTournee);
+			fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
-		controleur.demandeLivraison = newDemandeLivraison;
-		controleur.tournee = null;
-		controleur.calculateurTournee = null;
-		//controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
-		//controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
-		controleur.setEtatCourant(controleur.etatCalculTournee);
-		fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
+		
 	}
 	
 	@Override
