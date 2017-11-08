@@ -11,8 +11,8 @@ public interface TSP {
 	 * Cherche un circuit de duree minimale passant par chaque sommet (compris entre 0 et nbSommets-1)
 	 * @param tpsLimite : limite (en millisecondes) sur le temps d'execution de chercheSolution
 	 * @param nbSommets : nombre de sommets du graphe
-	 * @param cout : cout[i][j] = duree pour aller de i a j, avec 0 <= i < nbSommets et 0 <= j < nbSommets
-	 * @param duree : duree[i] = duree pour visiter le sommet i, avec 0 <= i < nbSommets
+	 * @param cout : cout[i][j] = duree pour aller de i a j, avec 0 inferieur ou egale i inferieur nbSommets et 0 inferieur ou egale j inferieur nbSommets
+	 * @param duree : duree[i] = duree pour visiter le sommet i, avec 0 inferieur ou egale i inferieur nbSommets
 	 */
 	public void chercheSolution(int tpsLimite, int nbSommets, int[][] cout, int[] duree, int[] tempsDebutPlage, int[] tempsFinPlage);
 	

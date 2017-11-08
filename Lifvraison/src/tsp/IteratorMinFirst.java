@@ -14,6 +14,7 @@ public class IteratorMinFirst implements Iterator<Integer> {
 	 * Cree un iterateur pour iterer sur l'ensemble des sommets de nonVus
 	 * @param nonVus
 	 * @param sommetCrt
+	 * @param cout
 	 */
 	public IteratorMinFirst(Collection<Integer> nonVus, int sommetCrt, int[][] cout){
 		this.candidats = new ArrayList<Integer>();
