@@ -360,7 +360,7 @@ public class Fenetre extends JFrame
 		
 		// 1.1.1 mainPanel/leftPanel/vueGraphique
 		vueGraphique.setModeDemandeLivraison();
-		vueTextuelle.setModeDemandeLivraison();
+		vueTextuelle.setModePlan();
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		actionButtonsPanel.setVisible(false);

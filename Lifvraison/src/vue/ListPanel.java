@@ -58,8 +58,7 @@ public class ListPanel extends JPanel
 	private JPanel detailsTronconPanel;
 	private JTextArea detailsTronconArea;
 
-	public ListPanel(Fenetre fenetre, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur)
-	{
+	public ListPanel(Fenetre fenetre, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur) {
 		super();
 
 		setLayout(new BorderLayout());
@@ -83,34 +82,17 @@ public class ListPanel extends JPanel
 		listSelectionModel = listTexteLivraison.getSelectionModel();
 		listSelectionModel.addListSelectionListener( ecouteurDeListes );
 
-		//listTexteLivraison.setCellRenderer(new DefaultListCellRenderer() );
-
 		detailsPanel = new JPanel();
 		detailsPanel.setLayout(new BorderLayout());
 
 		detailsTextArea = new JTextArea();
-		//detailsTextArea.setContentType("text/html");
+		detailsTextArea.setLineWrap(true);
 		detailsTextArea.setLayout(new FlowLayout());
 		detailsPanel.add(detailsTextArea, BorderLayout.CENTER);
 
 		detailsButtonPanel = new JPanel();
 		detailsButtonPanel.setLayout(new FlowLayout());
 		detailsPanel.add(detailsButtonPanel, BorderLayout.SOUTH);
-
-		/*ecouteurDeBoutons = new EcouteurDeBoutons(controleur);
-
-		JButton buttonValiderModification = new JButton("Valider modif");
-		buttonValiderModification.addActionListener(ecouteurDeBoutons);
-		detailsButtonPanel.add(buttonValiderModification);
-		buttonValiderModification.setVisible(false);
-
-		JButton buttonMonter = new JButton("Monter");
-		buttonMonter.addActionListener(ecouteurDeBoutons);
-		detailsButtonPanel.add(buttonMonter);
-
-		JButton buttonDescendre = new JButton("Descendre");
-		buttonDescendre.addActionListener(ecouteurDeBoutons);
-		detailsButtonPanel.add(buttonDescendre);*/
 
 		detailsTronconPanel = new JPanel();
 		detailsTronconPanel.setLayout(new BorderLayout());
@@ -218,27 +200,26 @@ public class ListPanel extends JPanel
 
 	public void remplirDetails () {
 		splitPanel.setVisible(false);
-        detailsPanel.setVisible(false);
+		detailsPanel.setVisible(false);
 
-        detailsPanel.setBorder(new TitledBorder(null, "Details Livraison", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
-        detailsTextArea.setText(listTexteLivraison.getSelectedValue());
-        if(tournee != null)
-        {
-            int index = listTexteLivraison.getSelectedIndex()-1;
-            if ( !tournee.getLivraisonsOrdonnees().isEmpty() && index > 0 && index < tournee.getLivraisonsOrdonnees().size() ) {
-                Livraison livraison = tournee.getLivraisonsOrdonnees().get(index);
-                if(livraison.getPlagehoraire() != null ) {
-                    detailsTextArea.setText(detailsTextArea.getText()+"\n Plage horaire : " + livraison.getPlagehoraire().getHeureDebut() + " - " + livraison.getPlagehoraire().getHeureFin());
-                }
-                detailsTextArea.setText(detailsTextArea.getText()+"\n Duree de dechargement :" + livraison.getDureeDechargement()/60 + " minutes");
-            }
-        }
+		detailsPanel.setBorder(new TitledBorder(null, "Details Livraison", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
+		detailsTextArea.setText(listTexteLivraison.getSelectedValue().replaceAll("<br>","\n").replaceAll("\\<.*?>",""));
+		if(tournee != null)
+		{
+			int index = listTexteLivraison.getSelectedIndex()-1;
+			if ( !tournee.getLivraisonsOrdonnees().isEmpty() && index > 0 && index < tournee.getLivraisonsOrdonnees().size() ) {
+				Livraison livraison = tournee.getLivraisonsOrdonnees().get(index);
+				if(livraison.getPlagehoraire() != null ) {
+					detailsTextArea.setText(detailsTextArea.getText().replaceAll("<br>","\n").replaceAll("\\<.*?>","") + '\r'+'\n' + "Plage horaire : " + livraison.getPlagehoraire().getHeureDebut() + " - " + livraison.getPlagehoraire().getHeureFin());
+				}
+			}
+		}
 
-        detailsPanel.setVisible(true);
-        splitPanel.setVisible(true);
-        detailsPanel.repaint();
-        splitPanel.repaint();
-        repaint();
+		detailsPanel.setVisible(true);
+		splitPanel.setVisible(true);
+		detailsPanel.repaint();
+		splitPanel.repaint();
+		repaint();
 	}
 
 	public void cacherDetails()
