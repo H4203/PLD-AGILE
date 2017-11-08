@@ -52,13 +52,13 @@ public class Troncon {
 		this.intersectionArrive = intersectionArrive;
 	}
 	/**
-	 * @return the longeur
+	 * @return the longueur
 	 */
 	public double getLongueur() {
 		return Longueur;
 	}
 	/**
-	 * @param longeur the longeur to set
+	 * @param longueur the longueur to set
 	 */
 	public void setLongueur(double longueur) {
 		Longueur = longueur;

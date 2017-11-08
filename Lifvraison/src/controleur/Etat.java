@@ -73,6 +73,7 @@ public interface Etat {
 	 * 
 	 * @param controleur
 	 * @param fenetre
+	 * @param listeDeCommandes
 	 * @param point
 	 *            = coordonnees du plan correspondant au point clique
 	 */
@@ -141,7 +142,7 @@ public interface Etat {
 	 * vue textuelle
 	 * 
 	 * @param controleur
-	 * @param fenetre
+	 * @param listeDeCommandes
 	 */
 	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes);
 }

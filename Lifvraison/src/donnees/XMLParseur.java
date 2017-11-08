@@ -38,7 +38,7 @@ public class XMLParseur
 	 * charge la livraison
 	 * @param cheminDuFichier chemin d'acces sur le disque du fichier XML contenant la demande de livraison
 	 * @param listeIntersection les intersections du plan - la map associe les id des intersections avec leur objet Intersection
-	 * @return la demande de livraisons
+	 * @param demandelivraison la demande de livraison qui sera cree
 	 * @throws ParseurException 
 	 */
 
@@ -215,7 +215,6 @@ public class XMLParseur
 	/**
 	 * Charge le plan de la ville
 	 * @param cheminDuFichier chemin d'acces sur le disque du fichier XML contenant le plan de livraison
-	 * @return
 	 * @throws ParseurException 
 	 */
 	public void chargerPlan (Plan plan, String cheminDuFichier) throws ParseurException
