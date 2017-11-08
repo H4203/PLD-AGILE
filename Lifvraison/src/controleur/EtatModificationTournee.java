@@ -5,14 +5,11 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import algorithme.CalculateurTournee;
-import donnees.FeuilleDeRoute;
 import donnees.ParseurException;
 import modeles.DemandeLivraison;
 import modeles.Intersection;
 import modeles.Livraison;
 import modeles.Plan;
-import modeles.Tournee;
 import vue.Fenetre;
 
 public class EtatModificationTournee extends EtatDefault {
@@ -22,7 +19,6 @@ public class EtatModificationTournee extends EtatDefault {
 		Plan newPlan = new Plan();
 		try {
 			controleur.parseur.chargerPlan(newPlan, chemin);
-			// on attribut le nouveau plan
 			controleur.plan = newPlan;
 			controleur.demandeLivraison = null;
 			controleur.tournee = null;
@@ -41,9 +37,6 @@ public class EtatModificationTournee extends EtatDefault {
 			controleur.demandeLivraison = newDemandeLivraison;
 			controleur.tournee = null;
 			controleur.calculateurTournee = null;
-			// controleur.tournee = new Tournee ( controleur.plan ,
-			// controleur.demandeLivraison);
-			// controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 			controleur.setEtatCourant(controleur.etatCalculTournee);
 			fenetre.chargerDemandeLivraison(controleur.demandeLivraison);
 		} catch (ParseurException e) {
@@ -62,7 +55,7 @@ public class EtatModificationTournee extends EtatDefault {
 		controleur.setEtatCourant(controleur.etatAjoutLivraison1);
 		fenetre.setModeModificationTournee("AjoutLivraison");
 		fenetre.setIndicationLabel(
-				"<html>Sélectionnez l'intersection correspondant au point de livraison à ajouter</html>");
+				"<html>SÃ©lectionnez l'intersection correspondant au point de livraison Ã  ajouter</html>");
 	}
 
 	@Override
@@ -70,7 +63,7 @@ public class EtatModificationTournee extends EtatDefault {
 		controleur.setEtatCourant(controleur.etatSupprimerLivraison);
 		fenetre.setModeModificationTournee("SuppressionLivraison");
 		fenetre.setIndicationLabel(
-				"<html>Sélectionnez le point de livraison à supprimer<br>sur le plan ou dans la liste</html>");
+				"<html>SÃ©lectionnez le point de livraison Ã  supprimer<br>sur le plan ou dans la liste</html>");
 	}
 
 	@Override
@@ -78,7 +71,7 @@ public class EtatModificationTournee extends EtatDefault {
 		controleur.setEtatCourant(controleur.etatIntervertirLivraisons1);
 		fenetre.setModeModificationTournee("IntervertirLivraisons");
 		fenetre.setIndicationLabel(
-				"<html>Sélectionnez les 2 points de livraison à intervertir<br>sur le plan ou dans la liste</html>");
+				"<html>SÃ©lectionnez les 2 points de livraison Ã  intervertir<br>sur le plan ou dans la liste</html>");
 	}
 
 	@Override
@@ -86,12 +79,12 @@ public class EtatModificationTournee extends EtatDefault {
 		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
 
 		Intersection pointSelectionne = controleur.plan.getSelectedIntersection();
-
 		// cas entrepot
 		if (controleur.demandeLivraison.getEntrepot().equals(pointSelectionne)) {
 			fenetre.getVueTextuelle().getListPanel().setSelectedIndex(0);
 		}
-		// cas livraison
+		
+		// livraison
 		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
 		for (int i = 0; i < Listelivraisons.size(); i++) {
 			Livraison livraison = Listelivraisons.get(i);

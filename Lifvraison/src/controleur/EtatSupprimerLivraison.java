@@ -13,7 +13,6 @@ public class EtatSupprimerLivraison extends EtatDefault {
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes) {
 		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection pointAsupprimer = controleur.plan.getSelectedIntersection();
-
 		// cas livraison
 		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
 		for (int i = 0; i < Listelivraisons.size(); i++) {
@@ -23,7 +22,7 @@ public class EtatSupprimerLivraison extends EtatDefault {
 				listeDeCommandes.ajoute(new CommandeSupprimerLivraison(livraison, controleur.calculateurTournee));
 				controleur.setEtatCourant(controleur.etatModificationTournee);
 				controleur.fenetre.setModeModificationTournee();
-				// evite une trop grande supression de point
+
 				break;
 			}
 		}

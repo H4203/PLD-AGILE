@@ -27,7 +27,7 @@ public class EtatAjoutLivraison2 extends EtatDefault {
 
 			fenetre.getVueTextuelle().getListPanel().setSelectedIndex(0);
 		}
-		// cas livraison
+		// livraison
 		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
 		for (int i = 0; i < Listelivraisons.size(); i++) {
 			Livraison livraison = Listelivraisons.get(i);

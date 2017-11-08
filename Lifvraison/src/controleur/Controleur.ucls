@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="controleur.CommandeSupprimerLivraison" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/CommandeSupprimerLivraison.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="112" width="320" x="84" y="2137"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="controleur.EtatAjoutLivraison1" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatAjoutLivraison1.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1523" y="833"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="controleur.EtatAjoutLivraison2" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatAjoutLivraison2.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="322" x="1681" y="1303"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="controleur.EtatIntervertirLivraisons2" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatIntervertirLivraisons2.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="166" width="322" x="1319" y="1303"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="controleur.EtatModificationTournee" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatModificationTournee.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1137" y="1673"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="controleur.EtatIntervertirLivraisons1" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatIntervertirLivraisons1.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1505" y="1992"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="controleur.EtatChargementLivraison" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatChargementLivraison.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="915" y="2225"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="controleur.ListeDeCommandes" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/ListeDeCommandes.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="679" y="2953"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="controleur.EtatGenererFeuilleDeRoute" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatGenererFeuilleDeRoute.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="238" width="322" x="509" y="1859"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="controleur.EtatSupprimerLivraison" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatSupprimerLivraison.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="245" y="1838"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="controleur.CommandeAjoutLivraison" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/CommandeAjoutLivraison.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1915" y="1616"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="controleur.EtatChargementPlan" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatChargementPlan.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1037" y="1086"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="13" language="java" name="controleur.Commande" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/Commande.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1829" y="2693"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="14" language="java" name="controleur.Controleur" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/Controleur.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="870" y="652"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="controleur.CommandeIntervertirCommande" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/CommandeIntervertirCommande.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1541" y="1622"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="controleur.EtatCalculTournee" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatCalculTournee.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="697" y="2450"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="17" language="java" name="controleur.Etat" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/Etat.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="364" width="322" x="166" y="899"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="18" language="java" name="controleur.EtatDefault" project="Lifvraison" 
+    file="/Lifvraison/src/controleur/EtatDefault.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="382" width="322" x="1064" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="true" package="true" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="19">    
+    <bendpoint x="1328" y="899"/>    
+    <bendpoint x="1328" y="459"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="22">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <generalization id="23">    
+    <bendpoint x="518" y="1509"/>    
+    <bendpoint x="518" y="1303"/>    
+    <bendpoint x="518" y="899"/>    
+    <bendpoint x="518" y="459"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <dependency id="24">    
+    <bendpoint x="1366" y="1620"/>    
+    <bendpoint x="1366" y="1511"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <realization id="25">    
+    <bendpoint x="32" y="2361"/>    
+    <bendpoint x="32" y="2603"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <dependency id="26">    
+    <bendpoint x="95" y="1303"/>    
+    <bendpoint x="53" y="1509"/>    
+    <bendpoint x="53" y="1859"/>    
+    <bendpoint x="53" y="2137"/>    
+    <bendpoint x="53" y="2361"/>    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="27">    
+    <bendpoint x="798" y="899"/>    
+    <bendpoint x="692" y="1303"/>    
+    <bendpoint x="585" y="1509"/>    
+    <bendpoint x="478" y="1859"/>    
+    <bendpoint x="497" y="2137"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="28" name="etatCalculTournee"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="30">    
+    <bendpoint x="1704" y="1766"/>    
+    <bendpoint x="1711" y="1542"/>    
+    <bendpoint x="2047" y="1500"/>    
+    <bendpoint x="2033" y="899"/>    
+    <bendpoint x="2033" y="459"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <association id="31">    
+    <bendpoint x="1223" y="899"/>    
+    <bendpoint x="1223" y="1303"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="32" name="etatModificationTournee"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="35">    
+    <bendpoint x="1650" y="1519"/>    
+    <bendpoint x="1414" y="1513"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <generalization id="36">    
+    <bendpoint x="74" y="1509"/>    
+    <bendpoint x="74" y="1303"/>    
+    <bendpoint x="74" y="899"/>    
+    <bendpoint x="74" y="459"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <dependency id="37">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <realization id="38">    
+    <bendpoint x="497" y="459"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <dependency id="39">    
+    <bendpoint x="479" y="2172"/>    
+    <bendpoint x="480" y="2352"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <generalization id="40">    
+    <bendpoint x="1246" y="1303"/>    
+    <bendpoint x="1265" y="899"/>    
+    <bendpoint x="1265" y="459"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <association id="41">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="42" name="etatChargementPlan"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="45" name="etatCourant"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <bendpoint x="1307" y="899"/>    
+    <bendpoint x="1382" y="1109"/>    
+    <bendpoint x="1613" y="1117"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="48" name="etatAjoutLivraison2"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="50">    
+    <bendpoint x="924" y="1303"/>    
+    <bendpoint x="924" y="1509"/>    
+    <bendpoint x="958" y="1890"/>    
+    <bendpoint x="1158" y="2113"/>    
+    <bendpoint x="1176" y="2390"/>    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="51">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <realization id="52">    
+    <bendpoint x="2109" y="1859"/>    
+    <bendpoint x="2109" y="2137"/>    
+    <bendpoint x="2109" y="2361"/>    
+    <bendpoint x="2109" y="2603"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <dependency id="53">    
+    <bendpoint x="1118" y="2379"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="54">    
+    <bendpoint x="903" y="1303"/>    
+    <bendpoint x="903" y="1509"/>    
+    <bendpoint x="903" y="1859"/>    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="55">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="56" name="etatAjoutLivraison1"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="58">    
+    <bendpoint x="1717" y="1859"/>    
+    <bendpoint x="1759" y="2137"/>    
+    <bendpoint x="1780" y="2361"/>    
+    <bendpoint x="1780" y="2603"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <dependency id="59">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="60">    
+    <bendpoint x="434" y="2137"/>    
+    <bendpoint x="434" y="2361"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="61">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="62">    
+    <bendpoint x="560" y="899"/>    
+    <bendpoint x="539" y="1303"/>    
+    <bendpoint x="497" y="1509"/>    
+    <bendpoint x="457" y="1859"/>    
+    <bendpoint x="455" y="2137"/>    
+    <bendpoint x="455" y="2361"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="63" name="listeDeCommandes"/>      
+      <multiplicity id="64" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="65">    
+    <bendpoint x="2109" y="1303"/>    
+    <bendpoint x="2109" y="1509"/>    
+    <bendpoint x="1992" y="1859"/>    
+    <bendpoint x="1875" y="2137"/>    
+    <bendpoint x="1759" y="2361"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="66">    
+    <bendpoint x="840" y="899"/>    
+    <bendpoint x="855" y="1303"/>    
+    <bendpoint x="869" y="1509"/>    
+    <bendpoint x="882" y="1859"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="67" name="etatChargementLivraison"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="69">    
+    <bendpoint x="901" y="2361"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="70">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="71">    
+    <bendpoint x="819" y="899"/>    
+    <bendpoint x="819" y="1303"/>    
+    <bendpoint x="819" y="1509"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="72" name="etatGenererFeuilleDeRoute"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <bendpoint x="1286" y="899"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="75" name="etatIntervertirLivraisons2"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="77">    
+    <bendpoint x="476" y="2137"/>    
+    <bendpoint x="436" y="1859"/>    
+    <bendpoint x="436" y="1509"/>    
+    <bendpoint x="94" y="1266"/>    
+    <bendpoint x="102" y="468"/>    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <association id="78">    
+    <bendpoint x="539" y="899"/>    
+    <bendpoint x="477" y="1303"/>    
+    <bendpoint x="415" y="1509"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="79" name="etatSupprimerLivraison"/>      
+      <multiplicity id="80" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="81">    
+    <bendpoint x="924" y="1859"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <generalization id="82">    
+    <bendpoint x="861" y="1859"/>    
+    <bendpoint x="840" y="1509"/>    
+    <bendpoint x="798" y="1303"/>    
+    <bendpoint x="725" y="905"/>    
+    <bendpoint x="723" y="445"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <dependency id="83">    
+    <bendpoint x="2130" y="459"/>    
+    <bendpoint x="2130" y="899"/>    
+    <bendpoint x="2130" y="1303"/>    
+    <bendpoint x="2130" y="1509"/>    
+    <bendpoint x="2130" y="1859"/>    
+    <bendpoint x="2130" y="2137"/>    
+    <bendpoint x="2088" y="2361"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="84">    
+    <bendpoint x="684" y="2156"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="85">    
+    <bendpoint x="1288" y="1303"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="86">    
+    <bendpoint x="1384" y="2377"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <association id="87">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="88" name="listeDeCommandes"/>      
+      <multiplicity id="89" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="90">    
+    <bendpoint x="1199" y="2392"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="91">    
+    <bendpoint x="1738" y="1509"/>    
+    <bendpoint x="1738" y="1859"/>    
+    <bendpoint x="1738" y="2137"/>    
+    <bendpoint x="1738" y="2361"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <generalization id="92">    
+    <bendpoint x="1349" y="459"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <dependency id="93">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="94">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <generalization id="95">    
+    <bendpoint x="1711" y="899"/>    
+    <bendpoint x="1711" y="459"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <association id="96">    
+    <bendpoint x="1244" y="899"/>    
+    <bendpoint x="1267" y="1303"/>    
+    <bendpoint x="1307" y="1509"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="97" name="etatIntervertirLivraisons1"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="99">    
+    <bendpoint x="1349" y="1509"/>    
+    <bendpoint x="1342" y="2330"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="100">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <generalization id="101">    
+    <bendpoint x="1073" y="459"/>    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false" static="false"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -16,7 +16,7 @@ import modeles.Livraison;
 
 /**
  * 
- * @author H4203 Traduit les interactions entre l’utilisateur et la vue en
+ * @author H4203 Traduit les interactions entre lï¿½utilisateur et la vue en
  *         actions pour le modele ou la vue
  */
 public class Controleur {
@@ -29,7 +29,7 @@ public class Controleur {
 	protected String etat;
 	protected Etat etatCourant;
 	protected FeuilleDeRoute feuilleDeRoute;
-
+  
 	// differents etats possible
 	protected EtatChargementPlan etatChargementPlan = new EtatChargementPlan();
 	protected EtatChargementLivraison etatChargementLivraison = new EtatChargementLivraison();
