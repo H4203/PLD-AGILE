@@ -67,22 +67,25 @@ public class EtatChargementLivraison extends EtatDefault{
 
 		Intersection pointSelectionne = controleur.plan.getSelectedIntersection();
 
-		// cas entrepot
-		if ( controleur.demandeLivraison.getEntrepot().equals( pointSelectionne ) )
-		{	
-			fenetre.getVueTextuelle().getListPanel().setSelectedIndex(0);
-		}
-		// cas livraison
-		List<Livraison> Listelivraisons = controleur.demandeLivraison.getLivraisons();
-		for ( int i = 0; i < Listelivraisons.size() ; i++)
+		if (controleur.demandeLivraison != null)
 		{
-			Livraison livraison = Listelivraisons.get(i);
-			if ( livraison.getIntersection().equals( pointSelectionne ) )
-			{
-				fenetre.getVueTextuelle().getListPanel().setSelectedIndex(i+1);
-				break;
+			// cas entrepot
+			if ( controleur.demandeLivraison.getEntrepot().equals( pointSelectionne ) )
+			{	
+				fenetre.getVueTextuelle().getListPanel().setSelectedIndex(0);
 			}
-		}
+			// cas livraison
+			List<Livraison> Listelivraisons = controleur.demandeLivraison.getLivraisons();
+			for ( int i = 0; i < Listelivraisons.size() ; i++)
+			{
+				Livraison livraison = Listelivraisons.get(i);
+				if ( livraison.getIntersection().equals( pointSelectionne ) )
+				{
+					fenetre.getVueTextuelle().getListPanel().setSelectedIndex(i+1);
+					break;
+				}
+			}
+		}	
 	}
 
 	@Override
