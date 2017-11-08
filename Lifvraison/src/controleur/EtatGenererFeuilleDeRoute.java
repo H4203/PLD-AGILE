@@ -81,10 +81,10 @@ public class EtatGenererFeuilleDeRoute extends EtatDefault
 	}
 	
 	@Override
-	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre)
+	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre, String chemin)
 	{
 		controleur.feuilleDeRoute = new FeuilleDeRoute();
-		controleur.feuilleDeRoute.gerer(controleur.tournee);
+		controleur.feuilleDeRoute.gerer(controleur.tournee, chemin);
 		fenetre.setModeFin();
 	}
 }
