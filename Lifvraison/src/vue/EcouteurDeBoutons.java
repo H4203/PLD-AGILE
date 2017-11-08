@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import controleur.Controleur;
 
@@ -35,7 +36,8 @@ public class EcouteurDeBoutons implements ActionListener
 				String chemin = "";
 				
 				fileChooser.setCurrentDirectory(new File("./data/plan"));
-				
+				fileChooser.setFileFilter(new FileNameExtensionFilter("*.xml", "xml"));
+	
 			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 			    {
 			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
@@ -48,7 +50,8 @@ public class EcouteurDeBoutons implements ActionListener
 				String chemin = "";
 				
 				fileChooser.setCurrentDirectory(new File("./data/demandeLivraison"));
-				
+				fileChooser.setFileFilter(new FileNameExtensionFilter("*.xml", "xml"));
+	
 			    if(fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 			    {
 			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
@@ -91,7 +94,8 @@ public class EcouteurDeBoutons implements ActionListener
 				String chemin = "";
 				
 				fileChooser.setCurrentDirectory(new File("./data/feuilleDeRoute"));
-				
+				fileChooser.setFileFilter(new FileNameExtensionFilter("*.txt", "txt"));
+	
 				
 			    if(fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION)
 			    {
