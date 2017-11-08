@@ -13,7 +13,7 @@ public class ListeDeCommandes {
 	
 	/**
 	 * Ajout de la commande commande a la liste this
-	 * @param c
+	 * @param commande = la commande a ajouter
 	 */
 	public void ajoute(Commande commande){
         int i = indiceCrt+1;
