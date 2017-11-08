@@ -1,11 +1,4 @@
 package tests;
-import org.junit.*;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,9 +9,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -40,7 +30,6 @@ public class testCalculTournee {
 	private static XMLParseur parseur = null;
 	private static Plan plan = null;
 	private static DemandeLivraison dL = null;
-	private static CalculateurTournee calculateurTournee = null;
 	private static Tournee tournee = null;
 	
 	@BeforeEach

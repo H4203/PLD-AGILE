@@ -55,7 +55,7 @@ public class EtatModificationTournee extends EtatDefault {
 		controleur.setEtatCourant(controleur.etatAjoutLivraison1);
 		fenetre.setModeModificationTournee("AjoutLivraison");
 		fenetre.setIndicationLabel(
-				"<html>Sélectionnez l'intersection correspondant au point de livraison à ajouter</html>");
+				"<html>Selectionnez l'intersection correspondant au point de livraison a� ajouter</html>");
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class EtatModificationTournee extends EtatDefault {
 		controleur.setEtatCourant(controleur.etatSupprimerLivraison);
 		fenetre.setModeModificationTournee("SuppressionLivraison");
 		fenetre.setIndicationLabel(
-				"<html>Sélectionnez le point de livraison à supprimer<br>sur le plan ou dans la liste</html>");
+				"<html>Selectionnez le point de livraison a supprimer<br>sur le plan ou dans la liste</html>");
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class EtatModificationTournee extends EtatDefault {
 		controleur.setEtatCourant(controleur.etatIntervertirLivraisons1);
 		fenetre.setModeModificationTournee("IntervertirLivraisons");
 		fenetre.setIndicationLabel(
-				"<html>Sélectionnez les 2 points de livraison à intervertir<br>sur le plan ou dans la liste</html>");
+				"<html>Selectionnez les 2 points de livraison a� intervertir<br>sur le plan ou dans la liste</html>");
 	}
 
 	@Override

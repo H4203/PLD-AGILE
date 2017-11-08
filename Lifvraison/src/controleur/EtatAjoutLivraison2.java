@@ -12,6 +12,9 @@ public class EtatAjoutLivraison2 extends EtatDefault {
 
 	protected Intersection pointDeLivraison;
 
+	/* (non-Javadoc)
+	 * @see controleur.EtatDefault#clicgauche(controleur.Controleur, vue.Fenetre, java.awt.Point, controleur.ListeDeCommandes)
+	 */
 	@Override
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes) {
 
