@@ -143,7 +143,7 @@ public class CalculateurTournee extends Thread{
 	
 	public int supprimerLivraison(Livraison livraison) {
 		int index = -1;
-		for(int i = 0; i < lesItineraires.size(); i++) {
+		for(int i = 0; i < lesItineraires.size()-1; i++) {
 			if(lesItineraires.get(i).getArrivee().getId() == livraison.getIntersection().getId())
 			{
 				index = i;
@@ -155,19 +155,23 @@ public class CalculateurTournee extends Thread{
 				nouvelleTournee.add(this.lesItineraires.get(i));
 			}
 			if(index+1 != (this.lesItineraires.size()-1)) {
-				nouvelleTournee.add(lesDijkstra.get(index).getItineraire(lesItineraires.get(index+2).getDepart().getId()));
+				if(index != 0)
+				nouvelleTournee.add(lesDijkstra.get(index-1).getItineraire(lesDijkstra.get(index+1).getPtDepart().getId()));
+				else
+					nouvelleTournee.add(lesDijkstra.get(index+1).getItineraire(this.laTournee.getDemandeLivraison().getEntrepot().getId()));
+					
 				for(int i = index+2; i < lesItineraires.size(); i++) {
 					nouvelleTournee.add(this.lesItineraires.get(i));
 				}
 			}
 			else
 			{
-				nouvelleTournee.add(lesDijkstra.get(index).getItineraire(lesItineraires.get(0).getDepart().getId()));
+				nouvelleTournee.add(lesDijkstra.get(index-1).getItineraire(lesItineraires.get(0).getDepart().getId()));
 			}
 			this.lesItineraires = nouvelleTournee;
 			this.lesDijkstra.remove(index);
 			laTournee.getDemandeLivraison().getLivraisons().remove(livraison);
-			laTournee.supprimerLivraison(index);
+			//laTournee.supprimerLivraison(index);
 			laTournee.setListeItineraires(lesItineraires);
 			
 		}
@@ -188,15 +192,23 @@ public class CalculateurTournee extends Thread{
 			// ajout du dijksta de la livraison precedente
 			if ( index != this.lesDijkstra.size())
 			{
-				nouveauxDijkstra.add(this.lesDijkstra.get(index));
+				
+				
 			}
 			
 			nouvellesLivraisons.add(livraison);
 			Dijkstra d = new Dijkstra(this.laTournee.getPlan(), livraison.getIntersection());
 			d.run();
 			nouveauxDijkstra.add(d);
-			if(index != this.lesDijkstra.size())
-				nouvelleTournee.add(this.lesDijkstra.get(index).getItineraire(livraison.getIntersection().getId()));
+			if(index != this.lesDijkstra.size() && index != 0) {
+				nouvelleTournee.add(this.lesDijkstra.get(index-1).getItineraire(livraison.getIntersection().getId()));
+				nouveauxDijkstra.add(this.lesDijkstra.get(index));
+			}
+			else
+				{nouvelleTournee.add(d.getItineraire(laTournee.getDemandeLivraison().getEntrepot().getId()));
+				nouveauxDijkstra.add(this.lesDijkstra.get(index));
+				}
+				
 
 			if ( index+1 < lesItineraires.size() )
 			{
@@ -234,7 +246,7 @@ public class CalculateurTournee extends Thread{
 			this.laTournee.ajouterLivraison(livraison, index);
 			this.laTournee.getDemandeLivraison().ajouterLivraison(livraison);
 			this.laTournee.setListeItineraires(nouvelleTournee);
-			
+			System.out.println();
 		}
 		
 		
