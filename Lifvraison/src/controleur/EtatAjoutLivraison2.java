@@ -47,14 +47,7 @@ public class EtatAjoutLivraison2 extends EtatDefault {
 			}
 		}
 	}
-<<<<<<< HEAD
-	
-	/* (non-Javadoc)
-	 * @see controleur.EtatDefault#modificationDansLaListe(controleur.Controleur, controleur.ListeDeCommandes)
-	 */
-=======
 
->>>>>>> Dev
 	@Override
 	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes) {
 		int index = controleur.fenetre.getVueTextuelle().getListPanel().getCurrentSelection();
@@ -77,39 +70,18 @@ public class EtatAjoutLivraison2 extends EtatDefault {
 			controleur.fenetre.setModeModificationTournee();
 		}
 	}
-<<<<<<< HEAD
-	
-	/* (non-Javadoc)
-	 * @see controleur.EtatDefault#undo(controleur.Controleur, controleur.ListeDeCommandes, vue.Fenetre)
-	 */
-=======
 
->>>>>>> Dev
 	@Override
 	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre) {
 		controleur.setEtatCourant(controleur.etatModificationTournee);
 		fenetre.setModeModificationTournee();
 	}
-<<<<<<< HEAD
-	
-	/* (non-Javadoc)
-	 * @see controleur.EtatDefault#mouseDrag(controleur.Controleur, java.awt.Point)
-	 */
-=======
 
->>>>>>> Dev
 	@Override
 	public void mouseDrag(Controleur controleur, Point delta) {
 		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
 	}
-<<<<<<< HEAD
-	
-	/* (non-Javadoc)
-	 * @see controleur.EtatDefault#mouseWheel(controleur.Controleur, int, java.awt.Point)
-	 */
-=======
 
->>>>>>> Dev
 	@Override
 	public void mouseWheel(Controleur controleur, int steps, Point point) {
 		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);

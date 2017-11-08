@@ -10,13 +10,9 @@ import java.awt.event.ComponentListener;
  */
 public class EcouteurDeFenetre implements ComponentListener {
 	private VueGraphique vueGraphique;
-<<<<<<< HEAD
-	public EcouteurDeFenetre(VueGraphique vueGraphique, VueTextuelle vueTextuelle) 
-	{
-=======
+
 
 	public EcouteurDeFenetre(VueGraphique vueGraphique, VueTextuelle vueTextuelle) {
->>>>>>> Dev
 		this.vueGraphique = vueGraphique;
 	}
 
@@ -25,11 +21,7 @@ public class EcouteurDeFenetre implements ComponentListener {
 	 */
 	public void componentResized(ComponentEvent e) {
 		vueGraphique.resize();
-<<<<<<< HEAD
     }
-=======
-	}
->>>>>>> Dev
 
 	@Override
 	public void componentHidden(ComponentEvent arg0) {

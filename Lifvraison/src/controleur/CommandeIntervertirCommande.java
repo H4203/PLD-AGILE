@@ -2,12 +2,8 @@ package controleur;
 
 import algorithme.CalculateurTournee;
 
-<<<<<<< HEAD
-public class CommandeIntervertirCommande implements Commande{
-	
-=======
+
 public class CommandeIntervertirCommande implements Commande {
->>>>>>> Dev
 	private CalculateurTournee calculateurTournee;
 	private int positionLivraison1;
 	private int positionLivraison2;

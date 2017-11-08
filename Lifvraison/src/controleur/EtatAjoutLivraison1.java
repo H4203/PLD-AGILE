@@ -24,13 +24,9 @@ public class EtatAjoutLivraison1 extends EtatDefault {
 		if (pointDeLivraison != null) {
 			controleur.setEtatCourant(controleur.etatAjoutLivraison2);
 			controleur.etatAjoutLivraison2.pointDeLivraison = pointDeLivraison;
-			System.out.println("phase 2");
-<<<<<<< HEAD
+
 			fenetre.setIndicationLabel("<html>Selectionnez le point de livraison apres lequel ajouter votre nouveau point de livraison<br>sur le plan ou dans la liste</html>");
-=======
-			fenetre.setIndicationLabel(
-					"<html>Sélectionnez le point de livraison après lequel ajouter votre nouveau point de livraison<br>sur le plan ou dans la liste</html>");
->>>>>>> Dev
+
 		}
 	}
 
