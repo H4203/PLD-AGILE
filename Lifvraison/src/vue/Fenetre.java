@@ -480,6 +480,17 @@ public class Fenetre extends JFrame
 			buttonSupprimerLivraison.setEnabled(false);
 			buttonEchangerLivraisons.setEnabled(false);
 			buttonRedo.setEnabled(false);
+			
+			// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
+			buttonChargerPlan.setEnabled(false);
+			// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
+			buttonChargerDemandeLivraison.setEnabled(false);
+			// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
+			buttonCalulerTournee.setEnabled(false);
+			// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
+			buttonValiderTournee.setEnabled(false);
+			// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
+			buttonGenererFeuilleDeRoute.setEnabled(false);
 		}
 		else
 		{
@@ -487,19 +498,19 @@ public class Fenetre extends JFrame
 			buttonSupprimerLivraison.setEnabled(true);
 			buttonEchangerLivraisons.setEnabled(true);
 			buttonRedo.setEnabled(true);
+			
+			// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
+			buttonChargerPlan.setEnabled(true);
+			// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
+			buttonChargerDemandeLivraison.setEnabled(true);
+			// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
+			buttonCalulerTournee.setEnabled(true);
+			// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
+			buttonValiderTournee.setEnabled(true);
+			// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
+			buttonGenererFeuilleDeRoute.setEnabled(false);
 		}
-		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
-		buttonChargerPlan.setEnabled(true);
-		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
-		buttonChargerDemandeLivraison.setEnabled(true);
-		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
-		buttonCalulerTournee.setEnabled(true);
-		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
-		buttonValiderTournee.setEnabled(true);
-		// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
-		buttonGenererFeuilleDeRoute.setEnabled(false);		
-		
+
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		//resetOngletsPanelButtons();
 		/*// 1.3.1 mainPanel/ongletsPanel/buttonAccueil
