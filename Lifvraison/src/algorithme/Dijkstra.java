@@ -14,21 +14,21 @@ import donnees.XMLParseur;
 
 public class Dijkstra {
 
-	// Contient les intersection associees a leur antecedent
+	/** Contient les intersection associees a leur antecedent */
 	private HashMap<Long, Intersection> pi;
-	// Contient les id des intersections associees a leur cout
+	/** Contient les id des intersections associees a leur cout */
 	private HashMap<Long, Double> cout;
 
-	// Contient les intersections blanches, associees a leur cout
+	/** Contient les intersections blanches, associees a leur cout */
 	private HashMap<Long, Double> intersectionsBlanches;
-	// Contient les intersections grises, associees a leur cout
+	/** Contient les intersections grises, associees a leur cout */
 	private HashMap<Long, Double> intersectionsGrises;
-	// Inverse la map intersectionsGrises
+	/** Inverse la map intersectionsGrises */
 	private HashMap<Double, List<Long>> intersectionsGrisesInversees;
 
-	// L'objet Plan de notre cas d'etude
+	/** L'objet Plan de notre cas d'etude */
 	private Plan lePlan;
-	// Intersection d'ou l'on part
+	/** Intersection d'ou l'on part */
 	private Intersection ptDepart;
 
 	/**
@@ -40,15 +40,14 @@ public class Dijkstra {
 	public Dijkstra(Plan lePlan, Intersection pointDepart) {
 		this.lePlan = lePlan;
 		this.ptDepart = pointDepart;
-		
-		pi = new HashMap<Long,Intersection>();
-		cout = new HashMap<Long,Double>();
+
+		pi = new HashMap<Long, Intersection>();
+		cout = new HashMap<Long, Double>();
 		intersectionsBlanches = new HashMap<Long, Double>();
 		intersectionsGrises = new HashMap<Long, Double>();
 		intersectionsGrisesInversees = new HashMap<Double, List<Long>>();
-		
+
 		Collection<Intersection> c = lePlan.getListeIntersection().values();
-		int i = 0;
 		// On ajoute les intersections dans les differentes Hashmap
 		for (Intersection intersection : c) {
 			pi.put(intersection.getId(), null);
@@ -61,7 +60,6 @@ public class Dijkstra {
 		cout.put(pointDepart.getId(), 0.0);
 		intersectionsBlanches.remove(pointDepart.getId());
 		intersectionsGrises.put(pointDepart.getId(), 0.0);
-		//System.out.println(intersectionsGrises.values().size());
 		List<Long> aAjouter = new ArrayList<Long>();
 		aAjouter.add(pointDepart.getId());
 		intersectionsGrisesInversees.put(0.0, aAjouter);
@@ -76,15 +74,16 @@ public class Dijkstra {
 		while (intersectionsGrises.values().size() != 0) {
 			double min = Collections.min(intersectionsGrises.values());
 			Long idMin = intersectionsGrisesInversees.get(min).get(0);
-			//System.out.println("id =" + idMin + "; cout =" + min);
-			
+			// System.out.println("id =" + idMin + "; cout =" + min);
+
 			Intersection lIntersection = lePlan.getListeIntersection().get(idMin);
 
 			// On visite tous les successeurs du point courant
 			for (Troncon t : lIntersection.getTronconsSortants()) {
 
 				// On n'agit que sur les intersections blanches ou grises
-				if (intersectionsBlanches.containsKey(t.getIntersectionArrive().getId()) || intersectionsGrises.containsKey(t.getIntersectionArrive().getId())) {
+				if (intersectionsBlanches.containsKey(t.getIntersectionArrive().getId())
+						|| intersectionsGrises.containsKey(t.getIntersectionArrive().getId())) {
 
 					// On relache l'arc en le point courant et le successeur que l'on est en train
 					// de visiter
@@ -92,11 +91,13 @@ public class Dijkstra {
 					// On colorie le nouveau sommet visite en gris
 					if (intersectionsBlanches.containsKey(t.getIntersectionArrive().getId())) {
 						// On l'ajoute dans la map "a l'endroit"
-						intersectionsGrises.put(t.getIntersectionArrive().getId(),cout.get(t.getIntersectionArrive().getId()));
+						intersectionsGrises.put(t.getIntersectionArrive().getId(),
+								cout.get(t.getIntersectionArrive().getId()));
 
 						// On l'ajoute à la map inverse, en verifiant si la valeur de cout existe
 						if (intersectionsGrisesInversees.containsKey(cout.get(t.getIntersectionArrive().getId()))) {
-							intersectionsGrisesInversees.get(cout.get(t.getIntersectionArrive().getId())).add(t.getIntersectionArrive().getId());
+							intersectionsGrisesInversees.get(cout.get(t.getIntersectionArrive().getId()))
+									.add(t.getIntersectionArrive().getId());
 						} else {
 							List<Long> aAjouter = new ArrayList<Long>();
 							aAjouter.add(t.getIntersectionArrive().getId());
@@ -107,24 +108,24 @@ public class Dijkstra {
 						// coloriee en grise
 						intersectionsBlanches.remove(t.getIntersectionArrive().getId());
 
-					}
-					else
-					{
+					} else {
 						Double nouvelleValeur = cout.get(t.getIntersectionArrive().getId());
 						Double ancienneValeur = intersectionsGrises.get(t.getIntersectionArrive().getId());
-						
-						if(ancienneValeur != nouvelleValeur)
-						{
-							intersectionsGrises.put(t.getIntersectionArrive().getId(), cout.get(t.getIntersectionArrive().getId()));
-							
+
+						if (ancienneValeur != nouvelleValeur) {
+							intersectionsGrises.put(t.getIntersectionArrive().getId(),
+									cout.get(t.getIntersectionArrive().getId()));
+
 							if (intersectionsGrisesInversees.get(ancienneValeur).size() != 1) {
-								intersectionsGrisesInversees.get(ancienneValeur).remove(t.getIntersectionArrive().getId());
+								intersectionsGrisesInversees.get(ancienneValeur)
+										.remove(t.getIntersectionArrive().getId());
 							} else {
 								intersectionsGrisesInversees.remove(ancienneValeur);
 							}
-							
+
 							if (intersectionsGrisesInversees.containsKey(cout.get(t.getIntersectionArrive().getId()))) {
-								intersectionsGrisesInversees.get(cout.get(t.getIntersectionArrive().getId())).add(t.getIntersectionArrive().getId());
+								intersectionsGrisesInversees.get(cout.get(t.getIntersectionArrive().getId()))
+										.add(t.getIntersectionArrive().getId());
 							} else {
 								List<Long> aAjouter = new ArrayList<Long>();
 								aAjouter.add(t.getIntersectionArrive().getId());
@@ -149,40 +150,43 @@ public class Dijkstra {
 
 	}
 
+	/**
+	 * Relache l'arc entre l'intersection si et sj
+	 * 
+	 * @param si
+	 *            depart de l'arc
+	 * @param sj
+	 *            arrivee de l'arc
+	 */
 	public void relacher(Intersection si, Intersection sj) {
 
 		List<Troncon> lesTroncons = si.getTronconsSortants();
 		Troncon leTroncon = null;
-		
+
 		for (Troncon t : lesTroncons) {
 			if (t.getIntersectionArrive().getId() == sj.getId()) {
-				if(leTroncon == null) {
-					leTroncon = t;					
-				}
-				else if(t.getLongueur() < leTroncon.getLongueur()) {
+				if (leTroncon == null) {
+					leTroncon = t;
+				} else if (t.getLongueur() < leTroncon.getLongueur()) {
 					leTroncon = t;
 				}
 
 			}
 		}
-		//System.out.println("relachement : " + si.getId() + " -> " + sj.getId());
-		//System.out.println(cout.get(sj.getId()));
-		
+
 		Double valeurATester = cout.get(si.getId()) + leTroncon.getLongueur();
-		
-		if((si.getId() == 1) ) {
+
+		if ((si.getId() == 1)) {
 			System.out.print("");
 		}
-		
-		if(cout.get(sj.getId()) == Double.MAX_VALUE) {
+
+		if (cout.get(sj.getId()) == Double.MAX_VALUE) {
+			cout.put(sj.getId(), valeurATester);
+			pi.put(sj.getId(), si);
+		} else if (cout.get(sj.getId()) > valeurATester) {
 			cout.put(sj.getId(), valeurATester);
 			pi.put(sj.getId(), si);
 		}
-		else if (cout.get(sj.getId()) > valeurATester) {
-			cout.put(sj.getId(), valeurATester);
-			pi.put(sj.getId(), si);
-		}
-		//System.out.println(cout.get(sj.getId()));
 	}
 
 	public Itineraire getItineraire(Long idArrivee) {
@@ -200,7 +204,7 @@ public class Dijkstra {
 				int tailleChemin = cheminInverse.size();
 
 				List<Troncon> listeTroncon = intersectionCourante.getTronconsSortants();
-				if(listeTroncon != null) {
+				if (listeTroncon != null) {
 					for (Troncon t : listeTroncon) {
 						if (t.getIntersectionArrive().getId() == intersectionPrecedente.getId()) {
 							cheminInverse.add(t);
@@ -214,8 +218,8 @@ public class Dijkstra {
 					return null;
 				}
 			}
-			
-			if(cheminInverse.size() == 0) {
+
+			if (cheminInverse.size() == 0) {
 				return null;
 			}
 			List<Troncon> chemin = new ArrayList<Troncon>();
@@ -290,28 +294,5 @@ public class Dijkstra {
 	public void setPtDepart(Intersection ptDepart) {
 		this.ptDepart = ptDepart;
 	}
-	
-	/*public static void main (String[] args)
-	{
-		XMLParseur xml = new XMLParseur();
-
-
-		Plan lePlan = xml.chargerPlan("data/testPlan1.xml");
-		Long id = new Long(3);
-
-		Dijkstra d = new Dijkstra(lePlan, lePlan.getListeIntersection().get( id ));
-		d.run();
-		
-		Long arrivee = new Long(2);
-		Itineraire chemin = d.getItineraire(arrivee);
-		
-		List<Troncon> t = chemin.getTroncons();
-		
-		for(Troncon troncon : t) {
-			System.out.println("depart :" + troncon.getIntersectionDepart().getId()+ "; arrivee :" + troncon.getIntersectionArrive().getId() + "; nom de rue :" + troncon.getNomDeRue() + "; Longueur : " + troncon.getLongueur());
-		}
-	}*/
 
 }
-
-
