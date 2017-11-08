@@ -60,18 +60,13 @@ public class VueTextuelle extends JPanel implements Observer
 		add(listPanel, BorderLayout.CENTER);
 	}
 
-	public void setModeAccueil()
-	{
-
-	}
-
-	public void setModeChargementPlan()
+	public void setModePlan()
 	{
 		listPanel.setAffichageDemandeLivraison(false);
 		listPanel.setAffichageTournee(false);
 	}
 
-	public void setModeChargementDemandeLivraison()
+	public void setModeDemandeLivraison()
 	{
 		listPanel.setAffichageDemandeLivraison(true);
 		listPanel.setAffichageTournee(false);
@@ -80,9 +75,9 @@ public class VueTextuelle extends JPanel implements Observer
 		repaint();
 	}
 
-	public void setModeCalculTournee()
+	public void setModeTournee()
 	{
-		listPanel.setAffichageDemandeLivraison(false);
+		listPanel.setAffichageDemandeLivraison(true);
 		listPanel.setAffichageTournee(true);
 		
 		listPanel.remplirListe();
@@ -90,16 +85,11 @@ public class VueTextuelle extends JPanel implements Observer
 	}
 
 	@Override
-	public void paintComponent(Graphics g) 
-	{
-
-	}
-
-	@Override
 	public void update(Observable o, Object arg) 
 	{
 		listPanel.repaint();
 		listPanel.remplirListe();
+		repaint();
 	}
 
 	public void nouvelleDemandeLivraison ( DemandeLivraison demandeLivraison)

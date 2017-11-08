@@ -12,7 +12,7 @@ public interface Etat {
 	public void calculerTournee ( Controleur controleur, Fenetre fenetre );
 	public void ajouterLivraison(Controleur controleur, Fenetre fenetre);
 	public void supprimerLivraison(Controleur controleur, Fenetre fenetre );
-	public void intervertirLivraison(Controleur controleur, Fenetre fenetre, Livraison livraison1, Livraison livraison2);
+	public void intervertirLivraisons(Controleur controleur, Fenetre fenetre);
 	public void clicgauche ( Controleur controleur, Fenetre fenetre, int positonPrecedente, Livraison livraison);
 	public void validerTournee (Controleur controleur, Fenetre fenetre);
 	public void clicgauche(Controleur controleur, Point point);
@@ -22,9 +22,6 @@ public interface Etat {
 	public void undo (Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	public void redo (Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre);
 	public void modificationTournee(Controleur controleur, Fenetre fenetre);
-	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre);
-<<<<<<< HEAD
+	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre, String chemin);
 	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes);
-=======
->>>>>>> Dev
 }

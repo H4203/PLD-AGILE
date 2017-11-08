@@ -29,13 +29,12 @@ public class Fenetre extends JFrame
 	private VueGraphique vueGraphique;
 	
 	private VueTextuelle vueTextuelle;
-	
 	// 1.1.1 mainPanel/leftPanel/overMapPanel
 	//private JPanel overMapPanel;
 	// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
 	//private MapPanel mapPanel;	
 	// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
-	//private JPanel listeLivraisonsPanel;
+	private JPanel listeLivraisonsPanel;
 	// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 	private JPanel topButtonsPanel;	
 	// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
@@ -61,19 +60,20 @@ public class Fenetre extends JFrame
 	private JButton buttonChargerPlan;
 	// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
 	private JButton buttonChargerDemandeLivraison;
-	// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
+	// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
+	private JButton buttonCalulerTournee;
+	// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 	private JButton buttonValiderTournee;
+	// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
+	private JButton buttonGenererFeuilleDeRoute;	
 	
-<<<<<<< HEAD
-	private JLabel chargementLabel;
-	private JPanel barreChargementPanel;
-	//??
-=======
->>>>>>> Dev
 	// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
 	//private JList<String> listTexteLivraison;
 	
 	//private JPanel buttonsPanel;
+	
+	private JPanel barreChargementPanel;
+	private JLabel chargementLabel;
 	
 	private EcouteurDeBoutons ecouteurDeBoutons;
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -99,8 +99,6 @@ public class Fenetre extends JFrame
 		vueGraphique = new VueGraphique(this, plan, demandeLivraison, tournee, controleur);
 		leftPanel.add(vueGraphique, BorderLayout.CENTER);
 		
-		
-		
 		// 1.1.1 mainPanel/leftPanel/overMapPanel
 		//overMapPanel = new JPanel();
 		//overMapPanel.setLayout(new CardLayout(50, 50));
@@ -109,16 +107,16 @@ public class Fenetre extends JFrame
 		// 1.1.1.1 mainPanel/leftPanel/overMapPanel/mapPanel
 		//mapPanel = new MapPanel(null, null, null);
 		
-		// 1.1.2 mainPanel/leftPanel/barreChargementPanel
+		// 1.1.2 mainPanel/leftPanel/titlePanel
 		barreChargementPanel = new JPanel();
 		barreChargementPanel.setLayout(new BorderLayout());
-		//barreChargementPanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 10));
+		//titlePanel.setPreferredSize(new Dimension(screenSize.width, screenSize.height / 10));
 		leftPanel.add(barreChargementPanel, BorderLayout.SOUTH);
 		
-		// 1.1.2.1 mainPanel/leftPanel/barreChargementPanel/titleLabel
-		chargementLabel = new JLabel("~LIFvraison~", SwingConstants.LEFT);
-		chargementLabel.setFont(new Font("Serif", Font.PLAIN, 10));
-		barreChargementPanel.add(chargementLabel, BorderLayout.WEST);
+		// 1.1.2.1 mainPanel/leftPanel/titlePanel/titleLabel
+		chargementLabel = new JLabel("~LIfvraison~", SwingConstants.LEFT);
+		chargementLabel.setFont(new Font("Serif", Font.PLAIN, 15));
+		barreChargementPanel.add(chargementLabel, BorderLayout.CENTER);
 		
 		// 1.2 mainPanel/overRightPanel
 		JPanel overRightPanel = new JPanel();
@@ -131,16 +129,11 @@ public class Fenetre extends JFrame
 		rightPanel.setLayout(new BorderLayout());
 		overRightPanel.add(rightPanel);
 		
-		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
-		//listeLivraisonsPanel = new JPanel();
-		//listeLivraisonsPanel.setLayout(new CardLayout(50, 50));
-		//rightPanel.add(listeLivraisonsPanel, BorderLayout.CENTER);
-		
-		
+		// 1.1.1 mainPanel/leftPanel/vueGraphique
 		vueTextuelle = new VueTextuelle(this, demandeLivraison, tournee, controleur);
 		rightPanel.add(vueTextuelle, BorderLayout.CENTER);
-
-		addComponentListener(new EcouteurDeFenetre(vueGraphique, vueTextuelle)); 
+		
+		addComponentListener(new EcouteurDeFenetre(vueGraphique, vueTextuelle));
 
 		// 1.2.1.2 mainPanel/overRightPanel/rightPanel/buttonsPanel
 		JPanel buttonsPanel = new JPanel();
@@ -155,9 +148,9 @@ public class Fenetre extends JFrame
 		
 		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel		
 		bottomButtonsPanel = new JPanel();
-		bottomButtonsPanel.setLayout(new GridLayout(1, 3, 20, 20));
+		bottomButtonsPanel.setLayout(new GridLayout(1, 5, 20, 20));
 		//bottomButtonsPanel.setPreferredSize(new Dimension(screenSize.width / 5, screenSize.height / 20));
-		buttonsPanel.add(bottomButtonsPanel);
+		mainPanel.add(bottomButtonsPanel, BorderLayout.SOUTH);
 		
 		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
 		buttonChargerPlan = new JButton("Charger Plan");
@@ -167,10 +160,18 @@ public class Fenetre extends JFrame
 		buttonChargerDemandeLivraison = new JButton("Charger Demande Livraison");
 		buttonChargerDemandeLivraison.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonChargerDemandeLivraison);
+		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
+		buttonCalulerTournee = new JButton("Calculer Tournee");
+		buttonCalulerTournee .addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonCalulerTournee );
 		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 		buttonValiderTournee = new JButton("Valider Tournee");
 		buttonValiderTournee.addActionListener(ecouteurDeBoutons);
 		bottomButtonsPanel.add(buttonValiderTournee);
+		// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
+		buttonGenererFeuilleDeRoute = new JButton("Generer Feuille de Route");
+		buttonGenererFeuilleDeRoute.addActionListener(ecouteurDeBoutons);
+		bottomButtonsPanel.add(buttonGenererFeuilleDeRoute );
 		
 		/*// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonPrecedent
 		buttonPrecedent = new JButton("Precedent");
@@ -256,36 +257,32 @@ public class Fenetre extends JFrame
 	}
 	
 	// modification plan non null
-	public void chargerPlan( Plan plan)
+	public void chargerPlan(Plan plan)
 	{
 		vueGraphique.nouveauPlan(plan);
 		setModeChargementDemandeLivraison();
+		setBarreChargement("Plan chargé avec succès \n Cliquez sur le bouton Charger plan pour choisir le fichier du plan");
 	}
-	public void chargerDemandeLivraison( DemandeLivraison demandeLivraison)
+	public void chargerDemandeLivraison(DemandeLivraison demandeLivraison)
 	{
 		vueGraphique.nouvelleDemandeLivraison(demandeLivraison);
-<<<<<<< HEAD
 		vueTextuelle.nouvelleDemandeLivraison(demandeLivraison);
-=======
->>>>>>> Dev
+		setModeCalculTournee();
+		setBarreChargement("Demande de livraison chargée avec succès \n Cliquez sur Calculer tournee pour lancer le calcul de la tournee");
 	}
-	public void chargerTournee( Tournee tournee)
+	public void chargerTournee(Tournee tournee)
 	{
 		vueGraphique.nouvelleTournee(tournee);
-<<<<<<< HEAD
 		vueTextuelle.nouvelleTournee(tournee);
-=======
->>>>>>> Dev
 		setModeModificationTournee();
+		setBarreChargement("Calcul de la tournée chargée avec succès \n Cliquez sur un des boutons pour modifier votre tournee et cliquez sur Valider tournee pour valider votre tournee");
 	}
 	
 	public void setModeChargementPlan()
 	{	
 		// 1.1.1 mainPanel/leftPanel/vueGraphique
-		vueGraphique.setModeChargementPlan();
-		vueTextuelle.setModeChargementPlan();
-		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
-		//listeLivraisonsPanel.removeAll();
+		vueGraphique.setModePlan();
+		vueTextuelle.setModePlan();
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
@@ -299,8 +296,12 @@ public class Fenetre extends JFrame
 		buttonChargerPlan.setEnabled(true);
 		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
 		buttonChargerDemandeLivraison.setEnabled(false);
+		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
+		buttonCalulerTournee.setEnabled(false);
 		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 		buttonValiderTournee.setEnabled(false);
+		// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
+		buttonGenererFeuilleDeRoute.setEnabled(false);
 		
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		//resetOngletsPanelButtons();
@@ -308,6 +309,7 @@ public class Fenetre extends JFrame
 		//buttonAccueil.setEnabled(true);
 		// 1.3.2 mainPanel/ongletsPanel/buttonChargementPlan
 		//buttonChargementPlan.setBackground(new Color(200, 200, 255));
+		setBarreChargement("Cliquez sur le bouton Charger plan pour choisir le fichier du plan");
 		
 		repaint();
 		setVisible(true);
@@ -316,10 +318,8 @@ public class Fenetre extends JFrame
 	public void setModeChargementDemandeLivraison()
 	{
 		// 1.1.1 mainPanel/leftPanel/vueGraphique
-		vueGraphique.setModeChargementDemandeLivraison();
-		vueTextuelle.setModeChargementDemandeLivraison();
-		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
-		//listeLivraisonsPanel.removeAll();
+		vueGraphique.setModeDemandeLivraison();
+		vueTextuelle.setModeDemandeLivraison();
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
@@ -333,8 +333,12 @@ public class Fenetre extends JFrame
 		buttonChargerPlan.setEnabled(true);
 		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
 		buttonChargerDemandeLivraison.setEnabled(true);
+		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
+		buttonCalulerTournee.setEnabled(false);
 		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 		buttonValiderTournee.setEnabled(false);
+		// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
+		buttonGenererFeuilleDeRoute.setEnabled(false);		
 		
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		//resetOngletsPanelButtons();
@@ -344,28 +348,33 @@ public class Fenetre extends JFrame
 		buttonChargementPlan.setEnabled(true);
 		// 1.3.3 mainPanel/ongletsPanel/buttonChargementDemandeLivraison
 		buttonChargementDemandeLivraison.setBackground(new Color(200, 200, 255));*/
+		setBarreChargement("Cliquez sur Chargez demande de livraison pour choisir le fichier de demande de livraison");
 		
 		repaint();
 		setVisible(true);
 	}
 	
-	/*public void setModeCalculTournee()
+	public void setModeCalculTournee()
 	{
 		// 1.1.1 mainPanel/leftPanel/vueGraphique
-		vueGraphique.setModeCalculTournee();
-		
-		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
-		listeLivraisonsPanel.removeAll();
+		vueGraphique.setModeTournee();
+		vueTextuelle.setModeTournee();
 		
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
 		
-		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
-		JButton buttonCalculerTournee = new JButton("Calculer Tournee");
-		buttonCalculerTournee.addActionListener(ecouteurDeBoutons);
-		topButtonsPanel.add(buttonCalculerTournee);
+		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
+		buttonChargerPlan.setEnabled(true);
+		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
+		buttonChargerDemandeLivraison.setEnabled(true);
+		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
+		buttonCalulerTournee.setEnabled(true);
+		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
+		buttonValiderTournee.setEnabled(false);
+		// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
+		buttonGenererFeuilleDeRoute.setEnabled(false);	
 		
-		// 1.3.x mainPanel/ongletsPanel/buttons		
+		/*// 1.3.x mainPanel/ongletsPanel/buttons		
 		//resetOngletsPanelButtons();
 		// 1.3.1 mainPanel/ongletsPanel/buttonAccueil
 		buttonAccueil.setEnabled(true);
@@ -374,35 +383,23 @@ public class Fenetre extends JFrame
 		// 1.3.3 mainPanel/ongletsPanel/buttonChargementDemandeLivraison
 		buttonChargementDemandeLivraison.setEnabled(true);
 		// 1.3.4 mainPanel/ongletsPanel/buttonCalculTournee
-		buttonCalculTournee.setBackground(new Color(200, 200, 255));
+		buttonCalculTournee.setBackground(new Color(200, 200, 255));*/
+		setBarreChargement("Cliquez sur Calculer tournee pour lancer le calcul de la tournee");
 		
 		repaint();
 		setVisible(true);
-	}*/
+	}
 	
 	public void setModeModificationTournee()
 	{
 		setModeModificationTournee("");
 	}
-<<<<<<< HEAD
 	
 	public void setModeModificationTournee(String etat)
 	{
-		vueGraphique.setModeCalculTournee();
-		vueTextuelle.setModeCalculTournee();
-		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
-		//listeLivraisonsPanel.removeAll();
-		
-=======
+		vueGraphique.setModeTournee();
+		vueTextuelle.setModeTournee();
 	
-	public void setModeModificationTournee(String etat)
-	{
-		vueGraphique.setModeCalculTournee();
-		
-		// 1.2.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel
-		listeLivraisonsPanel.removeAll();
-	
->>>>>>> Dev
 		/*// 1.2.1.1.1.1 mainPanel/overRightPanel/rightPanel/listeLivraisonsPanel/labelListeLivraison/texteListe
 
 		String tableauTexteList[] = new String[tournee.getLivraisonsOrdonnees().size()+2]; //+2 pour entrepot depart et arrive
@@ -457,13 +454,14 @@ public class Fenetre extends JFrame
 		JButton buttonRedo = new JButton("Retablir");
 		buttonRedo.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonRedo);
-		
+
+		setBarreChargement("Cliquez sur un des boutons pour modifier votre tournee et cliquez sur Valider tournee pour valider votre tournee");
 		/*// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 		JButton buttonValiderTournee = new JButton("Valider Tournee");
 		buttonValiderTournee.addActionListener(ecouteurDeBoutons);
 		topButtonsPanel.add(buttonValiderTournee);*/
 		
-		if (etat.equals("AjoutLivraison") || etat.equals("SuppressionLivraison"))
+		if (etat.equals("AjoutLivraison") || etat.equals("SuppressionLivraison") || etat.equals("IntervertirLivraisons"))
 		{
 			buttonAjouterLivraison.setEnabled(false);
 			buttonSupprimerLivraison.setEnabled(false);
@@ -475,8 +473,12 @@ public class Fenetre extends JFrame
 		buttonChargerPlan.setEnabled(true);
 		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
 		buttonChargerDemandeLivraison.setEnabled(true);
+		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
+		buttonCalulerTournee.setEnabled(true);
 		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
 		buttonValiderTournee.setEnabled(true);
+		// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
+		buttonGenererFeuilleDeRoute.setEnabled(false);		
 		
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		//resetOngletsPanelButtons();
@@ -495,14 +497,25 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
-	public void setModeValidationTournee()
+	public void setModeGenerationFeuilleDeRoute()
 	{
+		vueGraphique.setModeTournee();
+		vueTextuelle.setModeTournee();
+
 		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
 		topButtonsPanel.removeAll();
-				
-		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
-		bottomButtonsPanel.removeAll();
 
+		// 1.2.1.2.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerPlan
+		buttonChargerPlan.setEnabled(true);
+		// 1.2.1.2.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonChargerDemandeLivraison
+		buttonChargerDemandeLivraison.setEnabled(true);
+		// 1.2.1.2.2.3 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonCalculerTournee
+		buttonCalulerTournee.setEnabled(true);
+		// 1.2.1.2.2.4 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonValiderTournee
+		buttonValiderTournee.setEnabled(true);
+		// 1.2.1.2.2.5 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel/buttonGenererFeuilleDeRoute
+		buttonGenererFeuilleDeRoute.setEnabled(true);			
+		
 		// 1.3.x mainPanel/ongletsPanel/buttons		
 		//resetOngletsPanelButtons();
 		/*// 1.3.1 mainPanel/ongletsPanel/buttonAccueil
@@ -518,6 +531,22 @@ public class Fenetre extends JFrame
 		// 1.3.6 mainPanel/ongletsPanel/buttonValidationTournee
 		buttonValidationTournee.setBackground(new Color(200, 200, 255));*/
 
+		setBarreChargement("Tournee validee\nCliquez sur Generer feuille de route pour enregistrer votre fichier");
+		
+		repaint();
+		setVisible(true);
+	}
+	
+	public void setModeFin()
+	{
+		vueGraphique.setModeTournee();
+		vueTextuelle.setModeTournee();
+		// 1.2.1.2.1 mainPanel/overRightPanel/rightPanel/buttonsPanel/topButtonsPanel
+		topButtonsPanel.removeAll();
+		
+		// 1.2.1.2.2 mainPanel/overRightPanel/rightPanel/buttonsPanel/bottomButtonsPanel
+		bottomButtonsPanel.removeAll();
+		setBarreChargement("Bonne tournee!");
 		repaint();
 		setVisible(true);
 	}
@@ -544,13 +573,11 @@ public class Fenetre extends JFrame
 		buttonValidationTournee.setBackground(null);
 	}*/
 	
-	public VueGraphique getVueGraphique()
-	{
+	public VueGraphique getVueGraphique(){
 		return vueGraphique;
 	}
 	
-	public VueTextuelle getVueTextuelle()
-	{
+	public VueTextuelle getVueTextuelle() {
 		return vueTextuelle;
 	}
 	

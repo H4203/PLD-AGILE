@@ -77,15 +77,29 @@ public class EcouteurDeBoutons implements ActionListener
 			case "Retirer une Livraison" :
 				controleur.supprimerLivraison();
 				break;
+			case "Echanger 2 Livraisons" :
+				controleur.intervertirLivraisons();
+				break;
 			case "Annuler":
 				controleur.undo();
 				break;
 			case "Retablir":
 				controleur.redo();
 				break;
-			case "Gerer Feuille De Route" :
+			case "Generer Feuille de Route" :
 			{
-				controleur.gererFeuilleDeRoute();
+				String chemin = "";
+				
+				fileChooser.setCurrentDirectory(new File("./data/feuilleDeRoute"));
+				
+				
+			    if(fileChooser.showSaveDialog(fileChooser) == JFileChooser.APPROVE_OPTION)
+			    {
+			       chemin = fileChooser.getSelectedFile().getAbsolutePath();
+			       controleur.genererFeuilleDeRoute(chemin);
+			    }
+
+				break;
 			}
 		}
 		

@@ -1,107 +1,62 @@
 L'heure depart depuis l'entrepot : 08:00
 
-Continuez 674m dans Boulevard Pinel
-
-L'heure arivee de livraison n¡ã1: 08:02:41
-L'adresse de livraison n¡ã1: Avenue Jean Mermoz
-L'heure depart de livraison n¡ã1: 08:12:41
-
-Continuez 720m dans Avenue Jean Mermoz
-Continuez 10m dans Boulevard Ambroise Paré
-Tournez a droite et continuez 281m dans Boulevard Edmond Michelet
-
-L'heure arivee de livraison n¡ã2: 08:16:43
-L'adresse de livraison n¡ã2: Boulevard Edmond Michelet
-L'heure depart de livraison n¡ã2: 08:21:43
-
+Continuez 136m dans Rue du Professeur Beauvisage
+Tournez a droite et continuez 33m dans Avenue du Général Frère
 Continuez 281m dans Boulevard Edmond Michelet
-Tournez a droite et continuez 10m dans Boulevard Ambroise Paré
-Tournez a droite et continuez 140m dans Avenue Jean Mermoz
-Continuez 24m dans Rue Professeur Morat
-Tournez a droite et continuez 295m dans Rue Jean Desparmet
+Tournez a droite et continuez 1067m dans Boulevard Ambroise Paré
+Tournez a droite et continuez 787m dans Rue Viala
+Tournez a gauche et continuez 254m dans Rue Ferdinand Buisson
+Tournez a droite et continuez 69m dans Rue Charles Richard
 
-L'heure arivee de livraison n¡ã3: 08:24:43
-L'adresse de livraison n¡ã3: Rue Bataille
-L'heure depart de livraison n¡ã3: 08:34:43
+L'heure arivee de livraison n¡ã1: 08:10:30
+L'adresse de livraison n¡ã1: Rue Charles Richard
+L'heure depart de livraison n¡ã1: 09:15
 
-Continuez 894m dans Rue Bataille
-Tournez a droite et continuez 57m dans Rue Marius Berliet
-Tournez a droite et continuez 176m dans Rue Paul Cazeneuve
+Continuez 354m dans Rue Charles Richard
+Continuez 125m dans Rue Antoinette
 
-L'heure arivee de livraison n¡ã4: 08:39:13
-L'adresse de livraison n¡ã4: Rue Paul Cazeneuve
-L'heure depart de livraison n¡ã4: 08:49:13
+L'heure arivee de livraison n¡ã2: 09:16:55
+L'adresse de livraison n¡ã2: Rue Antoinette
+L'heure depart de livraison n¡ã2: 11:10
 
-Continuez 339m dans Rue Paul Cazeneuve
-Tournez a droite et continuez 521m dans Boulevard des États-Unis
-Tournez a droite et continuez 265m dans Rue Audibert et Lavirotte
-Tournez a droite et continuez 751m dans Rue de l'Épargne
-Continuez 381m dans Rue du Repos
+Continuez 140m dans Rue Antoinette
+Tournez a gauche et continuez 140m dans Cours Richard Vitton
+Tournez a droite et continuez 18m dans Place Ronde André Bourgogne
+Tournez a droite et continuez 52m dans Rue de l'Église
+Tournez a droite et continuez 220m dans Rue Général Leclerc
+Tournez a droite et continuez 391m dans Rue Poizat
+Tournez a droite et continuez 161m dans Rue Antoine Primat
 
-L'heure arivee de livraison n¡ã5: 08:58:15
-L'adresse de livraison n¡ã5: Rue du Repos
-L'heure depart de livraison n¡ã5: 09:13:15
+L'heure arivee de livraison n¡ã3: 11:14:30
+L'adresse de livraison n¡ã3: Rue Antoine Primat
+L'heure depart de livraison n¡ã3: 11:24:30
 
-Continuez 25m dans Rue du Repos
-Continuez 317m dans Rue de l'Épargne
-Continuez 207m dans Rue du Repos
-Continuez 384m dans Ruelle du Grand Casernement
-Tournez a droite et continuez 201m dans Rue du Docteur Crestin Rue Victorien Sardou
-Tournez a droite et continuez 147m dans Rue du Docteur Crestin
-Tournez a droite et continuez 50m dans Grande Rue de la Guillotière
-Tournez a droite et continuez 245m dans Boulevard des Tchécoslovaques
-Tournez a gauche et continuez 53m dans Rue du Général Mouton-Duvernet Cours Albert Thomas
-Tournez a droite et continuez 61m dans Rue du Général Mouton-Duvernet
-Continuez 1443m dans Rue du Dauphiné
-Tournez a droite et continuez 647m dans Route de Genas
-Continuez 582m dans Cours Richard Vitton
-Tournez a droite et continuez 42m dans Place Ronde André Bourgogne
-Continuez 585m dans Cours Richard Vitton
-Tournez a gauche et continuez 43m dans Route de Genas
-Tournez a droite et continuez 211m dans Rue Georges Clemenceau
-Tournez a droite et continuez 104m dans Rue Léon Paviot
-
-L'heure arivee de livraison n¡ã6: 09:34:40
-L'adresse de livraison n¡ã6: Rue Léon Paviot
-L'heure depart de livraison n¡ã6: 09:49:40
-
-Continuez 191m dans Rue Léon Paviot
-Continuez 265m dans Rue Jacques Daligand
-Tournez a droite et continuez 107m dans Route de Genas
-Tournez a gauche et continuez 414m dans 
-
-L'heure arivee de livraison n¡ã7: 09:53:35
-L'adresse de livraison n¡ã7: 
-L'heure depart de livraison n¡ã7: 10:08:35
-
-Continuez 455m dans Rue sans nom
-Tournez a droite et continuez 930m dans Boulevard Laurent Bonnevay
-Tournez a droite et continuez 211m dans Avenue Franklin Roosevelt
-
-L'heure arivee de livraison n¡ã8: 10:14:58
-L'adresse de livraison n¡ã8: Avenue Franklin Roosevelt
-L'heure depart de livraison n¡ã8: 10:29:58
-
-Continuez 182m dans Avenue Franklin Roosevelt
-Tournez a droite et continuez 59m dans Boulevard Laurent Bonnevay
-Tournez a droite et continuez 944m dans Avenue Franklin Roosevelt
-Continuez 326m dans Avenue Rockefeller
-Continuez 573m dans Cours Eugénie
-Tournez a droite et continuez 141m dans Rue Trarieux
-Tournez a droite et continuez 325m dans Rue Viala
-Tournez a gauche et continuez 89m dans Rue Ferdinand Buisson
-Tournez a droite et continuez 152m dans Rue Louise
-Tournez a droite et continuez 304m dans Cours Docteur Long
-
-L'heure de retour de l'entrepot: 10:42:21
-L'adresse de livraison n¡ã9: Cours Docteur Long
-L'heure depart de livraison n¡ã9: 11:15
-
-Continuez 102m dans Cours Docteur Long
+Continuez 161m dans Rue Antoine Primat
+Tournez a droite et continuez 391m dans Rue Poizat
+Tournez a droite et continuez 19m dans Rue Général Leclerc
+Tournez a droite et continuez 447m dans Boulevard Honoré de Balzac
+Continuez 89m dans Rue Antonin Perrin
+Tournez a droite et continuez 541m dans Rue Bonnand
+Tournez a droite et continuez 260m dans Cours Docteur Long
 Continuez 49m dans Place Henri
-Continuez 578m dans Avenue Lacassagne
-Tournez a droite et continuez 629m dans Cours Eugénie
-Continuez 277m dans Avenue Rockefeller
-Tournez a droite et continuez 335m dans Boulevard Pinel
+Tournez a droite et continuez 562m dans Rue du Professeur Florence
+Tournez a droite et continuez 50m dans Place d'Arsonval
+Tournez a droite et continuez 77m dans Boulevard Jean XXIII
+Continuez 208m dans Rue Léa et Napoléon Bullukian
+Tournez a droite et continuez 71m dans Rue Nungesser et Coli
+Tournez a gauche et continuez 295m dans Rue Seignemartin
+Tournez a droite et continuez 304m dans Rue Auguste Pinton
+Tournez a droite et continuez 9m dans Rue Bataille
 
-L'heure de retour de l'entrepot: 11:22:53
+L'heure de retour de l'entrepot: 11:38:39
+L'adresse de livraison n¡ã4: Rue Bataille
+L'heure depart de livraison n¡ã4: 12:15
+
+Continuez 109m dans Rue Bataille
+Tournez a gauche et continuez 412m dans Rue Édouard Nieuport
+Tournez a droite et continuez 126m dans Rue Professeur Morat
+Continuez 79m dans Avenue Général Frère
+Tournez a droite et continuez 14m dans Avenue du Général Frère
+Tournez a droite et continuez 136m dans Rue du Professeur Beauvisage
+
+L'heure de retour de l'entrepot: 12:18:30
