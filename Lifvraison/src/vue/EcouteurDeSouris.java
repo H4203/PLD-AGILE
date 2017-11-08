@@ -9,8 +9,16 @@ import java.awt.event.MouseWheelListener;
 
 import controleur.Controleur;
 
+/**
+ * Classe EcouteurDeSouris
+ * Implemente MouseListener, MouseMotionListener, et MouseWheelListener
+ * @author H4203
+ */
 public class EcouteurDeSouris implements MouseListener, MouseMotionListener, MouseWheelListener 
 {
+	/**
+	 * Point de debut et de fin pour la gestion du glisser deposer
+	 */
 	private Point startPoint;
 	private Point endPoint;
 	
@@ -18,6 +26,12 @@ public class EcouteurDeSouris implements MouseListener, MouseMotionListener, Mou
 	
 	private Controleur controleur;
 	
+	/**
+	 * Constructeur de EcouteurDeSouris
+	 * Initialise les points de debut et de fin
+	 * @param mapPanel
+	 * @param controleur
+	 */
 	public EcouteurDeSouris(MapPanel mapPanel, Controleur controleur)
 	{
 		startPoint = new Point();
@@ -28,12 +42,13 @@ public class EcouteurDeSouris implements MouseListener, MouseMotionListener, Mou
 		this.controleur = controleur;
 	}
 	
+	/**
+	 * Gestion du glisser deposer
+	 */
 	@Override
 	public void mouseDragged(MouseEvent event) 
 	{
 		endPoint = event.getPoint();
-	    //System.out.println("Mouse From " + startPoint + " Dragged to " + endPoint);
-	    //System.out.println("Delta : X = " + (endPoint.x - startPoint.x) + ", Y = " + (endPoint.y - startPoint.y));
 		
 		controleur.mouseDrag(new Point(endPoint.x - startPoint.x, endPoint.y - startPoint.y));
 		
@@ -46,6 +61,9 @@ public class EcouteurDeSouris implements MouseListener, MouseMotionListener, Mou
 		
 	}
 
+	/**
+	 * Gestion du clic
+	 */
 	@Override
 	public void mouseClicked(MouseEvent event) 
 	{
@@ -64,11 +82,13 @@ public class EcouteurDeSouris implements MouseListener, MouseMotionListener, Mou
 	
 	}
 
+	/**
+	 * Gestion de l'appui sur le clic
+	 */
 	@Override
 	public void mousePressed(MouseEvent event) 
 	{
 		startPoint = event.getPoint();
-	    //System.out.println("Mouse Pressed at " + startPoint);
 	}
 
 	@Override
@@ -77,6 +97,9 @@ public class EcouteurDeSouris implements MouseListener, MouseMotionListener, Mou
 
 	}
 
+	/**
+	 * Gestion de la moette
+	 */
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent event) 
 	{
