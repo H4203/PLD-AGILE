@@ -42,8 +42,8 @@ public class VueTextuelle extends JPanel implements Observer
 
 		this.fenetre = fenetre;
 
-		//setLayout(new CardLayout(50, 50));
-		setLayout(new BorderLayout());
+		setLayout(new CardLayout(40, 40));
+		//setLayout(new BorderLayout());
 		
 		if (demandeLivraison != null )
 		{
@@ -57,7 +57,8 @@ public class VueTextuelle extends JPanel implements Observer
 		}
 
 		listPanel = new ListPanel(fenetre, demandeLivraison, tournee, controleur);
-		add(listPanel, BorderLayout.CENTER);
+		//add(listPanel, BorderLayout.CENTER);
+		add(listPanel);
 	}
 
 	public void setModePlan()

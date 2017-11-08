@@ -28,7 +28,7 @@ public class EtatIntervertirLivraisons1 extends EtatDefault{
 		{
 			controleur.setEtatCourant( controleur.etatIntervertirLivraisons2);
 			controleur.etatIntervertirLivraisons2.posLivraison1 = posLivraison1;
-			fenetre.setBarreChargement("Premier point selectionne \n Cliquez sur un point de livraison du plan ou de la liste");
+			fenetre.setIndicationLabel("<html>Premier point de livraison selectionne<br>Sélectionnez le second point de livraison, sur le plan ou dans la liste</html>");
 		}
 		
 		

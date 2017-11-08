@@ -87,18 +87,14 @@ public class Controleur
 	public void ajouterLivraison()
 	{
 		etatCourant.ajouterLivraison(this, fenetre);
-		fenetre.setBarreChargement("Cliquez sur une intersection du plan");
 	}
 	public void supprimerLivraison( )
 	{
 		etatCourant.supprimerLivraison(this, fenetre);
-		fenetre.setBarreChargement("Cliquez sur un point de livraison du plan ou de la liste");
 	}
 
 	public void intervertirLivraisons()
 	{
-		fenetre.setBarreChargement("Cliquez sur un point de livraison du plan ou de la liste");
-
 		etatCourant.intervertirLivraisons(this, fenetre);
 	}
 	
