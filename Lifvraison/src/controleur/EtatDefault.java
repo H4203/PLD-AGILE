@@ -93,5 +93,11 @@ public class EtatDefault implements Etat{
 		
 	}
 	
+	@Override
+	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes)
+	{
+		
+	}
+	
 
 }

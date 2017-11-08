@@ -17,6 +17,7 @@ public class EtatAjoutLivraison1 extends EtatDefault{
 			controleur.setEtatCourant( controleur.etatAjoutLivraison2);
 			controleur.etatAjoutLivraison2.pointDeLivraison = pointDeLivraison;
 			System.out.println("phase 2");
+			fenetre.setBarreChargement("Cliquez sur un point de livraison du plan ou de la liste");
 		}
 		
 		

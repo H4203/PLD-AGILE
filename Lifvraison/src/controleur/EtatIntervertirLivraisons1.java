@@ -28,9 +28,24 @@ public class EtatIntervertirLivraisons1 extends EtatDefault{
 		{
 			controleur.setEtatCourant( controleur.etatIntervertirLivraisons2);
 			controleur.etatIntervertirLivraisons2.posLivraison1 = posLivraison1;
+			fenetre.setBarreChargement("Premier point selectionne \n Cliquez sur un point de livraison du plan ou de la liste");
 		}
 		
 		
+	}
+	
+	@Override
+	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes) {
+		int index = controleur.fenetre.getVueTextuelle().getListPanel().getCurrentSelection();
+		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
+		if(index > 0 && index <= Listelivraisons.size())
+		{
+			Livraison livraison = Listelivraisons.get(index-1);
+			controleur.plan.getLivraison(livraison);
+			
+			controleur.setEtatCourant( controleur.etatIntervertirLivraisons2);
+			controleur.etatIntervertirLivraisons2.posLivraison1 = index;
+		}
 	}
 	
 	@Override

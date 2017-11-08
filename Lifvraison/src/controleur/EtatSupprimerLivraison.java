@@ -33,6 +33,20 @@ public class EtatSupprimerLivraison extends EtatDefault{
 	}
 	
 	@Override
+	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes) {
+		int index = controleur.fenetre.getVueTextuelle().getListPanel().getCurrentSelection();
+		List<Livraison> Listelivraisons = controleur.tournee.getLivraisonsOrdonnees();
+		if(index > 0 && index <= Listelivraisons.size())
+		{
+			Livraison livraison = Listelivraisons.get(index-2);
+			
+			listeDeCommandes.ajoute( new CommandeSupprimerLivraison ( livraison, controleur.calculateurTournee ));
+			controleur.setEtatCourant(controleur.etatModificationTournee);
+			controleur.fenetre.setModeModificationTournee();
+		}
+	}
+
+	@Override
 	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre)
 	{
 		controleur.setEtatCourant(controleur.etatModificationTournee);
