@@ -23,7 +23,7 @@ public class VueGraphique extends JPanel implements Observer
 	{
 		super();
 		
-		setLayout(new CardLayout(50, 50));
+		setLayout(new CardLayout(40, 40));
 		setBackground(Color.white);
 		
 		// modification plan peut etre null
