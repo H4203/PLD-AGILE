@@ -137,15 +137,15 @@ public class MapPanel extends JPanel
         	}
 		}
 		
-        // affichage itineraire 
-        // gestion immonde mais temporaire
+        // Itineraire
         
         g2.setColor(Color.BLUE);
         g2.setStroke(new BasicStroke(2));
         
         if ( demandeLivraison != null && affichageDemandeLivraison == true)
         {
-        	/* affiche la tournee */
+        	// Tournee
+        	
         	if ( tournee != null && affichageTournee == true) 
         	{
         		int i = 0;
@@ -164,13 +164,6 @@ public class MapPanel extends JPanel
     	        	i++;
     	        	if ( i < tournee.getListeItineraires().size())
     	        	{
-		        		/* horaires */
-						/*g2.drawString(tournee.getListeHoraire().get(i).getHeureDebut().toString()
-								+ " - " +
-								tournee.getListeHoraire().get(i).getHeureFin().toString(),
-								(int)Math.round((itineraire.getArrivee().getY() - plan.getYMin()) * coefY),
-		            			(int)(screenSize.height-bord) - (int)Math.round((itineraire.getArrivee().getX() - plan.getXMin()) * coefX));
-		            			*/
     	        		g2.drawString(" "+i,
 	        				(int)Math.round((itineraire.getArrivee().getY() + focus.x / coefY - plan.getYMin()) * coefY),
 	        				sideLength - (int)Math.round((itineraire.getArrivee().getX() - focus.y / coefX - plan.getXMin()) * coefX));
@@ -179,8 +172,8 @@ public class MapPanel extends JPanel
     	        }
         	}
         	
-        	/* affiche les points */
-        	/* entrepot */
+        	// Entrepot
+        	
 	        g2.setColor(new Color(0, 150, 0));
 	        
 	        if (demandeLivraison.getEntrepot() != null && demandeLivraison.getEntrepot().getY() != null && demandeLivraison.getEntrepot().getX() != null)
@@ -189,21 +182,9 @@ public class MapPanel extends JPanel
 	        			sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 3, 
         			6, 6);
     		}
-	        
-			/*
-			BufferedImage img = null;
-			try {
-				img = ImageIO.read(new File("\\ihm\\mapmarker2.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	g2.drawImage(img, (int)Math.round((demandeLivraison.getEntrepot().getY() - plan.getYMin()) * coefY) - -10, 
-					(int)(screenSize.height-bord) - (int)Math.round((demandeLivraison.getEntrepot().getX() - plan.getXMin()) * coefX) - -10, 
-        			20, 20, this);
-			 */
 			
-        	/* heure debut tournee - heure fin tournee */
+        	// Debut et Fin de Tournee
+	        
 			g2.setFont(new Font("default", Font.BOLD, 16));
 			g2.setColor(Color.BLUE);
 			if (demandeLivraison != null && tournee != null && tournee.getListeHoraire().size() != 0 && demandeLivraison.getEntrepot() != null 
@@ -221,37 +202,22 @@ public class MapPanel extends JPanel
 					sideLength - (int)Math.round((demandeLivraison.getEntrepot().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 5);
 			}
 			
-			/* points de livraisons */
-	        g2.setColor(Color.RED);
+			// Points de Livraison
+			
 	        for (Livraison livraison : demandeLivraison.getLivraisons()) 
 	        {
-	        	/* points de livraison */
-	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() + focus.x / coefY- plan.getYMin()) * coefY) - 3, 
-        			sideLength - (int)Math.round((livraison.getIntersection().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 3,
-        			6, 6);
-              
+	        	g2.setColor(Color.RED);	
 	        	if (livraison.getPlagehoraire() == null || livraison.getPlagehoraire().getHeureDebut() == null || livraison.getPlagehoraire().getHeureFin() == null)
 	        	{
 	        		g2.setColor(Color.BLACK);
-	        		g2.fillRect((int)Math.round((livraison.getIntersection().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 3, 
-        				sideLength - (int)Math.round((livraison.getIntersection().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 3, 
-	        			6, 6);
-	        		g2.setColor(Color.RED);
 	        	}
-
-	        	/*
-				try {
-					img = ImageIO.read(new File("\\ihm\\mapmarker.png"));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-	        	g2.drawImage(img, (int)Math.round((livraison.getIntersection().getY() - plan.getYMin()) * coefY) -10,
-	        			(int)(screenSize.height-bord) - (int)Math.round((livraison.getIntersection().getX() - plan.getXMin()) * coefX) -10,
-	        			20, 20, this);
-	        	*/
 	        	
-	        	/* heure depart et arrivee de la livraison */
+	        	g2.fillRect((int)Math.round((livraison.getIntersection().getY() + focus.x / coefY - plan.getYMin()) * coefY) - 3, 
+    				sideLength - (int)Math.round((livraison.getIntersection().getX() - focus.y / coefX - plan.getXMin()) * coefX) - 3, 
+        			6, 6);
+	        	
+	        	// Plage Horaire
+	        	
 	        	g2.setFont(new Font("default", Font.BOLD, 16));
 				g2.setColor(Color.BLUE);
 				if (tournee == null)
@@ -371,7 +337,6 @@ public class MapPanel extends JPanel
 		focus.setLocation(0, 0);
 	}
 	
-	//modification plan peut etre null
 	public void setPlan ( Plan plan)
 	{
 		this.plan = plan;
