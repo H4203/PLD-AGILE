@@ -4,11 +4,7 @@ package algorithme;
 import modeles.*;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
-
 import tsp.*;
-import donnees.ParseurException;
-import donnees.XMLParseur;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;;
 

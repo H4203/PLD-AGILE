@@ -1,9 +1,4 @@
 package tests;
-import org.junit.*;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
-
 import javax.swing.text.html.HTMLDocument.Iterator;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,10 +24,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 public class testXMLParseur {
 	

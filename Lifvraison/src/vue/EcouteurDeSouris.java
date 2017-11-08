@@ -9,77 +9,91 @@ import java.awt.event.MouseWheelListener;
 
 import controleur.Controleur;
 
-public class EcouteurDeSouris implements MouseListener, MouseMotionListener, MouseWheelListener 
-{
+/**
+ * Classe EcouteurDeSouris Implemente MouseListener, MouseMotionListener, et
+ * MouseWheelListener
+ * 
+ * @author H4203
+ */
+public class EcouteurDeSouris implements MouseListener, MouseMotionListener, MouseWheelListener {
+	/**
+	 * Point de debut et de fin pour la gestion du glisser deposer
+	 */
 	private Point startPoint;
 	private Point endPoint;
-	
+
 	private MapPanel mapPanel;
-	
+
 	private Controleur controleur;
-	
-	public EcouteurDeSouris(MapPanel mapPanel, Controleur controleur)
-	{
+
+	/**
+	 * Constructeur de EcouteurDeSouris Initialise les points de debut et de fin
+	 * 
+	 * @param mapPanel
+	 * @param controleur
+	 */
+	public EcouteurDeSouris(MapPanel mapPanel, Controleur controleur) {
 		startPoint = new Point();
 		endPoint = new Point();
-		
+
 		this.mapPanel = mapPanel;
-		
+
 		this.controleur = controleur;
 	}
-	
+
+	/**
+	 * Gestion du glisser deposer
+	 */
 	@Override
-	public void mouseDragged(MouseEvent event) 
-	{
+	public void mouseDragged(MouseEvent event) {
 		endPoint = event.getPoint();
-	    //System.out.println("Mouse From " + startPoint + " Dragged to " + endPoint);
-	    //System.out.println("Delta : X = " + (endPoint.x - startPoint.x) + ", Y = " + (endPoint.y - startPoint.y));
-		
+
 		controleur.mouseDrag(new Point(endPoint.x - startPoint.x, endPoint.y - startPoint.y));
-		
+
 		startPoint = endPoint;
 	}
 
 	@Override
-	public void mouseMoved(MouseEvent event) 
-	{
-		
+	public void mouseMoved(MouseEvent event) {
+
 	}
 
+	/**
+	 * Gestion du clic
+	 */
 	@Override
-	public void mouseClicked(MouseEvent event) 
-	{
+	public void mouseClicked(MouseEvent event) {
 		controleur.clicGauche(mapPanel.convertPoint(event.getPoint()));
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent event) 
-	{
-		
+	public void mouseEntered(MouseEvent event) {
+
 	}
 
 	@Override
-	public void mouseExited(MouseEvent event) 
-	{
-	
+	public void mouseExited(MouseEvent event) {
+
 	}
 
+	/**
+	 * Gestion de l'appui sur le clic
+	 */
 	@Override
-	public void mousePressed(MouseEvent event) 
-	{
+	public void mousePressed(MouseEvent event) {
 		startPoint = event.getPoint();
-	    //System.out.println("Mouse Pressed at " + startPoint);
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent event) 
-	{
+	public void mouseReleased(MouseEvent event) {
 
 	}
 
+	/**
+	 * Gestion de la moette
+	 */
 	@Override
-	public void mouseWheelMoved(MouseWheelEvent event) 
-	{
+	public void mouseWheelMoved(MouseWheelEvent event) {
 		controleur.mouseWheel(event.getWheelRotation(), event.getPoint());
 	}
 }

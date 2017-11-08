@@ -5,12 +5,31 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import modeles.Tournee;
 
+/**
+ * Classe gerant la feuille de route
+ * 
+ * @author H4203
+ *
+ */
 public class FeuilleDeRoute {
 
+	/**
+	 * Constructeur
+	 */
 	public FeuilleDeRoute() {
-		
+
 	}
-	public void gerer(Tournee tournee,String chemin) {
+
+	/**
+	 * Creer, ecrit et sauvegarde le fichier de la feuillede route
+	 * Si le fichier existe deja, il sera ecrase
+	 * 
+	 * @param tournee
+	 *            la tournee du livreur
+	 * @param chemin
+	 *            chemin du fichier a creer
+	 */
+	public void gerer(Tournee tournee, String chemin) {
 
 		FileOutputStream fop = null;
 		File file;

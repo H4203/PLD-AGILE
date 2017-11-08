@@ -1,34 +1,45 @@
 package donnees;
 
+/**
+ * @author H4203 Classe gerant les exceptions du parseur
+ */
 public class ParseurException extends Exception {
 
 	/**
-	 * 
+	 * Constructeur par defaut
 	 */
-	private static final long serialVersionUID = 1L;
-
 	public ParseurException() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public ParseurException(String arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
+	/**
+	 * Construit une nouvelle exception avec le message specifie.
+	 * 
+	 * @param message
+	 *            message de l'exception
+	 */
+	public ParseurException(String message) {
+		super(message);
 	}
 
-	public ParseurException(Throwable arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
+	/**
+	 * Construit une nouvelle exception avec la cause specifiee.
+	 * 
+	 * @param cause
+	 *            cause de l'exception
+	 */
+	public ParseurException(Throwable cause) {
+		super(cause);
 	}
 
-	public ParseurException(String arg0, Throwable arg1) {
-		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
+	/**
+	 * Construit une nouvelle exception avec le message et la cause specifiee
+	 * 
+	 * @param message
+	 *            message de l'exception
+	 * @param cause
+	 *            cause de l'exception
+	 */
+	public ParseurException(String message, Throwable cause) {
+		super(message, cause);
 	}
-
-	public ParseurException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-		// TODO Auto-generated constructor stub
-	}
-
 }
