@@ -14,27 +14,27 @@ import modeles.Plan;
 import modeles.Tournee;
 import vue.Fenetre;
 
-public class EtatCalculTournee extends EtatDefault{
+public class EtatCalculTournee extends EtatDefault {
 	@Override
-	public void chargerPlan ( Controleur controleur, Fenetre fenetre, String chemin) {
-		Plan newPlan = new Plan ();
-		try{
+	public void chargerPlan(Controleur controleur, Fenetre fenetre, String chemin) {
+		Plan newPlan = new Plan();
+		try {
 			controleur.parseur.chargerPlan(newPlan, chemin);
 			controleur.plan = newPlan;
 			controleur.demandeLivraison = null;
 			controleur.tournee = null;
-			controleur.setEtatCourant( controleur.etatChargementLivraison);
+			controleur.setEtatCourant(controleur.etatChargementLivraison);
 			fenetre.chargerPlan(controleur.plan);
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
-		
+
 	}
-	
+
 	@Override
-	public void chargerDemandeLivraison ( Controleur controleur, Fenetre fenetre, String chemin) {
-		DemandeLivraison newDemandeLivraison = new DemandeLivraison ();
-		try{
+	public void chargerDemandeLivraison(Controleur controleur, Fenetre fenetre, String chemin) {
+		DemandeLivraison newDemandeLivraison = new DemandeLivraison();
+		try {
 			controleur.parseur.chargerLivraison(newDemandeLivraison, chemin, controleur.plan.getListeIntersection());
 			controleur.demandeLivraison = newDemandeLivraison;
 			controleur.tournee = null;
@@ -44,66 +44,59 @@ public class EtatCalculTournee extends EtatDefault{
 		} catch (ParseurException e) {
 			JOptionPane.showMessageDialog(fenetre, e.getMessage(), "Erreur lors du parsage", JOptionPane.ERROR_MESSAGE);
 		}
-		
+
 	}
-	
+
 	@Override
-	public void calculerTournee ( Controleur controleur, Fenetre fenetre )
-	{
-		controleur.tournee = new Tournee ( controleur.plan , controleur.demandeLivraison);
+	public void calculerTournee(Controleur controleur, Fenetre fenetre) {
+		controleur.tournee = new Tournee(controleur.plan, controleur.demandeLivraison);
 		controleur.calculateurTournee = new CalculateurTournee(controleur.tournee);
 		controleur.calculateurTournee.run();
-		controleur.setEtatCourant( controleur.etatModificationTournee);
+		controleur.setEtatCourant(controleur.etatModificationTournee);
 		fenetre.chargerTournee(controleur.tournee);
 	}
-	
+
 	@Override
-	public void mouseWheel(Controleur controleur, int steps, Point point)
-	{
+	public void mouseWheel(Controleur controleur, int steps, Point point) {
 		controleur.fenetre.getVueGraphique().getMapPanel().zoom(steps, point);
 	}
+
 	@Override
-	public void mouseDrag(Controleur controleur, Point delta)
-	{
+	public void mouseDrag(Controleur controleur, Point delta) {
 		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
 	}
+
 	@Override
-	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
-	{
+	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes) {
 		controleur.plan.getAtPoint(point, controleur.fenetre.getVueGraphique().getToleranceClic());
-		
+
 		Intersection pointSelectionne = controleur.plan.getSelectedIntersection();
 
-		// entrepot
-		if ( controleur.demandeLivraison.getEntrepot().equals( pointSelectionne ) )
-		{	
+
+		// cas entrepot
+		if (controleur.demandeLivraison.getEntrepot().equals(pointSelectionne)) {
 			fenetre.getVueTextuelle().getListPanel().setSelectedIndex(0);
 		}
 		// livraison
 		List<Livraison> Listelivraisons = controleur.demandeLivraison.getLivraisons();
-		for ( int i = 0; i < Listelivraisons.size() ; i++)
-		{
+		for (int i = 0; i < Listelivraisons.size(); i++) {
 			Livraison livraison = Listelivraisons.get(i);
-			if ( livraison.getIntersection().equals( pointSelectionne ) )
-			{
-				fenetre.getVueTextuelle().getListPanel().setSelectedIndex(i+1);
+			if (livraison.getIntersection().equals(pointSelectionne)) {
+				fenetre.getVueTextuelle().getListPanel().setSelectedIndex(i + 1);
 				break;
 			}
 		}
 	}
-	
+
 	@Override
 	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes) {
 		int index = controleur.fenetre.getVueTextuelle().getListPanel().getCurrentSelection();
 		List<Livraison> Listelivraisons = controleur.demandeLivraison.getLivraisons();
-		if(index > 0 && index <= Listelivraisons.size())
-		{
-			Livraison livraison = Listelivraisons.get(index-1);
+		if (index > 0 && index <= Listelivraisons.size()) {
+			Livraison livraison = Listelivraisons.get(index - 1);
 
 			controleur.plan.getLivraison(livraison);
-		}
-		else if (index == 0 || index == Listelivraisons.size()+1)
-		{
+		} else if (index == 0 || index == Listelivraisons.size() + 1) {
 			controleur.demandeLivraison.getEntrepot();
 		}
 	}
