@@ -79,7 +79,7 @@ public class MapPanel extends JPanel
 	}
 	
 	public void paintComponent(Graphics g)
-	{
+	{		
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D) g;
@@ -279,7 +279,7 @@ public class MapPanel extends JPanel
 	}
 	
 	public void resize()
-	{
+	{	
 		if (plan != null)
 		{
 			if (getSize().height < getSize().width)
@@ -303,6 +303,8 @@ public class MapPanel extends JPanel
 			coefX = 1;
 			coefY = 1;
 		}
+		
+		repaint();
 	}
 	
 	public Point convertPoint(Point point)
@@ -336,7 +338,6 @@ public class MapPanel extends JPanel
 		}
 		
 		resize();
-		repaint();
 	}
 	
 	public int getToleranceClic()

@@ -56,7 +56,6 @@ public class VueGraphique extends JPanel implements Observer
 	public void update(Observable o, Object arg) 
 	{
 		mapPanel.resize();
-		mapPanel.repaint();
 		
 		//repaint();
 	}
