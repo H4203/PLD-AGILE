@@ -122,6 +122,6 @@ public class EtatGenererFeuilleDeRoute extends EtatDefault
 	public void genererFeuilleDeRoute(Controleur controleur, Fenetre fenetre, String chemin){
 		controleur.feuilleDeRoute = new FeuilleDeRoute();
 		controleur.feuilleDeRoute.gerer(controleur.tournee, chemin);
-		fenetre.setModeFin();
+		fenetre.setModeGenerationFeuilleDeRoute();
 	}
 }

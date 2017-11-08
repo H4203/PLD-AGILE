@@ -302,17 +302,6 @@ public class Fenetre extends JFrame
 		setVisible(true);
 	}
 	
-	public void setModeFin()
-	{
-		vueGraphique.setModeTournee();
-		vueTextuelle.setModeTournee();	
-
-		overActionButtonsPanel.setVisible(false);
-		
-		repaint();
-		setVisible(true);
-	}
-	
 	public VueGraphique getVueGraphique()
 	{
 		return vueGraphique;
