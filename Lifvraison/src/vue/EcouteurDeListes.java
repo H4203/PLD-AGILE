@@ -49,7 +49,6 @@ public class EcouteurDeListes implements ListSelectionListener{
 			int maxIndex = lsm.getMaxSelectionIndex();
 			if (maxIndex != minIndex )
 			{
-				System.out.println("what");
 				//impossible !?
 			}
 			else

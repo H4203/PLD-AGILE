@@ -247,7 +247,7 @@ public class ListPanel extends JPanel {
 				.setText(listTexteLivraison.getSelectedValue().replaceAll("<br>", "\n").replaceAll("\\<.*?>", ""));
 		if (tournee != null) {
 			int index = listTexteLivraison.getSelectedIndex() - 1;
-			if (!tournee.getLivraisonsOrdonnees().isEmpty() && index > 0
+			if (!tournee.getLivraisonsOrdonnees().isEmpty() && index >= 0
 					&& index < tournee.getLivraisonsOrdonnees().size()) {
 				Livraison livraison = tournee.getLivraisonsOrdonnees().get(index);
 				if (livraison.getPlagehoraire() != null) {
