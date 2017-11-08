@@ -85,7 +85,7 @@ public abstract class TemplateTSP implements TSP {
 				solutionPossibleTrouvee = true;
 				//System.out.println("Nouvelle solution trouvee");
 			}
-		} else if (coutVus + bound < coutMeilleureSolution){
+		} else if (coutVus + bound < coutMeilleureSolution && bound != -1){
 			Iterator<Integer> it = iterator(sommetCrt, nonVus, cout, duree);
 			while (it.hasNext()){
 				Integer prochainSommet = it.next();
