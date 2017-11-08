@@ -195,332 +195,400 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <dependency id="26">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="27">    
     <bendpoint x="1004" y="-140"/>    
     <bendpoint x="600" y="-140"/>    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="27">    
+  <dependency id="28">    
     <bendpoint x="464" y="625"/>    
     <bendpoint x="152" y="611"/>    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="28">    
+  <association id="29">    
     <bendpoint x="298" y="798"/>    
     <bendpoint x="441" y="812"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="29" name="etatAjoutLivraison2"/>      
-      <multiplicity id="30" minimum="0" maximum="1"/>    
+      <attribute id="30" name="etatAjoutLivraison2"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="31">    
+  <association id="32">    
     <bendpoint x="370" y="759"/>    
     <bendpoint x="1525" y="774"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="32" name="etatChargementPlan"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
+      <attribute id="33" name="etatChargementPlan"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="34">    
+  <dependency id="35">    
     <bendpoint x="2976" y="623"/>    
     <bendpoint x="200" y="537"/>    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <generalization id="35">    
+  <generalization id="36">    
     <bendpoint x="1980" y="887"/>    
     <bendpoint x="1365" y="860"/>    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <dependency id="36">    
+  <dependency id="37">    
     <bendpoint x="1714" y="1145"/>    
     <bendpoint x="1430" y="1150"/>    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
-  <association id="37">    
+  <association id="38">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="38" name="listeDeCommandes"/>      
-      <multiplicity id="39" minimum="0" maximum="2147483647"/>    
+      <attribute id="39" name="listeDeCommandes"/>      
+      <multiplicity id="40" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="40">    
+  <dependency id="41">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="42">    
     <bendpoint x="3316" y="1381"/>    
     <bendpoint x="-65" y="1350"/>    
     <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <generalization id="41">    
+  <generalization id="43">    
     <bendpoint x="488" y="870"/>    
     <bendpoint x="1282" y="844"/>    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <dependency id="42">    
+  <dependency id="44">    
     <bendpoint x="838" y="1266"/>    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="17"/>  
   </dependency>  
-  <dependency id="43">    
+  <dependency id="45">    
     <bendpoint x="2820" y="1147"/>    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="17"/>  
   </dependency>  
-  <realization id="44">    
+  <realization id="46">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
-  <dependency id="45">    
+  <dependency id="47">    
     <bendpoint x="445" y="1193"/>    
     <bendpoint x="-548" y="1189"/>    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="46">    
+  <dependency id="48">    
     <bendpoint x="1550" y="633"/>    
     <bendpoint x="176" y="580"/>    
     <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="47">    
+  <association id="49">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="48" name="listeDeCommandes"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
+      <attribute id="50" name="listeDeCommandes"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="50">    
+  <dependency id="52">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="53">    
     <bendpoint x="1208" y="885"/>    
     <bendpoint x="1323" y="876"/>    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <generalization id="51">    
+  <dependency id="54">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <generalization id="55">    
     <bendpoint x="148" y="875"/>    
     <bendpoint x="1264" y="830"/>    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <association id="52">    
+  <association id="56">    
     <bendpoint x="445" y="696"/>    
     <bendpoint x="3351" y="751"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="53" name="etatSupprimerLivraison"/>      
-      <multiplicity id="54" minimum="0" maximum="1"/>    
+      <attribute id="57" name="etatSupprimerLivraison"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="55">    
+  <generalization id="59">    
     <bendpoint x="2347" y="892"/>    
     <bendpoint x="1384" y="842"/>    
     <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <realization id="56">    
+  <dependency id="60">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <realization id="61">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <association id="57">    
+  <dependency id="62">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <association id="63">    
     <bendpoint x="419" y="723"/>    
     <bendpoint x="2691" y="763"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="58" name="etatIntervertirLivraisons2"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
+      <attribute id="64" name="etatIntervertirLivraisons2"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="60">    
+  <association id="66">    
     <bendpoint x="393" y="744"/>    
     <bendpoint x="1928" y="771"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="61" name="etatGenererFeuilleDeRoute"/>      
-      <multiplicity id="62" minimum="0" maximum="1"/>    
+      <attribute id="67" name="etatGenererFeuilleDeRoute"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="63">    
+  <dependency id="69">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <realization id="64">    
+  <realization id="70">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
-  <association id="65">    
+  <association id="71">    
     <bendpoint x="432" y="711"/>    
     <bendpoint x="2947" y="754"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="66" name="etatModificationTournee"/>      
-      <multiplicity id="67" minimum="0" maximum="1"/>    
+      <attribute id="72" name="etatModificationTournee"/>      
+      <multiplicity id="73" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="68">    
+  <association id="74">    
     <bendpoint x="328" y="783"/>    
     <bendpoint x="787" y="795"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="69" name="etatCalculTournee"/>      
-      <multiplicity id="70" minimum="0" maximum="1"/>    
+      <attribute id="75" name="etatCalculTournee"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="71">    
+  <dependency id="77">    
     <bendpoint x="2302" y="632"/>    
     <bendpoint x="190" y="561"/>    
     <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="72">    
+  <dependency id="78">    
     <bendpoint x="3404" y="622"/>    
     <bendpoint x="204" y="525"/>    
     <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="73">    
+  <dependency id="79">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="80">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="81">    
     <bendpoint x="537" y="1288"/>    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="9"/>  
   </dependency>  
-  <generalization id="74">    
+  <generalization id="82">    
     <bendpoint x="2671" y="895"/>    
     <bendpoint x="1399" y="826"/>    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <realization id="75">    
+  <realization id="83">    
     <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
-  <generalization id="76">    
+  <generalization id="84">    
     <bendpoint x="3462" y="922"/>    
     <bendpoint x="1431" y="798"/>    
     <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <dependency id="77">    
+  <dependency id="85">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="86">    
     <bendpoint x="2661" y="1304"/>    
     <bendpoint x="-175" y="1305"/>    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
-  <dependency id="78">    
+  <dependency id="87">    
     <bendpoint x="2638" y="628"/>    
     <bendpoint x="196" y="549"/>    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="79">    
+  <dependency id="88">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="89">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="90">    
     <bendpoint x="1953" y="637"/>    
     <bendpoint x="185" y="571"/>    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="80">    
+  <association id="91">    
     <bendpoint x="350" y="771"/>    
     <bendpoint x="1136" y="775"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="81" name="etatChargementLivraison"/>      
-      <multiplicity id="82" minimum="0" maximum="1"/>    
+      <attribute id="92" name="etatChargementLivraison"/>      
+      <multiplicity id="93" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="83">    
+  <dependency id="94">    
     <bendpoint x="2400" y="1201"/>    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="15"/>  
   </dependency>  
-  <dependency id="84">    
+  <dependency id="95">    
     <bendpoint x="560" y="306"/>    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="85">    
+  <dependency id="96">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="97">    
     <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
-  <association id="86">    
+  <dependency id="98">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="99">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="100">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <association id="101">    
     <bendpoint x="279" y="793"/>    
     <bendpoint x="128" y="824"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="87" name="etatAjoutLivraison1"/>      
-      <multiplicity id="88" minimum="0" maximum="1"/>    
+      <attribute id="102" name="etatAjoutLivraison1"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="89">    
+  <dependency id="104">    
     <bendpoint x="1143" y="631"/>    
     <bendpoint x="169" y="591"/>    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <generalization id="90">    
+  <generalization id="105">    
     <bendpoint x="1598" y="885"/>    
     <bendpoint x="1343" y="873"/>    
     <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <dependency id="91">    
+  <dependency id="106">    
     <bendpoint x="2108" y="1211"/>    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="14"/>  
   </dependency>  
-  <generalization id="92">    
+  <generalization id="107">    
     <bendpoint x="3054" y="907"/>    
     <bendpoint x="1417" y="813"/>    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <dependency id="93">    
+  <dependency id="108">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="109">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="110">    
     <bendpoint x="1707" y="1175"/>    
     <bendpoint x="1092" y="1177"/>    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <dependency id="94">    
+  <dependency id="111">    
     <bendpoint x="1404" y="1230"/>    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
-  <dependency id="95">    
+  <dependency id="112">    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="10"/>  
   </dependency>  
-  <dependency id="96">    
+  <dependency id="113">    
     <bendpoint x="807" y="628"/>    
     <bendpoint x="161" y="601"/>    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="97">    
+  <dependency id="114">    
     <bendpoint x="1036" y="1247"/>    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <dependency id="98">    
+  <dependency id="115">    
     <bendpoint x="3340" y="1190"/>    
     <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="17"/>  
   </dependency>  
-  <association id="99">    
+  <association id="116">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="100" name="etatCourant"/>      
-      <multiplicity id="101" minimum="0" maximum="1"/>    
+      <attribute id="117" name="etatCourant"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
