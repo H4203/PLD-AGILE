@@ -4,6 +4,7 @@ import java.awt.Point;
 import vue.Fenetre;
 
 import modeles.Intersection;
+import modeles.Livraison;
 
 public class EtatAjoutLivraison1 extends EtatDefault {
 
@@ -11,6 +12,15 @@ public class EtatAjoutLivraison1 extends EtatDefault {
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes) {
 		controleur.plan.getAtPoint(point, controleur.getToleranceClic());
 		Intersection pointDeLivraison = controleur.plan.getSelectedIntersection();
+		// on verifie que le point n'est pas deja une livraison
+		for (Livraison livraison : controleur.tournee.getLivraisonsOrdonnees()) {
+			if (pointDeLivraison.getId() == livraison.getIntersection().getId()) {
+				// on oubli ce point
+				pointDeLivraison = null;
+				//on n'a pas besoin d'aller plus loin
+				break;
+			}
+		}
 		if (pointDeLivraison != null) {
 			controleur.setEtatCourant(controleur.etatAjoutLivraison2);
 			controleur.etatAjoutLivraison2.pointDeLivraison = pointDeLivraison;
