@@ -220,14 +220,14 @@ public class ListPanel extends JPanel
 		splitPanel.setVisible(false);
 		detailsPanel.setVisible(false);
 
-		detailsPanel.setBorder(new TitledBorder(null, "Details Livraison", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
+		/*detailsPanel.setBorder(new TitledBorder(null, "Details Livraison", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
 		//detailsTextArea.append(listTexteLivraison.getSelectedValue());
 		if(tournee != null)
 		{
 			int index = listTexteLivraison.getSelectedIndex()-1;
 			if(index >= 0 && index<tournee.getLivraisonsOrdonnees().size()) {
 				if ( !tournee.getLivraisonsOrdonnees().isEmpty() && index > 0 && index < tournee.getLivraisonsOrdonnees().size() ) {
-					detailsTextArea.setText("Livraison de "+tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureDebut()+
+					detailsTextArea.setText("Livraison de "+tournee.getListeHoraire().get(index).getHeureDebut()+
 							" à "+tournee.getLivraisonsOrdonnees().get(index).getPlagehoraire().getHeureFin()+
 							"\n durée de dechargement: "+(int)(tournee.getLivraisonsOrdonnees().get(index).getDureeDechargement()/60)+" mins");
 				}
@@ -255,7 +255,7 @@ public class ListPanel extends JPanel
 					}
 				}
 			}
-		}
+		}*/
 
 		detailsPanel.setVisible(true);
 		splitPanel.setVisible(true);
