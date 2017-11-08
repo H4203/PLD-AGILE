@@ -262,7 +262,7 @@ public class Fenetre extends JFrame {
 	 */
 	public void setModeChargementDemandeLivraison() {
 		setIndicationLabel(
-				"<html>Plan chargé avec succès<br>Cliquez sur Charger Demande Livraison pour choisir le fichier de demande de livraison</html>");
+				"<html>Plan charge avec succes<br>Cliquez sur Charger Demande Livraison pour choisir le fichier de demande de livraison</html>");
 
 		vueGraphique.setModeDemandeLivraison();
 		vueTextuelle.setModePlan();
@@ -285,7 +285,7 @@ public class Fenetre extends JFrame {
 	 */
 	public void setModeCalculTournee() {
 		setIndicationLabel(
-				"<html>Demande de livraison chargée avec succès<br>Cliquez sur Calculer Tournee pour lancer le calcul de la tournee</html>");
+				"<html>Demande de livraison chargee avec succes<br>Cliquez sur Calculer Tournee pour lancer le calcul de la tournee</html>");
 
 		vueGraphique.setModeDemandeLivraison();
 		vueTextuelle.setModeDemandeLivraison();
@@ -337,7 +337,7 @@ public class Fenetre extends JFrame {
 			buttonGenererFeuilleDeRoute.setEnabled(false);
 		} else {
 			setIndicationLabel(
-					"<html>Tournée calculée avec succès<br>Utilisez les boutons de droite pour modifier votre tournee, puis cliquez sur Valider Tournee pour valider votre tournee</html>");
+					"<html>Tournee calculee avec succes<br>Utilisez les boutons de droite pour modifier votre tournee, puis cliquez sur Valider Tournee pour valider votre tournee</html>");
 
 			buttonAjouterLivraison.setEnabled(true);
 			buttonSupprimerLivraison.setEnabled(true);
