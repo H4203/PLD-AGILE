@@ -12,6 +12,9 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 	
 	protected Intersection pointDeLivraison;
 
+	/* (non-Javadoc)
+	 * @see controleur.EtatDefault#clicgauche(controleur.Controleur, vue.Fenetre, java.awt.Point, controleur.ListeDeCommandes)
+	 */
 	@Override
 	public void clicgauche(Controleur controleur, Fenetre fenetre, Point point, ListeDeCommandes listeDeCommandes)
 	{
@@ -48,6 +51,9 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see controleur.EtatDefault#modificationDansLaListe(controleur.Controleur, controleur.ListeDeCommandes)
+	 */
 	@Override
 	public void modificationDansLaListe(Controleur controleur, ListeDeCommandes listeDeCommandes) {
 		int index = controleur.fenetre.getVueTextuelle().getListPanel().getCurrentSelection();
@@ -73,6 +79,9 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see controleur.EtatDefault#undo(controleur.Controleur, controleur.ListeDeCommandes, vue.Fenetre)
+	 */
 	@Override
 	public void undo(Controleur controleur, ListeDeCommandes listeDeCommandes, Fenetre fenetre)
 	{
@@ -80,12 +89,18 @@ public class EtatAjoutLivraison2 extends EtatDefault{
 		fenetre.setModeModificationTournee();
 	}
 	
+	/* (non-Javadoc)
+	 * @see controleur.EtatDefault#mouseDrag(controleur.Controleur, java.awt.Point)
+	 */
 	@Override
 	public void mouseDrag(Controleur controleur, Point delta)
 	{
 		controleur.fenetre.getVueGraphique().getMapPanel().drag(delta);
 	}
 	
+	/* (non-Javadoc)
+	 * @see controleur.EtatDefault#mouseWheel(controleur.Controleur, int, java.awt.Point)
+	 */
 	@Override
 	public void mouseWheel(Controleur controleur, int steps, Point point)
 	{

@@ -5,13 +5,11 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import algorithme.CalculateurTournee;
 import donnees.ParseurException;
 import modeles.DemandeLivraison;
 import modeles.Intersection;
 import modeles.Livraison;
 import modeles.Plan;
-import modeles.Tournee;
 import vue.Fenetre;
 
 public class EtatChargementLivraison extends EtatDefault{

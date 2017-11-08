@@ -1,28 +1,13 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Point;
-import java.awt.TextArea;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.TitledBorder;
 
@@ -30,34 +15,80 @@ import controleur.Controleur;
 import modeles.DemandeLivraison;
 import modeles.Livraison;
 import modeles.PlageHoraire;
-import modeles.Plan;
 import modeles.Tournee;
 
+/**
+ * Contenant de la liste de la vue textuelle et ses details
+ * @author H4203
+ *
+ */
 public class ListPanel extends JPanel
 {
-	private static final long serialVersionUID = 1L;
-
+	/**
+	 * Ecouteur de la liste
+	 */
 	private EcouteurDeListes ecouteurDeListes;
-	private EcouteurDeBoutons ecouteurDeBoutons;
+	/**
+	 * La demande de livraison de la session en cours
+	 */
 	private DemandeLivraison demandeLivraison;
+	/**
+	 * La tournee de la session en cours
+	 */
 	private Tournee tournee;
 
+	/**
+	 * indique si la demande de livraison doit etre affichee 
+	 */
 	private boolean affichageDemandeLivraison;
+	/**
+	 * indique si la tournee doit etre affichee
+	 */
 	private boolean affichageTournee;
 
+	/**
+	 * Liste de string chacun decrivant une livraison
+	 */
 	private JList<String> listTexteLivraison;
+	/**
+	 * le model de selection de la liste
+	 */
 	private ListSelectionModel listSelectionModel;
+	/**
+	 * Contenant de la liste permettant de pouvoir defiler
+	 */
 	private JScrollPane scrollPane;
 
+	/**
+	 * Contenant la liste et ses details
+	 */
 	private JPanel splitPanel;
 
+	/**
+	 * Contenant les details de l'element de la liste selectionne
+	 */
 	private JPanel detailsPanel;
+	/**
+	 * Contenant le texte des details
+	 */
 	private JTextArea detailsTextArea;
-	private JPanel detailsButtonPanel;
 
+	/**
+	 * Contenant les details du troncon selectionne
+	 */
 	private JPanel detailsTronconPanel;
+	/**
+	 * Contenant le texte des troncons
+	 */
 	private JTextArea detailsTronconArea;
 
+	/**
+	 * Constructeur
+	 * @param fenetre fenetre ou elle est contenue
+	 * @param demandeLivraison la demande de livraison de la session en cours
+	 * @param tournee la tournee de la session en cours
+	 * @param controleur le controlleur de la session en cours
+	 */
 	public ListPanel(Fenetre fenetre, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur) {
 		super();
 
@@ -90,10 +121,6 @@ public class ListPanel extends JPanel
 		detailsTextArea.setLayout(new FlowLayout());
 		detailsPanel.add(detailsTextArea, BorderLayout.CENTER);
 
-		detailsButtonPanel = new JPanel();
-		detailsButtonPanel.setLayout(new FlowLayout());
-		detailsPanel.add(detailsButtonPanel, BorderLayout.SOUTH);
-
 		detailsTronconPanel = new JPanel();
 		detailsTronconPanel.setLayout(new BorderLayout());
 
@@ -117,6 +144,9 @@ public class ListPanel extends JPanel
 
 	}
 
+	/**
+	 * Remplit la liste selon le mode de l'affichage
+	 */
 	public void remplirListe ()
 	{
 		String color = "black";
@@ -198,6 +228,9 @@ public class ListPanel extends JPanel
 
 	}
 
+	/**
+	 * Remplit les details de ce qui est selectionne sur la liste
+	 */
 	public void remplirDetails () {
 		splitPanel.setVisible(false);
 		detailsPanel.setVisible(false);
@@ -222,11 +255,19 @@ public class ListPanel extends JPanel
 		repaint();
 	}
 
+	/**
+	 * Cache le contenant des details de ce qui est selectionne dans la liste
+	 */
 	public void cacherDetails()
 	{
 		detailsPanel.setVisible(false);
 	}
 
+	/**
+	 * Remplit le contenant des details sur le troncon selectionne
+	 * @param nomDeRue nom de la rue du troncon selectionne
+	 * @param longueur longueur du troncon selectionne
+	 */
 	public void remplirTronconDetails (String nomDeRue, int longueur) {
 
 		splitPanel.setVisible(false);
@@ -239,35 +280,62 @@ public class ListPanel extends JPanel
 		repaint();
 	}
 
+	/**
+	 * Cache les details du troncon selectionne
+	 */
 	public void cacherDetailsTroncon() {
 		detailsTronconPanel.setVisible(false);
 	}
 
+	/**
+	 * Met a jour si la demande de livraison doit etre affiche
+	 * @param etat definit si l'affichage est fait ou non
+	 */
 	public void setAffichageDemandeLivraison(boolean etat)
 	{
 		affichageDemandeLivraison = etat;
 	}
 
+	/**
+	 * Met a jour si la tournee doit etre affiche
+	 * @param etat definit si l'affichage est fait ou non
+	 */
 	public void setAffichageTournee(boolean etat)
 	{
 		affichageTournee = etat;
 	}
+	
+	/**
+	 * Met a jour la demande de livraison
+	 * @param demandeLivraison la nouvelle demande de livraison
+	 */
 	public void setDemandeLivraison (DemandeLivraison demandeLivraison)
 	{
 		this.demandeLivraison = demandeLivraison;
 		setTournee(null);
 	}
+	/**
+	 * Met a jour la tournee
+	 * @param tournee la nouvelle tournee
+	 */
 	public void setTournee (Tournee tournee)
 	{
 		this.tournee = tournee;
 	}
 
+	/**
+	 * renvoie l'indice de ce qui est selectionne dans la liste
+	 * @return l'indice de ce qui est selctionne dans la liste
+	 */
 	public int getCurrentSelection() {
 		return listTexteLivraison.getSelectedIndex();
 	}
-
-	public void setSelectedIndex(int index) {
-		listTexteLivraison.setSelectedIndex(index);
+	/**
+	 * set l'indice de ce qui doit etre selectionne dans la liste
+	 * @param index le nouvel indice
+	 */
+	public void setSelectedIndex(int indice) {
+		listTexteLivraison.setSelectedIndex(indice);
 	}
 
 }

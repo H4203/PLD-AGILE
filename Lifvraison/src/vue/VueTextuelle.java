@@ -1,115 +1,135 @@
 package vue;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BorderFactory;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
-
 import controleur.Controleur;
-import modeles.Plan;
 import modeles.DemandeLivraison;
-import modeles.Livraison;
-import modeles.PlageHoraire;
 import modeles.Tournee;
 
-public class VueTextuelle extends JPanel implements Observer
-{
-	private static final long serialVersionUID = 1L;
+/**
+ * La vue textuelle de l'ihm
+ * Elle observe les objets pour se mettre a jour
+ * @author H4203
+ *
+ */
+/**
+ * @author heyhey
+ *
+ */
+public class VueTextuelle extends JPanel implements Observer {
 
-	private Fenetre fenetre;
-
-	private DemandeLivraison demandeLivraison;
-	private Tournee tournee;
-
+	/**
+	 * Panel contenant la liste de la vue textuelle
+	 */
 	private ListPanel listPanel;
-	
-	private JPanel listeLivraison;
-	private JPanel listeLivraisonsPanel;
-	private JList<String> listTexteLivraison;
 
-	public VueTextuelle(Fenetre fenetre, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur) 
-	{
+	/**
+	 * Constructeur
+	 * 
+	 * @param fenetre
+	 *            la fenetre ou il se trouvera
+	 * @param demandeLivraison
+	 *            la demande de livraison de la session en cours
+	 * @param tournee
+	 *            la tournee de la session en cours
+	 * @param controleur
+	 *            controlleur de la session en cours
+	 */
+	public VueTextuelle(Fenetre fenetre, DemandeLivraison demandeLivraison, Tournee tournee, Controleur controleur) {
 		super();
 
-		this.fenetre = fenetre;
-
 		setLayout(new CardLayout(40, 40));
-		//setLayout(new BorderLayout());
-		
-		if (demandeLivraison != null )
-		{
-			this.demandeLivraison = demandeLivraison;
+
+		if (demandeLivraison != null) {
 			demandeLivraison.addObserver(this);
-			if (tournee != null )
-			{
-				this.tournee = tournee;
+			if (tournee != null) {
 				tournee.addObserver(this);
 			}
 		}
 
 		listPanel = new ListPanel(fenetre, demandeLivraison, tournee, controleur);
-		//add(listPanel, BorderLayout.CENTER);
 		add(listPanel);
 	}
 
-	public void setModePlan()
-	{
+	/**
+	 * Change le mode de la vue textuelle pour le mode ou le plan (troncon et
+	 * intersection) est affiche La Vue textuelle est alors vide
+	 */
+	public void setModePlan() {
 		listPanel.setAffichageDemandeLivraison(false);
 		listPanel.setAffichageTournee(false);
-		
+
 		listPanel.remplirListe();
 		repaint();
 	}
 
-	public void setModeDemandeLivraison()
-	{
+	/**
+	 * Change le mode de la vue textuelle pour le mode ou le plan est affiche avec
+	 * une demande de livraison
+	 */
+	public void setModeDemandeLivraison() {
 		listPanel.setAffichageDemandeLivraison(true);
 		listPanel.setAffichageTournee(false);
-		
+
 		listPanel.remplirListe();
 		repaint();
 	}
 
-	public void setModeTournee()
-	{
+	/**
+	 * Change le mode de la vue textuelle pour le mode ou le plan est affiche avec
+	 * une tournee
+	 */
+	public void setModeTournee() {
 		listPanel.setAffichageDemandeLivraison(true);
 		listPanel.setAffichageTournee(true);
-		
+
 		listPanel.remplirListe();
 		repaint();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
-	public void update(Observable o, Object arg) 
-	{
+	public void update(Observable o, Object arg) {
 		listPanel.repaint();
 		listPanel.remplirListe();
 		repaint();
 	}
 
-	public void nouvelleDemandeLivraison ( DemandeLivraison demandeLivraison)
-	{
+	/**
+	 * Met a jour la demande de livraison
+	 * 
+	 * @param demandeLivraison
+	 *            la nouvelle demande de livraison
+	 */
+	public void nouvelleDemandeLivraison(DemandeLivraison demandeLivraison) {
 		listPanel.setDemandeLivraison(demandeLivraison);
 		demandeLivraison.addObserver(this);
 	}
-	
-	public void nouvelleTournee ( Tournee tournee)
-	{
+
+	/**
+	 * Met a jour la tournee
+	 * 
+	 * @param tournee
+	 *            la nouvelle tournee
+	 */
+	public void nouvelleTournee(Tournee tournee) {
 		listPanel.setTournee(tournee);
 		tournee.addObserver(this);
 	}
-	
-	public ListPanel getListPanel()
-	{
+
+	/**
+	 * Renvoie la liste de la vue textuelle
+	 * 
+	 * @return la liste de la vue
+	 */
+	public ListPanel getListPanel() {
 		return listPanel;
 	}
 }

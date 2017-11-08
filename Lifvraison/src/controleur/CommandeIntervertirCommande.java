@@ -1,11 +1,9 @@
 package controleur;
 
 import algorithme.CalculateurTournee;
-import modeles.Livraison;
 
 public class CommandeIntervertirCommande implements Commande{
 	
-	private Livraison livraison;
 	private CalculateurTournee calculateurTournee;
 	private int positionLivraison1;
 	private int positionLivraison2;

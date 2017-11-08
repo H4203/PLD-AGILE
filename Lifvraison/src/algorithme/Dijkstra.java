@@ -10,8 +10,6 @@ import java.util.Collection;
 import java.util.Collections;
 import modeles.Itineraire;
 
-import donnees.XMLParseur;
-
 public class Dijkstra {
 
 	// Contient les intersection associees a leur antecedent
@@ -48,7 +46,6 @@ public class Dijkstra {
 		intersectionsGrisesInversees = new HashMap<Double, List<Long>>();
 		
 		Collection<Intersection> c = lePlan.getListeIntersection().values();
-		int i = 0;
 		// On ajoute les intersections dans les differentes Hashmap
 		for (Intersection intersection : c) {
 			pi.put(intersection.getId(), null);

@@ -1,9 +1,7 @@
 package controleur;
 
 import algorithme.CalculateurTournee;
-import modeles.DemandeLivraison;
 import modeles.Livraison;
-import modeles.Tournee;
 
 public class CommandeSupprimerLivraison implements Commande {
 
